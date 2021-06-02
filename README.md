@@ -26,11 +26,11 @@
 
 # Project Title
 
-Simple overview of use/purpose.
+TBD
 
 ## Description
 
-An in-depth paragraph about your project and overview of use.
+This project is a front end redesign of an online clothing retailer's website. 
 
 ## Getting Started
 
@@ -41,7 +41,7 @@ An in-depth paragraph about your project and overview of use.
 
 ### Installation
 
-* How/where to download your program
+* Source: https://github.com/Quadratic-Quokkas/FEC-135/
 * Any modifications needed to be made to files/folders
 
 ### Executing program
@@ -61,10 +61,9 @@ command to run if program contains helper info
 
 ## Authors
 
-Contributors names and contact info
-
-ex. First Name Last Name
-ex. [@](https://twitter.com/[handle])
+Sean Claybaugh
+Elizabeth Phung 
+Iris Jiang
 
 ## Version History
 
