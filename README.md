@@ -56,9 +56,9 @@ command to run if program contains helper info
 
 ## Authors
 
-Sean Claybaugh
-Elizabeth Phung 
-Iris Jiang
+Sean Claybaugh<br>
+Iris Jiang<br>
+Elizabeth Phung
 
 ## Version History
 
