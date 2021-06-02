@@ -1,13 +1,15 @@
+# Project Title
+
+TBD
+
+## Description
+
+This project is a front end redesign of an online clothing retailer's website. 
+
 <!-- TABLE OF CONTENTS -->
 <details open="open">
   <summary>Table of Contents</summary>
   <ol>
-    <li>
-      <a href="#project-title">Project</a>
-      <ul>
-        <li><a href="#description">Description</a></li>
-      </ul>
-    </li>
     <li>
       <a href="#getting-started">Getting Started</a>
       <ul>
@@ -24,13 +26,6 @@
   </ol>
 </details>
 
-# Project Title
-
-TBD
-
-## Description
-
-This project is a front end redesign of an online clothing retailer's website. 
 
 ## Getting Started
 
