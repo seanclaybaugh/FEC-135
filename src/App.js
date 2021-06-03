@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-const App = () => (
-  <div>
+function App() {
+  <>
     <h1>Hi</h1>
-  </div>
-)
+  </>
+}
 
 export default App;
