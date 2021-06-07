@@ -10,12 +10,7 @@ const authToken = config.token;
 // (e.g. static files on the route '/')
 // '*' is the wildcard route that will handle all the incoming requests
 router.all('/atelier/*', async (req, res) => {
-  // console.log(`${req.method}: ${req.url}`);
-  console.log('req.method:')
-  console.log(req.method)
-
-  console.log('req.url:')
-  console.log(req.url)
+  console.log(`${req.method}: ${req.url}`);
 
   // this returns an array of the path components (ex: ['atelier', 'products' 'product_id'])
   const pathComponents = req.url.split('/');
@@ -31,17 +26,23 @@ router.all('/atelier/*', async (req, res) => {
   console.log('requestUrl:')
   console.log(requestUrl);
 
+  console.log('body')
+  console.log(req.body)
+
   try {
     const results = await axios({
       method: req.method,
       url: requestUrl,
       headers: { Authorization: authToken },
+      data: req.body,
     });
     res.status(results.status).json(results.data);
   } catch (err) {
-    console.log(err);
+    // console.log(err);
     res.sendStatus(500);
   }
 });
 
 module.exports = router;
+
+// client side example: axios.get('http://localhost:3000/atelier/products')
