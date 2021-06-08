@@ -25,15 +25,26 @@ const Img = styled.img`
   }
 `;
 
-function StyleThumbnail({ style, index, updateCurrentStyle }) {
-
+function StyleThumbnail({ style, index, currentStyle, updateCurrentStyle }) {
   function handleClick() {
     updateCurrentStyle(style)
   }
 
+  function handleMouseEnter() {
+    updateCurrentStyle(style);
+  }
+
+  function handleMouseLeave() {
+    updateCurrentStyle(currentStyle);
+  }
+
   return (
     <Container>
-      <Img src={style.photos[0].thumbnail_url} alt="" onClick={handleClick}/>
+      <Img src={style.photos[0].thumbnail_url}
+           alt=""
+           onClick={handleClick}
+           onMouseEnter={handleMouseEnter}
+           onMouseLeave={handleMouseLeave} />
     </Container>
   )
 }

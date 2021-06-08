@@ -1,13 +1,17 @@
 import React from 'react';
 import styled from 'styled-components';
 
+const HeaderContainer = styled.div`
+  border-bottom: 1px solid #e2e2e2;
+`;
+
 const PriceContainer = styled.div`
-display: flex;
-flex-direction: row;
+  display: flex;
+  flex-direction: row;
 `;
 
 const NewPrice = styled.div`
-color: red;
+  color: red;
 `;
 
 function Header({ name, description, price, currentStyle }) {
@@ -26,14 +30,14 @@ function Header({ name, description, price, currentStyle }) {
   }
 
   return (
-    <div>
+    <HeaderContainer>
       <h3>{name}</h3>
       <PriceContainer>
         <OriginalPrice>{'$' + parseInt(currentPrice)}</OriginalPrice> {newPriceDisplay}
       </PriceContainer>
       <h6>DESCRIPTION</h6>
       <p>{description}</p>
-    </div>
+    </HeaderContainer>
   )
 }
 

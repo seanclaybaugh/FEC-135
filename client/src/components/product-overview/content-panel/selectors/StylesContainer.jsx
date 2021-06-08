@@ -2,7 +2,11 @@ import React from 'react';
 import styled from 'styled-components';
 import StyleThumbnail from './StyleThumbnail';
 
-const Container = styled.div`
+const OuterContainer = styled.div`
+  border-bottom: 1px solid #e2e2e2;
+`;
+
+const InnerContainer = styled.div`
   display: flex;
   flex-direction: row;
   margin: 10px;
@@ -10,14 +14,17 @@ const Container = styled.div`
 
 function StylesContainer({ styles, currentStyle, updateCurrentStyle }) {
   return (
-    <div>
+    <OuterContainer>
       <h6>{currentStyle.name}</h6>
-      <Container>
+      <InnerContainer>
         {styles.map((style, index) => {
-          return <StyleThumbnail style={style} key={index} updateCurrentStyle={updateCurrentStyle} />
+          return <StyleThumbnail style={style}
+                                 key={index}
+                                 currentStyle={currentStyle}
+                                 updateCurrentStyle={updateCurrentStyle} />
         })}
-      </Container>
-    </div>
+      </InnerContainer>
+    </OuterContainer>
   )
 }
 
