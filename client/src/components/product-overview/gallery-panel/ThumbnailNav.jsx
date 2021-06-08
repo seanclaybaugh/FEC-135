@@ -9,6 +9,7 @@ const ThumbnailList = styled.div`
 const ThumbnailContainer = styled.div`
   display: flex;
   flex-direction: column;
+  margin-top: 20px;
 `;
 
 function ThumbnailNav({ currentStyle, updateGalleryView }) {

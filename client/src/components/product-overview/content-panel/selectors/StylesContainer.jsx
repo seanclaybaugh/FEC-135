@@ -15,7 +15,7 @@ const InnerContainer = styled.div`
 function StylesContainer({ styles, currentStyle, updateCurrentStyle }) {
   return (
     <OuterContainer>
-      <h6>{currentStyle.name}</h6>
+      <h6>{currentStyle.name.toUpperCase()}</h6>
       <InnerContainer>
         {styles.map((style, index) => {
           return <StyleThumbnail style={style}

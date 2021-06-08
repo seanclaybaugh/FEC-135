@@ -4,7 +4,7 @@ import Gallery from './Gallery';
 
 const Panel = styled.div`
   order: 1;
-  margin: 50px;
+  margin-left: 20px;
 `;
 
 function GalleryPanel({ currentStyle }) {

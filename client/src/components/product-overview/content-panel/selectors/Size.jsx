@@ -2,15 +2,17 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Button = styled.button`
-  margin: 2.5px;
+  margin: 20px 2.5px;
   background-color: #E9EAEC;
-  color: #868B8E;
+  color: #000;
   border: solid 1px #E9EAEC;
   padding: 5px;
   width: 50px;
 
   :hover {
     cursor: pointer;
+    background-color: #000;
+    color: #fff;
   }
 `;
 

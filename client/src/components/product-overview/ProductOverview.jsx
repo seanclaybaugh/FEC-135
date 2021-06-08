@@ -8,7 +8,8 @@ const Container = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
-  background-color: #fff;
+  background-color: #f7f7f7;
+  margin-top: 50px;
 `;
 
 function ProductOverview() {

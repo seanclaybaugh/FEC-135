@@ -11,6 +11,7 @@ const ListItem = styled.button`
     display: block;
     opacity: 1;
     visibility: visible;
+    cursor: pointer;
   }
 `;
 

@@ -1,8 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import Size from './Size';
 
-const Container = styled.div`
+const OuterContainer = styled.div`
+  border-bottom: 1px solid #e2e2e2;
+`;
+
+const InnerContainer = styled.div`
   display: flex;
   flex-direction: row;
   margin: 10px;
@@ -18,12 +22,17 @@ function SizesContainer({ currentStyle }) {
     });
   }
 
+  const [selectedSize, setSelectedSize] = useState('SELECT SIZE')
+
   return (
-    <Container>
-      {skus.map((item, index) => {
-        return <Size key={index} sku={item.sku} quantity={item.details.quantity} size={item.details.size} />
-      })}
-    </Container>
+    <OuterContainer>
+      <h6>{selectedSize}</h6>
+      <InnerContainer>
+        {skus.map((item, index) => {
+          return <Size key={index} sku={item.sku} quantity={item.details.quantity} size={item.details.size} />
+        })}
+      </InnerContainer>
+    </OuterContainer>
   )
 }
 

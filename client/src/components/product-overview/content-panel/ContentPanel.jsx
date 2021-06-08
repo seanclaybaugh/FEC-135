@@ -8,7 +8,7 @@ import AddToCart from './selectors/AddToCart';
 const Container = styled.div`
   order: 2;
   width: 550px;
-  margin: 20px 40px;
+  margin: 10px 20px;
 `;
 
 function ContentPanel({ product, styles, updateCurrentStyle, currentStyle }) {
