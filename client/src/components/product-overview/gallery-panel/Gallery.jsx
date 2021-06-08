@@ -1,17 +1,26 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
+import ThumbnailNav from './ThumbnailNav';
+import MainView from './MainView';
 
-const Img = styled.img`
-  width: 500px;
+const Container = styled.div`
+  display: flex;
+  flex-direction: row;
 `;
 
 function Gallery({ currentStyle }) {
-  let url = !currentStyle ? '' : currentStyle.photos[0].url;
+  const [selectedMain, setSelectedMain] = useState(currentStyle.photos[0]);
+
+  function updateGalleryView(index) {
+    setSelectedMain(currentStyle.photos[index])
+  }
 
   return (
-    <div>
-      <Img src={url} />
-    </div>
+    <Container>
+      <MainView currentPhoto={selectedMain} />
+      <ThumbnailNav currentStyle={currentStyle}
+                    updateGalleryView={updateGalleryView} />
+    </Container>
   )
 }
 

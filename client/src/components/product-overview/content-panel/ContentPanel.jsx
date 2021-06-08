@@ -6,7 +6,6 @@ import SizesContainer from './selectors/SizesContainer';
 import AddToCart from './selectors/AddToCart';
 
 const Container = styled.div`
-  flex-grow: 1;
   order: 2;
   width: 550px;
   margin: 20px 40px;
@@ -15,8 +14,13 @@ const Container = styled.div`
 function ContentPanel({ product, styles, updateCurrentStyle, currentStyle }) {
   return (
     <Container>
-      <Header name={product.name} description={product.description} price={product.price} currentStyle={currentStyle} />
-      <StylesContainer styles={styles} currentStyle={currentStyle} updateCurrentStyle={updateCurrentStyle} />
+      <Header name={product.name}
+              description={product.description}
+              price={product.price}
+              currentStyle={currentStyle} />
+      <StylesContainer styles={styles}
+                       currentStyle={currentStyle}
+                       updateCurrentStyle={updateCurrentStyle} />
       <SizesContainer currentStyle={currentStyle} />
       <AddToCart />
     </Container>

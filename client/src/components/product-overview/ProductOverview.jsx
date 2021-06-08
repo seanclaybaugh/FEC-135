@@ -7,6 +7,7 @@ import ContentPanel from './content-panel/ContentPanel';
 const Container = styled.div`
   display: flex;
   flex-direction: row;
+  justify-content: center;
   background-color: #fff;
 `;
 
@@ -70,7 +71,10 @@ function ProductOverview() {
       :
     <Container>
       <GalleryPanel currentStyle={currentStyle} />
-      <ContentPanel product={product} styles={styles} updateCurrentStyle={updateCurrentStyle} currentStyle={currentStyle} />
+      <ContentPanel product={product}
+                    styles={styles}
+                    updateCurrentStyle={updateCurrentStyle}
+                    currentStyle={currentStyle} />
     </Container>
   )
 }

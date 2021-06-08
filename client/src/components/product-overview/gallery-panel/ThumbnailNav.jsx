@@ -11,12 +11,15 @@ const ThumbnailContainer = styled.div`
   flex-direction: column;
 `;
 
-function ThumbnailNav({ currentStyle }) {
+function ThumbnailNav({ currentStyle, updateGalleryView }) {
 return (
   <ThumbnailList>
     <ThumbnailContainer>
       {currentStyle.photos.map((photo, index) => {
-        return <Thumbnail key={index} photo={photo} />
+        return <Thumbnail key={index}
+                          index={index}
+                          photo={photo}
+                          updateGalleryView={updateGalleryView} />
       })}
     </ThumbnailContainer>
   </ThumbnailList>
