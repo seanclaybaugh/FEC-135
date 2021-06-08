@@ -1,0 +1,6 @@
+/*
+
+Stateful component uses review meta data
+
+
+*/

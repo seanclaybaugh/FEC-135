@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import ProductOverview from './product-overview/ProductOverview';
+import ReviewsIndex from './reviews/reviewsIndex';
 
 function App() {
   return (
