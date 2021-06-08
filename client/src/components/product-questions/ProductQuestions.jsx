@@ -11,12 +11,7 @@ function ProductQuestions() {
   const [questionId, setQuestionId] = useState('');
   const [answers, setAnswers] = useState([]);
   const [isError, setIsError] = useState(false);
-  // const [isQuestionModalOpen, setIsQuestionModalOpen] = useState(false);
-  // const [isAnswerModalOpen, setisAnswerModalOpen] = useState(false);
-
-  // const openModal = () => setIsQuestionModalOpen(true);
-  // const closeModal = () => setIsQuestionModalOpen(false);
-
+  //use custom hook here for modal window
   const {isShowing, toggle} = UseModal();
 
   useEffect(() => {
@@ -48,19 +43,12 @@ function ProductQuestions() {
 
       <div>MORE ANSWERED QUESTIONS</div>
 
-      <div>Add a Question</div>
-     {!isShowing && <button className="button-default" onClick={toggle}>Show Modal</button>}
+
+     {!isShowing && <button className="button-default" onClick={toggle}>Add a Question</button>}
       <AddQuestionModal
       isShowing={isShowing}
       toggle={toggle}
       />
-
-
-      {/* {!isQuestionModalOpen && <button onClick={openModal}>Show question Modal</button>}
-      <AddQuestionModal
-      closeModal={closeModal}
-      showModal={isQuestionModalOpen}
-      /> */}
     </>
   )
 }
