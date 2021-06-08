@@ -24,6 +24,7 @@
   "homepage": "https://github.com/Quadratic-Quokkas/FEC-135#readme",
   "devDependencies": {
     "@babel/core": "^7.14.3",
+    "@babel/plugin-transform-runtime": "^7.14.3",
     "@babel/preset-env": "^7.14.4",
     "@babel/preset-react": "^7.13.13",
     "@testing-library/react": "^11.2.7",
