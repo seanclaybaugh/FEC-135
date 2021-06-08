@@ -23,6 +23,8 @@ function ProductOverview() {
     .catch(err => console.log(err));
   }, [])
 
+  const [isLoading, setIsLoading] = useState(true);
+
   const [currentStyle, setCurrentStyle] = useState('');
 
   const [styles, setStyles] = useState([]);
@@ -37,6 +39,7 @@ function ProductOverview() {
         return style['default?'];
       });
       setCurrentStyle(defaultStyle[0]);
+      setIsLoading(false);
     })
     .catch(err => console.log(err));
   }, [])
@@ -46,6 +49,8 @@ function ProductOverview() {
   }
 
   return (
+    (isLoading) ? <p>Loading...</p>
+      :
     <Container>
       <GalleryPanel currentStyle={currentStyle} />
       <ContentPanel product={product} styles={styles} updateCurrentStyle={updateCurrentStyle} currentStyle={currentStyle} />

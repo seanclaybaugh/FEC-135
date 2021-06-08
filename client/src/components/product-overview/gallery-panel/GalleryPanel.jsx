@@ -1,23 +1,29 @@
 import React from 'react';
 import styled from 'styled-components';
+import Gallery from './Gallery';
+import ThumbnailNav from './ThumbnailNav';
 
-const Container = styled.div`
+const Panel = styled.div`
   flex-grow: 2;
   order: 1;
   margin: 20px;
 `;
 
-const Img = styled.img`
-  width: 500px;
+const Container = styled.div`
+  display: flex;
+  flex-direction: row;
 `;
 
 function GalleryPanel({currentStyle}) {
   let url = !currentStyle ? '' : currentStyle.photos[0].url;
 
   return (
-    <Container>
-      <Img src={url} />
-    </Container>
+    <Panel>
+      <Container>
+        <Gallery currentStyle={currentStyle} />
+        <ThumbnailNav currentStyle={currentStyle} />
+      </Container>
+    </Panel>
   )
 }
 
