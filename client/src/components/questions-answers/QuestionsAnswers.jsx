@@ -4,7 +4,9 @@ import axios from 'axios';
 
 function QuestionsAnswers() {
 
-  const [data, setData] = useState({questions: []});
+  const [questionList, setQuestionList] = useState({questions: []});
+  const [questionId, setQuestionId] = useState('');
+  const [answers, setAnswers] = useState([]);
   const [isError, setIsError] = useState(false);
 
   useEffect(() => {
@@ -13,8 +15,8 @@ function QuestionsAnswers() {
 
       try {
         const res = await axios.get('/api/qa/questions?product_id=25171');
-        console.log(res.data.results);
-        setData({questions: res.data.results});
+        console.log(res.data);
+        setQuestionList({questions: res.data.results});
       } catch (error) {
         setIsError(true);
       }
@@ -26,8 +28,9 @@ function QuestionsAnswers() {
   return (
     <>
     {isError && <div>Error with get data...</div>}
+
     <QuestionsList
-      questions={data.questions}
+      questions={questionList.questions}
     />
     </>
   )
