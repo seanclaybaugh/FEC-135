@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import QuestionsList from './questionsList/QuestionsList';
 import axios from 'axios';
 
-function QuestionsAnswers() {
+function ProductQuestions() {
 
   const [questionList, setQuestionList] = useState({questions: []});
   const [questionId, setQuestionId] = useState('');
@@ -27,17 +27,20 @@ function QuestionsAnswers() {
 
   return (
     <>
-    {isError && <div>Error with get data...</div>}
-    <div>Search for Questions</div>
-    <QuestionsList
+      {isError && <div>Error with get data...</div>}
+
+      <div>Search for Questions</div>
+
+      <QuestionsList
       questions={questionList.questions}
-    />
-    <div>Add a Question</div>
+      />
+
+      <div>Add a Question</div>
     </>
   )
 }
 
-
+export default ProductQuestions;
 
 
 // class QuestionsAnswers extends React.Component {
@@ -88,6 +91,3 @@ function QuestionsAnswers() {
 //   }
 
 // }
-
-
-export default QuestionsAnswers;

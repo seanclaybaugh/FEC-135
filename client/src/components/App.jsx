@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import QuestionsAnswers from './questions-answers/QuestionsAnswers';
+import ProductQuestions from './product-questions/ProductQuestions';
 
 function App() {
   return (
     <>
       <h1>What up my Quadratic Quokkas Q.Q</h1>
-      <QuestionsAnswers />
+      <ProductQuestions />
     </>
   );
 }
