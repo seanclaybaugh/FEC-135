@@ -5,23 +5,37 @@ import axios from 'axios';
 function QuestionsAnswers() {
 
   const [data, setData] = useState({questions: []});
+  const [isError, setIsError] = useState(false);
 
   useEffect(() => {
-    axios.get('/api/qa/questions?product_id=25171')
-    .then((res) => {
-      console.log(res.data.results)
-      setData({questions: res.data.results});
-    });
+    const fetchQuestions = async () => {
+      setIsError(false);
+
+      try {
+        const res = await axios.get('/api/qa/questions?product_id=25171');
+        console.log(res.data.results);
+        setData({questions: res.data.results});
+      } catch (error) {
+        setIsError(true);
+      }
+    };
+
+    fetchQuestions();
   }, []);
 
   return (
     <>
+    {isError && <div>Error with get data...</div>}
     <QuestionsList
       questions={data.questions}
     />
     </>
   )
 }
+
+
+
+
 // class QuestionsAnswers extends React.Component {
 
 //   constructor(props) {
