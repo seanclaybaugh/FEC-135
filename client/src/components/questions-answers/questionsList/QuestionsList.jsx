@@ -10,8 +10,6 @@ class QuestionsList extends React.Component {
   render() {
     return (
       <>
-
-      questions list
       <ul>
       {this.props.questions.map((question, index) =>
 

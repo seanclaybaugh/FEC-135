@@ -28,10 +28,11 @@ function QuestionsAnswers() {
   return (
     <>
     {isError && <div>Error with get data...</div>}
-
+    <div>Search for Questions</div>
     <QuestionsList
       questions={questionList.questions}
     />
+    <div>Add a Question</div>
     </>
   )
 }

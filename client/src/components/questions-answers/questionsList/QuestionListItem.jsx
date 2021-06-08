@@ -9,7 +9,7 @@ const QuestionListItem = props => {
     <>
       <div>
         <li className="QuestionItem">
-          Q: {props.question.question_body}
+          Q: {props.question.question_body} | Helpful? Yes ({props.question.question_helpfulness}) | Add Answer
         <br/>
         </li>
 
@@ -19,7 +19,9 @@ const QuestionListItem = props => {
           answer={answers[keyName]}
           />
         )}
-        <br/>
+        <div>Load more answers (if more than 2 answers)</div>
+      <br/>
+      <br/>
       </div>
 
     </>

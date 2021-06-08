@@ -10,7 +10,7 @@ const AnswersPerQuestion = props => {
     <span className="answerListItem">
       A: {props.answer.body}
       <div>
-      By: {props.answer.answerer_name} | {date} | Helpful? {props.answer.helpfulness} | Report
+      By: {props.answer.answerer_name} | {date} | Helpful? Yes ({props.answer.helpfulness}) | Report
       </div>
       <br/>
     </span>
