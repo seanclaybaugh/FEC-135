@@ -23,7 +23,7 @@ const Select = styled.select`
   }
 `;
 
-function Quantity({ selectedSku, selectedStyle }) {
+function Quantity({ selectedSku, selectedStyle, updateQty }) {
   const [quantity, setQuantity] = useState(0);
 
   useEffect(() => {
@@ -33,9 +33,29 @@ function Quantity({ selectedSku, selectedStyle }) {
 
   const options = quantity > 0 ? getQtyList(quantity) : ['---'];
 
+  const [qtySelected, setQtySelected] = useState(null);
+  const [skuSelected, setSkuSelected] = useState('');
+
+  useEffect(() => {
+    if (selectedSku > 0) {
+      setSkuSelected(selectedSku)
+      setQtySelected(1)
+    }
+  }, [selectedSku])
+
+  useEffect(() => {
+    updateQty(qtySelected)
+  }, [skuSelected])
+
+  function handleChange(e) {
+    const value = Number(e.target.value);
+    setQtySelected(value)
+    updateQty(value)
+  }
+
   return (
     <div>
-      <Select>
+      <Select onChange={handleChange}>
         {options.map((option, index) => {
           return <option key={index} value={option}>{option}</option>
         })}

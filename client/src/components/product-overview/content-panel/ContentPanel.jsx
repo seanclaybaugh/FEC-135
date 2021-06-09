@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import Header from './Header';
 import StylesContainer from './selectors/StylesContainer';
@@ -12,6 +12,17 @@ const Container = styled.div`
 `;
 
 function ContentPanel({ product, styles, updateCurrentStyle, currentStyle }) {
+  const [cartSku, setCartSku] = useState(null);
+  const [cartQty, setCartQty] = useState(0);
+
+  function updateCartSku(sku) {
+    setCartSku(sku)
+  }
+
+  function updateCartQty(qty) {
+    setCartQty(qty)
+  }
+
   return (
     <Container>
       <Header name={product.name}
@@ -21,8 +32,8 @@ function ContentPanel({ product, styles, updateCurrentStyle, currentStyle }) {
       <StylesContainer styles={styles}
                        currentStyle={currentStyle}
                        updateCurrentStyle={updateCurrentStyle} />
-      <SizesContainer currentStyle={currentStyle} />
-      <AddToCart />
+      <SizesContainer currentStyle={currentStyle} updateCartSku={updateCartSku} updateCartQty={updateCartQty} />
+      <AddToCart sku={cartSku} qty={cartQty} />
     </Container>
   )
 }

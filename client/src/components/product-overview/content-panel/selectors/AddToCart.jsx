@@ -1,7 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
+import axios from 'axios';
 
-const Container = styled.div`
+const Container = styled.form`
   margin: 10px;
 `;
 
@@ -21,9 +22,23 @@ const Button = styled.button`
   }
 `;
 
-function AddToCart() {
+function AddToCart({ cart }) {
+
+  function handleSubmit(e) {
+    e.preventDefault()
+    addItem()
+  }
+
+  function addItem() {
+    axios.post('http://localhost:3000/api/cart', {
+      sku_id: cart.sku
+    })
+      .then(results => console.log(results))
+      .catch(err => console.log(err))
+  }
+
   return (
-    <Container>
+    <Container onSubmit={handleSubmit}>
       <Button>ADD TO BAG</Button>
     </Container>
   )

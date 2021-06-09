@@ -31,7 +31,7 @@ const InnerContainer = styled.div`
   margin: 0 10px 20px 10px;
 `;
 
-function SizesContainer({ currentStyle }) {
+function SizesContainer({ currentStyle, updateCartSku, updateCartQty }) {
   let skus = [];
 
   for (const sku in currentStyle.skus) {
@@ -45,12 +45,14 @@ function SizesContainer({ currentStyle }) {
   const [selectedSize, setSelectedSize] = useState('Select a size');
   const [selectedSku, setSelectedSku] = useState('');
   const [inStock, setStockStatus] = useState('');
+  const [selectedQty, setSelectedQty] = useState(null);
 
   useEffect(() => {
     setSelectedStyle(currentStyle)
     setSelectedSize('Select a size')
     setSelectedSku('')
     setStockStatus('')
+    setSelectedQty(null)
   }, [currentStyle])
 
   function updateSizeSelection(sku) {
@@ -62,6 +64,18 @@ function SizesContainer({ currentStyle }) {
     setSelectedSku(sku)
     setStockStatus(status)
   }
+
+  function updateQty(qty) {
+    setSelectedQty(qty)
+  }
+
+  useEffect(() => {
+    updateCartSku(selectedSku)
+  }, [selectedSize])
+
+  useEffect(() => {
+    updateCartQty(selectedQty)
+  }, [selectedQty])
 
   return (
     <OuterContainer>
@@ -95,7 +109,8 @@ function SizesContainer({ currentStyle }) {
       </TextContainer>
       <InnerContainer>
         <Quantity selectedSku={selectedSku}
-                  selectedStyle={selectedStyle} />
+                  selectedStyle={selectedStyle}
+                  updateQty={updateQty} />
       </InnerContainer>
     </OuterContainer>
   )
