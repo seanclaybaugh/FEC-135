@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import getQtyList from './helpers/getQtyList';
 
@@ -24,13 +24,14 @@ const Select = styled.select`
 `;
 
 function Quantity({ selectedSku, selectedStyle }) {
-  let quantity = 0;
-  let options = ['-'];
+  const [quantity, setQuantity] = useState(0);
 
-  if (selectedSku) {
-    quantity = selectedStyle.skus[selectedSku].quantity;
-    options = getQtyList(quantity);
-  }
+  useEffect(() => {
+    const qty = selectedSku === '' ? 0 : selectedStyle.skus[selectedSku].quantity;
+    setQuantity(qty)
+  }, [selectedSku])
+
+  const options = quantity > 0 ? getQtyList(quantity) : ['---'];
 
   return (
     <div>

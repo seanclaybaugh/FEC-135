@@ -47,6 +47,7 @@ function SizesContainer({ currentStyle }) {
   const [inStock, setStockStatus] = useState('');
 
   useEffect(() => {
+    setSelectedStyle(currentStyle)
     setSelectedSize('Select a size')
     setSelectedSku('')
     setStockStatus('')
