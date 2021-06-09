@@ -42,7 +42,6 @@ const ModalHeader = styled.div`
   justify-content: flex-end;
 `
 
-
 const AddQuestionModal = ({isShowing, toggle, handleAddedQuestion, productId}) => isShowing ? ReactDOM.createPortal(
   <>
     <Overlay/>

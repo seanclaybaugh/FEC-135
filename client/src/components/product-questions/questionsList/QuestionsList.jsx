@@ -1,6 +1,5 @@
 import React from 'react';
 import QuestionListItem from './QuestionListItem';
-
 class QuestionsList extends React.Component {
 
   constructor(props) {
