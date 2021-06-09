@@ -12,7 +12,8 @@ const forwardImageAnimation = keyframes`
 `
 
 const MainViewContainer = styled.div`
-
+  display: flex;
+  flex-direction: column;
 `;
 
 const StyledImageContainer = styled.div`
@@ -44,6 +45,25 @@ const StyledArrowContainer = styled.div`
   }
 `;
 
+const StyledIndicatorContainer = styled.div`
+  width: 200px;
+  margin: 0 auto;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+`;
+
+const StyledIndicator = styled.div`
+  width: 15px;
+  height: 15px;
+  margin: 2px;
+  background-color: ${props => props.bgColor};
+  border-radius: 50px;
+`;
+
+
 function MainView({ selectedIndex, currentStyle }) {
   const [currentPhotoIndex, setCurrentPhotoIndex] = useState(0);
 
@@ -68,17 +88,24 @@ function MainView({ selectedIndex, currentStyle }) {
   }, [selectedIndex])
 
   return (
-    <MainViewContainer>
-      <StyledImageContainer>
-        <StyledArrowContainer onClick={prevPhoto} position="10%" >
-          {currentPhotoIndex !== 0 && <MdKeyboardArrowLeft />}
-        </StyledArrowContainer>
-        <StyledImage src={currentStyle.photos[currentPhotoIndex].url} />
-        <StyledArrowContainer onClick={nextPhoto} position="90%" >
-          {currentPhotoIndex !== currentStyle.photos.length - 1 &&  <MdKeyboardArrowRight />}
-        </StyledArrowContainer>
-      </StyledImageContainer>
-    </MainViewContainer>
+    <>
+      <MainViewContainer>
+        <StyledImageContainer>
+          <StyledArrowContainer onClick={prevPhoto} position="10%" >
+            {currentPhotoIndex !== 0 && <MdKeyboardArrowLeft />}
+          </StyledArrowContainer>
+          <StyledImage src={currentStyle.photos[currentPhotoIndex].url} />
+          <StyledArrowContainer onClick={nextPhoto} position="90%" >
+            {currentPhotoIndex !== currentStyle.photos.length - 1 &&  <MdKeyboardArrowRight />}
+          </StyledArrowContainer>
+        </StyledImageContainer>
+        <StyledIndicatorContainer>
+          {currentStyle.photos.map((photo, index) => {
+            return <StyledIndicator key={index} bgColor={index === currentPhotoIndex ? '#27231F' : '#E9EAEC'} />
+          })}
+        </StyledIndicatorContainer>
+      </MainViewContainer>
+    </>
   )
 }
 
