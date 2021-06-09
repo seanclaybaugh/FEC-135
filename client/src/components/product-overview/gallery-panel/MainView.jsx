@@ -1,15 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import styled, { keyframes } from 'styled-components';
+import styled from 'styled-components';
 import { MdKeyboardArrowRight, MdKeyboardArrowLeft } from 'react-icons/md';
-
-const forwardImageAnimation = keyframes`
-  0% {
-    transform: translateX();
-  }
-  100% {
-
-  }
-`
+import ThumbnailBottom from './ThumbnailBottom';
 
 const MainViewContainer = styled.div`
   display: flex;
@@ -19,7 +11,7 @@ const MainViewContainer = styled.div`
 const StyledImageContainer = styled.div`
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
 `;
 
 const StyledImage = styled.img`
@@ -37,33 +29,22 @@ const StyledArrowContainer = styled.div`
   color: #27231F;
   width: 50px;
   height: 100%;
+  margin-top: 200px;
   left: ${props => props.position};
   :hover {
     cursor: pointer;
-    background-color: #E9EAEC;
     opacity: 75%;
   }
 `;
 
 const StyledIndicatorContainer = styled.div`
   width: 200px;
-  margin: 0 auto;
-  margin-top: 20px;
+  margin: 20px auto;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
 `;
-
-const StyledIndicator = styled.div`
-  width: 15px;
-  height: 15px;
-  margin: 2px;
-  background-color: ${props => props.bgColor};
-  border-radius: 50px;
-  transition: background-color 0.5s ease;
-`;
-
 
 function MainView({ selectedIndex, currentStyle }) {
   const [currentPhotoIndex, setCurrentPhotoIndex] = useState(0);
@@ -74,6 +55,10 @@ function MainView({ selectedIndex, currentStyle }) {
 
   function prevPhoto() {
     setCurrentPhotoIndex(prevIndex => prevIndex - 1)
+  }
+
+  function updateSelectedIndex(index) {
+    setCurrentPhotoIndex(index)
   }
 
   useEffect(() => {
@@ -102,7 +87,11 @@ function MainView({ selectedIndex, currentStyle }) {
         </StyledImageContainer>
         <StyledIndicatorContainer>
           {currentStyle.photos.map((photo, index) => {
-            return <StyledIndicator key={index} bgColor={index === currentPhotoIndex ? '#27231F' : '#E9EAEC'} />
+            return <ThumbnailBottom updateSelectedIndex={updateSelectedIndex}
+                                    key={index}
+                                    index={index}
+                                    currentPhotoIndex={currentPhotoIndex}
+                                    photo={photo} />
           })}
         </StyledIndicatorContainer>
       </MainViewContainer>

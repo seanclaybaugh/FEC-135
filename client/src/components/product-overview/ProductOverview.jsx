@@ -9,7 +9,6 @@ const Container = styled.div`
   flex-direction: row;
   justify-content: center;
   background-color: #f7f7f7;
-  margin-top: 50px;
 `;
 
 function ProductOverview() {
