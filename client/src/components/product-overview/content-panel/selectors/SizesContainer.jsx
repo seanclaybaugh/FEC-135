@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import Size from './Size';
+// import Quantity from './Quantity';
 
 const OuterContainer = styled.div`
   border-bottom: 1px solid #e2e2e2;
@@ -51,10 +52,14 @@ function SizesContainer({ currentStyle }) {
     setStockStatus('')
   }, [currentStyle])
 
-  function updateSizeSelection(details) {
-    setSelectedSize(details.size)
-    setSelectedSku(details.sku)
-    setStockStatus(details.status)
+  function updateSizeSelection(sku) {
+    const size = currentStyle.skus[sku].size;
+    const quantity = currentStyle.skus[sku].quantity;
+    const status = quantity > 0 ? 'IN STOCK' : 'OUT OF STOCK';
+
+    setSelectedSize(size)
+    setSelectedSku(sku)
+    setStockStatus(status)
   }
 
   return (
@@ -77,12 +82,12 @@ function SizesContainer({ currentStyle }) {
         {skus.map((item, index) => {
           return <Size key={index}
                        sku={item.sku}
-                       quantity={item.details.quantity}
                        size={item.details.size}
                        updateSizeSelection={updateSizeSelection}
                        isSelected={selectedSku === item.sku} />
         })}
       </InnerContainer>
+      {/* <Quantity selectedSku={selectedSku} selectedStyle={selectedStyle} /> */}
     </OuterContainer>
   )
 }

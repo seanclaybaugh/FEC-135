@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-// import Quantity from './Quantity';
 
 const Button = styled.button`
   margin: 20px 2.5px;
@@ -19,25 +18,18 @@ const Button = styled.button`
   }
 `;
 
-function Size({ sku, quantity, size, updateSizeSelection, isSelected }) {
-  const status = quantity > 0 ? 'IN STOCK' : 'OUT OF STOCK';
+function Size({ sku, size, updateSizeSelection, isSelected }) {
 
   function handleClick() {
-    updateSizeSelection({
-      size: size,
-      sku: sku,
-      status: status
-    })
+    updateSizeSelection(sku)
   }
 
   return (
     <div>
       <Button sku={sku}
-              quantity={quantity}
               onClick={handleClick}
               bgColor={isSelected ? '#fff' : '#E9EAEC'}
               borderColor={isSelected ? '#000' : '#E9EAEC'}>{size}</Button>
-      {/* <Quantity /> */}
     </div>
   )
 }
