@@ -7,7 +7,7 @@ const Button = styled.button`
   color: #000;
   border: solid 1px #E9EAEC;
   padding: 5px;
-  width: 50px;
+  width: 70px;
 
   :hover {
     cursor: pointer;
@@ -16,10 +16,22 @@ const Button = styled.button`
   }
 `;
 
-function Size({ sku, quantity, size }) {
+function Size({ sku, quantity, size, updateSizeSelection }) {
+  const status = quantity > 0 ? 'IN STOCK' : 'OUT OF STOCK';
+
+  function handleClick() {
+    updateSizeSelection({
+      size: size,
+      sku: sku,
+      status: status
+    })
+  }
+
   return (
     <div>
-      <Button sku={sku} quantity={quantity}>{size}</Button>
+      <Button sku={sku}
+              quantity={quantity}
+              onClick={handleClick}>{size}</Button>
     </div>
   )
 }

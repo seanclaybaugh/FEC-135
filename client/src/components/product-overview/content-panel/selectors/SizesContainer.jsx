@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import Size from './Size';
 
@@ -6,10 +6,28 @@ const OuterContainer = styled.div`
   border-bottom: 1px solid #e2e2e2;
 `;
 
+const TextContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
+
+const TextBoxSize = styled.div`
+  margin: 0 10px 0 10px;
+  width: 100px;
+`;
+
+const TextBoxStock = styled.div`
+  margin: 0 10px 0 10px;
+`;
+
+const TextBoxSku = styled.div`
+  margin-left: 150px;
+`;
+
 const InnerContainer = styled.div`
   display: flex;
   flex-direction: row;
-  margin: 10px;
+  margin: 0 10px 10px 10px;
 `;
 
 function SizesContainer({ currentStyle }) {
@@ -22,14 +40,49 @@ function SizesContainer({ currentStyle }) {
     });
   }
 
-  const [selectedSize, setSelectedSize] = useState('SELECT SIZE')
+  const [selectedStyle, setSelectedStyle] = useState(currentStyle);
+
+  useEffect(() => {
+    setSelectedSize('Select a size')
+    setSku('')
+    setStockStatus('')
+  }, [currentStyle])
+
+  const [selectedSize, setSelectedSize] = useState('Select a size');
+
+  const [sku, setSku] = useState('');
+
+  const [inStock, setStockStatus] = useState('');
+
+  function updateSizeSelection(details) {
+    setSelectedSize(details.size)
+    setSku('# ' + details.sku)
+    setStockStatus(details.status)
+  }
 
   return (
     <OuterContainer>
-      <h6>{selectedSize}</h6>
+      <TextContainer>
+        <div>
+          <h5>{'SIZE'}</h5>
+        </div>
+        <TextBoxSize>
+          <h5>{selectedSize}</h5>
+        </TextBoxSize>
+        <TextBoxStock>
+          <h5>{inStock}</h5>
+        </TextBoxStock>
+        <TextBoxSku>
+          <h5>{sku}</h5>
+        </TextBoxSku>
+      </TextContainer>
       <InnerContainer>
         {skus.map((item, index) => {
-          return <Size key={index} sku={item.sku} quantity={item.details.quantity} size={item.details.size} />
+          return <Size key={index}
+                       sku={item.sku}
+                       quantity={item.details.quantity}
+                       size={item.details.size}
+                       updateSizeSelection={updateSizeSelection} />
         })}
       </InnerContainer>
     </OuterContainer>

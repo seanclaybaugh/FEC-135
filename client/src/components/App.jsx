@@ -7,6 +7,7 @@ function App() {
     <>
       {/* <h1>What up my Quadratic Quokkas Q.Q</h1> */}
       <ProductOverview />
+      {/* <ReviewsIndex /> */}
     </>
   );
 }

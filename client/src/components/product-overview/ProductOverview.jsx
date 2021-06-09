@@ -20,17 +20,12 @@ function ProductOverview() {
     const fetchData = async () => {
       try {
         const result = await axios('http://localhost:3000/api/products/25167');
-
-        console.log(result.data);
-
         setProduct(result.data);
       } catch (err) {
         setIsError(err);
       }
     };
-
     fetchData();
-
   }, [])
 
   const [isLoading, setIsLoading] = useState(true);
@@ -41,26 +36,17 @@ function ProductOverview() {
     const fetchData = async () => {
       try {
         const results = await axios('http://localhost:3000/api/products/25167/styles');
-
-        console.log(results.data.results);
-
         setStyles(results.data.results);
-
         const defaultStyle = results.data.results.filter(style => {
           return style['default?'];
         });
-
         setCurrentStyle(defaultStyle[0]);
-
       } catch (err) {
         setIsError(true);
       }
-
       setIsLoading(false);
     };
-
     fetchData();
-
   }, [])
 
   function updateCurrentStyle(select) {

@@ -7,6 +7,8 @@ const config = {
     path: path.resolve(__dirname, 'client', 'dist'),
     filename: 'bundle.js',
   },
+  mode: "development",
+  devTool: "eval-source-map",
   module: {
     rules: [
       {
