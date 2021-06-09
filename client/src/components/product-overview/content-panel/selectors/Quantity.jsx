@@ -24,14 +24,14 @@ const Select = styled.select`
 `;
 
 function Quantity({ selectedSku, selectedStyle, updateQty }) {
-  const [quantity, setQuantity] = useState(0);
+  const [qtyAvailable, setQtyAvailable] = useState(0);
 
   useEffect(() => {
     const qty = selectedSku === '' ? 0 : selectedStyle.skus[selectedSku].quantity;
-    setQuantity(qty)
+    setQtyAvailable(qty)
   }, [selectedSku])
 
-  const options = quantity > 0 ? getQtyList(quantity) : ['---'];
+  const options = qtyAvailable > 0 ? getQtyList(qtyAvailable) : ['---'];
 
   const [qtySelected, setQtySelected] = useState(null);
   const [skuSelected, setSkuSelected] = useState('');
@@ -39,6 +39,8 @@ function Quantity({ selectedSku, selectedStyle, updateQty }) {
   useEffect(() => {
     if (selectedSku > 0) {
       setSkuSelected(selectedSku)
+    }
+    if (!qtySelected) {
       setQtySelected(1)
     }
   }, [selectedSku])
