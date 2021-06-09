@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import QuestionsList from './questionsList/QuestionsList';
 import SearchQuestions from './SearchQuestions';
 import AddQuestionModal from './AddQuestionModal';
-import UseModal from './UseModal';
+import useModal from './UseModal';
 import styled from 'styled-components';
 import axios from 'axios';
 
@@ -21,11 +21,14 @@ text-align: center;
 function ProductQuestions() {
 
   const [questionList, setQuestionList] = useState([]);
+  const [filteredQuestions, setFilteredQuestions] = useState([]);
+
+
   const [questionId, setQuestionId] = useState('');
   const [answers, setAnswers] = useState([]);
   const [isError, setIsError] = useState(false);
   //use custom hook here for modal window
-  const {isShowing, toggle} = UseModal();
+  const {isShowing, toggle} = useModal();
 
   useEffect(() => {
     const fetchQuestions = async () => {
@@ -35,6 +38,7 @@ function ProductQuestions() {
         const res = await axios.get('/api/qa/questions?product_id=25171');
         console.log(res.data);
         setQuestionList(res.data.results);
+        setFilteredQuestions(res.data.results);
       } catch (error) {
         setIsError(true);
       }
@@ -51,10 +55,10 @@ function ProductQuestions() {
       <SearchQuestions />
 
       <QuestionsList
-      questions={questionList}
+      questions={filteredQuestions}
       />
 
-      <div>MORE ANSWERED QUESTIONS</div>
+      <div>LOAD MORE QUESTIONS</div>
 
       <Container>
      {!isShowing && <Button onClick={toggle}>Add a Question</Button>}

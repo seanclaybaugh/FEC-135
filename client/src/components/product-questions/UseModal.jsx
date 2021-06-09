@@ -1,6 +1,6 @@
 import {useState} from 'react';
 
-const UseModal = () => {
+const useModal = () => {
 
   //instantiate new isShowing and setIsShowing state values to store current view state of the modal
   const [isShowing, setIsShowing] = useState(false);
@@ -17,4 +17,4 @@ const UseModal = () => {
   }
 }
 
-export default UseModal;
+export default useModal;

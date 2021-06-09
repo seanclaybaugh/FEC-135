@@ -5,6 +5,11 @@ class QuestionsList extends React.Component {
 
   constructor(props) {
     super(props)
+
+    this.state = {
+      questions: this.props.questions.slice(0, 2),
+      clickMoreQuestions: false,
+    }
   }
 
   render() {
