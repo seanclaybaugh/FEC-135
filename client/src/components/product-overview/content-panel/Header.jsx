@@ -21,6 +21,15 @@ const PriceTextContainer = styled.div`
   flex-direction: row;
 `;
 
+const OriginalPrice = styled.div`
+  line-height: 100%;
+  font-size: 1.2em;
+  text-decoration: ${props => !props.currentStyle.sale_price? 'none' : 'line-through'};
+  height: 100px;
+  line-height: 100px;
+  text-align: center;
+`;
+
 const NewPrice = styled.div`
   line-height: 100%;
   font-size: 1.2em;
@@ -36,15 +45,6 @@ function Header({ name, description, price, currentStyle }) {
   const salePrice = !currentStyle.sale_price ? null : currentStyle.sale_price;
   let newPriceDisplay;
 
-  const OriginalPrice = styled.div`
-    line-height: 100%;
-    font-size: 1.2em;
-    text-decoration: ${!salePrice ? 'none' : 'line-through'};
-    height: 100px;
-    line-height: 100px;
-    text-align: center;
-  `;
-
   if (salePrice) {
     newPriceDisplay = <NewPrice>{'$' + parseInt(salePrice)}</NewPrice>;
   } else {
@@ -59,7 +59,7 @@ function Header({ name, description, price, currentStyle }) {
         </div>
         <PriceContainer>
           <PriceTextContainer>
-            <OriginalPrice>{'$' + parseInt(currentPrice)}</OriginalPrice> {newPriceDisplay}
+            <OriginalPrice currentStyle={currentStyle}>{'$' + parseInt(currentPrice)}</OriginalPrice> {newPriceDisplay}
           </PriceTextContainer>
         </PriceContainer>
       </HeaderTextContainer>

@@ -6,6 +6,9 @@ import MainView from './MainView';
 const Container = styled.div`
   display: flex;
   flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  position: relative;
 `;
 
 function Gallery({ currentStyle }) {
@@ -22,7 +25,7 @@ function Gallery({ currentStyle }) {
 
   return (
     <Container>
-      <MainView currentPhoto={selectedMain} />
+      <MainView currentPhoto={selectedMain} currentStyle={currentStyle} />
       <ThumbnailNav currentStyle={currentStyle}
                     updateGalleryView={updateGalleryView} />
     </Container>
