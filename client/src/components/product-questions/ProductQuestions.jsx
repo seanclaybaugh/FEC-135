@@ -3,7 +3,20 @@ import QuestionsList from './questionsList/QuestionsList';
 import SearchQuestions from './SearchQuestions';
 import AddQuestionModal from './AddQuestionModal';
 import UseModal from './UseModal';
+import styled from 'styled-components';
 import axios from 'axios';
+
+const Button = styled.button`
+  background-color: transparent;
+  border-radius: 3px;
+  border: 2px solid teal;
+  color: teal;
+  margin: 0.5em 1em;
+ padding: 1rem 2rem;
+`
+const Container = styled.div`
+text-align: center;
+`
 
 function ProductQuestions() {
 
@@ -43,12 +56,13 @@ function ProductQuestions() {
 
       <div>MORE ANSWERED QUESTIONS</div>
 
-
-     {!isShowing && <button className="button-default" onClick={toggle}>Add a Question</button>}
+      <Container>
+     {!isShowing && <Button onClick={toggle}>Add a Question</Button>}
       <AddQuestionModal
       isShowing={isShowing}
       toggle={toggle}
       />
+      </Container>
     </>
   )
 }

@@ -1,25 +1,63 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import styled from 'styled-components';
+
+
+const Overlay = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1040;
+  width: 100vw;
+  height: 100vh;
+  background-color: #000;
+  opacity: .5;
+`
+
+const Wrapper = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1050;
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  outline: 0;
+`
+
+const Modal = styled.div`
+  z-index: 100;
+  background: white;
+  position: relative;
+  margin: 1.50rem auto;
+  border-radius: 3px;
+  width: 300px;
+  padding: 3rem;
+`
+
+const ModalHeader = styled.div`
+  display: flex;
+  justify-content: flex-end;
+`
+
 
 const AddQuestionModal = ({isShowing, toggle}) => isShowing ? ReactDOM.createPortal(
   <>
-    <div className="modal-overlay"/>
-    <div className="modal-wrapper" aria-modal aria-hidden tabIndex={-1} role="dialog">
-      <div className="modal">
-        <div className="modal-header">
-          <button type="button"
-          className="modal-close-button"
-          data-dismiss="modal"
-          aria-label="Close"
-          onClick={toggle}>
-            <span aria-hidden="true">x</span>
-          </button>
-        </div>
+    <Overlay/>
+      <Wrapper >
+        <Modal>
+          <ModalHeader>
+            <button type="button"
+              onClick={toggle}>
+              <span>x</span>
+            </button>
+          </ModalHeader>
         <p>
-          Hello, I'm a modal.
+          <input type="text" className="addQuestion" placeholder="ADD QUESTION" />
         </p>
-      </div>
-    </div>
+      </Modal>
+    </Wrapper>
   </>, document.body
 ) : null;
 
