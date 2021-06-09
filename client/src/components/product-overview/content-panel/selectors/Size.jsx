@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+// import Quantity from './Quantity';
 
 const Button = styled.button`
   margin: 20px 2.5px;
@@ -8,6 +9,7 @@ const Button = styled.button`
   border: solid 1px #E9EAEC;
   padding: 5px;
   width: 70px;
+  height: 40px;
 
   :hover {
     cursor: pointer;
@@ -32,6 +34,7 @@ function Size({ sku, quantity, size, updateSizeSelection }) {
       <Button sku={sku}
               quantity={quantity}
               onClick={handleClick}>{size}</Button>
+      {/* <Quantity /> */}
     </div>
   )
 }

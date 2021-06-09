@@ -19,7 +19,7 @@ function ProductOverview() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const result = await axios('http://localhost:3000/api/products/25167');
+        const result = await axios('http://localhost:3000/api/products/25169');
         setProduct(result.data);
       } catch (err) {
         setIsError(err);
@@ -35,7 +35,7 @@ function ProductOverview() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const results = await axios('http://localhost:3000/api/products/25167/styles');
+        const results = await axios('http://localhost:3000/api/products/25169/styles');
         setStyles(results.data.results);
         const defaultStyle = results.data.results.filter(style => {
           return style['default?'];

@@ -12,7 +12,7 @@ const forwardImageAnimation = keyframes`
 `
 
 const MainViewContainer = styled.div`
-  margin: 0 50px;
+
 `;
 
 const StyledImageContainer = styled.div`
@@ -22,7 +22,10 @@ const StyledImageContainer = styled.div`
 `;
 
 const StyledImage = styled.img`
-  width: 700px;;
+  width: 700px;
+  :hover {
+    cursor: zoom-in;
+  }
 `;
 
 const StyledArrowContainer = styled.div`
