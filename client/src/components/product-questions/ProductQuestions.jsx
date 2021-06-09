@@ -19,12 +19,15 @@ text-align: center;
 `
 
 function ProductQuestions() {
+  const props = {
+    productId: 25167
+  }
 
   const [questionList, setQuestionList] = useState([]);
   const [filteredQuestions, setFilteredQuestions] = useState([]);
-  const [productId, setProductId] = useState('');
   const [answers, setAnswers] = useState([]);
   const [isError, setIsError] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
   //use custom hook here for modal window
   const {isShowing, toggle} = useModal();
 
@@ -32,12 +35,12 @@ function ProductQuestions() {
     setIsError(false);
 
     try {
-      const res = await axios.get('/api/qa/questions?product_id=25171');
+      const res = await axios.get('/api/qa/questions?product_id=' + props.productId + '&page=' + currentPage + '&count=2');
       console.log('axios get happens')
       console.log(res.data);
-      setQuestionList(res.data.results);
-      setFilteredQuestions(res.data.results);
-      setProductId(res.data.product_id);
+      const newQuestionList = questionList.concat(res.data.results);
+      setQuestionList(newQuestionList);
+      setFilteredQuestions(newQuestionList);
     } catch (error) {
       setIsError(true);
     }
@@ -46,6 +49,11 @@ function ProductQuestions() {
   useEffect(() => {
     fetchQuestions();
   }, []);
+
+  const handleLoadMore = () => {
+    setCurrentPage(currentPage + 1);
+    fetchQuestions();
+  }
 
   const handlSearchTextChanged = (searchText) => {
 
@@ -85,9 +93,10 @@ function ProductQuestions() {
 
       <QuestionsList
       questions={filteredQuestions}
+      handleLoadMore={handleLoadMore}
       />
 
-      <div>LOAD MORE QUESTIONS</div>
+
 
       <Container>
      {!isShowing && <Button onClick={toggle}>Add a Question</Button>}
@@ -95,7 +104,7 @@ function ProductQuestions() {
       isShowing={isShowing}
       toggle={toggle}
       handleAddedQuestion={handleAddedQuestion}
-      productId={productId}
+      productId={props.productId}
       />
       </Container>
     </>

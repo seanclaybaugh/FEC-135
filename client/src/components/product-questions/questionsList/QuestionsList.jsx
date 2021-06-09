@@ -7,16 +7,26 @@ class QuestionsList extends React.Component {
     super(props)
 
     this.state = {
-      questions: this.props.questions.slice(0, 2),
-      clickMoreQuestions: false,
+      expanded: false,
     }
+
+    this.toggleExpanded = this.toggleExpanded.bind(this);
+  }
+
+  toggleExpanded() {
+    this.setState({
+      expanded: !this.state.expanded
+    })
   }
 
   render() {
+    const buttonTitle = this.state.expanded ? "Show Fewer Questions" : "Show More Questions"
+    const questions = this.state.expanded ? this.props.questions : this.props.questions.slice(0, 2);
+
     return (
       <>
       <ul>
-      {this.props.questions.map((question, index) =>
+      {questions.map((question, index) =>
 
        <QuestionListItem
         key={index}
@@ -24,6 +34,7 @@ class QuestionsList extends React.Component {
         />
       )}
       </ul>
+      <button onClick={this.toggleExpanded}>{buttonTitle}</button>
       </>
     )
   }
