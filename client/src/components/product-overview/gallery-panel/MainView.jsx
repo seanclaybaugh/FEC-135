@@ -1,42 +1,47 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled, { keyframes } from 'styled-components';
-import { MdKeyboardArrowDown, MdKeyboardArrowUp } from 'react-icons/md';
+import { MdKeyboardArrowRight, MdKeyboardArrowLeft } from 'react-icons/md';
 
 const forwardImageAnimation = keyframes`
+  0% {
+    transform: translateX();
+  }
+  100% {
 
+  }
 `
 
 const MainViewContainer = styled.div`
-  width: 800px;
+  margin: 0 50px;
 `;
 
 const StyledImageContainer = styled.div`
-  width: 80%;
-  height: 80%;
   display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 const StyledImage = styled.img`
-  width: 100%;
+  width: 700px;;
 `;
 
 const StyledArrowContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   font-size: 40px;
   color: #27231F;
   width: 50px;
-  height: 50px;
-  justify-content: center;
-  display: flex;
-  align-items: center;
-  border-radius: 50%;
-  top: ${props => props.topPosition};
+  height: 100%;
+  left: ${props => props.position};
   :hover {
     cursor: pointer;
     background-color: #E9EAEC;
+    opacity: 75%;
   }
 `;
 
-function MainView({ currentPhoto, currentStyle }) {
+function MainView({ selectedIndex, currentStyle }) {
   const [currentPhotoIndex, setCurrentPhotoIndex] = useState(0);
 
   function nextPhoto() {
@@ -47,23 +52,29 @@ function MainView({ currentPhoto, currentStyle }) {
     setCurrentPhotoIndex(prevIndex => prevIndex - 1)
   }
 
+  useEffect(() => {
+    setCurrentPhotoIndex(0)
+  }, [currentStyle])
+
+  useEffect(() => {
+    if (!selectedIndex) {
+      setCurrentPhotoIndex(0)
+    } else {
+      setCurrentPhotoIndex(selectedIndex)
+    }
+  }, [selectedIndex])
+
   return (
     <MainViewContainer>
-      {(currentPhotoIndex !== 0) && (
-        <StyledArrowContainer onClick={prevPhoto} topPosition="10%" >
-          <MdKeyboardArrowUp />
-        </StyledArrowContainer>
-      )}
       <StyledImageContainer>
-        <StyledImage src={currentStyle.photos[currentPhotoIndex].url} />
-      </StyledImageContainer>
-      {(currentPhotoIndex !== currentStyle.photos.length - 1) && (
-        <StyledArrowContainer onClick={nextPhoto} topPosition="90%" >
-          <MdKeyboardArrowDown />
+        <StyledArrowContainer onClick={prevPhoto} position="10%" >
+          {currentPhotoIndex !== 0 && <MdKeyboardArrowLeft />}
         </StyledArrowContainer>
-      )}
-
-
+        <StyledImage src={currentStyle.photos[currentPhotoIndex].url} />
+        <StyledArrowContainer onClick={nextPhoto} position="90%" >
+          {currentPhotoIndex !== currentStyle.photos.length - 1 &&  <MdKeyboardArrowRight />}
+        </StyledArrowContainer>
+      </StyledImageContainer>
     </MainViewContainer>
   )
 }

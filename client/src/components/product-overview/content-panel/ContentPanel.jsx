@@ -7,7 +7,7 @@ import AddToCart from './selectors/AddToCart';
 
 const Container = styled.div`
   order: 2;
-  width: 550px;
+  width: 450px;
   margin: 10px 20px;
 `;
 

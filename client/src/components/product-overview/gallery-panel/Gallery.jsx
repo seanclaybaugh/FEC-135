@@ -12,20 +12,19 @@ const Container = styled.div`
 `;
 
 function Gallery({ currentStyle }) {
-  const [selectedMain, setSelectedMain] = useState(currentStyle.photos[0]);
-  const [selectedStyle, setSelectedStyle] = useState(currentStyle);
+  const [selectedIndex, setSelectedIndex] = useState(0);
 
   function updateGalleryView(index) {
-    setSelectedMain(currentStyle.photos[index])
+    setSelectedIndex(index)
   }
 
   useEffect(() => {
-    setSelectedMain(currentStyle.photos[0])
+    setSelectedIndex(0)
   }, [currentStyle])
 
   return (
     <Container>
-      <MainView currentPhoto={selectedMain} currentStyle={currentStyle} />
+      <MainView selectedIndex={selectedIndex} currentStyle={currentStyle} />
       <ThumbnailNav currentStyle={currentStyle}
                     updateGalleryView={updateGalleryView} />
     </Container>

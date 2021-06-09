@@ -12,16 +12,16 @@ const TextContainer = styled.div`
 `;
 
 const TextBoxSize = styled.div`
-  margin: 0 10px 0 10px;
+  margin: 0 10px;
   width: 100px;
 `;
 
 const TextBoxStock = styled.div`
-  margin: 0 10px 0 10px;
+  margin: 0 20px;
 `;
 
 const TextBoxSku = styled.div`
-  margin-left: 150px;
+  margin-left: 100px;
 `;
 
 const InnerContainer = styled.div`
