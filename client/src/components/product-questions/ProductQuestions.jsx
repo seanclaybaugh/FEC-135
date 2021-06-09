@@ -27,20 +27,37 @@ function ProductQuestions() {
   const [filteredQuestions, setFilteredQuestions] = useState([]);
   const [answers, setAnswers] = useState([]);
   const [isError, setIsError] = useState(false);
-  const [currentPage, setCurrentPage] = useState(1);
+  const [nextPage, setNextPage] = useState(1);
   //use custom hook here for modal window
   const {isShowing, toggle} = useModal();
 
-  const fetchQuestions = async () => {
+  const pageSize = 2;
+  // thought:
+  // we've defined pageSize here.. we could pass it as a prop to our child (like QuestionList)
+  // questionList could decide whether to show collapseButton by checking if questions.count > pageSize (only collapse if this is true)
+
+  // as for load more, the problem now is that loadMore stays on the page even after you've loaded everything!
+  // this one is trickier, but you do know that you're done when your GET/ request is successful but empty
+  // you could capture that in state and supply it to your child (QuestionList) as a prop
+  // (don't show loadMore if you're done loading)
+
+  // one caveat - if you post a new question, maybe that isDone state needs to be reset...
+  // ALSO, handle added question probably needs to be re-done
+  // the way we understood it previously, we thought we needed to reload to get the question to show up
+  // but now, it's fair that you have to click "load more" for the question you just posted to show up
+
+  const fetchQuestions = async (page) => {
     setIsError(false);
 
     try {
-      const res = await axios.get('/api/qa/questions?product_id=' + props.productId + '&page=' + currentPage + '&count=2');
+      console.log('Getting questions for page ' + nextPage);
+      const res = await axios.get('/api/qa/questions?product_id=' + props.productId + '&page=' + nextPage + '&count=' + pageSize);
       console.log('axios get happens')
       console.log(res.data);
       const newQuestionList = questionList.concat(res.data.results);
       setQuestionList(newQuestionList);
       setFilteredQuestions(newQuestionList);
+      setNextPage(nextPage + 1);
     } catch (error) {
       setIsError(true);
     }
@@ -51,8 +68,14 @@ function ProductQuestions() {
   }, []);
 
   const handleLoadMore = () => {
-    setCurrentPage(currentPage + 1);
     fetchQuestions();
+  }
+
+  const handleCollapseQuestion = () => {
+    const newQuestionList = questionList.slice(0, pageSize);
+    setQuestionList(newQuestionList);
+    setFilteredQuestions(newQuestionList);
+    setNextPage(2);
   }
 
   const handlSearchTextChanged = (searchText) => {
@@ -94,9 +117,8 @@ function ProductQuestions() {
       <QuestionsList
       questions={filteredQuestions}
       handleLoadMore={handleLoadMore}
+      handleCollapseQuestion={handleCollapseQuestion}
       />
-
-
 
       <Container>
      {!isShowing && <Button onClick={toggle}>Add a Question</Button>}
