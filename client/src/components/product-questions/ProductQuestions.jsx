@@ -28,25 +28,25 @@ function ProductQuestions() {
   const [filteredQuestions, setFilteredQuestions] = useState([]);
   // const [answers, setAnswers] = useState([]);
   const [isError, setIsError] = useState(false);
-  const [nextPage, setNextPage] = useState(1);
+  // const [nextPage, setNextPage] = useState(1);
   //use custom hook here for modal window
   const {isModalShowing, toggleModal} = useModal();
 
-  const questionsPerPage = 2;
+  const questionsPerPage = 200;
 
 
   const fetchQuestions = async (page) => {
     setIsError(false);
 
     try {
-      console.log('Getting questions for page ' + nextPage);
-      const res = await axios.get(`/api/qa/questions?product_id=${props.productId}&page=${nextPage}&count=${questionsPerPage}`);
+      // console.log('Getting questions for page ' + nextPage);
+      const res = await axios.get(`/api/qa/questions?product_id=${props.productId}&count=${questionsPerPage}`);
       console.log('axios get happens')
       console.log(res.data);
       const newQuestionList = questionList.concat(res.data.results);
       setQuestionList(newQuestionList);
-      setFilteredQuestions(newQuestionList);
-      setNextPage(nextPage + 1);
+      setFilteredQuestions(newQuestionList.slice(0, 2));
+      // setNextPage(nextPage + 1);
     } catch (error) {
       setIsError(true);
     }
@@ -57,14 +57,15 @@ function ProductQuestions() {
   }, []);
 
   const handleExpandQuestions = () => {
-    fetchQuestions();
+    // fetchQuestions();
+    setFilteredQuestions(questionList);
   }
 
   const handleCollapseQuestion = () => {
-    const newQuestionList = questionList.slice(0, questionsPerPage);
-    setQuestionList(newQuestionList);
+    const newQuestionList = questionList.slice(0, 2);
+    // setQuestionList(newQuestionList);
     setFilteredQuestions(newQuestionList);
-    setNextPage(2);
+    // setNextPage(2);
   }
 
   const handlSearchTextChanged = (searchText) => {
