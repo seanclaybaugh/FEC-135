@@ -22,7 +22,7 @@ const Button = styled.button`
   }
 `;
 
-function AddToCart({ cart }) {
+function AddToCart({ sku, qty }) {
 
   function handleSubmit(e) {
     e.preventDefault()
@@ -31,7 +31,7 @@ function AddToCart({ cart }) {
 
   function addItem() {
     axios.post('http://localhost:3000/api/cart', {
-      sku_id: cart.sku
+      sku_id: sku
     })
       .then(results => console.log(results))
       .catch(err => console.log(err))

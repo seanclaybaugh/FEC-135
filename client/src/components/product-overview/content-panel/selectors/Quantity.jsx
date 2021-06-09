@@ -13,6 +13,10 @@ const Select = styled.select`
   margin-left: 10px;
   text-align-last: center;
 
+  :disabled {
+    background: #f7f7f7;
+  }
+
   option {
     color: black;
     background: white;
@@ -55,9 +59,11 @@ function Quantity({ selectedSku, selectedStyle, updateQty }) {
     updateQty(value)
   }
 
+  const isActive = qtyAvailable > 0 ? null : true;
+
   return (
     <div>
-      <Select onChange={handleChange}>
+      <Select onChange={handleChange} disabled={isActive} >
         {options.map((option, index) => {
           return <option key={index} value={option}>{option}</option>
         })}
