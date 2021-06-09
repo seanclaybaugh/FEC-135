@@ -28,7 +28,7 @@ const TextBoxSku = styled.div`
 const InnerContainer = styled.div`
   display: flex;
   flex-direction: row;
-  margin: 0 10px 10px 10px;
+  margin: 0 10px 20px 10px;
 `;
 
 function SizesContainer({ currentStyle }) {
@@ -87,7 +87,15 @@ function SizesContainer({ currentStyle }) {
                        isSelected={selectedSku === item.sku} />
         })}
       </InnerContainer>
-      <Quantity selectedSku={selectedSku} selectedStyle={selectedStyle} />
+      <TextContainer>
+        <div>
+          <h5>{'QTY'}</h5>
+        </div>
+      </TextContainer>
+      <InnerContainer>
+        <Quantity selectedSku={selectedSku}
+                  selectedStyle={selectedStyle} />
+      </InnerContainer>
     </OuterContainer>
   )
 }
