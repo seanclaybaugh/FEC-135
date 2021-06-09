@@ -8,7 +8,7 @@ const config = {
     filename: 'bundle.js',
   },
   mode: "development",
-  devTool: "eval-source-map",
+  devtool: "eval-source-map",
   module: {
     rules: [
       {
