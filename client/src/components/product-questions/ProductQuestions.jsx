@@ -48,45 +48,27 @@ function ProductQuestions() {
   }, []);
 
   const handlSearchTextChanged = (searchText) => {
-    console.log('search text changed: ' + searchText);
-    // if searchText has fewer than 3 characters
-      // then: list should return to the state where it is not filtered
-        // detail: set _ to _
-        //set filteredQuestions to the allQuestions
-    // else
-      // more than 3 char - filter to those containing matching text
-      // for a given question: include in results (WITH ALL ANSWERS) if searchText appears in question or any of its answers
-        // detail: questionList, filteredQuestions
-        // inputs: searchText, questionList
-        // output: filteredQuestions
-        // filteredQuestions = <some code that uses searchText and questionList>
 
     if (searchText.length > 3) {
+      const searchTextLowerCase = searchText.toLowerCase();
       const results = questionList.filter((question) => {
-        if (question.question_body.indexOf(searchText) !== -1) {
+        if (question.question_body.toLowerCase().indexOf(searchTextLowerCase) !== -1) {
           return true;
         }
 
-        // does any answer include searchText?
         let answers = question.answers;
-        console.log('answers')
-        console.log(answers)
 
         for (let key in answers) {
-          console.log('in')
-          console.log(answers[key].body)
-          if (answers[key].body.indexOf(searchText) !== -1) {
-            console.log('yay')
+          if (answers[key].body.toLowerCase().indexOf(searchTextLowerCase) !== -1) {
             return true;
           }
         }
-        })
-
-        setFilteredQuestions(results);
-  } else {
-    setFilteredQuestions(questionList)
+      })
+      setFilteredQuestions(results);
+    } else {
+      setFilteredQuestions(questionList);
+    }
   }
-}
 
   return (
     <>
