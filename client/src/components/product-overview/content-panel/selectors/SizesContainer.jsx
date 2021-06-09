@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import Size from './Size';
-// import Quantity from './Quantity';
+import Quantity from './Quantity';
 
 const OuterContainer = styled.div`
   border-bottom: 1px solid #e2e2e2;
@@ -87,7 +87,7 @@ function SizesContainer({ currentStyle }) {
                        isSelected={selectedSku === item.sku} />
         })}
       </InnerContainer>
-      {/* <Quantity selectedSku={selectedSku} selectedStyle={selectedStyle} /> */}
+      <Quantity selectedSku={selectedSku} selectedStyle={selectedStyle} />
     </OuterContainer>
   )
 }
