@@ -5,23 +5,29 @@ class QuestionsList extends React.Component {
   constructor(props) {
     super(props)
 
-    // this.state = {
-    //   expanded: false,
-    // }
+    this.state = {
+      expandQuestions: false
+    }
 
-    // this.toggleExpanded = this.toggleExpanded.bind(this);
+    this.toggleExpanded = this.toggleExpanded.bind(this);
   }
 
-  // toggleExpanded() {
-  //   this.setState({
-  //     expanded: !this.state.expanded
-  //   })
-  // }
+    toggleExpanded() {
+      this.setState({
+        expandQuestions: !this.state.expandQuestions
+      })
+
+      if (this.state.expandQuestions) {
+        this.props.handleCollapseQuestion();
+      } else {
+        this.props.handleExpandQuestions();
+      }
+    }
+
 
   render() {
-    // const buttonTitle = this.state.expanded ? "Show Fewer Questions" : "Show More Questions"
-    // const questions = this.state.expanded ? this.props.questions : this.props.questions.slice(0, 2);
 
+    const buttonText = this.state.expandQuestions ? "Collapse Questions" : "Show More Questions";
 
     return (
       <>
@@ -34,12 +40,12 @@ class QuestionsList extends React.Component {
         />
       )}
       </ul>
-      <button onClick={this.props.handleExpandQuestions}>Load More Questions</button>
-      <button onClick={this.props.handleCollapseQuestion}>Collapse Questions</button>
+      {!this.props.loadMoreQuestions && <button onClick={this.toggleExpanded}>{buttonText}</button>}
+      {/* <button onClick={this.props.handleExpandQuestions}>Load More Questions</button>
+      <button onClick={this.props.handleCollapseQuestion}>Collapse Questions</button> */}
       </>
     )
   }
 }
-
 
 export default QuestionsList;

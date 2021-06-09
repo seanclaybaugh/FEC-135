@@ -26,7 +26,7 @@ function ProductQuestions() {
 
   const [questionList, setQuestionList] = useState([]);
   const [filteredQuestions, setFilteredQuestions] = useState([]);
-  // const [answers, setAnswers] = useState([]);
+  const [loadMoreQuestions, setLoadMoreQuestions] = useState(false);
   const [isError, setIsError] = useState(false);
   // const [nextPage, setNextPage] = useState(1);
   //use custom hook here for modal window
@@ -47,6 +47,10 @@ function ProductQuestions() {
       setQuestionList(newQuestionList);
       setFilteredQuestions(newQuestionList.slice(0, 2));
       // setNextPage(nextPage + 1);
+
+      if (questionList.length > 2) {
+        setLoadMoreQuestions(true)
+      };
     } catch (error) {
       setIsError(true);
     }
@@ -108,6 +112,7 @@ function ProductQuestions() {
         questions={filteredQuestions}
         handleExpandQuestions={handleExpandQuestions}
         handleCollapseQuestion={handleCollapseQuestion}
+        loadMoreQuestions={loadMoreQuestions}
       />
 
       <Container>
