@@ -4,12 +4,13 @@ import styled from 'styled-components';
 
 const Button = styled.button`
   margin: 20px 2.5px;
-  background-color: #E9EAEC;
+  background-color: ${props => props.bgColor};
   color: #000;
-  border: solid 1px #E9EAEC;
+  border: solid 1px ${props => props.borderColor};
   padding: 5px;
   width: 70px;
   height: 40px;
+  transition: background-color 0.5s ease;
 
   :hover {
     cursor: pointer;
@@ -18,7 +19,7 @@ const Button = styled.button`
   }
 `;
 
-function Size({ sku, quantity, size, updateSizeSelection }) {
+function Size({ sku, quantity, size, updateSizeSelection, isSelected }) {
   const status = quantity > 0 ? 'IN STOCK' : 'OUT OF STOCK';
 
   function handleClick() {
@@ -33,7 +34,9 @@ function Size({ sku, quantity, size, updateSizeSelection }) {
     <div>
       <Button sku={sku}
               quantity={quantity}
-              onClick={handleClick}>{size}</Button>
+              onClick={handleClick}
+              bgColor={isSelected ? '#fff' : '#E9EAEC'}
+              borderColor={isSelected ? '#000' : '#E9EAEC'}>{size}</Button>
       {/* <Quantity /> */}
     </div>
   )

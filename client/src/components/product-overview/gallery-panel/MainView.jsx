@@ -61,6 +61,7 @@ const StyledIndicator = styled.div`
   margin: 2px;
   background-color: ${props => props.bgColor};
   border-radius: 50px;
+  transition: background-color 0.5s ease;
 `;
 
 

@@ -20,6 +20,7 @@ function StylesContainer({ styles, currentStyle, updateCurrentStyle }) {
         {styles.map((style, index) => {
           return <StyleThumbnail style={style}
                                  key={index}
+                                 index={style.style_id}
                                  currentStyle={currentStyle}
                                  updateCurrentStyle={updateCurrentStyle} />
         })}

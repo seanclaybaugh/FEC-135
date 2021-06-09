@@ -41,22 +41,19 @@ function SizesContainer({ currentStyle }) {
   }
 
   const [selectedStyle, setSelectedStyle] = useState(currentStyle);
+  const [selectedSize, setSelectedSize] = useState('Select a size');
+  const [selectedSku, setSelectedSku] = useState('');
+  const [inStock, setStockStatus] = useState('');
 
   useEffect(() => {
     setSelectedSize('Select a size')
-    setSku('')
+    setSelectedSku('')
     setStockStatus('')
   }, [currentStyle])
 
-  const [selectedSize, setSelectedSize] = useState('Select a size');
-
-  const [sku, setSku] = useState('');
-
-  const [inStock, setStockStatus] = useState('');
-
   function updateSizeSelection(details) {
     setSelectedSize(details.size)
-    setSku('# ' + details.sku)
+    setSelectedSku(details.sku)
     setStockStatus(details.status)
   }
 
@@ -73,7 +70,7 @@ function SizesContainer({ currentStyle }) {
           <h5>{inStock}</h5>
         </TextBoxStock>
         <TextBoxSku>
-          <h5>{sku}</h5>
+          <h5>{selectedSku > 0 ? '# ' + selectedSku : ''}</h5>
         </TextBoxSku>
       </TextContainer>
       <InnerContainer>
@@ -82,7 +79,8 @@ function SizesContainer({ currentStyle }) {
                        sku={item.sku}
                        quantity={item.details.quantity}
                        size={item.details.size}
-                       updateSizeSelection={updateSizeSelection} />
+                       updateSizeSelection={updateSizeSelection}
+                       isSelected={selectedSku === item.sku} />
         })}
       </InnerContainer>
     </OuterContainer>

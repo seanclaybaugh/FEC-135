@@ -8,6 +8,8 @@ const Container = styled.div`
   overflow: hidden;
   border-radius: 50%;
   margin: 5px;
+  border: solid 2px #fff;
+  box-shadow: ${props => props.boxShadow};
 `;
 
 const Img = styled.img`
@@ -42,7 +44,7 @@ function StyleThumbnail({ style, index, currentStyle, updateCurrentStyle }) {
   }
 
   return (
-    <Container>
+    <Container boxShadow={index === currentStyle.style_id ? '0 0 0 1px #000' : '0 0 3px #888'}>
       <Img src={style.photos[2].thumbnail_url}
            alt=""
            onClick={handleClick}
