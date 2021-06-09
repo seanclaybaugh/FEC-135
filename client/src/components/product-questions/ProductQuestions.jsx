@@ -36,7 +36,7 @@ function ProductQuestions() {
 
       try {
         const res = await axios.get('/api/qa/questions?product_id=25171');
-        console.log(res.data);
+        console.log(res.data.results);
         setQuestionList(res.data.results);
         setFilteredQuestions(res.data.results);
       } catch (error) {
@@ -47,12 +47,55 @@ function ProductQuestions() {
     fetchQuestions();
   }, []);
 
+  const handlSearchTextChanged = (searchText) => {
+    console.log('search text changed: ' + searchText);
+    // if searchText has fewer than 3 characters
+      // then: list should return to the state where it is not filtered
+        // detail: set _ to _
+        //set filteredQuestions to the allQuestions
+    // else
+      // more than 3 char - filter to those containing matching text
+      // for a given question: include in results (WITH ALL ANSWERS) if searchText appears in question or any of its answers
+        // detail: questionList, filteredQuestions
+        // inputs: searchText, questionList
+        // output: filteredQuestions
+        // filteredQuestions = <some code that uses searchText and questionList>
+
+    if (searchText.length > 3) {
+      const results = questionList.filter((question) => {
+        if (question.question_body.indexOf(searchText) !== -1) {
+          return true;
+        }
+
+        // does any answer include searchText?
+        let answers = question.answers;
+        console.log('answers')
+        console.log(answers)
+
+        for (let key in answers) {
+          console.log('in')
+          console.log(answers[key].body)
+          if (answers[key].body.indexOf(searchText) !== -1) {
+            console.log('yay')
+            return true;
+          }
+        }
+        })
+
+        setFilteredQuestions(results);
+  } else {
+    setFilteredQuestions(questionList)
+  }
+}
+
   return (
     <>
       {isError && <div>Error with get data...</div>}
 
       <div>Search for Questions</div>
-      <SearchQuestions />
+      <SearchQuestions
+        handlSearchTextChanged={handlSearchTextChanged}
+      />
 
       <QuestionsList
       questions={filteredQuestions}
