@@ -28,6 +28,9 @@ router.all('/api/*', async (req, res) => {
       headers: { Authorization: authToken },
       data: req.body,
     });
+    console.log('SERVER IS SENDING BACK:')
+
+    console.log(results.data)
     res.status(results.status).send(results.data);
   } catch (err) {
     console.log(err);

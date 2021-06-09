@@ -34,7 +34,7 @@ class QuestionsList extends React.Component {
         />
       )}
       </ul>
-      <button onClick={this.props.handleLoadMore}>Load More Questions</button>
+      <button onClick={this.props.handleExpandQuestions}>Load More Questions</button>
       <button onClick={this.props.handleCollapseQuestion}>Collapse Questions</button>
       </>
     )

@@ -19,19 +19,20 @@ text-align: center;
 `
 
 function ProductQuestions() {
+
   const props = {
     productId: 25167
   }
 
   const [questionList, setQuestionList] = useState([]);
   const [filteredQuestions, setFilteredQuestions] = useState([]);
-  const [answers, setAnswers] = useState([]);
+  // const [answers, setAnswers] = useState([]);
   const [isError, setIsError] = useState(false);
   const [nextPage, setNextPage] = useState(1);
   //use custom hook here for modal window
-  const {isShowing, toggle} = useModal();
+  const {isModalShowing, toggleModal} = useModal();
 
-  const pageSize = 2;
+  const questionsPerPage = 2;
 
 
   const fetchQuestions = async (page) => {
@@ -39,7 +40,7 @@ function ProductQuestions() {
 
     try {
       console.log('Getting questions for page ' + nextPage);
-      const res = await axios.get('/api/qa/questions?product_id=' + props.productId + '&page=' + nextPage + '&count=' + pageSize);
+      const res = await axios.get(`/api/qa/questions?product_id=${props.productId}&page=${nextPage}&count=${questionsPerPage}`);
       console.log('axios get happens')
       console.log(res.data);
       const newQuestionList = questionList.concat(res.data.results);
@@ -55,12 +56,12 @@ function ProductQuestions() {
     fetchQuestions();
   }, []);
 
-  const handleLoadMore = () => {
+  const handleExpandQuestions = () => {
     fetchQuestions();
   }
 
   const handleCollapseQuestion = () => {
-    const newQuestionList = questionList.slice(0, pageSize);
+    const newQuestionList = questionList.slice(0, questionsPerPage);
     setQuestionList(newQuestionList);
     setFilteredQuestions(newQuestionList);
     setNextPage(2);
@@ -103,18 +104,18 @@ function ProductQuestions() {
       />
 
       <QuestionsList
-      questions={filteredQuestions}
-      handleLoadMore={handleLoadMore}
-      handleCollapseQuestion={handleCollapseQuestion}
+        questions={filteredQuestions}
+        handleExpandQuestions={handleExpandQuestions}
+        handleCollapseQuestion={handleCollapseQuestion}
       />
 
       <Container>
-     {!isShowing && <Button onClick={toggle}>Add a Question</Button>}
+     {!isModalShowing && <Button onClick={toggleModal}>Add a Question</Button>}
       <AddQuestionModal
-      isShowing={isShowing}
-      toggle={toggle}
-      handleAddedQuestion={handleAddedQuestion}
-      productId={props.productId}
+        isModalShowing={isModalShowing}
+        toggleModal={toggleModal}
+        handleAddedQuestion={handleAddedQuestion}
+        productId={props.productId}
       />
       </Container>
     </>
