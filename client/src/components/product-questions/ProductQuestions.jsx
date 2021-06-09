@@ -24,7 +24,7 @@ function ProductQuestions() {
   const [filteredQuestions, setFilteredQuestions] = useState([]);
 
 
-  const [questionId, setQuestionId] = useState('');
+  const [productId, setProductId] = useState(0);
   const [answers, setAnswers] = useState([]);
   const [isError, setIsError] = useState(false);
   //use custom hook here for modal window
@@ -36,9 +36,10 @@ function ProductQuestions() {
 
       try {
         const res = await axios.get('/api/qa/questions?product_id=25171');
-        console.log(res.data.results);
+        console.log(res.data);
         setQuestionList(res.data.results);
         setFilteredQuestions(res.data.results);
+        setProductId(res.data.product_id);
       } catch (error) {
         setIsError(true);
       }
@@ -70,6 +71,10 @@ function ProductQuestions() {
     }
   }
 
+  const handleAddedQuestion = (question) => {
+
+  }
+
   return (
     <>
       {isError && <div>Error with get data...</div>}
@@ -90,6 +95,8 @@ function ProductQuestions() {
       <AddQuestionModal
       isShowing={isShowing}
       toggle={toggle}
+      handleAddedQuestion={handleAddedQuestion}
+      productId={productId}
       />
       </Container>
     </>
@@ -97,53 +104,3 @@ function ProductQuestions() {
 }
 
 export default ProductQuestions;
-
-
-// class QuestionsAnswers extends React.Component {
-
-//   constructor(props) {
-//     super(props)
-
-//     this.state = {
-//       questions: [],
-//       answers: [],
-//       productId: ''
-//     }
-
-//     this.getData = this.getData.bind(this);
-//   }
-
-//   getData() {
-//     axios.get('/api/qa/questions?product_id=25171')
-//     .then((res) => {
-//       console.log(res.data)
-
-//       const questionsList = res.data.results;
-//       const id = res.data.product_id;
-
-//       this.setState({
-//         questions: questionsList,
-//         productId: id
-//       })
-//     })
-//   }
-
-//   componentDidMount() {
-//     this.getData();
-//   }
-
-//   render() {
-//     return (
-//       <>
-//       <b>hello from questions and answers</b>
-//       <br/>
-//       <br/>
-//       <br/>
-//       <QuestionsList
-//       questions={this.state.questions}
-//       />
-//       </>
-//     )
-//   }
-
-// }

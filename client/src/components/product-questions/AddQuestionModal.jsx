@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import styled from 'styled-components';
+import AddQuestionForm from './AddQuestionForm';
 
 
 const Overlay = styled.div`
@@ -42,7 +43,7 @@ const ModalHeader = styled.div`
 `
 
 
-const AddQuestionModal = ({isShowing, toggle}) => isShowing ? ReactDOM.createPortal(
+const AddQuestionModal = ({isShowing, toggle, handleAddedQuestion, productId}) => isShowing ? ReactDOM.createPortal(
   <>
     <Overlay/>
       <Wrapper >
@@ -52,12 +53,15 @@ const AddQuestionModal = ({isShowing, toggle}) => isShowing ? ReactDOM.createPor
               onClick={toggle}>
               <span>x</span>
             </button>
-          </ModalHeader>
-        <p>
-          <input type="text" className="addQuestion" placeholder="ADD QUESTION" />
-        </p>
-      </Modal>
-    </Wrapper>
+            </ModalHeader>
+
+              <AddQuestionForm
+              handleAddedQuestion={handleAddedQuestion}
+              productId={productId}
+              />
+
+            </Modal>
+        </Wrapper>
   </>, document.body
 ) : null;
 
