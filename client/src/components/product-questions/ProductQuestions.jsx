@@ -22,29 +22,28 @@ function ProductQuestions() {
 
   const [questionList, setQuestionList] = useState([]);
   const [filteredQuestions, setFilteredQuestions] = useState([]);
-
-
-  const [productId, setProductId] = useState(0);
+  const [productId, setProductId] = useState('');
   const [answers, setAnswers] = useState([]);
   const [isError, setIsError] = useState(false);
   //use custom hook here for modal window
   const {isShowing, toggle} = useModal();
 
+  const fetchQuestions = async () => {
+    setIsError(false);
+
+    try {
+      const res = await axios.get('/api/qa/questions?product_id=25171');
+      console.log('axios get happens')
+      console.log(res.data);
+      setQuestionList(res.data.results);
+      setFilteredQuestions(res.data.results);
+      setProductId(res.data.product_id);
+    } catch (error) {
+      setIsError(true);
+    }
+  };
+
   useEffect(() => {
-    const fetchQuestions = async () => {
-      setIsError(false);
-
-      try {
-        const res = await axios.get('/api/qa/questions?product_id=25171');
-        console.log(res.data);
-        setQuestionList(res.data.results);
-        setFilteredQuestions(res.data.results);
-        setProductId(res.data.product_id);
-      } catch (error) {
-        setIsError(true);
-      }
-    };
-
     fetchQuestions();
   }, []);
 
@@ -71,8 +70,8 @@ function ProductQuestions() {
     }
   }
 
-  const handleAddedQuestion = (question) => {
-
+  const handleAddedQuestion = () => {
+    fetchQuestions();
   }
 
   return (

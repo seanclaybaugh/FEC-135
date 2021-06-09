@@ -1,7 +1,5 @@
 import React from 'react';
 import axios from 'axios';
-
-
 class AddQuestionForm extends React.Component {
 
   constructor(props) {
@@ -24,7 +22,7 @@ class AddQuestionForm extends React.Component {
       body: this.state.body,
       name: this.state.name,
       email: this.state.email,
-      product_id: this.props.productId
+      product_id: parseInt(this.props.productId)
     }
 
     console.log('QUESTION')
@@ -32,18 +30,19 @@ class AddQuestionForm extends React.Component {
 
     try {
 
-      const result = await axios.post('/api/qa/questions', {
-        body: this.state.body,
-        name: this.state.name,
-        email: this.state.email,
-        product_id: parseInt(this.props.productId)
-      })
+      const result = await axios.post('/api/qa/questions', question)
       console.log('results from post question')
       console.log(result)
-      // this.props.handleAddedQuestion(this.state.question)
+
+      this.props.handleAddedQuestion();
     } catch (error) {
       console.log(error)
     }
+    this.setState({
+      body: '',
+      name: '',
+      email: '',
+    })
 
   }
 
@@ -51,7 +50,6 @@ class AddQuestionForm extends React.Component {
     this.setState({[event.target.name]: event.target.value});
 
   }
-
 
   render() {
     return (
