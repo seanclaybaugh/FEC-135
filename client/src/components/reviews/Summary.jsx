@@ -1,28 +1,18 @@
 import React, { useState, useEffect } from 'react';
-
+import ratingHelper from './helpers/ratingHelper';
+import percentageHelper from './helpers/percentageHelper';
 function Summary(props) {
-  function ratingHelper(rating) {
-    let count = 0;
-    let sum = 0;
-    const keys = Object.keys(rating);
-    const vals = Object.values(rating);
-    for (let i = 0; i < keys.length; i + 1) {
-      sum += Number(keys[i]) * Number(vals[i]);
-      count += Number(vals[i]);
-    }
-    return sum / count;
-  }
-
-  let rateNum = 0;
-  if (props.metaData.ratings !== undefined) {
-    //rateNum = ratingHelper(props.metaData.ratings);
-    console.log(props.metaData.ratings);
+  let numRate = 0;
+  let percentage = 0;
+  if (props.metaData.ratings) {
+    numRate = ratingHelper(props.metaData.ratings);
+    percentage = percentageHelper(props.metaData.recommended);
   }
   return (
     <>
       <h3> Meta Review Summary</h3>
-      <div>% of people recommend this product</div>
-      <div>{`Rating: ${rateNum} - ADD STARBAR`}</div>
+      <div>{`${percentage}% of people recommend this product`}</div>
+      <div>{`Rating: ${numRate} - ADD STARBAR`}</div>
       <div>Ratings Distribution</div>
       <div>Relative Size bars</div>
     </>

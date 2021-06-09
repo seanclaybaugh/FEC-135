@@ -15,6 +15,7 @@ import Summary from './Summary';
 function reviewsIndex(props) {
   const [reviews, setReviews] = useState([]);
   const [metaData, setMetaData] = useState({});
+  const [numRate, setNumRate] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
   const [filter, setFilter] = useState('relevant');
 
@@ -43,7 +44,7 @@ function reviewsIndex(props) {
             <h2>Reviews</h2>
             <div>{`${reviews.length} reviews sorted by: DROPDOWN`}</div>
             <div>
-              <Summary metaData={metaData} />
+              <Summary metaData={metaData} numRate={numRate} />
               <Rlist reviews={reviews} />
             </div>
           </>
