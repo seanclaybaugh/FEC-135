@@ -16,7 +16,9 @@ const ListItem = styled.button`
 `;
 
 const Img = styled.img`
-  width: 75px;
+  width: 65px;
+  height: 100px;
+  object-fit: cover;
 `;
 
 function Thumbnail({ index, photo, updateGalleryView }) {

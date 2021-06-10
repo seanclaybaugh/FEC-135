@@ -16,7 +16,9 @@ const StyledImageContainer = styled.div`
 `;
 
 const StyledImage = styled.img`
-  width: 600px;
+  object-fit: cover;
+  width: 700px;
+  height: 1000px;
   :hover {
     cursor: zoom-in;
   }
