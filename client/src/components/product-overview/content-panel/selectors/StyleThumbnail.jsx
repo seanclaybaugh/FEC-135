@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
 const Container = styled.div`
@@ -27,29 +27,28 @@ const Img = styled.img`
   }
 `;
 
-function StyleThumbnail({ style, index, currentStyle, updateCurrentStyle }) {
+function StyleThumbnail({ style, index, currentStyle, updateCurrentStyle, previewCurrentStyle, revertCurrentStyle }) {
   const [prevSelectedStyle, setPrevSelectedStyle] = useState(currentStyle);
 
   function handleClick() {
-    setPrevSelectedStyle(style);
     updateCurrentStyle(style);
   }
 
-  function handleMouseEnter() {
-    updateCurrentStyle(style)
+  function handleMouseOver() {
+    previewCurrentStyle(style)
   }
 
   function handleMouseLeave() {
-    updateCurrentStyle(prevSelectedStyle)
+    revertCurrentStyle()
   }
 
   return (
-    <Container boxShadow={index === currentStyle.style_id ? '0 0 0 1px #000' : '0 0 3px #888'}>
+    <Container onClick={handleClick}
+               onMouseOver={handleMouseOver}
+               onMouseLeave={handleMouseLeave}
+               boxShadow={index === currentStyle.style_id ? '0 0 0 1px #000' : '0 0 3px #888'}>
       <Img src={style.photos[2].thumbnail_url}
-           alt=""
-           onClick={handleClick}
-           onMouseEnter={handleMouseEnter}
-           onMouseLeave={handleMouseLeave} />
+           alt={style.name} />
     </Container>
   )
 }

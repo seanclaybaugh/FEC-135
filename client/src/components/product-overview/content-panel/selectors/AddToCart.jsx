@@ -2,6 +2,10 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
 
+const OuterContainer = styled.div`
+  border-bottom: 2px solid #e2e2e2;
+`;
+
 const Container = styled.form`
   margin: 10px;
 `;
@@ -60,9 +64,11 @@ function AddToCart({ sku, qty }) {
   }
 
   return (
-    <Container onSubmit={handleSubmit}>
-      <Button>ADD TO BAG</Button>
-    </Container>
+    <OuterContainer>
+      <Container onSubmit={handleSubmit}>
+        <Button>ADD TO BAG</Button>
+      </Container>
+    </OuterContainer>
   )
 }
 

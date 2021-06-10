@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import StyleThumbnail from './StyleThumbnail';
 
 const OuterContainer = styled.div`
-  border-bottom: 1px solid #e2e2e2;
+  border-bottom: 2px solid #e2e2e2;
 `;
 
 const InnerContainer = styled.div`
@@ -12,7 +12,7 @@ const InnerContainer = styled.div`
   margin: 10px;
 `;
 
-function StylesContainer({ styles, currentStyle, updateCurrentStyle }) {
+function StylesContainer({ styles, currentStyle, updateCurrentStyle, previewCurrentStyle, revertCurrentStyle }) {
   return (
     <OuterContainer>
       <h5>{currentStyle.name.toUpperCase()}</h5>
@@ -22,7 +22,9 @@ function StylesContainer({ styles, currentStyle, updateCurrentStyle }) {
                                  key={index}
                                  index={style.style_id}
                                  currentStyle={currentStyle}
-                                 updateCurrentStyle={updateCurrentStyle} />
+                                 updateCurrentStyle={updateCurrentStyle}
+                                 previewCurrentStyle={previewCurrentStyle}
+                                 revertCurrentStyle={revertCurrentStyle} />
         })}
       </InnerContainer>
     </OuterContainer>

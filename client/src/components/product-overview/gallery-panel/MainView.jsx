@@ -11,7 +11,7 @@ const MainViewContainer = styled.div`
 const StyledImageContainer = styled.div`
   display: flex;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;
 `;
 
 const StyledImage = styled.img`
@@ -29,7 +29,6 @@ const StyledArrowContainer = styled.div`
   color: #27231F;
   width: 50px;
   height: 100%;
-  margin-top: 200px;
   left: ${props => props.position};
   :hover {
     cursor: pointer;

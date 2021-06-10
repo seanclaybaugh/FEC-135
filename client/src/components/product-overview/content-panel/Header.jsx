@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 const HeaderContainer = styled.div`
-  border-bottom: 1px solid #e2e2e2;
+  border-bottom: 2px solid #e2e2e2;
 `;
 
 const HeaderTextContainer = styled.div`
@@ -40,7 +40,7 @@ const NewPrice = styled.div`
   text-align: center;
 `;
 
-function Header({ name, description, price, currentStyle }) {
+function Header({ name, category, description, price, currentStyle }) {
   const currentPrice = !currentStyle ? price : currentStyle.original_price;
   const salePrice = !currentStyle.sale_price ? null : currentStyle.sale_price;
   let newPriceDisplay;
@@ -53,6 +53,7 @@ function Header({ name, description, price, currentStyle }) {
 
   return (
     <HeaderContainer>
+      <h5>{'COLLECTIONS > ' + category}</h5>
       <HeaderTextContainer>
         <div>
           <h2>{name}</h2>

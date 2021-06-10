@@ -4,6 +4,7 @@ import Header from './Header';
 import StylesContainer from './selectors/StylesContainer';
 import SizesContainer from './selectors/SizesContainer';
 import AddToCart from './selectors/AddToCart';
+import Share from './Share';
 
 const Container = styled.div`
   order: 2;
@@ -11,7 +12,7 @@ const Container = styled.div`
   margin: 10px 20px;
 `;
 
-function ContentPanel({ product, styles, updateCurrentStyle, currentStyle }) {
+function ContentPanel({ product, styles, currentStyle, updateCurrentStyle, previewCurrentStyle, revertCurrentStyle }) {
   const [cartSku, setCartSku] = useState(null);
   const [cartQty, setCartQty] = useState(0);
 
@@ -26,14 +27,21 @@ function ContentPanel({ product, styles, updateCurrentStyle, currentStyle }) {
   return (
     <Container>
       <Header name={product.name}
+              category={product.category}
               description={product.description}
               price={product.price}
               currentStyle={currentStyle} />
       <StylesContainer styles={styles}
                        currentStyle={currentStyle}
-                       updateCurrentStyle={updateCurrentStyle} />
-      <SizesContainer currentStyle={currentStyle} updateCartSku={updateCartSku} updateCartQty={updateCartQty} />
-      <AddToCart sku={cartSku} qty={cartQty} />
+                       updateCurrentStyle={updateCurrentStyle}
+                       previewCurrentStyle={previewCurrentStyle}
+                       revertCurrentStyle={revertCurrentStyle} />
+      <SizesContainer currentStyle={currentStyle}
+                      updateCartSku={updateCartSku}
+                      updateCartQty={updateCartQty} />
+      <AddToCart sku={cartSku}
+                 qty={cartQty} />
+      <Share />
     </Container>
   )
 }

@@ -28,6 +28,7 @@ function ProductOverview() {
   }, [])
 
   const [isLoading, setIsLoading] = useState(true);
+  const [prevStyle, setPrevStyle] = useState('');
   const [currentStyle, setCurrentStyle] = useState('');
   const [styles, setStyles] = useState([]);
 
@@ -39,6 +40,7 @@ function ProductOverview() {
         const defaultStyle = results.data.results.filter(style => {
           return style['default?'];
         });
+        setPrevStyle(defaultStyle[0]);
         setCurrentStyle(defaultStyle[0]);
       } catch (err) {
         setIsError(true);
@@ -49,7 +51,16 @@ function ProductOverview() {
   }, [])
 
   function updateCurrentStyle(select) {
+    setPrevStyle(currentStyle)
     setCurrentStyle(select)
+  }
+
+  function previewCurrentStyle(preview) {
+    setCurrentStyle(preview)
+  }
+
+  function revertCurrentStyle() {
+    setCurrentStyle(prevStyle)
   }
 
   return (
@@ -60,6 +71,8 @@ function ProductOverview() {
       <ContentPanel product={product}
                     styles={styles}
                     updateCurrentStyle={updateCurrentStyle}
+                    previewCurrentStyle={previewCurrentStyle}
+                    revertCurrentStyle={revertCurrentStyle}
                     currentStyle={currentStyle} />
     </Container>
   )
