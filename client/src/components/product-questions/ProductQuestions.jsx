@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import QuestionsList from './questionsList/QuestionsList';
 import SearchQuestions from './SearchQuestions';
 import AddQuestionModal from './AddQuestionModal';
+import useAnswerModal from './UseAnswerModal'
 import useModal from './UseModal';
 import styled from 'styled-components';
 import axios from 'axios';
@@ -29,6 +30,7 @@ function ProductQuestions() {
   const [isError, setIsError] = useState(false);
   const [fetchedExpandedQuestions, setFetchedExpandedQuestions] = useState(false);
   const {isModalShowing, toggleModal} = useModal();
+  const {isAnswerModalShowing, toggleAnswerModal} = useAnswerModal();
   const questionsPerPage = 5;
 
   const fetchInitialQuestions = async () => {
@@ -125,8 +127,8 @@ function ProductQuestions() {
       <QuestionsList
         questions={filteredQuestions}
         handleExpandQuestions={handleExpandQuestions}
-        toggleModal={toggleModal}
-        isModalShowing={isModalShowing}
+        toggleAnswerModal={toggleAnswerModal}
+        isAnswerModalShowing={isAnswerModalShowing}
         questionsPerPage={questionsPerPage}
       />
 

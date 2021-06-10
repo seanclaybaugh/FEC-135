@@ -44,8 +44,8 @@ class QuestionsList extends React.Component {
        <QuestionListItem
         key={index}
         question={question}
-        toggleModal={this.props.toggleModal}
-        isModalShowing={this.props.isModalShowing}
+        toggleAnswerModal={this.props.toggleAnswerModal}
+        isAnswerModalShowing={this.props.isAnswerModalShowing}
         />
       )}
       </ul>

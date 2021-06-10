@@ -35,8 +35,8 @@ const QuestionListItem = props => {
           <button onClick={handleHelpfulClick}>Yes</button>
 
           #({props.question.question_helpfulness}) |
-          {!props.isModalShowing &&
-          <button onClick={props.toggleModal}>
+          {!props.isAnswerModalShowing &&
+          <button onClick={props.toggleAnswerModal}>
             Add Answer
             <AddAnswerModal
             questionId={questionId}
@@ -45,14 +45,15 @@ const QuestionListItem = props => {
         <br/>
         </li>
 
-
         {Object.keys(answers).map((keyName, i) =>
           <AnswersPerQuestion
           key={i}
           answer={answers[keyName]}
           />
         )}
-        <div>Load more answers (if more than 2 answers)</div>
+
+      {answers.length > 2 && <div>Load more answers (if more than 2 answers)</div>}
+
       <br/>
       {/* <AddAnswerForm
       questionId={props.question.question_id}

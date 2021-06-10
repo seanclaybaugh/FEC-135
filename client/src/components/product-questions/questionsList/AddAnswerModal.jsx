@@ -42,14 +42,14 @@ const ModalHeader = styled.div`
   justify-content: flex-end;
 `
 
-const AddAnswerModal = ({isModalShowing, toggleModal, questionId}) => isModalShowing ? ReactDOM.createPortal(
+const AddAnswerModal = ({isAnswerModalShowing, toggleAnswerModal, questionId}) => isAnswerModalShowing ? ReactDOM.createPortal(
   <>
     <Overlay/>
       <Wrapper >
         <Modal>
           <ModalHeader>
             <button type="button"
-              onClick={toggleModal}>
+              onClick={toggleAnswerModal}>
               <span>x</span>
             </button>
             </ModalHeader>
