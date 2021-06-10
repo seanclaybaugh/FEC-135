@@ -46,7 +46,16 @@ function AddToCart({ sku, qty }) {
       .then(responses => {
         return Promise.all(responses.map(response => response))
       })
-      .then(data => setItems(data.length))
+      .then(data => {
+        setItems(data.length);
+        return;
+      })
+      .then(() => {
+        // add items to shopping bag
+      })
+      .then(() => {
+        // clear items
+      })
       .catch(err => setIsError(true))
   }
 
