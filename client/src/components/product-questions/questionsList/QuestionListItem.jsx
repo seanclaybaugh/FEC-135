@@ -2,6 +2,7 @@ import React from 'react';
 import AnswersPerQuestion from './AnswersPerQuestion';
 import AddAnswerForm from './AddAnswerForm';
 import AddAnswerModal from './AddAnswerModal';
+import axios from 'axios';
 
 const QuestionListItem = props => {
 
@@ -9,12 +10,29 @@ const QuestionListItem = props => {
   console.log('question id from question listitem')
   console.log(props.question.question_id)
 
+
+  const handleHelpfulClick = async () => {
+
+    try {
+      const res = await axios.put(`/api/qa/questions/${props.question.question_id}/helpful`);
+      console.log(res.data);
+
+    } catch(error) {
+      console.log('error with question helpful click')
+      console.log(error)
+    }
+  }
+
   return (
     <>
       <div>
         <li className="QuestionItem">
           Q: {props.question.question_body} |
-          Helpful? Yes ({props.question.question_helpfulness}) |
+          Helpful?
+
+          <button onClick={handleHelpfulClick}>Yes</button>
+
+          #({props.question.question_helpfulness}) |
           {!props.isModalShowing &&
           <button onClick={props.toggleModal}>
             Add Answer
