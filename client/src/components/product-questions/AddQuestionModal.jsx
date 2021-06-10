@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import styled from 'styled-components';
 import AddQuestionForm from './AddQuestionForm';
+import AddAnswerForm from './questionsList/AddAnswerForm';
 
 
 const Overlay = styled.div`
@@ -56,6 +57,10 @@ const AddQuestionModal = ({isModalShowing, toggleModal, handleAddedQuestion, pro
 
               <AddQuestionForm
               handleAddedQuestion={handleAddedQuestion}
+              productId={productId}
+              />
+
+              <AddAnswerForm
               productId={productId}
               />
 

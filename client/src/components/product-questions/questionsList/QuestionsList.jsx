@@ -6,33 +6,38 @@ class QuestionsList extends React.Component {
     super(props)
 
     this.state = {
-      expandQuestions: false
+      expanded: false
     }
 
-    this.toggleExpanded = this.toggleExpanded.bind(this);
+    this.handleExpand = this.handleExpand.bind(this);
+    this.handleCollapse = this.handleCollapse.bind(this);
   }
 
-    toggleExpanded() {
-      this.setState({
-        expandQuestions: !this.state.expandQuestions
-      })
+  handleExpand() {
+    this.props.handleExpandQuestions();
+    this.setState({
+      expanded: true
+    })
+  }
 
-      if (this.state.expandQuestions) {
-        this.props.handleCollapseQuestion();
-      } else {
-        this.props.handleExpandQuestions();
-      }
-    }
+  handleCollapse() {
+    this.setState({
+      expanded: false
+    })
+  }
 
 
   render() {
+    const visibleQuestions = this.state.expanded ? this.props.questions : this.props.questions.slice(0, 2);
+    const enoughQuestionsToShowExpand = this.props.questions.length > 2;
+    const buttonText = this.state.expanded ? "Collapse Questions" : "Show More Questions";
 
-    const buttonText = this.state.expandQuestions ? "Collapse Questions" : "Show More Questions";
+    const toggleFunction = this.state.expanded ? this.handleCollapse : this.handleExpand
 
     return (
       <>
       <ul>
-      {this.props.questions.map((question, index) =>
+      {visibleQuestions.map((question, index) =>
 
        <QuestionListItem
         key={index}
@@ -42,9 +47,7 @@ class QuestionsList extends React.Component {
         />
       )}
       </ul>
-      {!this.props.loadMoreQuestions && <button onClick={this.toggleExpanded}>{buttonText}</button>}
-      {/* <button onClick={this.props.handleExpandQuestions}>Load More Questions</button>
-      <button onClick={this.props.handleCollapseQuestion}>Collapse Questions</button> */}
+      {enoughQuestionsToShowExpand && <button onClick={toggleFunction}>{buttonText}</button>}
       </>
     )
   }
