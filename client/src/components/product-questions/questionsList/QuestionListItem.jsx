@@ -28,7 +28,7 @@ const QuestionListItem = props => {
   }
 
 
-  const handleAddAnswer = () => {
+  const dismissAnswerForm = () => {
     setAddAnswerClicked(!addAnswerClicked);
   }
 
@@ -44,10 +44,10 @@ const QuestionListItem = props => {
           <button onClick={handleHelpfulClick}>Yes</button>
 
           #({props.question.question_helpfulness}) |
-          <button onClick={handleAddAnswer}> Add Answer </button>
+          <button onClick={dismissAnswerForm}> Add Answer </button>
             {addAnswerClicked && <AddAnswerForm
               questionId={questionId}
-              handleAddAnswer={handleAddAnswer}
+              dismissAnswerForm={dismissAnswerForm}
               />}
           {/* {!props.isAnswerModalShowing &&
           <button onClick={props.toggleAnswerModal}>
