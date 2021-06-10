@@ -7,7 +7,7 @@ function ratingHelper(rating) {
     sum += Number(keys[i]) * Number(vals[i]);
     count += Number(vals[i]);
   }
-  return sum / count;
+  return Math.round((sum / count) * 10) / 10;
 }
 
 export default ratingHelper;

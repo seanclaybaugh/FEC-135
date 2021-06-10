@@ -1,12 +1,3 @@
-/*
-
-Assemble:
-
-Summary
-Review List
-AddReview
-
-*/
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Rlist from './RList';
@@ -15,9 +6,19 @@ import Summary from './Summary';
 function reviewsIndex(props) {
   const [reviews, setReviews] = useState([]);
   const [metaData, setMetaData] = useState({});
-  const [numRate, setNumRate] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
-  const [filter, setFilter] = useState('relevant');
+  
+
+  function reviewSortDrop(target) {
+
+    const getReviews = async () => {
+      const result = await axios.get(`/api/reviews?product_id=${props.productId}&page=1&count=20&sort=${target}`);
+      console.log(result.data.results);
+      setReviews(result.data.results);
+      setIsLoading(false);
+    };
+    getReviews();
+  }
 
   useEffect(() => {
     const getMeta = async () => {
@@ -29,22 +30,30 @@ function reviewsIndex(props) {
 
   useEffect(() => {
     const getReviews = async () => {
-      const result = await axios.get(`/api/reviews?product_id=${props.productId}&page=1&count=20&sort=${filter}`);
+      const result = await axios.get(`/api/reviews?product_id=${props.productId}&page=1&count=20&sort=relevant`);
       setReviews(result.data.results);
       setIsLoading(false);
     };
     getReviews();
   }, []);
 
+  // *** add -Add Review- button with conditional render (appear once is loading is false), separate from main conditional render
   return (
     <>
-      {(isLoading) ? <div>Loading</div>
+      {(isLoading || reviews.length === 0) ? <div>No Reviews</div>
         : (
           <>
-            <h2>Reviews</h2>
-            <div>{`${reviews.length} reviews sorted by: DROPDOWN`}</div>
+            <h2>Reviews Main Container</h2>
             <div>
-              <Summary metaData={metaData} numRate={numRate} />
+              {`${reviews.length} reviews sorted by:`}
+              <select value={''} onChange={(event) => {console.log(event.target.value); reviewSortDrop(event.target.value)}}>
+                <option value='relevant'>relevant</option>
+                <option value='newest'>newest</option>
+                <option value='helpful'>helpful</option>
+              </select>
+            </div>
+            <div>
+              <Summary metaData={metaData} />
               <Rlist reviews={reviews} />
             </div>
           </>

@@ -6,7 +6,7 @@ function App() {
     <>
       <h1>Products N' Stuff</h1>
       <div>
-        <ReviewsIndex productId={25167} />
+        <ReviewsIndex productId={25178} />
       </div>
     </>
   );
