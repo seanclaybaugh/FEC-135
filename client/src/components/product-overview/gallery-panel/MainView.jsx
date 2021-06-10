@@ -21,6 +21,17 @@ const StyledImage = styled.img`
   }
 `;
 
+const Dialog = styled.dialog`
+  position: absolute;
+  z-index: 100;
+  border: solid 1px #e2e2e2;
+  padding: 5px;
+`;
+
+const StyledImageModal = styled.img`
+  width: 1200px;
+`;
+
 const StyledArrowContainer = styled.div`
   display: flex;
   justify-content: center;
@@ -47,6 +58,7 @@ const StyledIndicatorContainer = styled.div`
 
 function MainView({ selectedIndex, currentStyle }) {
   const [currentPhotoIndex, setCurrentPhotoIndex] = useState(0);
+  const [modal, setModal] = useState(false);
 
   function nextPhoto() {
     setCurrentPhotoIndex(prevIndex => prevIndex + 1)
@@ -58,6 +70,10 @@ function MainView({ selectedIndex, currentStyle }) {
 
   function updateSelectedIndex(index) {
     setCurrentPhotoIndex(index)
+  }
+
+  function viewModal() {
+    setModal(prevState => !prevState)
   }
 
   useEffect(() => {
@@ -79,7 +95,14 @@ function MainView({ selectedIndex, currentStyle }) {
           <StyledArrowContainer onClick={prevPhoto} position="10%" >
             {currentPhotoIndex !== 0 && <MdKeyboardArrowLeft />}
           </StyledArrowContainer>
-          <StyledImage src={currentStyle.photos[currentPhotoIndex].url} />
+          <StyledImage src={currentStyle.photos[currentPhotoIndex].url}
+                       onClick={viewModal} />
+          {modal && (
+            <Dialog open>
+              <StyledImageModal src={currentStyle.photos[currentPhotoIndex].url}
+                                onClick={viewModal} />
+            </Dialog>
+          )}
           <StyledArrowContainer onClick={nextPhoto} position="90%" >
             {currentPhotoIndex !== currentStyle.photos.length - 1 &&  <MdKeyboardArrowRight />}
           </StyledArrowContainer>
