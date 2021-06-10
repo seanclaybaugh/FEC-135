@@ -7,6 +7,7 @@ import axios from 'axios';
 const QuestionListItem = props => {
 
   const [addAnswerClicked, setAddAnswerClicked] = useState(false);
+  const [expanded, setExpanded] = useState(false);
 
   let answers = props.question.answers || [];
   const questionId = props.question.question_id;
@@ -32,7 +33,16 @@ const QuestionListItem = props => {
     setAddAnswerClicked(!addAnswerClicked);
   }
 
+  const toggleExpanded = () => {
+    setExpanded(!expanded);
+  }
 
+
+  //if state is expanded, we want all the answer, else we want to slice 0,2
+  const allAnswers = Object.values(answers);
+  const visibleAnswers = expanded ? allAnswers : allAnswers.slice(0, 2);
+  const enoughAnswersToExpand = allAnswers.length > 2;
+  const buttonText = expanded ? "Collapse Answers" : "Show More Answers";
 
   return (
     <>
@@ -60,14 +70,14 @@ const QuestionListItem = props => {
         <br/>
         </li>
 
-        {Object.keys(answers).map((keyName, i) =>
+        {visibleAnswers.map((answer, i) =>
           <AnswersPerQuestion
           key={i}
-          answer={answers[keyName]}
+          answer={answer}
           />
         )}
 
-      {answers.length > 2 && <div>Load more answers (if more than 2 answers)</div>}
+      {enoughAnswersToExpand && <button onClick={toggleExpanded}>{buttonText}</button>}
 
       <br/>
 
