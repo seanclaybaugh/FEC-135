@@ -28,17 +28,18 @@ function ProductQuestions() {
   const [filteredQuestions, setFilteredQuestions] = useState([]);
   // const [loadMoreQuestions, setLoadMoreQuestions] = useState(false);
   const [isError, setIsError] = useState(false);
+  const [fetchedExpandedQuestions, setFetchedExpandedQuestions] = useState(false);
   // const [nextPage, setNextPage] = useState(1);
   //use custom hook here for modal window
   const {isModalShowing, toggleModal} = useModal();
 
-  let questionsPerPage = 3;
+  const questionsPerPage = 5;
 
   const fetchInitialQuestions = async () => {
 
     try {
       const res = await axios.get(`/api/qa/questions?product_id=${props.productId}&count=${questionsPerPage}`);
-      const newQuestionList = questionList.concat(res.data.results);
+      const newQuestionList = questionList.concat(res.data.results)
       setQuestionList(newQuestionList);
       setFilteredQuestions(newQuestionList);
 
@@ -50,20 +51,36 @@ function ProductQuestions() {
 
   const fetchExpandedQuestions = async () => {
 
+    if (fetchedExpandedQuestions) {
+      console.log('Not fetching expanded questions, already completed previously');
+      return;
+    }
+
     let fetchingData = true;
-    const page = 2;
+    let expandedQuestions = [];
+    let page = 2;
 
     try {
       while (fetchingData) {
-        const res = await axios.get(`/api/qa/questions?product_id=${props.productId}&page=${page}&count=${questionsPerPage}`);
-        const newQuestionList = questionList.concat(res.data.results);
-        setQuestionList(newQuestionList);
-        setFilteredQuestions(newQuestionList);
+        console.log('while loop executing');
+        const url = `/api/qa/questions?product_id=${props.productId}&page=${page}&count=${questionsPerPage}`;
+        console.log('GET ' + url);
+        const res = await axios.get(url);
 
-
+        // Collect this page of questions
+        expandedQuestions = expandedQuestions.concat(res.data.results);
+        console.log('expanded questions:');
+        console.log(expandedQuestions);
         fetchingData = res.data.results.length !== 0;
         page++;
       }
+
+      const newQuestionList = questionList.concat(expandedQuestions);
+      console.log('Question list updated, ' + newQuestionList.length + ' questions');
+      setQuestionList(newQuestionList);
+      setFilteredQuestions(newQuestionList);
+      setFetchedExpandedQuestions(true);
+
     } catch (error) {
       setIsError(true);
     }
@@ -103,10 +120,6 @@ function ProductQuestions() {
   }, []);
 
   const handleExpandQuestions = () => {
-    // fetchQuestions();
-    // setFilteredQuestions(questionList);
-
-    // only do this if we haven't yet
     fetchExpandedQuestions();
   }
 
@@ -159,6 +172,7 @@ function ProductQuestions() {
         // loadMoreQuestions={loadMoreQuestions}
         toggleModal={toggleModal}
         isModalShowing={isModalShowing}
+        questionsPerPage={questionsPerPage}
       />
 
       <Container>

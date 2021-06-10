@@ -4,7 +4,7 @@ import AddAnswerForm from './AddAnswerForm';
 
 const QuestionListItem = props => {
 
-  let answers = props.question.answers;
+  let answers = props.question.answers || [];
 
   return (
     <>
@@ -26,9 +26,9 @@ const QuestionListItem = props => {
         )}
         <div>Load more answers (if more than 2 answers)</div>
       <br/>
-      <AddAnswerForm
+      {/* <AddAnswerForm
       questionId={props.question.question_id}
-      />
+      /> */}
       <br/>
       </div>
 
