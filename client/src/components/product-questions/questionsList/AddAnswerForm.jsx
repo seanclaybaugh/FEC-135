@@ -29,7 +29,7 @@ class AddAnswerForm extends React.Component {
     }
 
     const question_id = parseInt(this.props.questionId);
-    console.long('question id?')
+    console.log('question id?')
     console.log(question_id)
 
     console.log(this.state.body)
@@ -48,6 +48,7 @@ class AddAnswerForm extends React.Component {
       email: '',
       photos: []
     })
+    this.props.handleAddAnswer();
   }
 
 

@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import AnswersPerQuestion from './AnswersPerQuestion';
 import AddAnswerForm from './AddAnswerForm';
 import AddAnswerModal from './AddAnswerModal';
 import axios from 'axios';
 
 const QuestionListItem = props => {
+
+  const [addAnswerClicked, setAddAnswerClicked] = useState(false);
 
   let answers = props.question.answers || [];
   const questionId = props.question.question_id;
@@ -25,6 +27,13 @@ const QuestionListItem = props => {
     }
   }
 
+
+  const handleAddAnswer = () => {
+    setAddAnswerClicked(!addAnswerClicked);
+  }
+
+
+
   return (
     <>
       <div>
@@ -35,13 +44,19 @@ const QuestionListItem = props => {
           <button onClick={handleHelpfulClick}>Yes</button>
 
           #({props.question.question_helpfulness}) |
-          {!props.isAnswerModalShowing &&
+          <button onClick={handleAddAnswer}> Add Answer </button>
+            {addAnswerClicked && <AddAnswerForm
+              questionId={questionId}
+              handleAddAnswer={handleAddAnswer}
+              />}
+          {/* {!props.isAnswerModalShowing &&
           <button onClick={props.toggleAnswerModal}>
             Add Answer
-            <AddAnswerModal
+            {/* <AddAnswerModal
             questionId={questionId}
-            />
-            </button>}
+            /> */}
+
+            {/* </button>} */}
         <br/>
         </li>
 
@@ -55,9 +70,9 @@ const QuestionListItem = props => {
       {answers.length > 2 && <div>Load more answers (if more than 2 answers)</div>}
 
       <br/>
-      {/* <AddAnswerForm
-      questionId={props.question.question_id}
-      /> */}
+
+
+
       <br/>
       </div>
 
