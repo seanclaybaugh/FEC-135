@@ -1,10 +1,13 @@
 import React from 'react';
 import AnswersPerQuestion from './AnswersPerQuestion';
 import AddAnswerForm from './AddAnswerForm';
+import AddAnswerModal from './AddAnswerModal';
 
 const QuestionListItem = props => {
 
   let answers = props.question.answers || [];
+  console.log('question id from question listitem')
+  console.log(props.question.question_id)
 
   return (
     <>
@@ -13,7 +16,12 @@ const QuestionListItem = props => {
           Q: {props.question.question_body} |
           Helpful? Yes ({props.question.question_helpfulness}) |
           {!props.isModalShowing &&
-          <button onClick={props.toggleModal}>Add Answer Modal</button>}
+          <button onClick={props.toggleModal}>
+            Add Answer
+            <AddAnswerModal
+            questionId={props.question.question_id}
+            />
+            </button>}
         <br/>
         </li>
 

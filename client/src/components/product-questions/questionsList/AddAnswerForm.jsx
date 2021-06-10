@@ -3,7 +3,6 @@ import axios from 'axios';
 
 class AddAnswerForm extends React.Component {
 
-
   constructor(props) {
     super(props);
 
@@ -29,11 +28,15 @@ class AddAnswerForm extends React.Component {
       photos: this.state.photos
     }
 
-    const question_id = this.props.questionId;
+    const question_id = parseInt(this.props.questionId);
+    console.long('question id?')
+    console.log(question_id)
+
+    console.log(this.state.body)
 
     try {
 
-      const result = await axios.post(`/api/qa/questions/:${question_id}/answers`, answer)
+      const result = await axios.post(`/api/qa/questions/${question_id}/answers`, answer)
       console.log('results from add answer')
       console.log(result)
     }  catch (error) {
@@ -56,7 +59,7 @@ class AddAnswerForm extends React.Component {
     return (
       <>
         <div>Submit Your Answer</div>
-        <form onSubmit={this.handleSubmitQuestion}>
+        <form onSubmit={this.handleSubmitAnswer}>
           <label>Your Answer:</label>
           <input name="body" value={this.state.body} placeholder="" onChange={this.handleFormChange}/>
           <br/>
@@ -80,8 +83,6 @@ class AddAnswerForm extends React.Component {
 
     )
   }
-
-
 
 }
 

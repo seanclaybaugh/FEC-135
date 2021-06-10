@@ -1,8 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import styled from 'styled-components';
-import AddQuestionForm from './AddQuestionForm';
-
+import AddAnswerForm from './AddAnswerForm';
 
 
 const Overlay = styled.div`
@@ -43,7 +42,7 @@ const ModalHeader = styled.div`
   justify-content: flex-end;
 `
 
-const AddQuestionModal = ({isModalShowing, toggleModal, handleAddedQuestion, productId}) => isModalShowing ? ReactDOM.createPortal(
+const AddAnswerModal = ({isModalShowing, toggleModal, questionId}) => isModalShowing ? ReactDOM.createPortal(
   <>
     <Overlay/>
       <Wrapper >
@@ -55,14 +54,11 @@ const AddQuestionModal = ({isModalShowing, toggleModal, handleAddedQuestion, pro
             </button>
             </ModalHeader>
 
-              <AddQuestionForm
-              handleAddedQuestion={handleAddedQuestion}
-              productId={productId}
+              <AddAnswerForm
+              // handleAddedQuestion={handleAddedQuestion}
+              questionId={questionId}
               />
 
-              {/* <AddAnswerForm
-              questionId={questionId}
-              /> */}
 
             </Modal>
         </Wrapper>
@@ -70,9 +66,4 @@ const AddQuestionModal = ({isModalShowing, toggleModal, handleAddedQuestion, pro
 ) : null;
 
 
-export default AddQuestionModal;
-
-//Portal - this allows react components to render in another part of the DOM, outside of their parent component
-//use a portal to mount this modal component to the end of document.body, rather than as a child of another component
-//For better accessibility - portal allows us to append the modal componenet to the outside of inner elements
-//createPortal takes 2 arguments: 1 - the component we want to render, 2 - the location of where we want to append the componenet - document.body
+export default AddAnswerModal;
