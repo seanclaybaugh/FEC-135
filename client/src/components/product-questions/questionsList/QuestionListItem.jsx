@@ -7,14 +7,16 @@ import axios from 'axios';
 const QuestionListItem = props => {
 
   let answers = props.question.answers || [];
+  const questionId = props.question.question_id;
+
   console.log('question id from question listitem')
-  console.log(props.question.question_id)
+  console.log(questionId)
 
 
   const handleHelpfulClick = async () => {
 
     try {
-      const res = await axios.put(`/api/qa/questions/${props.question.question_id}/helpful`);
+      const res = await axios.put(`/api/qa/questions/${questionId}/helpful`);
       console.log(res.data);
 
     } catch(error) {
@@ -37,7 +39,7 @@ const QuestionListItem = props => {
           <button onClick={props.toggleModal}>
             Add Answer
             <AddAnswerModal
-            questionId={props.question.question_id}
+            questionId={questionId}
             />
             </button>}
         <br/>
