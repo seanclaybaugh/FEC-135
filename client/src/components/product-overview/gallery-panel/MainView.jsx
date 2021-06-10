@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import { MdKeyboardArrowRight, MdKeyboardArrowLeft } from 'react-icons/md';
 import ThumbnailBottom from './ThumbnailBottom';
+import zoomImage from './helpers/zoomImage';
 
 const MainViewContainer = styled.div`
   display: flex;
@@ -28,8 +29,24 @@ const Dialog = styled.dialog`
   padding: 5px;
 `;
 
+const StyledImageModalContainer = styled.div`
+  width: 100%;
+  height: auto;
+  border-radius: 1%;
+  overflow: hidden;
+`;
+
 const StyledImageModal = styled.img`
   width: 1200px;
+  height: auto;
+  border-radius: 1%;
+  transform: scale(1.0);
+  transition: transform 0.3s;
+
+  :hover {
+    cursor: zoom-out;
+    transform: scale(2.5);
+  }
 `;
 
 const StyledArrowContainer = styled.div`
@@ -59,6 +76,8 @@ const StyledIndicatorContainer = styled.div`
 function MainView({ selectedIndex, currentStyle }) {
   const [currentPhotoIndex, setCurrentPhotoIndex] = useState(0);
   const [modal, setModal] = useState(false);
+  const [backgroundImage, setBackgroundImage] = useState(`url(${currentStyle.photos[currentPhotoIndex].url})`);
+  const [backgroundPosition, setBackgroundPosition] = useState('0% 0%');
 
   function nextPhoto() {
     setCurrentPhotoIndex(prevIndex => prevIndex + 1)
@@ -74,6 +93,13 @@ function MainView({ selectedIndex, currentStyle }) {
 
   function viewModal() {
     setModal(prevState => !prevState)
+  }
+
+  function handleMouseMove(e) {
+    const { left, top, width, height } = e.target.getBoundingClientRect();
+    const x = (e.pageX - left) / width * 100;
+    const y = (e.pageY - top) / height * 100;
+    setBackgroundPosition(`${x}% ${y}%`);
   }
 
   useEffect(() => {
@@ -92,18 +118,25 @@ function MainView({ selectedIndex, currentStyle }) {
     <>
       <MainViewContainer>
         <StyledImageContainer>
-          <StyledArrowContainer onClick={prevPhoto} position="10%" >
+          <StyledArrowContainer onClick={prevPhoto}
+                                position="10%" >
             {currentPhotoIndex !== 0 && <MdKeyboardArrowLeft />}
           </StyledArrowContainer>
           <StyledImage src={currentStyle.photos[currentPhotoIndex].url}
                        onClick={viewModal} />
           {modal && (
-            <Dialog open>
-              <StyledImageModal src={currentStyle.photos[currentPhotoIndex].url}
-                                onClick={viewModal} />
-            </Dialog>
+              <Dialog open
+                      onMouseMove={handleMouseMove}
+                      bgImage={backgroundImage}
+                      position={backgroundPosition}>
+                <StyledImageModalContainer>
+                  <StyledImageModal src={currentStyle.photos[currentPhotoIndex].url}
+                                    onClick={viewModal} />
+                </StyledImageModalContainer>
+              </Dialog>
           )}
-          <StyledArrowContainer onClick={nextPhoto} position="90%" >
+          <StyledArrowContainer onClick={nextPhoto}
+                                position="90%" >
             {currentPhotoIndex !== currentStyle.photos.length - 1 &&  <MdKeyboardArrowRight />}
           </StyledArrowContainer>
         </StyledImageContainer>
