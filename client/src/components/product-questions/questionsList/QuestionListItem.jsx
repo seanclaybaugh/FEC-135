@@ -9,7 +9,11 @@ const QuestionListItem = props => {
     <>
       <div>
         <li className="QuestionItem">
-          Q: {props.question.question_body} | Helpful? Yes ({props.question.question_helpfulness}) | Add Answer
+          Q: {props.question.question_body} |
+          Helpful? Yes ({props.question.question_helpfulness}) |
+          Add Answer
+          {!props.isModalShowing &&
+          <button onClick={props.toggleModal}>Add Answer Modal</button>}
         <br/>
         </li>
 

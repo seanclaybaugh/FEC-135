@@ -113,6 +113,8 @@ function ProductQuestions() {
         handleExpandQuestions={handleExpandQuestions}
         handleCollapseQuestion={handleCollapseQuestion}
         loadMoreQuestions={loadMoreQuestions}
+        toggleModal={toggleModal}
+        isModalShowing={isModalShowing}
       />
 
       <Container>
