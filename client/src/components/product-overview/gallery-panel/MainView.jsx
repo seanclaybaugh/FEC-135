@@ -2,7 +2,6 @@ import React, { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import { MdKeyboardArrowRight, MdKeyboardArrowLeft } from 'react-icons/md';
 import ThumbnailBottom from './ThumbnailBottom';
-import zoomImage from './helpers/zoomImage';
 
 const MainViewContainer = styled.div`
   display: flex;

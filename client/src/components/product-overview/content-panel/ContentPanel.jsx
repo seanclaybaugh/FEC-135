@@ -12,7 +12,7 @@ const Container = styled.div`
   margin: 10px 20px;
 `;
 
-function ContentPanel({ product, styles, currentStyle, updateCurrentStyle, previewCurrentStyle, revertCurrentStyle }) {
+function ContentPanel({ product, metaData, styles, currentStyle, updateCurrentStyle, previewCurrentStyle, revertCurrentStyle }) {
   const [cartSku, setCartSku] = useState(null);
   const [cartQty, setCartQty] = useState(0);
 
@@ -28,6 +28,7 @@ function ContentPanel({ product, styles, currentStyle, updateCurrentStyle, previ
     <Container>
       <Header name={product.name}
               category={product.category}
+              metaData={metaData}
               description={product.description}
               price={product.price}
               currentStyle={currentStyle} />
