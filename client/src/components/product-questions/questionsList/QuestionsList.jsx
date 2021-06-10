@@ -22,13 +22,6 @@ class QuestionsList extends React.Component {
     })
   }
 
-  // we click expand - this will trigger the fetch epxanded questions to get the rest of hte questions
-  //click collpase, this slices this.props.questions WHEN RENDERING
-  //but our question list and this.props.qustions will now have the master list of all questions
-  //so if we click expand again, no need to axios call
-  //just dont call this.props.handleExpandQuestions
-  //check if this.props.questions
-
   handleCollapse() {
     this.setState({
       expanded: false
@@ -37,12 +30,11 @@ class QuestionsList extends React.Component {
 
 
   render() {
-    // todo: don't hardcode 2, let's get pageSize as a prop and use pageSize-1
+
     const visibleQuestions = this.state.expanded ? this.props.questions : this.props.questions.slice(0, this.props.questionsPerPage - 1);
     const enoughQuestionsToShowExpand = this.props.questions.length > this.props.questionsPerPage - 1;
     const buttonText = this.state.expanded ? "Collapse Questions" : "Show More Questions";
-
-    const toggleFunction = this.state.expanded ? this.handleCollapse : this.handleExpand
+    const toggleFunction = this.state.expanded ? this.handleCollapse : this.handleExpand;
 
     return (
       <>

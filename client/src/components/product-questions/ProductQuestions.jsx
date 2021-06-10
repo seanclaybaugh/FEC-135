@@ -26,13 +26,9 @@ function ProductQuestions() {
 
   const [questionList, setQuestionList] = useState([]);
   const [filteredQuestions, setFilteredQuestions] = useState([]);
-  // const [loadMoreQuestions, setLoadMoreQuestions] = useState(false);
   const [isError, setIsError] = useState(false);
   const [fetchedExpandedQuestions, setFetchedExpandedQuestions] = useState(false);
-  // const [nextPage, setNextPage] = useState(1);
-  //use custom hook here for modal window
   const {isModalShowing, toggleModal} = useModal();
-
   const questionsPerPage = 5;
 
   const fetchInitialQuestions = async () => {
@@ -52,7 +48,6 @@ function ProductQuestions() {
   const fetchExpandedQuestions = async () => {
 
     if (fetchedExpandedQuestions) {
-      console.log('Not fetching expanded questions, already completed previously');
       return;
     }
 
@@ -62,21 +57,17 @@ function ProductQuestions() {
 
     try {
       while (fetchingData) {
-        console.log('while loop executing');
+
         const url = `/api/qa/questions?product_id=${props.productId}&page=${page}&count=${questionsPerPage}`;
-        console.log('GET ' + url);
         const res = await axios.get(url);
 
         // Collect this page of questions
         expandedQuestions = expandedQuestions.concat(res.data.results);
-        console.log('expanded questions:');
-        console.log(expandedQuestions);
         fetchingData = res.data.results.length !== 0;
         page++;
       }
 
       const newQuestionList = questionList.concat(expandedQuestions);
-      console.log('Question list updated, ' + newQuestionList.length + ' questions');
       setQuestionList(newQuestionList);
       setFilteredQuestions(newQuestionList);
       setFetchedExpandedQuestions(true);
@@ -84,35 +75,7 @@ function ProductQuestions() {
     } catch (error) {
       setIsError(true);
     }
-
   };
-
-
-
-  // const fetchQuestions = async (page) => {
-  //   setIsError(false);
-
-  //   try {
-  //     // console.log('Getting questions for page ' + nextPage);
-  //     const res = await axios.get(`/api/qa/questions?product_id=${props.productId}&count=${questionsPerPage}`);
-  //     console.log('axios get happens')
-  //     console.log(res.data);
-  //     const newQuestionList = questionList.concat(res.data.results);
-  //     setQuestionList(newQuestionList);
-  //     setFilteredQuestions(newQuestionList.slice(0, 2));
-  //     // setNextPage(nextPage + 1);
-
-  //     console.log('length')
-  //     console.log(newQuestionList.length)
-
-  //     if (newQuestionList.length > 2) {
-  //       console.log(loadMoreQuestions)
-  //       setLoadMoreQuestions(true)
-  //     };
-  //   } catch (error) {
-  //     setIsError(true);
-  //   }
-  // };
 
   useEffect(() => {
     // fetchQuestions();
@@ -122,12 +85,6 @@ function ProductQuestions() {
   const handleExpandQuestions = () => {
     fetchExpandedQuestions();
   }
-
-  // const handleCollapseQuestion = () => {
-  //   const newQuestionList = questionList.slice(0, 3);
-  //   // setQuestionList(newQuestionList);
-  //   setFilteredQuestions(newQuestionList);
-  // }
 
   const handlSearchTextChanged = (searchText) => {
 
@@ -168,16 +125,14 @@ function ProductQuestions() {
       <QuestionsList
         questions={filteredQuestions}
         handleExpandQuestions={handleExpandQuestions}
-        // handleCollapseQuestion={handleCollapseQuestion}
-        // loadMoreQuestions={loadMoreQuestions}
         toggleModal={toggleModal}
         isModalShowing={isModalShowing}
         questionsPerPage={questionsPerPage}
       />
 
       <Container>
-     {!isModalShowing && <Button onClick={toggleModal}>Add a Question</Button>}
-      <AddQuestionModal
+      {!isModalShowing && <Button onClick={toggleModal}>Add a Question</Button>}
+        <AddQuestionModal
         isModalShowing={isModalShowing}
         toggleModal={toggleModal}
         handleAddedQuestion={handleAddedQuestion}
@@ -189,55 +144,3 @@ function ProductQuestions() {
 }
 
 export default ProductQuestions;
-
-
-
-// const [fetchData, setFetchData] = useState(false);
-
-// let fetchingData = true;
-// let pageNumber =
-
-// try {
-//   while (fetchingData) {
-//     const res = await axios.get(`/api/qa/questions?product_id=${props.productId}&count=${questionsPerPage}`);
-//     fetchingData = res.data.results.length !== 0;
-//     pageNumber++;
-//   }
-// } catch (error) {
-//   setIsError(true);
-// }
-
-// load 100
-// if you get back more than 2, expand is visible
-// click expand: show the rest (up to 100)
-// click collapse: hide everything but 2
-
-// load 2
-// show expand
-// click expand: loop to load the rest (up to infinite)
-// click collapse: drop everything but 2
-// problem: what if there are only 2 questions?
-
-// pageSize (2)
-// load count=pageSize+1 (3) GET(count=3,page=1)
-// show 2 (questions(count3),state(expanded/collapsed), question list will slice to 2, showing expand if count > 2)
-// if count(total) is > 2 (3)
-// show expand
-// expand behavior: load 3 at a time, starting at 4 (pSize+2), until you get empty
-
-// 1 button
-  // expand state
-  // collapse state
-
-
-// GET(count 3, page 1)
-// questions(a,b,c)
-// QuestionListComponent
-  // state: expanded=false
-  // props: questions(a,b,c)
-  // render:
-    // expanded? render all questions, show collapse button
-    // not expanded? render 2 questions, show expand button
-  // handleExpand
-    // state.expanded = true (this will immediately start rendering question 3)
-    // AND tell parent to go get all remaining questions
