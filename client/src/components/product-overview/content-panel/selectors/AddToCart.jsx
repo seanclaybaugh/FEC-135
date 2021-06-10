@@ -1,9 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
 
 const OuterContainer = styled.div`
+  display: flex;
+  flex-direction: row;
   border-bottom: 2px solid #e2e2e2;
+  margin-top: 20px;
 `;
 
 const Container = styled.form`
@@ -16,8 +19,35 @@ const Button = styled.button`
   margin: 2.5px;
   border: solid 1px #27231F;
   padding: 5px;
+  display: inline-block;
   width: 200px;
   line-height: 40px;
+  letter-spacing: 1px;
+  position: relative;
+  -webkit-transition: all 0.3s;
+     -moz-transition: all 0.3s;
+          transition: all 0.3s;
+
+  :after {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+         transition: all 0.3s;
+  }
+
+  :before {
+    speak: none;
+    line-height: 1;
+    position: relative;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  :active {
+    background: #000;
+    top: 2px;
+  }
 
   :hover {
     cursor: pointer;
@@ -29,10 +59,19 @@ const Button = styled.button`
 function AddToCart({ sku, qty }) {
   const [items, setItems] = useState(0);
   const [isError, setIsError] = useState(false);
+  const [isMissingSku, setIsMissingSku] = useState(false);
+
+  useEffect(() => {
+    setIsMissingSku(false)
+  }, [sku])
 
   function handleSubmit(e) {
-    e.preventDefault()
-    addAllItems(qty)
+    e.preventDefault();
+    if (sku === '') {
+      setIsMissingSku(true)
+    } else {
+      addAllItems(qty)
+    }
   }
 
   function addToCart() {
@@ -67,6 +106,8 @@ function AddToCart({ sku, qty }) {
     <OuterContainer>
       <Container onSubmit={handleSubmit}>
         <Button>ADD TO BAG</Button>
+        {isMissingSku ? <h5>Please select a size</h5> : <h5>{''}</h5>}
+        {items > 0 ? <h5>Added! View items in your cart</h5> : <h5>{''}</h5>}
       </Container>
     </OuterContainer>
   )

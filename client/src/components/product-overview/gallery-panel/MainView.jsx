@@ -16,7 +16,7 @@ const StyledImageContainer = styled.div`
 `;
 
 const StyledImage = styled.img`
-  width: 700px;
+  width: 600px;
   :hover {
     cursor: zoom-in;
   }
@@ -41,7 +41,7 @@ const StyledImageModal = styled.img`
   height: auto;
   border-radius: 1%;
   transform: scale(1.0);
-  transition: transform 0.3s;
+  transition: transform 0.2s;
 
   :hover {
     cursor: zoom-out;
