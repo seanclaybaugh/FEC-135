@@ -8,6 +8,7 @@ const Container = styled.div`
   flex-direction: row;
   justify-content: center;
   align-items: flex-start;
+  flex-wrap: wrap;
 `;
 
 function Gallery({ currentStyle }) {
