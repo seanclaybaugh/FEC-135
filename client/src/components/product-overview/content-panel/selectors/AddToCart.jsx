@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
 
@@ -23,18 +23,31 @@ const Button = styled.button`
 `;
 
 function AddToCart({ sku, qty }) {
+  const [items, setItems] = useState(0);
+  const [isError, setIsError] = useState(false);
 
   function handleSubmit(e) {
     e.preventDefault()
-    addItem()
+    addAllItems(qty)
   }
 
-  function addItem() {
-    axios.post('http://localhost:3000/api/cart', {
-      sku_id: sku
-    })
-      .then(results => console.log(results))
-      .catch(err => console.log(err))
+  function addToCart() {
+    return axios.post('http://localhost:3000/api/cart', {sku_id: sku});
+  }
+
+  function addAllItems(qty) {
+    let promises = [];
+
+    for (let i = 0; i < qty; i++) {
+      promises.push(addToCart())
+    }
+
+    Promise.all(promises)
+      .then(responses => {
+        return Promise.all(responses.map(response => response))
+      })
+      .then(data => setItems(data.length))
+      .catch(err => setIsError(true))
   }
 
   return (
