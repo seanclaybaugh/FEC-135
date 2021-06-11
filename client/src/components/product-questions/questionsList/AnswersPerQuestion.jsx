@@ -3,14 +3,22 @@ import styled from 'styled-components';
 import moment from 'moment';
 import axios from 'axios';
 
+const Img = styled.img`
+  width: 70px;
+  height: 70px;
+  padding-right: 5px;
+`
+
 const AnswersPerQuestion = props => {
 
   let date = moment(props.answer.date).format('LL');
   const answerId = props.answer.id;
-
+  const photos = props.answer.photos || [];
   const hasImg = props.answer.photos.length > 0;
 
   console.log(props.answer)
+console.log('photos');
+  console.log(photos);
 
   const handleHelpfulAnswerClick = async () => {
 
@@ -51,7 +59,11 @@ const AnswersPerQuestion = props => {
 
       <button onClick={handleReportAnswerClick}>Report</button>
 
-      {/* {hasImg && <img src='${props.answers.photos}'/>} */}
+      <div>
+        {photos.map((photo, index) => {
+          return <Img key={index} src={photo}/>
+        })}
+      </div>
       </div>
       <br/>
     </span>
