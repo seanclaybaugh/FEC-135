@@ -27,7 +27,10 @@ const Button1 = styled.button`
      color: black;
      border-color: white;
    }
-
+`
+const ButtonContainer = styled.div`
+display: flex;
+justify-content: flex-end;
 `
 
 function Rlist({ reviews }) {
@@ -42,10 +45,12 @@ function Rlist({ reviews }) {
     reviewer_name={reviewer_name} summary={summary} key={reviewer_name} />
   }) }
       </RListContainer>
+      <ButtonContainer>
       {(reviews.length > nToDisplay - 1) &&
+
       <Button1 onClick={()=> {setNToDisplay(nToDisplay + 2)}}>See More...</Button1>}
-      {(nToDisplay > 2) && <Button1 onClick= {() => setNToDisplay(2)}>Collapse</Button1>}
-      <Button1>Add Review</Button1>
+      {(nToDisplay > 2) && <Button1 onClick= {() => setNToDisplay(2)}>See Less</Button1>}
+      </ButtonContainer>
     </div>
   );
 }
