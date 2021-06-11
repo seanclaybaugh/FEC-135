@@ -4,8 +4,8 @@ import moment from 'moment';
 import axios from 'axios';
 
 const Img = styled.img`
-  width: 70px;
-  height: 70px;
+  width: 130px;
+  height: 100px;
   padding-right: 5px;
 `
 

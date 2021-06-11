@@ -24,7 +24,6 @@ const QuestionListItem = props => {
     }
   }
 
-
   const dismissAnswerForm = () => {
     setAddAnswerClicked(!addAnswerClicked);
   }
@@ -32,7 +31,6 @@ const QuestionListItem = props => {
   const toggleExpanded = () => {
     setExpanded(!expanded);
   }
-
 
   //if state is expanded, we want all the answer, else we want to slice 0,2
   const allAnswers = Object.values(answers);
@@ -54,15 +52,7 @@ const QuestionListItem = props => {
             {addAnswerClicked && <AddAnswerForm
               questionId={questionId}
               dismissAnswerForm={dismissAnswerForm}
-              />}
-          {/* {!props.isAnswerModalShowing &&
-          <button onClick={props.toggleAnswerModal}>
-            Add Answer
-            {/* <AddAnswerModal
-            questionId={questionId}
-            /> */}
-
-            {/* </button>} */}
+            />}
         <br/>
         </li>
 
@@ -76,9 +66,6 @@ const QuestionListItem = props => {
       {enoughAnswersToExpand && <button onClick={toggleExpanded}>{buttonText}</button>}
 
       <br/>
-
-
-
       <br/>
       </div>
 

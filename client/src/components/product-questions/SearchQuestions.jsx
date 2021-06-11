@@ -1,39 +1,29 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
-class SearchQuestions extends React.Component {
+const SearchQuestions = props => {
 
-  constructor(props) {
-    super(props)
+  const [searchText, setSearchText] = useState('');
 
-    this.state = {
-        searchText: '',
-    };
+  const handleChange = event => {
 
-    this.handleChange = this.handleChange.bind(this);
+    let inputValue = event.target.value;
+
+    setSearchText(inputValue);
+
+    props.handlSearchTextChanged(inputValue);
   }
 
-  handleChange(event) {
-    const newSearchText = event.target.value;
-    this.setState({
-      searchText: newSearchText
-    });
-
-    this.props.handlSearchTextChanged(newSearchText);
-  }
-
-  render() {
-    return (
-      <div>
-        <input
-          type="text"
-          className="searchQuestions"
-          placeholder="HAVE A QUESTION? SEARCH FOR ANSWERS"
-          onChange={this.handleChange}
-          value={this.state.searchText}
-        />
-      </div>
-    );
-  }
+  return (
+    <div>
+      <input
+        type="text"
+        className="searchQuestions"
+        placeholder="HAVE A QUESTION? SEARCH FOR ANSWERS"
+        onChange={handleChange}
+        value={searchText}
+      />
+    </div>
+  )
 }
 
 export default SearchQuestions;
