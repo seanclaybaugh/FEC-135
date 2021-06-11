@@ -62,17 +62,8 @@ function AddToCart({ sku, qty }) {
   const [isMissingSku, setIsMissingSku] = useState(false);
 
   useEffect(() => {
-    setIsMissingSku(false)
-  }, [sku])
-
-  function handleSubmit(e) {
-    e.preventDefault();
-    if (sku === '') {
-      setIsMissingSku(true)
-    } else {
-      addAllItems(qty)
-    }
-  }
+    setIsMissingSku(false);
+  }, [sku]);
 
   function addToCart() {
     return axios.post('http://localhost:3000/api/cart', {sku_id: sku});
@@ -82,16 +73,15 @@ function AddToCart({ sku, qty }) {
     let promises = [];
 
     for (let i = 0; i < qty; i++) {
-      promises.push(addToCart())
+      promises.push(addToCart());
     }
 
     Promise.all(promises)
-      .then(responses => {
-        return Promise.all(responses.map(response => response))
-      })
-      .then(data => {
+      .then((responses) => (
+        Promise.all(responses.map((response) => response))
+      ))
+      .then((data) => {
         setItems(data.length);
-        return;
       })
       .then(() => {
         // add items to shopping bag
@@ -99,18 +89,27 @@ function AddToCart({ sku, qty }) {
       .then(() => {
         // clear items
       })
-      .catch(err => setIsError(true))
+      .catch(() => setIsError(true));
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    if (sku === '') {
+      setIsMissingSku(true);
+    } else {
+      addAllItems(qty);
+    }
   }
 
   return (
     <OuterContainer>
       <Container onSubmit={handleSubmit}>
         <Button>ADD TO BAG</Button>
-        {isMissingSku ? <h5>Please select a size</h5> : <h5>{''}</h5>}
-        {items > 0 ? <h5>Added! View items in your cart</h5> : <h5>{''}</h5>}
+        {isMissingSku ? <h5>Please select a size</h5> : <h5>''</h5>}
+        {items > 0 ? <h5>Added! View items in your cart</h5> : <h5>''</h5>}
       </Container>
     </OuterContainer>
-  )
+  );
 }
 
 export default AddToCart;
