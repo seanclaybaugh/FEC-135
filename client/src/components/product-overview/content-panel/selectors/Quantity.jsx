@@ -32,8 +32,8 @@ function Quantity({ selectedSku, selectedStyle, updateQty }) {
 
   useEffect(() => {
     const qty = selectedSku === '' ? 0 : selectedStyle.skus[selectedSku].quantity;
-    setQtyAvailable(qty)
-  }, [selectedSku])
+    setQtyAvailable(qty);
+  }, [selectedSku]);
 
   const options = qtyAvailable > 0 ? getQtyList(qtyAvailable) : ['---'];
 
@@ -42,34 +42,34 @@ function Quantity({ selectedSku, selectedStyle, updateQty }) {
 
   useEffect(() => {
     if (selectedSku > 0) {
-      setSkuSelected(selectedSku)
+      setSkuSelected(selectedSku);
     }
     if (!qtySelected) {
-      setQtySelected(1)
+      setQtySelected(1);
     }
-  }, [selectedSku])
+  }, [selectedSku]);
 
   useEffect(() => {
-    updateQty(qtySelected)
-  }, [skuSelected])
+    updateQty(qtySelected);
+  }, [skuSelected]);
 
   function handleChange(e) {
     const value = Number(e.target.value);
-    setQtySelected(value)
-    updateQty(value)
+    setQtySelected(value);
+    updateQty(value);
   }
 
   const isActive = qtyAvailable > 0 ? null : true;
 
   return (
     <div>
-      <Select onChange={handleChange} disabled={isActive} >
-        {options.map((option, index) => {
-          return <option key={index} value={option}>{option}</option>
-        })}
+      <Select onChange={handleChange} disabled={isActive}>
+        {options.map((option, index) => (
+          <option key={index} value={option}>{option}</option>
+        ))}
       </Select>
     </div>
-  )
+  );
 }
 
 export default Quantity;
