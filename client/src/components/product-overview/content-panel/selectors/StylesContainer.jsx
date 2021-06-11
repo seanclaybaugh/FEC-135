@@ -6,7 +6,17 @@ const OuterContainer = styled.div`
   border-bottom: 2px solid #e2e2e2;
 `;
 
-const InnerContainer = styled.div`
+const StyleNameContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+`;
+
+const StyleNameTitleDiv = styled.div`
+  margin-right: 20px;
+`;
+
+const ThumbnailContainer = styled.div`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -14,20 +24,29 @@ const InnerContainer = styled.div`
 `;
 
 function StylesContainer({ styles, currentStyle, updateCurrentStyle, previewCurrentStyle, revertCurrentStyle }) {
+  const {name} = currentStyle;
+
   return (
     <OuterContainer>
-      <h5>{currentStyle.name.toUpperCase()}</h5>
-      <InnerContainer>
-        {styles.map((style, index) => {
-          return <StyleThumbnail style={style}
-                                 key={index}
-                                 index={style.style_id}
-                                 currentStyle={currentStyle}
-                                 updateCurrentStyle={updateCurrentStyle}
-                                 previewCurrentStyle={previewCurrentStyle}
-                                 revertCurrentStyle={revertCurrentStyle} />
-        })}
-      </InnerContainer>
+      <StyleNameContainer>
+        <StyleNameTitleDiv>
+          <h5>STYLE</h5>
+        </StyleNameTitleDiv>
+        <div>
+          <h5>{name}</h5>
+        </div>
+      </StyleNameContainer>
+      <ThumbnailContainer>
+        {styles.map((style, index) => (
+          <StyleThumbnail key={index}
+                          index={style.style_id}
+                          style={style}
+                          currentStyle={currentStyle}
+                          updateCurrentStyle={updateCurrentStyle}
+                          previewCurrentStyle={previewCurrentStyle}
+                          revertCurrentStyle={revertCurrentStyle} />
+        ))}
+      </ThumbnailContainer>
     </OuterContainer>
   );
 }
