@@ -12,9 +12,6 @@ const QuestionListItem = props => {
   let answers = props.question.answers || [];
   const questionId = props.question.question_id;
 
-  console.log('question id from question listitem')
-  console.log(questionId)
-
 
   const handleHelpfulClick = async () => {
 

@@ -1,5 +1,24 @@
 import React from 'react';
 import QuestionListItem from './QuestionListItem';
+import styled from 'styled-components';
+
+const Container = styled.div`
+  overflow-y: scroll;
+  height: 500px;
+  width: 700px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  padding: 5px;
+`
+const Button = styled.button`
+  background-color: transparent;
+  border-radius: 3px;
+  border: 2px solid teal;
+  color: teal;
+  margin: 0.5em 1em;
+ padding: 1rem 2rem;
+`
+
 class QuestionsList extends React.Component {
 
   constructor(props) {
@@ -38,6 +57,7 @@ class QuestionsList extends React.Component {
 
     return (
       <>
+      <Container>
       <ul>
       {visibleQuestions.map((question, index) =>
 
@@ -49,8 +69,14 @@ class QuestionsList extends React.Component {
         />
       )}
       </ul>
-      {enoughQuestionsToShowExpand && <button onClick={toggleFunction}>{buttonText}</button>}
+      </Container>
+
+      <div>
+      {enoughQuestionsToShowExpand && <Button onClick={toggleFunction}>{buttonText}</Button>}
+      </div>
+
       </>
+
     )
   }
 }

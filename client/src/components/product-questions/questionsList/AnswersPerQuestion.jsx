@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import styled from 'styled-components';
 import moment from 'moment';
 import axios from 'axios';
 
@@ -6,14 +7,20 @@ const AnswersPerQuestion = props => {
 
   let date = moment(props.answer.date).format('LL');
   const answerId = props.answer.id;
-  console.log('answer id from answersPerQuestion')
-  console.log(answerId)
+
+  const hasImg = props.answer.photos.length > 0;
+
+  console.log(props.answer)
 
   const handleHelpfulAnswerClick = async () => {
 
     try {
       const res = axios.put(`/api/qa/answers/${answerId}/helpful`)
       console.log(res.data)
+      // props.answer.helpfulness
+      // not good enough to update props
+      // need to tell parent so it can update the list
+      // ProductQuestions component needs to know
     } catch (error) {
       console.log('error with answer helpful click')
       console.log(error)
@@ -43,6 +50,8 @@ const AnswersPerQuestion = props => {
        #({props.answer.helpfulness}) |
 
       <button onClick={handleReportAnswerClick}>Report</button>
+
+      {/* {hasImg && <img src='${props.answers.photos}'/>} */}
       </div>
       <br/>
     </span>

@@ -15,9 +15,10 @@ const Button = styled.button`
   margin: 0.5em 1em;
  padding: 1rem 2rem;
 `
-const Container = styled.div`
+const ModalContainer = styled.div`
 text-align: center;
 `
+
 
 function ProductQuestions() {
 
@@ -132,7 +133,7 @@ function ProductQuestions() {
         questionsPerPage={questionsPerPage}
       />
 
-      <Container>
+      <ModalContainer>
       {!isModalShowing && <Button onClick={toggleModal}>Add a Question</Button>}
         <AddQuestionModal
         isModalShowing={isModalShowing}
@@ -140,7 +141,7 @@ function ProductQuestions() {
         handleAddedQuestion={handleAddedQuestion}
         productId={props.productId}
       />
-      </Container>
+      </ModalContainer>
     </>
   )
 }
