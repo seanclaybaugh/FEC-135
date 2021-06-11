@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 
 const Container = styled.div`
@@ -9,7 +9,7 @@ const Container = styled.div`
   border-radius: 50%;
   margin: 5px;
   border: solid 2px #fff;
-  box-shadow: ${props => props.boxShadow};
+  box-shadow: ${(props) => props.boxShadow};
 `;
 
 const Img = styled.img`
@@ -29,18 +29,16 @@ const Img = styled.img`
 `;
 
 function StyleThumbnail({ style, index, currentStyle, updateCurrentStyle, previewCurrentStyle, revertCurrentStyle }) {
-  const [prevSelectedStyle, setPrevSelectedStyle] = useState(currentStyle);
-
   function handleClick() {
     updateCurrentStyle(style);
   }
 
   function handleMouseOver() {
-    previewCurrentStyle(style)
+    previewCurrentStyle(style);
   }
 
   function handleMouseLeave() {
-    revertCurrentStyle()
+    revertCurrentStyle();
   }
 
   return (
@@ -51,7 +49,7 @@ function StyleThumbnail({ style, index, currentStyle, updateCurrentStyle, previe
       <Img src={style.photos[0].thumbnail_url}
            alt={style.name} />
     </Container>
-  )
+  );
 }
 
 export default StyleThumbnail;
