@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import AnswersPerQuestion from './AnswersPerQuestion';
 import AddAnswerForm from './AddAnswerForm';
-import AddAnswerModal from './AddAnswerModal';
 import axios from 'axios';
 
 const QuestionListItem = props => {

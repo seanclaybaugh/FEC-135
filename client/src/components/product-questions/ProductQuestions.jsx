@@ -1,9 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import QuestionsList from './questionsList/QuestionsList';
 import SearchQuestions from './SearchQuestions';
-import AddQuestionModal from './AddQuestionModal';
-import useAnswerModal from './UseAnswerModal'
-import useModal from './UseModal';
 import styled from 'styled-components';
 import axios from 'axios';
 
@@ -13,7 +10,7 @@ const Button = styled.button`
   border: 2px solid teal;
   color: teal;
   margin: 0.5em 1em;
- padding: 1rem 2rem;
+  padding: 1rem 2rem;
 `
 const ModalContainer = styled.div`
 text-align: center;
@@ -30,8 +27,8 @@ function ProductQuestions() {
   const [filteredQuestions, setFilteredQuestions] = useState([]);
   const [isError, setIsError] = useState(false);
   const [fetchedExpandedQuestions, setFetchedExpandedQuestions] = useState(false);
-  const {isModalShowing, toggleModal} = useModal();
-  const {isAnswerModalShowing, toggleAnswerModal} = useAnswerModal();
+
+  // const {isAnswerModalShowing, toggleAnswerModal} = useAnswerModal();
   const questionsPerPage = 5;
 
   const fetchInitialQuestions = async () => {
@@ -128,12 +125,12 @@ function ProductQuestions() {
       <QuestionsList
         questions={filteredQuestions}
         handleExpandQuestions={handleExpandQuestions}
-        toggleAnswerModal={toggleAnswerModal}
-        isAnswerModalShowing={isAnswerModalShowing}
+        // toggleAnswerModal={toggleAnswerModal}
+        // isAnswerModalShowing={isAnswerModalShowing}
         questionsPerPage={questionsPerPage}
       />
 
-      <ModalContainer>
+      {/* <ModalContainer>
       {!isModalShowing && <Button onClick={toggleModal}>Add a Question</Button>}
         <AddQuestionModal
         isModalShowing={isModalShowing}
@@ -141,7 +138,7 @@ function ProductQuestions() {
         handleAddedQuestion={handleAddedQuestion}
         productId={props.productId}
       />
-      </ModalContainer>
+      </ModalContainer> */}
     </>
   )
 }

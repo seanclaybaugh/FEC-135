@@ -1,6 +1,8 @@
 import React from 'react';
 import QuestionListItem from './QuestionListItem';
 import styled from 'styled-components';
+import AddQuestionForm from '../AddQuestionForm';
+import SharedStyles from '../SharedStyles';
 
 const Container = styled.div`
   overflow-y: scroll;
@@ -10,14 +12,8 @@ const Container = styled.div`
   margin-bottom: 5px;
   padding: 5px;
 `
-const Button = styled.button`
-  background-color: transparent;
-  border-radius: 3px;
-  border: 2px solid teal;
-  color: teal;
-  margin: 0.5em 1em;
- padding: 1rem 2rem;
-`
+
+
 
 class QuestionsList extends React.Component {
 
@@ -25,11 +21,14 @@ class QuestionsList extends React.Component {
     super(props)
 
     this.state = {
-      expanded: false
+      expanded: false,
+      addQuestionClicked: false
     }
 
     this.handleExpand = this.handleExpand.bind(this);
     this.handleCollapse = this.handleCollapse.bind(this);
+    this.handleAddQuestionClicked = this.handleAddQuestionClicked.bind(this);
+    this.handleDismissAddQuestion = this.handleDismissAddQuestion.bind(this);
   }
 
   handleExpand() {
@@ -44,6 +43,18 @@ class QuestionsList extends React.Component {
   handleCollapse() {
     this.setState({
       expanded: false
+    })
+  }
+
+  handleAddQuestionClicked() {
+    this.setState({
+      addQuestionClicked: !this.state.addQuestionClicked
+    })
+  }
+
+  handleDismissAddQuestion() {
+    this.setState({
+      addQuestionClicked: false
     })
   }
 
@@ -72,7 +83,12 @@ class QuestionsList extends React.Component {
       </Container>
 
       <div>
-      {enoughQuestionsToShowExpand && <Button onClick={toggleFunction}>{buttonText}</Button>}
+      {enoughQuestionsToShowExpand && <SharedStyles.Button onClick={toggleFunction}>{buttonText}</SharedStyles.Button>}
+
+      <SharedStyles.Button onClick={this.handleAddQuestionClicked}>Add Question</SharedStyles.Button>
+      {this.state.addQuestionClicked && <AddQuestionForm
+      handleDismissAddQuestion={this.handleDismissAddQuestion}
+      />}
       </div>
 
       </>
