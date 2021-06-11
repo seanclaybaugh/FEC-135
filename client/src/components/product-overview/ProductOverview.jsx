@@ -4,14 +4,6 @@ import styled, { keyframes } from 'styled-components';
 import GalleryPanel from './gallery-panel/GalleryPanel';
 import ContentPanel from './content-panel/ContentPanel';
 
-const Container = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  flex-wrap: wrap;
-  background-color: #fff;
-`;
-
 const rotate360 = keyframes`
   from {
     transform: rotate(0deg);
@@ -37,6 +29,25 @@ const Spinner = styled.div`
   left: 50%;
 `;
 
+const OverviewContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+  background-color: #fff;
+`;
+
+const GalleryDiv = styled.div`
+  order: 1;
+  margin-left: 20px;
+`;
+
+const ContentDiv = styled.div`
+  order: 2;
+  margin: 10px 20px;
+  width: 450px;
+`;
+
 function ProductOverview() {
   const [product, setProduct] = useState([]);
   const [isError, setIsError] = useState(false);
@@ -51,7 +62,7 @@ function ProductOverview() {
       }
     };
     fetchData();
-  }, [])
+  }, []);
 
   const [metaData, setMetaData] = useState({});
 
@@ -65,7 +76,7 @@ function ProductOverview() {
       }
     };
     fetchMeta();
-  }, [])
+  }, []);
 
   const [isLoading, setIsLoading] = useState(true);
   const [prevStyle, setPrevStyle] = useState('');
@@ -77,9 +88,9 @@ function ProductOverview() {
       try {
         const results = await axios(`http://localhost:3000/api/products/${25170}/styles`);
         setStyles(results.data.results);
-        const defaultStyle = results.data.results.filter(style => {
-          return style['default?'];
-        });
+        const defaultStyle = results.data.results.filter((style) => (
+          style['default?']
+        ));
         setPrevStyle(defaultStyle[0]);
         setCurrentStyle(defaultStyle[0]);
       } catch (err) {
@@ -88,37 +99,41 @@ function ProductOverview() {
       setIsLoading(false);
     };
     fetchData();
-  }, [])
+  }, []);
 
   function updateCurrentStyle(select) {
-    setPrevStyle(currentStyle)
-    setCurrentStyle(select)
+    setPrevStyle(currentStyle);
+    setCurrentStyle(select);
   }
 
   function previewCurrentStyle(preview) {
-    setCurrentStyle(preview)
+    setCurrentStyle(preview);
   }
 
   function revertCurrentStyle() {
-    setCurrentStyle(prevStyle)
+    setCurrentStyle(prevStyle);
   }
 
   return (
-    (isLoading)
+    isLoading
       ?
     <Spinner />
       :
-    <Container>
-      <GalleryPanel currentStyle={currentStyle} />
-      <ContentPanel product={product}
-                    metaData={metaData}
-                    styles={styles}
-                    updateCurrentStyle={updateCurrentStyle}
-                    previewCurrentStyle={previewCurrentStyle}
-                    revertCurrentStyle={revertCurrentStyle}
-                    currentStyle={currentStyle} />
-    </Container>
-  )
+    (<OverviewContainer>
+      <GalleryDiv>
+        <GalleryPanel currentStyle={currentStyle} />
+      </GalleryDiv>
+      <ContentDiv>
+        <ContentPanel product={product}
+                      metaData={metaData}
+                      styles={styles}
+                      updateCurrentStyle={updateCurrentStyle}
+                      previewCurrentStyle={previewCurrentStyle}
+                      revertCurrentStyle={revertCurrentStyle}
+                      currentStyle={currentStyle} />
+      </ContentDiv>
+    </OverviewContainer>)
+  );
 }
 
 export default ProductOverview;

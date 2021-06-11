@@ -28,6 +28,7 @@ const TextBoxSku = styled.div`
 const InnerContainer = styled.div`
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   margin: 0 10px 20px 10px;
 `;
 

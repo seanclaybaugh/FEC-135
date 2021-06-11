@@ -1,18 +1,33 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import Gallery from './Gallery';
+import ThumbnailNav from './ThumbnailNav';
+import MainView from './MainView';
 
-const Panel = styled.div`
-  order: 1;
-  margin-left: 20px;
+const GalleryContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+  flex-wrap: wrap;
 `;
 
 function GalleryPanel({ currentStyle }) {
+  const [selectedIndex, setSelectedIndex] = useState(0);
+
+  function updateGalleryView(index) {
+    setSelectedIndex(index)
+  }
+
+  useEffect(() => {
+    setSelectedIndex(0)
+  }, [currentStyle])
 
   return (
-    <Panel>
-      <Gallery currentStyle={currentStyle} />
-    </Panel>
+    <GalleryContainer>
+      <MainView selectedIndex={selectedIndex} currentStyle={currentStyle} />
+      <ThumbnailNav currentStyle={currentStyle}
+                    updateGalleryView={updateGalleryView} />
+    </GalleryContainer>
   )
 }
 

@@ -1,16 +1,10 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import Header from './Header';
+import Header from './header/Header';
 import StylesContainer from './selectors/StylesContainer';
 import SizesContainer from './selectors/SizesContainer';
 import AddToCart from './selectors/AddToCart';
 import Share from './Share';
-
-const Container = styled.div`
-  order: 2;
-  width: 450px;
-  margin: 10px 20px;
-`;
 
 function ContentPanel({ product, metaData, styles, currentStyle, updateCurrentStyle, previewCurrentStyle, revertCurrentStyle }) {
   const [cartSku, setCartSku] = useState(null);
@@ -25,7 +19,7 @@ function ContentPanel({ product, metaData, styles, currentStyle, updateCurrentSt
   }
 
   return (
-    <Container>
+    <>
       <Header name={product.name}
               category={product.category}
               metaData={metaData}
@@ -43,7 +37,7 @@ function ContentPanel({ product, metaData, styles, currentStyle, updateCurrentSt
       <AddToCart sku={cartSku}
                  qty={cartQty} />
       <Share />
-    </Container>
+    </>
   )
 }
 
