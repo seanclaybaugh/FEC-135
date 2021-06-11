@@ -3,9 +3,9 @@ import styled from 'styled-components';
 
 const Button = styled.button`
   margin: 20px 2.5px;
-  background-color: ${props => props.bgColor};
+  background-color: ${(props) => props.bgColor};
   color: #000;
-  border: solid 1px ${props => props.borderColor};
+  border: solid 1px ${(props) => props.borderColor};
   padding: 5px;
   width: 70px;
   height: 40px;
@@ -19,9 +19,8 @@ const Button = styled.button`
 `;
 
 function Size({ sku, size, updateSizeSelection, isSelected }) {
-
   function handleClick() {
-    updateSizeSelection(sku)
+    updateSizeSelection(sku);
   }
 
   return (
@@ -29,10 +28,10 @@ function Size({ sku, size, updateSizeSelection, isSelected }) {
       <Button sku={sku}
               onClick={handleClick}
               bgColor={isSelected ? '#fff' : '#E9EAEC'}
-              borderColor={isSelected ? '#000' : '#E9EAEC'}>{size}</Button>
+              borderColor={isSelected ? '#000' : '#E9EAEC'}>{size}
+      </Button>
     </div>
-  )
+  );
 }
 
 export default Size;
-
