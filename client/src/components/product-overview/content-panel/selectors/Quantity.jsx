@@ -27,11 +27,11 @@ const Select = styled.select`
   }
 `;
 
-function Quantity({ selectedSku, selectedStyle, updateQty }) {
+function Quantity({ selectedSku, currentStyle, updateQty }) {
   const [qtyAvailable, setQtyAvailable] = useState(0);
 
   useEffect(() => {
-    const qty = selectedSku === '' ? 0 : selectedStyle.skus[selectedSku].quantity;
+    const qty = selectedSku === '' ? 0 : currentStyle.skus[selectedSku].quantity;
     setQtyAvailable(qty);
   }, [selectedSku]);
 

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Header from './header/Header';
 import StylesContainer from './selectors/StylesContainer';
-import SizesContainer from './selectors/SizesContainer';
+import SizeQtyContainer from './selectors/SizeQtyContainer';
 import AddToCart from './selectors/AddToCart';
 import Share from './Share';
 
@@ -30,9 +30,9 @@ function ContentPanel({ product, metaData, styles, currentStyle, updateCurrentSt
                        updateCurrentStyle={updateCurrentStyle}
                        previewCurrentStyle={previewCurrentStyle}
                        revertCurrentStyle={revertCurrentStyle} />
-      <SizesContainer currentStyle={currentStyle}
-                      updateCartSku={updateCartSku}
-                      updateCartQty={updateCartQty} />
+      <SizeQtyContainer currentStyle={currentStyle}
+                        updateCartSku={updateCartSku}
+                        updateCartQty={updateCartQty} />
       <AddToCart sku={cartSku}
                  qty={cartQty} />
       <Share />
