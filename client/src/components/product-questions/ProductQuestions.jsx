@@ -4,19 +4,6 @@ import SearchQuestions from './SearchQuestions';
 import styled from 'styled-components';
 import axios from 'axios';
 
-const Button = styled.button`
-  background-color: transparent;
-  border-radius: 3px;
-  border: 2px solid teal;
-  color: teal;
-  margin: 0.5em 1em;
-  padding: 1rem 2rem;
-`
-const ModalContainer = styled.div`
-text-align: center;
-`
-
-
 function ProductQuestions() {
 
   const props = {
@@ -27,8 +14,6 @@ function ProductQuestions() {
   const [filteredQuestions, setFilteredQuestions] = useState([]);
   const [isError, setIsError] = useState(false);
   const [fetchedExpandedQuestions, setFetchedExpandedQuestions] = useState(false);
-
-  // const {isAnswerModalShowing, toggleAnswerModal} = useAnswerModal();
   const questionsPerPage = 5;
 
   const fetchInitialQuestions = async () => {
@@ -125,20 +110,9 @@ function ProductQuestions() {
       <QuestionsList
         questions={filteredQuestions}
         handleExpandQuestions={handleExpandQuestions}
-        // toggleAnswerModal={toggleAnswerModal}
-        // isAnswerModalShowing={isAnswerModalShowing}
+        productId={props.productId}
         questionsPerPage={questionsPerPage}
       />
-
-      {/* <ModalContainer>
-      {!isModalShowing && <Button onClick={toggleModal}>Add a Question</Button>}
-        <AddQuestionModal
-        isModalShowing={isModalShowing}
-        toggleModal={toggleModal}
-        handleAddedQuestion={handleAddedQuestion}
-        productId={props.productId}
-      />
-      </ModalContainer> */}
     </>
   )
 }

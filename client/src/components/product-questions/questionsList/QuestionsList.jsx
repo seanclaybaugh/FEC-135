@@ -1,7 +1,7 @@
 import React from 'react';
 import QuestionListItem from './QuestionListItem';
 import styled from 'styled-components';
-import AddQuestionForm from '../AddQuestionForm';
+import AddQuestionForm from './AddQuestionForm';
 import SharedStyles from '../SharedStyles';
 
 const Container = styled.div`
@@ -61,6 +61,7 @@ class QuestionsList extends React.Component {
 
   render() {
 
+    console.log(this.props.questions)
     const visibleQuestions = this.state.expanded ? this.props.questions : this.props.questions.slice(0, this.props.questionsPerPage - 1);
     const enoughQuestionsToShowExpand = this.props.questions.length > this.props.questionsPerPage - 1;
     const buttonText = this.state.expanded ? "Collapse Questions" : "Show More Questions";
@@ -83,12 +84,13 @@ class QuestionsList extends React.Component {
       </Container>
 
       <div>
-      {enoughQuestionsToShowExpand && <SharedStyles.Button onClick={toggleFunction}>{buttonText}</SharedStyles.Button>}
+        {enoughQuestionsToShowExpand && <SharedStyles.Button onClick={toggleFunction}>{buttonText}</SharedStyles.Button>}
 
-      <SharedStyles.Button onClick={this.handleAddQuestionClicked}>Add Question</SharedStyles.Button>
-      {this.state.addQuestionClicked && <AddQuestionForm
-      handleDismissAddQuestion={this.handleDismissAddQuestion}
-      />}
+        <SharedStyles.Button onClick={this.handleAddQuestionClicked}>Add Question</SharedStyles.Button>
+        {this.state.addQuestionClicked && <AddQuestionForm
+        handleDismissAddQuestion={this.handleDismissAddQuestion}
+        productId={this.props.productId}
+        />}
       </div>
 
       </>

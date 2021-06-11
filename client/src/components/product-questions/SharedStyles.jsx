@@ -29,7 +29,7 @@ const Button = styled.button`
   border: 2px solid teal;
   color: teal;
   margin: 0.5em 1em;
- padding: 1rem 2rem;
+  padding: 1rem 2rem;
 `
 
 
