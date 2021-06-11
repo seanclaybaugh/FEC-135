@@ -10,7 +10,9 @@ const StyledPriceContainer = styled.div`
 const OriginalPrice = styled.div`
   line-height: 100%;
   font-size: 1.2em;
-  text-decoration: ${props => !props.currentStyle.sale_price? 'none' : 'line-through'};
+  text-decoration: ${(props) => (
+    !props.currentStyle.sale_price ? 'none' : 'line-through'
+  )};
   height: 100px;
   line-height: 100px;
   text-align: center;

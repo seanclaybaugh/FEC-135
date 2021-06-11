@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import styled from 'styled-components';
 import Header from './header/Header';
 import StylesContainer from './selectors/StylesContainer';
 import SizesContainer from './selectors/SizesContainer';
@@ -11,11 +10,11 @@ function ContentPanel({ product, metaData, styles, currentStyle, updateCurrentSt
   const [cartQty, setCartQty] = useState(0);
 
   function updateCartSku(sku) {
-    setCartSku(sku)
+    setCartSku(sku);
   }
 
   function updateCartQty(qty) {
-    setCartQty(qty)
+    setCartQty(qty);
   }
 
   return (
@@ -38,7 +37,7 @@ function ContentPanel({ product, metaData, styles, currentStyle, updateCurrentSt
                  qty={cartQty} />
       <Share />
     </>
-  )
+  );
 }
 
 export default ContentPanel;
