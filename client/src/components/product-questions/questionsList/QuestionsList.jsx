@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import QuestionListItem from './QuestionListItem';
 import styled from 'styled-components';
 import AddQuestionForm from './AddQuestionForm';
@@ -13,62 +13,36 @@ const Container = styled.div`
   padding: 5px;
 `
 
+const QuestionsList = props => {
 
+  const [expanded, setExpanded] = useState(false);
+  const [addQuestionClicked, setAddQuestionClicked] = useState(false);
 
-class QuestionsList extends React.Component {
-
-  constructor(props) {
-    super(props)
-
-    this.state = {
-      expanded: false,
-      addQuestionClicked: false
-    }
-
-    this.handleExpand = this.handleExpand.bind(this);
-    this.handleCollapse = this.handleCollapse.bind(this);
-    this.handleAddQuestionClicked = this.handleAddQuestionClicked.bind(this);
-    this.handleDismissAddQuestion = this.handleDismissAddQuestion.bind(this);
+  const handleExpand = () => {
+    props.handleExpandQuestions();
+    setExpanded(true);
   }
 
-  handleExpand() {
-    // if we have 3 or less questions, then do this
-    this.props.handleExpandQuestions();
-    // otherwise, no need! we've already got all the questions, and we can just set expanded=true
-    this.setState({
-      expanded: true
-    })
+  const handleCollapse = () => {
+    setExpanded(false);
   }
 
-  handleCollapse() {
-    this.setState({
-      expanded: false
-    })
+  const handleAddQuestionClicked = () => {
+    setAddQuestionClicked(!addQuestionClicked);
   }
 
-  handleAddQuestionClicked() {
-    this.setState({
-      addQuestionClicked: !this.state.addQuestionClicked
-    })
+  const handleDismissAddQuestion = () => {
+    setAddQuestionClicked(false);
   }
 
-  handleDismissAddQuestion() {
-    this.setState({
-      addQuestionClicked: false
-    })
-  }
+  console.log(props.questions)
+  const visibleQuestions = expanded ? props.questions : props.questions.slice(0, props.questionsPerPage - 1);
+  const enoughQuestionsToShowExpand = props.questions.length > props.questionsPerPage - 1;
+  const buttonText = expanded ? "Collapse Questions" : "Show More Questions";
+  const toggleFunction = expanded ? handleCollapse : handleExpand;
 
-
-  render() {
-
-    console.log(this.props.questions)
-    const visibleQuestions = this.state.expanded ? this.props.questions : this.props.questions.slice(0, this.props.questionsPerPage - 1);
-    const enoughQuestionsToShowExpand = this.props.questions.length > this.props.questionsPerPage - 1;
-    const buttonText = this.state.expanded ? "Collapse Questions" : "Show More Questions";
-    const toggleFunction = this.state.expanded ? this.handleCollapse : this.handleExpand;
-
-    return (
-      <>
+  return (
+    <>
       <Container>
       <ul>
       {visibleQuestions.map((question, index) =>
@@ -76,8 +50,6 @@ class QuestionsList extends React.Component {
        <QuestionListItem
         key={index}
         question={question}
-        toggleAnswerModal={this.props.toggleAnswerModal}
-        isAnswerModalShowing={this.props.isAnswerModalShowing}
         />
       )}
       </ul>
@@ -86,17 +58,14 @@ class QuestionsList extends React.Component {
       <div>
         {enoughQuestionsToShowExpand && <SharedStyles.Button onClick={toggleFunction}>{buttonText}</SharedStyles.Button>}
 
-        <SharedStyles.Button onClick={this.handleAddQuestionClicked}>Add Question</SharedStyles.Button>
-        {this.state.addQuestionClicked && <AddQuestionForm
-        handleDismissAddQuestion={this.handleDismissAddQuestion}
-        productId={this.props.productId}
+        <SharedStyles.Button onClick={handleAddQuestionClicked}>Add Question</SharedStyles.Button>
+        {addQuestionClicked && <AddQuestionForm
+        handleDismissAddQuestion={handleDismissAddQuestion}
+        productId={props.productId}
         />}
       </div>
-
-      </>
-
-    )
-  }
+    </>
+  )
 }
 
 export default QuestionsList;
