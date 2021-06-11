@@ -1,7 +1,7 @@
 function characteristicsHelper(obj) {
   let result = [];
   for( var key in obj) {
-    result.push([[key], obj[key].id, ((obj[key].value/5)*100)]);
+    result.push([[key], obj[key].id, Math.round(((obj[key].value/5)*100))]);
   }
   return result;
 };

@@ -5,6 +5,15 @@ import SumRatingDistItem from './SumRatingDistItem';
 import getRatingDistArray from './helpers/getRatingDistArr';
 import characteristicsHelper from './helpers/characteristicsHelper';
 import CharacteristicItem from './CharacteristicItem';
+import styled from 'styled-components';
+
+
+const SummaryContainer = styled.div`
+display: flex-column;
+font-size: .8em;
+font-weight: 200
+`
+
 
 function Summary({metaData}) {
   let numRate = 0;
@@ -19,18 +28,19 @@ function Summary({metaData}) {
   }
   return (
     <>
-      <h3> Meta Review Summary</h3>
-      <div>{`${percentage}% of people recommend this product`}</div>
+    <SummaryContainer>
+      <h3> Summary</h3>
+      <h4>{`${percentage}% of people recommend this product`}</h4>
       <div>{`Rating: ${numRate} - ADD STARBAR`}</div>
       <div>
         <div>Ratings Distribution</div>
         {distArray.map((val) => <SumRatingDistItem percent={val[0]} id={val[1]} key={val[1]} />)}
       </div>
       <div>
-        <div>Relative Sizes and Comfort Rating</div>
+        <div>Characteristics</div>
         {chars.map((val) => <CharacteristicItem char={val[0]} key={val[1]} per={val[2]} />)}
       </div>
-
+      </SummaryContainer>
     </>
   );
 }

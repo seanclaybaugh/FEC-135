@@ -1,6 +1,34 @@
 import React, { useState, useEffect } from 'react';
 import ReviewListItem from './RListItem';
-// Map through reviews populating list
+import styled from 'styled-components';
+
+const RListContainer = styled.div`
+display: flex-column;
+justify-content: space-between;
+margin-left: 1em;
+margin-top: 1em;
+`
+const Button1 = styled.button`
+   display:inline-block;
+   padding:0.5em 3em;
+   border:0.16em solid black;
+   margin:0 0.3em 0.3em 0;
+   box-sizing: border-box;
+   text-decoration:none;
+   text-transform:uppercase;
+   font-family:'Roboto',sans-serif;
+   font-weight:400;
+   background-color: black;
+   color: white;
+   text-align:center;
+   transition: all 0.15s;
+   &:hover {
+     background-color: white;
+     color: black;
+     border-color: white;
+   }
+
+`
 
 function Rlist({ reviews }) {
   const [nToDisplay, setNToDisplay] = useState(2);
@@ -8,23 +36,21 @@ function Rlist({ reviews }) {
 
   return (
     <div>
-      <h3> Review List</h3>
-      <div>{reviewArr.map(({ body, date, helpfulness, photos, rating, recommend, response, reviewer_id, reviewer_name, summary }) => { return <ReviewListItem
+      <RListContainer>{reviewArr.map(({ body, date, helpfulness, photos, rating, recommend, response, reviewer_id, reviewer_name, summary }) => { return <ReviewListItem
     body={body} date={date} helpfulness={helpfulness} photos={photos} rating={rating}
     recommend={recommend} response={response} reviewer_id={reviewer_id}
     reviewer_name={reviewer_name} summary={summary} key={reviewer_name} />
   }) }
-      </div>
+      </RListContainer>
       {(reviews.length > nToDisplay - 1) &&
-      <button onClick={()=> {setNToDisplay(nToDisplay + 2)}}>See More...</button>}
-      <button>Add Review</button>
+      <Button1 onClick={()=> {setNToDisplay(nToDisplay + 2)}}>See More...</Button1>}
+      {(nToDisplay > 2) && <Button1 onClick= {() => setNToDisplay(2)}>Collapse</Button1>}
+      <Button1>Add Review</Button1>
     </div>
   );
 }
 
 export default Rlist;
 
-//display 2 reviews
-//if there are more than 2 reviews, display More reviews button
-//onClick, display 2 more reviews
+
 

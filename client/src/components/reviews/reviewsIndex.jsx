@@ -2,12 +2,21 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Rlist from './RList';
 import Summary from './Summary';
+import styled from 'styled-components';
+
+
+const MainContainer = styled.div`
+display: flex;
+font-family: 'Roboto', sans-serif;
+`
+
+
 
 function reviewsIndex(props) {
   const [reviews, setReviews] = useState([]);
   const [metaData, setMetaData] = useState({});
   const [isLoading, setIsLoading] = useState(true);
-  
+  const [dropdown, setDropdown] = useState('relevant');
 
   function reviewSortDrop(target) {
 
@@ -18,6 +27,7 @@ function reviewsIndex(props) {
       setIsLoading(false);
     };
     getReviews();
+    setDropdown(target);
   }
 
   useEffect(() => {
@@ -38,24 +48,25 @@ function reviewsIndex(props) {
   }, []);
 
   // *** add -Add Review- button with conditional render (appear once is loading is false), separate from main conditional render
+
+
   return (
     <>
       {(isLoading || reviews.length === 0) ? <div>No Reviews</div>
         : (
           <>
-            <h2>Reviews Main Container</h2>
             <div>
-              {`${reviews.length} reviews sorted by:`}
-              <select value={''} onChange={(event) => {console.log(event.target.value); reviewSortDrop(event.target.value)}}>
+              {`${reviews.length} reviews, sorted by:`}
+              <select value={dropdown} onChange={(event) => {console.log(event.target.value); reviewSortDrop(event.target.value)}}>
                 <option value='relevant'>relevant</option>
                 <option value='newest'>newest</option>
                 <option value='helpful'>helpful</option>
               </select>
             </div>
-            <div>
+            <MainContainer>
               <Summary metaData={metaData} />
               <Rlist reviews={reviews} />
-            </div>
+            </MainContainer>
           </>
         )}
     </>
