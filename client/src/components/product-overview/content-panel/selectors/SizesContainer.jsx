@@ -33,7 +33,7 @@ const InnerContainer = styled.div`
 `;
 
 function SizesContainer({ currentStyle, updateCartSku, updateCartQty }) {
-  let skus = [];
+  const skus = [];
 
   for (const sku in currentStyle.skus) {
     skus.push({
@@ -49,40 +49,40 @@ function SizesContainer({ currentStyle, updateCartSku, updateCartQty }) {
   const [selectedQty, setSelectedQty] = useState(null);
 
   useEffect(() => {
-    setSelectedStyle(currentStyle)
-    setSelectedSize('Select a size')
-    setSelectedSku('')
-    setStockStatus('')
-    setSelectedQty(null)
-  }, [currentStyle])
+    setSelectedStyle(currentStyle);
+    setSelectedSize('Select a size');
+    setSelectedSku('');
+    setStockStatus('');
+    setSelectedQty(null);
+  }, [currentStyle]);
 
   function updateSizeSelection(sku) {
-    const size = currentStyle.skus[sku].size;
-    const quantity = currentStyle.skus[sku].quantity;
+    const {size} = currentStyle.skus[sku];
+    const {quantity} = currentStyle.skus[sku];
     const status = quantity > 0 ? 'IN STOCK' : 'OUT OF STOCK';
 
-    setSelectedSize(size)
-    setSelectedSku(sku)
-    setStockStatus(status)
+    setSelectedSize(size);
+    setSelectedSku(sku);
+    setStockStatus(status);
   }
 
   function updateQty(qty) {
-    setSelectedQty(qty)
+    setSelectedQty(qty);
   }
 
   useEffect(() => {
-    updateCartSku(selectedSku)
-  }, [selectedSize])
+    updateCartSku(selectedSku);
+  }, [selectedSize]);
 
   useEffect(() => {
-    updateCartQty(selectedQty)
-  }, [selectedQty])
+    updateCartQty(selectedQty);
+  }, [selectedQty]);
 
   return (
     <OuterContainer>
       <TextContainer>
         <div>
-          <h5>{'SIZE'}</h5>
+          <h5>SIZE</h5>
         </div>
         <TextBoxSize>
           <h5>{selectedSize}</h5>
@@ -91,21 +91,21 @@ function SizesContainer({ currentStyle, updateCartSku, updateCartQty }) {
           <h5>{inStock}</h5>
         </TextBoxStock>
         <TextBoxSku>
-          <h5>{selectedSku > 0 ? '# ' + selectedSku : ''}</h5>
+          <h5>{selectedSku > 0 ? `#${selectedSku}` : ''}</h5>
         </TextBoxSku>
       </TextContainer>
       <InnerContainer>
-        {skus.map((item, index) => {
-          return <Size key={index}
-                       sku={item.sku}
-                       size={item.details.size}
-                       updateSizeSelection={updateSizeSelection}
-                       isSelected={selectedSku === item.sku} />
-        })}
+        {skus.map((item, index) => (
+          <Size key={index}
+                sku={item.sku}
+                size={item.details.size}
+                updateSizeSelection={updateSizeSelection}
+                isSelected={selectedSku === item.sku} />
+        ))}
       </InnerContainer>
       <TextContainer>
         <div>
-          <h5>{'QTY'}</h5>
+          <h5>QTY</h5>
         </div>
       </TextContainer>
       <InnerContainer>
@@ -114,7 +114,7 @@ function SizesContainer({ currentStyle, updateCartSku, updateCartQty }) {
                   updateQty={updateQty} />
       </InnerContainer>
     </OuterContainer>
-  )
+  );
 }
 
 export default SizesContainer;

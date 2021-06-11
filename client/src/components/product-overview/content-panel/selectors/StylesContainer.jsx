@@ -29,7 +29,7 @@ function StylesContainer({ styles, currentStyle, updateCurrentStyle, previewCurr
         })}
       </InnerContainer>
     </OuterContainer>
-  )
+  );
 }
 
 export default StylesContainer;
