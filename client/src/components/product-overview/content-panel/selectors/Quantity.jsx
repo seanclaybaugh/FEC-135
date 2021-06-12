@@ -39,6 +39,7 @@ function Quantity() {
   useEffect(() => {
     const qty = selectedSku ? currentStyle.skus[selectedSku].quantity : 0;
     setQtyAvailable(qty);
+    setSelectedQty(1);
   }, [selectedSku]);
 
   const options = qtyAvailable > 0 ? getQtyList(qtyAvailable) : ['---'];

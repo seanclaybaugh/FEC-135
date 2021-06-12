@@ -125,12 +125,14 @@ function CartModal({ showModal, setShowModal, product }) {
   const { currentStyle } = useContext(CurrentStyleContext);
   const { selectedSku } = useContext(SelectedSkuContext);
   const { selectedQty } = useContext(SelectedQtyContext);
+
   const price = currentStyle.sale_price || currentStyle.original_price;
   const name = product;
   const style = currentStyle.name;
-  const {size} = currentStyle.skus[selectedSku];
-  const modalRef = useRef();
+  const size = currentStyle.skus[selectedSku].size || null;
   const imgUrl = currentStyle.photos[0].url;
+
+  const modalRef = useRef();
 
   const animation = useSpring({
     config: {
@@ -180,7 +182,7 @@ function CartModal({ showModal, setShowModal, product }) {
                     <tr>
                         <td>Total Product Cost:</td>
                         <td></td>
-                        <td>${price}</td>
+                        <td>${(price * selectedQty).toFixed(2)}</td>
                       </tr>
                       <tr>
                         <td>Total Delivery Cost:</td>
@@ -190,7 +192,7 @@ function CartModal({ showModal, setShowModal, product }) {
                       <tr>
                         <td>Total:</td>
                         <td></td>
-                        <td>${price}</td>
+                        <td>${(price * selectedQty).toFixed(2)}</td>
                       </tr>
                   </tbody>
                 </StyledTable>
