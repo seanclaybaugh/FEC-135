@@ -17,7 +17,7 @@ const AnswersPerQuestion = props => {
   const hasImg = props.answer.photos.length > 0;
 
   console.log(props.answer)
-console.log('photos');
+  console.log('photos');
   console.log(photos);
 
   const handleHelpfulAnswerClick = async () => {
@@ -33,6 +33,9 @@ console.log('photos');
       console.log('error with answer helpful click')
       console.log(error)
     }
+
+    // props.handleAnswerHelpful();
+
   }
 
   const handleReportAnswerClick = async () => {

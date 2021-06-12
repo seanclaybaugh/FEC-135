@@ -4,6 +4,14 @@ import SearchQuestions from './SearchQuestions';
 import styled from 'styled-components';
 import axios from 'axios';
 
+
+const Wrapper = styled.div`
+  width: 100%;
+  display: flex;
+  direction: row;
+`
+
+
 function ProductQuestions() {
 
   const props = {
@@ -98,14 +106,35 @@ function ProductQuestions() {
 //    fetchInitialQuestions();
   }
 
+
+  const handleAddedAnswer = () => {
+
+  }
+
+
+  const handleAnswerHelpful = () => {
+
+  }
+
+  const handleAnswerReport = () => {
+
+  }
+
+  const handleQuestionHelpful = () => {
+
+  }
+
+
+
   return (
     <>
       {isError && <div>Error with get data...</div>}
 
-      <div>Search for Questions</div>
+      <Wrapper>Search for Questions
       <SearchQuestions
         handlSearchTextChanged={handlSearchTextChanged}
       />
+      </Wrapper>
 
       <QuestionsList
         questions={filteredQuestions}

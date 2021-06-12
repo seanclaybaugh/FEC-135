@@ -52,6 +52,7 @@ const QuestionListItem = props => {
             {addAnswerClicked && <AddAnswerForm
               questionId={questionId}
               dismissAnswerForm={dismissAnswerForm}
+              question={props.question.question_body}
             />}
         <br/>
         </li>

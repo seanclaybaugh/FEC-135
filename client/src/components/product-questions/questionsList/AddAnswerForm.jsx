@@ -44,7 +44,7 @@ const AddAnswerForm = props => {
     <SharedStyles.ModalBackground>
       <SharedStyles.ModalContent>
         <SharedStyles.CloseButton onClick={props.dismissAnswerForm}>X</SharedStyles.CloseButton>
-        <div>Submit Your Answer</div>
+        <div>Submit Your Answer for: {props.question}</div>
         <form onSubmit={handleSubmitAnswer}>
           <label>Your Answer:</label>
           <input name="body" value={body} placeholder="" onChange={e => setBody(e.target.value)}/>
