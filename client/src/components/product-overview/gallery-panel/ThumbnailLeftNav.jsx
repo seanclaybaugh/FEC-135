@@ -11,6 +11,11 @@ const ThumbnailContainer = styled.div`
   display: flex;
   flex-direction: column;
   margin-top: 30px;
+  width: auto;
+
+  @media screen and (max-width: 1000px) {
+    display: none;
+  }
 `;
 
 function ThumbnailLeftNav() {
