@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useState, useContext } from 'react';
 import styled from 'styled-components';
 import CurrentStyleContext from '../../contexts/CurrentStyleContext';
 
@@ -31,17 +31,19 @@ const Img = styled.img`
 
 function StyleThumbnail({ style, index }) {
   const { currentStyle, setCurrentStyle } = useContext(CurrentStyleContext);
+  const [originalStyle, setOriginalStyle] = useState(currentStyle);
 
   function handleClick() {
     setCurrentStyle(style);
   }
 
   function handleMouseOver() {
-    // previewCurrentStyle(style);
+    setOriginalStyle(currentStyle);
+    setCurrentStyle(style);
   }
 
   function handleMouseLeave() {
-    // revertCurrentStyle();
+    setCurrentStyle(originalStyle);
   }
 
   return (
