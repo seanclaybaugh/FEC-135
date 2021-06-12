@@ -26,36 +26,10 @@ const ContentDiv = styled.div`
 `;
 
 function ProductOverview() {
-  const [product, setProduct] = useState([]);
   const [isError, setIsError] = useState(false);
-  const [metaData, setMetaData] = useState({});
   const [isLoading, setIsLoading] = useState(true);
-  const [currentStyle, setCurrentStyle] = useState('');
   const [styles, setStyles] = useState([]);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const result = await axios(`http://localhost:3000/api/products/${25171}`);
-        setProduct(result.data);
-      } catch (err) {
-        setIsError(true);
-      }
-    };
-    fetchData();
-  }, []);
-
-  useEffect(() => {
-    const fetchMeta = async () => {
-      try {
-        const result = await axios(`/api/reviews/meta?product_id=${25171}`);
-        setMetaData(result.data);
-      } catch (err) {
-        setIsError(true);
-      }
-    };
-    fetchMeta();
-  }, []);
+  const [currentStyle, setCurrentStyle] = useState('');
 
   useEffect(() => {
     const fetchData = async () => {
@@ -84,11 +58,7 @@ function ProductOverview() {
               <GalleryPanel />
             </GalleryDiv>
             <ContentDiv>
-              <ContentPanel
-                product={product}
-                metaData={metaData}
-                styles={styles}
-              />
+              <ContentPanel styles={styles} />
             </ContentDiv>
           </OverviewContainer>
         </CurrentStyleContext.Provider>
