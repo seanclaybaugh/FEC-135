@@ -41,7 +41,7 @@ const AddQuestionForm = props => {
     setName('');
     setEmail('');
     // setInputValue('');
-
+    props.handleDismissAddQuestion();
   }
 
   // const handleFormChange = (event) => {
