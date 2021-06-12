@@ -1,6 +1,8 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import styled from 'styled-components';
 import { MdKeyboardArrowRight, MdKeyboardArrowLeft } from 'react-icons/md';
+import CurrentStyleContext from '../contexts/CurrentStyleContext';
+import PhotoIndexContext from '../contexts/PhotoIndexContext';
 import ThumbnailBottom from './ThumbnailBottom';
 
 const MainViewContainer = styled.div`
@@ -58,7 +60,7 @@ const StyledArrowContainer = styled.div`
   color: #27231F;
   width: 50px;
   height: 100%;
-  left: ${props => props.position};
+  left: ${(props) => props.position};
   :hover {
     cursor: pointer;
     opacity: 75%;
@@ -74,85 +76,70 @@ const StyledIndicatorContainer = styled.div`
   align-items: center;
 `;
 
-function MainView({ selectedIndex, currentStyle }) {
-  const [currentPhotoIndex, setCurrentPhotoIndex] = useState(0);
+function MainView() {
+  const { currentStyle } = useContext(CurrentStyleContext);
+  const { currentPhotoIndex, setCurrentPhotoIndex } = useContext(PhotoIndexContext);
   const [modal, setModal] = useState(false);
-  const [backgroundImage, setBackgroundImage] = useState(`url(${currentStyle.photos[currentPhotoIndex].url})`);
-  const [backgroundPosition, setBackgroundPosition] = useState('0% 0%');
 
   function nextPhoto() {
-    setCurrentPhotoIndex(prevIndex => prevIndex + 1)
+    setCurrentPhotoIndex((prevIndex) => prevIndex + 1);
   }
 
   function prevPhoto() {
-    setCurrentPhotoIndex(prevIndex => prevIndex - 1)
-  }
-
-  function updateSelectedIndex(index) {
-    setCurrentPhotoIndex(index)
+    setCurrentPhotoIndex((prevIndex) => prevIndex - 1);
   }
 
   function viewModal() {
-    setModal(prevState => !prevState)
-  }
-
-  function handleMouseMove(e) {
-    const { left, top, width, height } = e.target.getBoundingClientRect();
-    const x = (e.pageX - left) / width * 100;
-    const y = (e.pageY - top) / height * 100;
-    setBackgroundPosition(`${x}% ${y}%`);
+    setModal((prevState) => !prevState);
   }
 
   useEffect(() => {
-    setCurrentPhotoIndex(0)
-  }, [currentStyle])
-
-  useEffect(() => {
-    if (!selectedIndex) {
-      setCurrentPhotoIndex(0)
-    } else {
-      setCurrentPhotoIndex(selectedIndex)
-    }
-  }, [selectedIndex])
+    setCurrentPhotoIndex(0);
+  }, [currentStyle]);
 
   return (
     <>
       <MainViewContainer>
         <StyledImageContainer>
-          <StyledArrowContainer onClick={prevPhoto}
-                                position="10%" >
+          <StyledArrowContainer
+            onClick={prevPhoto}
+            position="10%"
+          >
             {currentPhotoIndex !== 0 && <MdKeyboardArrowLeft />}
           </StyledArrowContainer>
-          <StyledImage src={currentStyle.photos[currentPhotoIndex].url}
-                       onClick={viewModal} />
+          <StyledImage
+            src={currentStyle.photos[currentPhotoIndex].url}
+            onClick={viewModal}
+          />
           {modal && (
-              <Dialog open
-                      onMouseMove={handleMouseMove}
-                      bgImage={backgroundImage}
-                      position={backgroundPosition}>
-                <StyledImageModalContainer>
-                  <StyledImageModal src={currentStyle.photos[currentPhotoIndex].url}
-                                    onClick={viewModal} />
-                </StyledImageModalContainer>
-              </Dialog>
+          <Dialog open>
+            <StyledImageModalContainer>
+              <StyledImageModal
+                src={currentStyle.photos[currentPhotoIndex].url}
+                onClick={viewModal}
+              />
+            </StyledImageModalContainer>
+          </Dialog>
           )}
-          <StyledArrowContainer onClick={nextPhoto}
-                                position="90%" >
-            {currentPhotoIndex !== currentStyle.photos.length - 1 &&  <MdKeyboardArrowRight />}
+          <StyledArrowContainer
+            onClick={nextPhoto}
+            position="90%"
+          >
+            {currentPhotoIndex !== currentStyle.photos.length - 1 && <MdKeyboardArrowRight />}
           </StyledArrowContainer>
         </StyledImageContainer>
         <StyledIndicatorContainer>
-          {currentStyle.photos.map((photo, index) => {
-            return <ThumbnailBottom updateSelectedIndex={updateSelectedIndex}
-                                    key={index}
-                                    index={index}
-                                    currentPhotoIndex={currentPhotoIndex}
-                                    photo={photo} />
-          })}
+          {currentStyle.photos.map((photo, index) => (
+            <ThumbnailBottom
+              key={index}
+              index={index}
+              photo={photo}
+            />
+          ))}
         </StyledIndicatorContainer>
       </MainViewContainer>
     </>
-  )
+  );
 }
 
 export default MainView;

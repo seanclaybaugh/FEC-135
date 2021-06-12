@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
+import PhotoIndexContext from '../contexts/PhotoIndexContext';
 
 const ListItem = styled.button`
   padding: 0;
@@ -21,16 +22,18 @@ const Img = styled.img`
   object-fit: cover;
 `;
 
-function Thumbnail({ index, photo, updateGalleryView }) {
+function ThumbnailLeft({ index, photo }) {
+  const { setCurrentPhotoIndex } = useContext(PhotoIndexContext);
+
   function handleClick() {
-    updateGalleryView(index)
+    setCurrentPhotoIndex(index);
   }
 
   return (
-    <ListItem onClick={handleClick} >
+    <ListItem onClick={handleClick}>
       <Img src={photo.thumbnail_url} />
     </ListItem>
-  )
+  );
 }
 
-export default Thumbnail;
+export default ThumbnailLeft;

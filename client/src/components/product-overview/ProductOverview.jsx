@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import Spinner from './spinner/LoadingSpinner';
 import GalleryPanel from './gallery-panel/GalleryPanel';
 import ContentPanel from './content-panel/ContentPanel';
+import CurrentStyleContext from './contexts/CurrentStyleContext';
 
 const OverviewContainer = styled.div`
   display: flex;
@@ -27,6 +28,11 @@ const ContentDiv = styled.div`
 function ProductOverview() {
   const [product, setProduct] = useState([]);
   const [isError, setIsError] = useState(false);
+  const [metaData, setMetaData] = useState({});
+  const [isLoading, setIsLoading] = useState(true);
+  const [prevStyle, setPrevStyle] = useState('');
+  const [currentStyle, setCurrentStyle] = useState('');
+  const [styles, setStyles] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -40,8 +46,6 @@ function ProductOverview() {
     fetchData();
   }, []);
 
-  const [metaData, setMetaData] = useState({});
-
   useEffect(() => {
     const fetchMeta = async () => {
       try {
@@ -53,11 +57,6 @@ function ProductOverview() {
     };
     fetchMeta();
   }, []);
-
-  const [isLoading, setIsLoading] = useState(true);
-  const [prevStyle, setPrevStyle] = useState('');
-  const [currentStyle, setCurrentStyle] = useState('');
-  const [styles, setStyles] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -92,23 +91,27 @@ function ProductOverview() {
 
   return (
     isLoading
-      ?
-    <Spinner />
-      :
-    (<OverviewContainer>
-      <GalleryDiv>
-        <GalleryPanel currentStyle={currentStyle} />
-      </GalleryDiv>
-      <ContentDiv>
-        <ContentPanel product={product}
-                      metaData={metaData}
-                      styles={styles}
-                      updateCurrentStyle={updateCurrentStyle}
-                      previewCurrentStyle={previewCurrentStyle}
-                      revertCurrentStyle={revertCurrentStyle}
-                      currentStyle={currentStyle} />
-      </ContentDiv>
-    </OverviewContainer>)
+      ? <Spinner />
+      : (
+        <CurrentStyleContext.Provider value={{ currentStyle, setCurrentStyle }}>
+          <OverviewContainer>
+            <GalleryDiv>
+              <GalleryPanel />
+            </GalleryDiv>
+            <ContentDiv>
+              <ContentPanel
+                product={product}
+                metaData={metaData}
+                styles={styles}
+                updateCurrentStyle={updateCurrentStyle}
+                previewCurrentStyle={previewCurrentStyle}
+                revertCurrentStyle={revertCurrentStyle}
+                currentStyle={currentStyle}
+              />
+            </ContentDiv>
+          </OverviewContainer>
+        </CurrentStyleContext.Provider>
+      )
   );
 }
 

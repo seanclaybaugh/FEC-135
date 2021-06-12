@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
-import ThumbnailNav from './ThumbnailNav';
+import PhotoIndexContext from '../contexts/PhotoIndexContext';
+import ThumbnailLeftNav from './ThumbnailLeftNav';
 import MainView from './MainView';
 
 const GalleryContainer = styled.div`
@@ -11,24 +12,17 @@ const GalleryContainer = styled.div`
   flex-wrap: wrap;
 `;
 
-function GalleryPanel({ currentStyle }) {
-  const [selectedIndex, setSelectedIndex] = useState(0);
-
-  function updateGalleryView(index) {
-    setSelectedIndex(index)
-  }
-
-  useEffect(() => {
-    setSelectedIndex(0)
-  }, [currentStyle])
+function GalleryPanel() {
+  const [currentPhotoIndex, setCurrentPhotoIndex] = useState(0);
 
   return (
-    <GalleryContainer>
-      <MainView selectedIndex={selectedIndex} currentStyle={currentStyle} />
-      <ThumbnailNav currentStyle={currentStyle}
-                    updateGalleryView={updateGalleryView} />
-    </GalleryContainer>
-  )
+    <PhotoIndexContext.Provider value={{ currentPhotoIndex, setCurrentPhotoIndex }}>
+      <GalleryContainer>
+        <MainView />
+        <ThumbnailLeftNav />
+      </GalleryContainer>
+    </PhotoIndexContext.Provider>
+  );
 }
 
 export default GalleryPanel;
