@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
+import CartModal from './CartModal';
 
 const OuterContainer = styled.div`
   display: flex;
@@ -56,23 +57,24 @@ const Button = styled.button`
   }
 `;
 
-function AddToCart({ sku, qty }) {
+function AddToCart({ product, currentStyle, sku, qty }) {
   const [items, setItems] = useState(0);
   const [isError, setIsError] = useState(false);
   const [isMissingSku, setIsMissingSku] = useState(false);
+  const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
     setIsMissingSku(false);
   }, [sku]);
 
   function addToCart() {
-    return axios.post('http://localhost:3000/api/cart', {sku_id: sku});
+    return axios.post('http://localhost:3000/api/cart', { sku_id: sku });
   }
 
-  function addAllItems(qty) {
-    let promises = [];
+  function addAllItems(quantity) {
+    const promises = [];
 
-    for (let i = 0; i < qty; i++) {
+    for (let i = 0; i < quantity; i++) {
       promises.push(addToCart());
     }
 
@@ -82,9 +84,7 @@ function AddToCart({ sku, qty }) {
       ))
       .then((data) => {
         setItems(data.length);
-      })
-      .then(() => {
-        // add items to shopping bag
+        revealModal();
       })
       .then(() => {
         // clear items
@@ -98,16 +98,31 @@ function AddToCart({ sku, qty }) {
       setIsMissingSku(true);
     } else {
       addAllItems(qty);
+      revealModal();
     }
+  }
+
+  function revealModal() {
+    setShowModal(true);
   }
 
   return (
     <OuterContainer>
       <Container onSubmit={handleSubmit}>
         <Button>ADD TO BAG</Button>
-        {isMissingSku ? <h5>Please select a size</h5> : <h5>''</h5>}
-        {items > 0 ? <h5>Added! View items in your cart</h5> : <h5>''</h5>}
+        {isMissingSku ? <h5>Please select a size</h5> : <h5> </h5>}
       </Container>
+      {sku ? (
+        <CartModal showModal={showModal}
+                   setShowModal={setShowModal}
+                   currentStyle={currentStyle}
+                   product={product}
+                   items={items}
+                   sku={sku}
+                   qty={qty}
+                   isError={isError} />
+      ) : null}
+
     </OuterContainer>
   );
 }

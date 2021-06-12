@@ -33,7 +33,9 @@ function ContentPanel({ product, metaData, styles, currentStyle, updateCurrentSt
       <SizeQtyContainer currentStyle={currentStyle}
                         updateCartSku={updateCartSku}
                         updateCartQty={updateCartQty} />
-      <AddToCart sku={cartSku}
+      <AddToCart currentStyle={currentStyle}
+                 product={product.name}
+                 sku={cartSku}
                  qty={cartQty} />
       <Share />
     </>
