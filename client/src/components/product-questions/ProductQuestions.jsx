@@ -20,7 +20,7 @@ function ProductQuestions() {
   const [questionList, setQuestionList] = useState([]);
   const [filteredQuestions, setFilteredQuestions] = useState([]);
   const [isError, setIsError] = useState(false);
-  const [fetchedExpandedQuestions, setFetchedExpandedQuestions] = useState(false);
+  // const [fetchedExpandedQuestions, setFetchedExpandedQuestions] = useState(false);
   const questionsPerPage = 5;
 
   const fetchInitialQuestions = async () => {
@@ -37,32 +37,37 @@ function ProductQuestions() {
   };
 
 
-  const fetchExpandedQuestions = async () => {
+  const fetchAllQuestions = async () => {
 
-    if (fetchedExpandedQuestions) {
-      return;
-    }
+    // if (fetchedExpandedQuestions) {
+    //   return;
+    // }
 
     let fetchingData = true;
-    let expandedQuestions = [];
-    let page = 2;
+    let newQuestions = [];
+    let count = 25;
+    let page = 1;
 
     try {
       while (fetchingData) {
 
-        const url = `/api/qa/questions?product_id=${props.productId}&page=${page}&count=${questionsPerPage}`;
+        const url = `/api/qa/questions?product_id=${props.productId}&page=${page}&count=${count}`;
+
+        console.log(url)
+
         const res = await axios.get(url);
 
         // Collect this page of questions
-        expandedQuestions = expandedQuestions.concat(res.data.results);
-        fetchingData = res.data.results.length !== 0;
+        newQuestions = newQuestions.concat(res.data.results);
+        //want to keep fetching if this page is full
+        fetchingData = res.data.results.length === count;
         page++;
       }
 
-      const newQuestionList = questionList.concat(expandedQuestions);
-      setQuestionList(newQuestionList);
-      setFilteredQuestions(newQuestionList);
-      setFetchedExpandedQuestions(true);
+      setQuestionList(newQuestions);
+      setFilteredQuestions(newQuestions);
+      console.log('new question list:')
+      console.log(newQuestions);
 
     } catch (error) {
       setIsError(true);
@@ -75,7 +80,7 @@ function ProductQuestions() {
   }, []);
 
   const handleExpandQuestions = () => {
-    fetchExpandedQuestions();
+    fetchAllQuestions();
   }
 
   const handlSearchTextChanged = (searchText) => {
@@ -102,7 +107,20 @@ function ProductQuestions() {
   }
 
   const handleAddedQuestion = () => {
-//need to ask why api does not return an id back for the created question
+    //area for optimization - dont always need to fetch new question
+
+    //goal: fetch the new question that was just created - maybe???
+    //expanded state - always fetch
+    //
+    //not expanded:
+      //less than 4 questions total (expanded button not shown) - fetch initialData
+      //expanded button is shown but not clicked - dont need to fetch
+
+      //looks like i have to do a fetch for all the questions b/c:
+      //im not getting a question id back when question is added
+      //there doesnt seem to be a deterministic order for questions that have the same helpfulness
+
+    fetchAllQuestions();
   }
 
 
@@ -141,6 +159,7 @@ function ProductQuestions() {
         handleExpandQuestions={handleExpandQuestions}
         productId={props.productId}
         questionsPerPage={questionsPerPage}
+        handleAddedQuestion={handleAddedQuestion}
       />
       </Container>
 

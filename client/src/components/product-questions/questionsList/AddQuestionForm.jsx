@@ -33,7 +33,7 @@ const AddQuestionForm = props => {
       console.log('results from post question')
       console.log(result)
 
-      // this.props.handleAddedQuestion();
+      props.handleAddedQuestion();
     } catch (error) {
       console.log(error)
     }

@@ -30,6 +30,9 @@ const Search = styled.input`
     background-position: 100% center;
   }
 
+  &::placeholder {
+    color: #ddd;
+}
 `
 
 const SearchContainer = styled.div`
