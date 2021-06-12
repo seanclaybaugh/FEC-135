@@ -13,7 +13,7 @@ const ThumbnailContainer = styled.div`
   margin-top: 30px;
 `;
 
-function ThumbnailNav() {
+function ThumbnailLeftNav() {
   const { currentStyle } = useContext(CurrentStyleContext);
 
   return (
@@ -31,4 +31,4 @@ function ThumbnailNav() {
   );
 }
 
-export default ThumbnailNav;
+export default ThumbnailLeftNav;

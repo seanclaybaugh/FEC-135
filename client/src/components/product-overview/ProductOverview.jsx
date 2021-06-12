@@ -37,7 +37,7 @@ function ProductOverview() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const result = await axios(`http://localhost:3000/api/products/${25170}`);
+        const result = await axios(`http://localhost:3000/api/products/${25171}`);
         setProduct(result.data);
       } catch (err) {
         setIsError(true);
@@ -49,7 +49,7 @@ function ProductOverview() {
   useEffect(() => {
     const fetchMeta = async () => {
       try {
-        const result = await axios(`/api/reviews/meta?product_id=${25170}`);
+        const result = await axios(`/api/reviews/meta?product_id=${25171}`);
         setMetaData(result.data);
       } catch (err) {
         setIsError(true);
@@ -61,7 +61,7 @@ function ProductOverview() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const results = await axios(`http://localhost:3000/api/products/${25170}/styles`);
+        const results = await axios(`http://localhost:3000/api/products/${25171}/styles`);
         setStyles(results.data.results);
         const defaultStyle = results.data.results.filter((style) => (
           style['default?']

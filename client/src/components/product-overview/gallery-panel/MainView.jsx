@@ -1,9 +1,9 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useContext } from 'react';
 import styled from 'styled-components';
 import { MdKeyboardArrowRight, MdKeyboardArrowLeft } from 'react-icons/md';
 import CurrentStyleContext from '../contexts/CurrentStyleContext';
 import PhotoIndexContext from '../contexts/PhotoIndexContext';
-import ThumbnailBottom from './ThumbnailBottom';
+import ThumbnailBottomNav from './ThumbnailBottomNav';
 
 const MainViewContainer = styled.div`
   display: flex;
@@ -67,15 +67,6 @@ const StyledArrowContainer = styled.div`
   }
 `;
 
-const StyledIndicatorContainer = styled.div`
-  width: 200px;
-  margin: 20px auto;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-`;
-
 function MainView() {
   const { currentStyle } = useContext(CurrentStyleContext);
   const { currentPhotoIndex, setCurrentPhotoIndex } = useContext(PhotoIndexContext);
@@ -92,10 +83,6 @@ function MainView() {
   function viewModal() {
     setModal((prevState) => !prevState);
   }
-
-  useEffect(() => {
-    setCurrentPhotoIndex(0);
-  }, [currentStyle]);
 
   return (
     <>
@@ -128,15 +115,7 @@ function MainView() {
             {currentPhotoIndex !== currentStyle.photos.length - 1 && <MdKeyboardArrowRight />}
           </StyledArrowContainer>
         </StyledImageContainer>
-        <StyledIndicatorContainer>
-          {currentStyle.photos.map((photo, index) => (
-            <ThumbnailBottom
-              key={index}
-              index={index}
-              photo={photo}
-            />
-          ))}
-        </StyledIndicatorContainer>
+        <ThumbnailBottomNav />
       </MainViewContainer>
     </>
   );
