@@ -48,7 +48,7 @@ const FormSubtext = styled.span`
 font-weight: 100;
 font-size: .5em;
 `
-const AddReviewModal = ({isShowing, toggle, username, setUsername, reviewSummary, setReviewSummary, product, reviewBody, setReviewBody, email}) => isShowing ? ReactDOM.createPortal(
+const AddReviewModal = ({isShowing, toggle, username, setUsername, reviewSummary, setReviewSummary, product, reviewBody, setReviewBody, email, setPhotos, fileUploadHandler}) => isShowing ? ReactDOM.createPortal(
 
   <>
     <Overlay/>
@@ -81,13 +81,10 @@ const AddReviewModal = ({isShowing, toggle, username, setUsername, reviewSummary
           <FormSubtext>For authentication reasons, you will not be emailed</FormSubtext>
           </ModalForm>
           <label> Add Photos:
-            <input type="file"></input>
+            <input type="file" onChange={(e)=> setPhotos(e.target.files)}></input>
+            <button onClick={fileUploadHandler}>Upload</button>
           </label>
-
-
         </form>
-
-
       </Modal>
     </Wrapper>
   </>, document.body

@@ -6,7 +6,7 @@ import Summary from './Summary';
 import styled from 'styled-components';
 import AddReviewModal from './AddReviewModal';
 import useModals from './useModals';
-import reviewSortDrop from './reviewSortDrop';
+import config from '../../../../config.js'
 
 const MainContainer = styled.div`
 display: flex;
@@ -48,7 +48,22 @@ function reviewsIndex(props) {
   const [photos, setPhotos] = useState([]);
 
 
-  
+
+
+  function fileUploadHandler () {
+    const fd = new FormData();
+    fd.append('image', photos[0], photos[0].name);
+    axios.post(`https://api.imgbb.com/1/upload?key=${config.imgtoken}`, fd)
+      .then(res => {
+      console.log(res);
+
+      res.data.image
+      })
+
+    //
+  }
+
+
 
   function reviewSortDrop(target) {
 
@@ -112,7 +127,7 @@ function reviewsIndex(props) {
         )}
         <div>
               {!isShowing && <Button1 onClick={toggle}>Add Review</Button1>}
-              <AddReviewModal isShowing={isShowing} toggle={toggle} setUsername={setUsername} username={username} reviewSummary={reviewSummary} setReviewSummary={setReviewSummary} product={product} reviewBody={reviewBody} setReviewBody={setReviewBody} />
+              <AddReviewModal isShowing={isShowing} toggle={toggle} setUsername={setUsername} username={username} reviewSummary={reviewSummary} setReviewSummary={setReviewSummary} product={product} reviewBody={reviewBody} setReviewBody={setReviewBody} setPhotos={setPhotos} fileUploadHandler={fileUploadHandler} />
         </div>
     </>
 
