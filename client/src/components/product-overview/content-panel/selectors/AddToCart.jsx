@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useContext } from 'react';
 import styled, { keyframes } from 'styled-components';
+import axios from 'axios';
 import SelectedSkuContext from '../contexts/SelectedSkuContext';
 import SelectedQtyContext from '../contexts/SelectedQtyContext';
-import axios from 'axios';
 import CartModal from './CartModal';
 
 const rotate360 = keyframes`
@@ -17,17 +17,15 @@ const rotate360 = keyframes`
 const Spinner = styled.div`
   animation: ${rotate360} 2s linear infinite;
   transform: translateZ(0);
-  border-top: 2px solid #e7e7e7;
-  border-right: 2px solid #e7e7e7;
-  border-bottom: 2px solid #e7e7e7;
-  border-left: 4px solid #e7e7e7;
+  border-top: 1px solid #e7e7e7;
+  border-right: 1px solid #e7e7e7;
+  border-bottom: 1px solid #e7e7e7;
+  border-left: 2px solid #e7e7e7;
   background: transparent;
-  width: 40px;
-  height: 40px;
+  width: 20px;
+  height: 20px;
   border-radius: 50%;
-  position: fixed;
-  top: 50%;
-  left: 50%;
+  display: inline-block;
 `;
 
 const OuterContainer = styled.div`
@@ -39,6 +37,7 @@ const OuterContainer = styled.div`
 
 const Container = styled.form`
   margin: 10px;
+  align-contents: center;
 `;
 
 const Button = styled.button`
@@ -49,7 +48,7 @@ const Button = styled.button`
   padding: 5px;
   display: inline-block;
   width: 200px;
-  line-height: 40px;
+  height: 60px;
   letter-spacing: 1px;
   position: relative;
   -webkit-transition: all 0.3s;
