@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import styled from 'styled-components';
 import { MdKeyboardArrowRight, MdKeyboardArrowLeft } from 'react-icons/md';
-import CurrentStyleContext from '../contexts/CurrentStyleContext';
+import PreviewStyleContext from '../contexts/PreviewStyleContext';
 import PhotoIndexContext from '../contexts/PhotoIndexContext';
 import ThumbnailBottomNav from './ThumbnailBottomNav';
 
@@ -68,7 +68,7 @@ const StyledArrowContainer = styled.div`
 `;
 
 function MainView() {
-  const { currentStyle } = useContext(CurrentStyleContext);
+  const { previewStyle } = useContext(PreviewStyleContext);
   const { currentPhotoIndex, setCurrentPhotoIndex } = useContext(PhotoIndexContext);
   const [modal, setModal] = useState(false);
 
@@ -95,14 +95,14 @@ function MainView() {
             {currentPhotoIndex !== 0 && <MdKeyboardArrowLeft />}
           </StyledArrowContainer>
           <StyledImage
-            src={currentStyle.photos[currentPhotoIndex].url}
+            src={previewStyle.photos[currentPhotoIndex].url}
             onClick={viewModal}
           />
           {modal && (
           <Dialog open>
             <StyledImageModalContainer>
               <StyledImageModal
-                src={currentStyle.photos[currentPhotoIndex].url}
+                src={previewStyle.photos[currentPhotoIndex].url}
                 onClick={viewModal}
               />
             </StyledImageModalContainer>
@@ -112,7 +112,7 @@ function MainView() {
             onClick={nextPhoto}
             position="90%"
           >
-            {currentPhotoIndex !== currentStyle.photos.length - 1 && <MdKeyboardArrowRight />}
+            {currentPhotoIndex !== previewStyle.photos.length - 1 && <MdKeyboardArrowRight />}
           </StyledArrowContainer>
         </StyledImageContainer>
         <ThumbnailBottomNav />

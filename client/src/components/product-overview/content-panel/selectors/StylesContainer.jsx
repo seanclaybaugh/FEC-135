@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
-import CurrentStyleContext from '../../contexts/CurrentStyleContext';
+import PreviewStyleContext from '../../contexts/PreviewStyleContext';
 import StyleThumbnail from './StyleThumbnail';
 
 const OuterContainer = styled.div`
@@ -25,7 +25,7 @@ const ThumbnailContainer = styled.div`
 `;
 
 function StylesContainer({ styles }) {
-  const { currentStyle, setCurrentStyle } = useContext(CurrentStyleContext);
+  const { previewStyle, setPreviewStyle } = useContext(PreviewStyleContext);
 
   return (
     <OuterContainer>
@@ -34,7 +34,7 @@ function StylesContainer({ styles }) {
           <h5>STYLE</h5>
         </StyleNameTitleDiv>
         <div>
-          <h5>{currentStyle.name}</h5>
+          <h5>{previewStyle.name}</h5>
         </div>
       </StyleNameContainer>
       <ThumbnailContainer>

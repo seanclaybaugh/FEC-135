@@ -1,6 +1,7 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
 import CurrentStyleContext from '../../contexts/CurrentStyleContext';
+import PreviewStyleContext from '../../contexts/PreviewStyleContext';
 
 const Container = styled.div`
   position: relative;
@@ -31,19 +32,18 @@ const Img = styled.img`
 
 function StyleThumbnail({ style, index }) {
   const { currentStyle, setCurrentStyle } = useContext(CurrentStyleContext);
-  const [originalStyle, setOriginalStyle] = useState(currentStyle);
+  const { previewStyle, setPreviewStyle } = useContext(PreviewStyleContext);
 
   function handleClick() {
     setCurrentStyle(style);
   }
 
   function handleMouseOver() {
-    setOriginalStyle(currentStyle);
-    setCurrentStyle(style);
+    setPreviewStyle(style);
   }
 
   function handleMouseLeave() {
-    setCurrentStyle(originalStyle);
+    setPreviewStyle(currentStyle);
   }
 
   return (

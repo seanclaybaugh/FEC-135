@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
-import CurrentStyleContext from '../contexts/CurrentStyleContext';
+import PreviewStyleContext from '../contexts/PreviewStyleContext';
 import ThumbnailBottom from './ThumbnailBottom';
 
 const StyledIndicatorContainer = styled.div`
@@ -13,11 +13,11 @@ const StyledIndicatorContainer = styled.div`
 `;
 
 function ThumbnailBottomNav() {
-  const { currentStyle } = useContext(CurrentStyleContext);
+  const { previewStyle } = useContext(PreviewStyleContext);
 
   return (
     <StyledIndicatorContainer>
-      {currentStyle.photos.map((photo, index) => (
+      {previewStyle.photos.map((photo, index) => (
         <ThumbnailBottom
           key={index}
           index={index}

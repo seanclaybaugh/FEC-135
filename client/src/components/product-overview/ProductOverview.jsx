@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
 import CurrentStyleContext from './contexts/CurrentStyleContext';
+import PreviewStyleContext from './contexts/PreviewStyleContext';
 import Spinner from './spinner/LoadingSpinner';
 import GalleryPanel from './gallery-panel/GalleryPanel';
 import ContentPanel from './content-panel/ContentPanel';
@@ -30,6 +31,7 @@ function ProductOverview() {
   const [isLoading, setIsLoading] = useState(true);
   const [styles, setStyles] = useState([]);
   const [currentStyle, setCurrentStyle] = useState('');
+  const [previewStyle, setPreviewStyle] = useState('');
 
   useEffect(() => {
     const fetchData = async () => {
@@ -40,6 +42,7 @@ function ProductOverview() {
           style['default?']
         ));
         setCurrentStyle(defaultStyle[0]);
+        setPreviewStyle(defaultStyle[0]);
       } catch (err) {
         setIsError(true);
       }
@@ -52,16 +55,18 @@ function ProductOverview() {
     isLoading
       ? <Spinner />
       : (
-        <CurrentStyleContext.Provider value={{ currentStyle, setCurrentStyle }}>
+        <PreviewStyleContext.Provider value={{ previewStyle, setPreviewStyle }}>
           <OverviewContainer>
             <GalleryDiv>
               <GalleryPanel />
             </GalleryDiv>
-            <ContentDiv>
-              <ContentPanel styles={styles} />
-            </ContentDiv>
+            <CurrentStyleContext.Provider value={{ currentStyle, setCurrentStyle }}>
+              <ContentDiv>
+                <ContentPanel styles={styles} />
+              </ContentDiv>
+            </CurrentStyleContext.Provider>
           </OverviewContainer>
-        </CurrentStyleContext.Provider>
+        </PreviewStyleContext.Provider>
       )
   );
 }

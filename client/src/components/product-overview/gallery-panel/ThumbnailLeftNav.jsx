@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
-import CurrentStyleContext from '../contexts/CurrentStyleContext';
+import PreviewStyleContext from '../contexts/PreviewStyleContext';
 import ThumbnailLeft from './ThumbnailLeft';
 
 const ThumbnailList = styled.div`
@@ -19,12 +19,12 @@ const ThumbnailContainer = styled.div`
 `;
 
 function ThumbnailLeftNav() {
-  const { currentStyle } = useContext(CurrentStyleContext);
+  const { previewStyle } = useContext(PreviewStyleContext);
 
   return (
     <ThumbnailList>
       <ThumbnailContainer>
-        {currentStyle.photos.map((photo, index) => (
+        {previewStyle.photos.map((photo, index) => (
           <ThumbnailLeft
             key={index}
             index={index}
