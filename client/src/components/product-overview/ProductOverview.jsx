@@ -1,33 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import styled, { keyframes } from 'styled-components';
+import styled from 'styled-components';
+import Spinner from './spinner/LoadingSpinner';
 import GalleryPanel from './gallery-panel/GalleryPanel';
 import ContentPanel from './content-panel/ContentPanel';
-
-const rotate360 = keyframes`
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-`;
-
-const Spinner = styled.div`
-  animation: ${rotate360} 2s linear infinite;
-  transform: translateZ(0);
-  border-top: 2px solid #e7e7e7;
-  border-right: 2px solid #e7e7e7;
-  border-bottom: 2px solid #e7e7e7;
-  border-left: 4px solid #e7e7e7;
-  background: transparent;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-`;
 
 const OverviewContainer = styled.div`
   display: flex;
