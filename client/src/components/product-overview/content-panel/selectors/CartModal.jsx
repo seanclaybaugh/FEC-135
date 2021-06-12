@@ -129,8 +129,12 @@ function CartModal({ showModal, setShowModal, product }) {
   const price = currentStyle.sale_price || currentStyle.original_price;
   const name = product;
   const style = currentStyle.name;
-  const size = currentStyle.skus[selectedSku].size || null;
   const imgUrl = currentStyle.photos[0].url;
+  let size;
+
+  if (currentStyle.skus[selectedSku]) {
+    size = currentStyle.skus[selectedSku].size;
+  }
 
   const modalRef = useRef();
 

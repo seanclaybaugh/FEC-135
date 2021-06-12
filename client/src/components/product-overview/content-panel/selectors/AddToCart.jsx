@@ -141,12 +141,14 @@ function AddToCart({ product }) {
         <Button>{isLoading ? <Spinner /> : 'ADD TO BAG'}</Button>
         {isMissingSku ? <h5>Please select a size</h5> : <h5> </h5>}
       </Container>
-      {!isMissingSku && selectedSku > 0 ? (
-        <CartModal showModal={showModal}
-                   setShowModal={setShowModal}
-                   product={product}
-                   items={items}
-                   isError={isError} />
+      {!isMissingSku && selectedSku ? (
+        <CartModal
+          showModal={showModal}
+          setShowModal={setShowModal}
+          product={product}
+          items={items}
+          isError={isError}
+        />
       ) : null}
     </OuterContainer>
   );
