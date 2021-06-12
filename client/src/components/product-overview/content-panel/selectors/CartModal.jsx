@@ -33,8 +33,9 @@ const ModalHeader = styled.div`
   text-align: center;
 `;
 
-const HeaderText = styled.h2`
-  font-weight: 500;
+const HeaderText = styled.div`
+  font-size: 32px;
+  margin-top: 20px;
 `;
 
 const ModalImgWrapper = styled.div`
@@ -74,7 +75,7 @@ const ModalContent = styled.div`
   align-items: center;
   line-height: 1.8;
   color: #141414;
-  margin: 0 20px 30px 10px;
+  margin: 0 20px 30px 20px;
 
   button {
     padding: 10px 24px;
@@ -117,7 +118,7 @@ const CloseModalButton = styled(MdClose)`
   }
 `;
 
-function CartModal({ showModal, setShowModal, product, currentStyle, items, sku, qty, isError }) {
+function CartModal({ showModal, setShowModal, product, currentStyle, sku, qty }) {
   const price = currentStyle.sale_price || currentStyle.original_price;
   const name = product;
   const style = currentStyle.name;
@@ -157,7 +158,7 @@ function CartModal({ showModal, setShowModal, product, currentStyle, items, sku,
           <animated.div style={animation}>
             <ModalContentWrapper showModal={showModal}>
               <ModalHeader>
-                {!isError && items > 0 ? <HeaderText>SUCCESSFULLY ADDED TO BAG!</HeaderText> : <HeaderText>Oops! Something went wrong...</HeaderText>}
+                {<HeaderText>SUCCESSFULLY ADDED TO BAG!</HeaderText>}
               </ModalHeader>
               <ModalImgWrapper>
                 <ModalImg src={imgUrl} alt="product image" />
