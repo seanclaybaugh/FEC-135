@@ -66,7 +66,7 @@ const AddQuestionForm = props => {
               <br/>
 
               <label>Your Email:</label>
-              <input name="email" value={email} placeholder="Why did you like the product or not?" onChange={e => setEmail(e.target.value)}/>
+              <input name="email" value={email} placeholder="Example: jack@email.com" onChange={e => setEmail(e.target.value)}/>
               <p>For authentication reasons, you will not be emailed</p>
               <br/>
 

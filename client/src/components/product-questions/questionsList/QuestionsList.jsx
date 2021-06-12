@@ -7,7 +7,7 @@ import SharedStyles from '../SharedStyles';
 const Container = styled.div`
   overflow-y: scroll;
   height: 500px;
-  width: 700px;
+  width: 100%;
   margin-top: 5px;
   margin-bottom: 5px;
   padding: 5px;

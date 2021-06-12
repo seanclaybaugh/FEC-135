@@ -6,7 +6,8 @@ import axios from 'axios';
 const Img = styled.img`
   width: 130px;
   height: 100px;
-  padding-right: 5px;
+  padding: 5px;
+  border-radius: 5px;
 `
 
 const AnswersPerQuestion = props => {

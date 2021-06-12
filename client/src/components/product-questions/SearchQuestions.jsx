@@ -1,31 +1,38 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { IoMdSearch } from 'react-icons/io';
+// import { IoMdSearch } from 'react-icons/io';
 
-const SearchButton = styled.button`
-width: 40px;
-height: 36px;
-border: 1px solid #00B4CC;
-background: #00B4CC;
-text-align: center;
-color: #fff;
-border-radius: 0 5px 5px 0;
-cursor: pointer;
-font-size: 20px;
-`
 
-const Search = styled.div`
+const Search = styled.input`
+
+  box-sizing: border-box;
   width: 100%;
-  position: relative;
-  display: flex;
+
+  // margin-right: 20px;
+  // margin-left: 20px;
+  padding: 10px;
+  border-radius: 10px;
+  font-size: 12px;
+
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath d='M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z'/%3E%3Cpath d='M0 0h24v24H0z' fill='none'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: 97% center;
+  background-size: 16px;
+  border-color: teal;
+
+  outline: none;
+  // &:hover {
+  //   font-size: 30px;
+  // }
+
 `
 
-const Wrapper = styled.div`
-  width: 30%;
-  display: flex;
-  transform: translate(-50%, -50%);
+const SearchContainer = styled.div`
+  box-sizing: border-box;
+  width: 100%;
+  padding-left: 20px;
+  padding-right: 20px;
 `
-
 
 
 
@@ -45,18 +52,15 @@ const SearchQuestions = props => {
 
   return (
 
-      <Search>
-        <input
+<SearchContainer>
+        <Search
           type="text"
-          className="searchQuestions"
+          placeholderTextColor = "red"
           placeholder="HAVE A QUESTION? SEARCH FOR ANSWERS"
           onChange={handleChange}
           value={searchText}
         />
-
-        <SearchButton> search button </SearchButton>
-        <i>search icon</i>
-      </Search>
+</SearchContainer>
 
   )
 }

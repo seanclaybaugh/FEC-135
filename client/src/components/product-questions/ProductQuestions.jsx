@@ -5,10 +5,9 @@ import styled from 'styled-components';
 import axios from 'axios';
 
 
-const Wrapper = styled.div`
-  width: 100%;
-  display: flex;
-  direction: row;
+const Container = styled.div`
+  width: 700px;
+  // background-color: orange;
 `
 
 
@@ -103,12 +102,12 @@ function ProductQuestions() {
   }
 
   const handleAddedQuestion = () => {
-//    fetchInitialQuestions();
+//need to ask why api does not return an id back for the created question
   }
 
 
   const handleAddedAnswer = () => {
-
+    //need to ask why api does not return an id back for the created answer
   }
 
 
@@ -127,14 +126,15 @@ function ProductQuestions() {
 
 
   return (
-    <>
+    <Container>
+
       {isError && <div>Error with get data...</div>}
 
-      <Wrapper>Search for Questions
+
       <SearchQuestions
         handlSearchTextChanged={handlSearchTextChanged}
       />
-      </Wrapper>
+
 
       <QuestionsList
         questions={filteredQuestions}
@@ -142,7 +142,8 @@ function ProductQuestions() {
         productId={props.productId}
         questionsPerPage={questionsPerPage}
       />
-    </>
+      </Container>
+
   )
 }
 
