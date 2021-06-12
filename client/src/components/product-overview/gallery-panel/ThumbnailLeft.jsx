@@ -6,7 +6,7 @@ const ListItem = styled.button`
   padding: 0;
   border: none;
   background: none;
-  margin: 5px;
+  margin: 2px;
 
   :hover {
     display: block;
@@ -17,15 +17,16 @@ const ListItem = styled.button`
 `;
 
 const Img = styled.img`
-  width: 65px;
-  height: 100px;
+  width: 60px;
+  height: 90px;
   object-fit: cover;
-  padding: 2px;
+  padding: ${(props) => props.padding};
   border: ${(props) => props.border};
 `;
 
 function ThumbnailLeft({ index, photo }) {
   const { currentPhotoIndex, setCurrentPhotoIndex } = useContext(PhotoIndexContext);
+  const isSelected = index === currentPhotoIndex;
 
   function handleClick() {
     setCurrentPhotoIndex(index);
@@ -35,7 +36,8 @@ function ThumbnailLeft({ index, photo }) {
     <ListItem onClick={handleClick}>
       <Img
         src={photo.thumbnail_url}
-        border={index === currentPhotoIndex ? 'solid 1px #000' : 'none'}
+        padding={isSelected ? '2px' : '1px'}
+        border={isSelected ? 'solid 1px #000' : 'none'}
       />
     </ListItem>
   );

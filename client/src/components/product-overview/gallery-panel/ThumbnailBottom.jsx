@@ -14,10 +14,6 @@ const StyledIndicator = styled.div`
   }
 `;
 
-// const Img = styled.img`
-//   width: 75px;
-// `;
-
 function ThumbnailBottom({ index, photo }) {
   const { currentPhotoIndex, setCurrentPhotoIndex } = useContext(PhotoIndexContext);
 
@@ -26,10 +22,10 @@ function ThumbnailBottom({ index, photo }) {
   }
 
   return (
-    <StyledIndicator onClick={handleClick}
-                     bgColor={index === currentPhotoIndex ? '#27231F' : '#E9EAEC'}>
-      {/* <Img src={photo.thumbnail_url} /> */}
-    </StyledIndicator>
+    <StyledIndicator
+      onClick={handleClick}
+      bgColor={index === currentPhotoIndex ? '#27231F' : '#E9EAEC'}
+    />
   );
 }
 

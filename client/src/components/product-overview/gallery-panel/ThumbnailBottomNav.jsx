@@ -4,7 +4,7 @@ import CurrentStyleContext from '../contexts/CurrentStyleContext';
 import ThumbnailBottom from './ThumbnailBottom';
 
 const StyledIndicatorContainer = styled.div`
-  width: 200px;
+  width: 400px;
   margin: 20px auto;
   display: flex;
   flex-direction: row;

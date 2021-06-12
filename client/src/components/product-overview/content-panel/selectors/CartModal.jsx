@@ -1,10 +1,10 @@
 import React, { useEffect, useRef, useCallback, useContext } from 'react';
 import styled from 'styled-components';
+import { useSpring, animated } from 'react-spring';
+import { MdClose } from 'react-icons/md';
 import CurrentStyleContext from '../../contexts/CurrentStyleContext';
 import SelectedSkuContext from '../contexts/SelectedSkuContext';
 import SelectedQtyContext from '../contexts/SelectedQtyContext';
-import { useSpring, animated } from 'react-spring';
-import { MdClose } from 'react-icons/md';
 
 const Background = styled.div`
   background: rgba(0, 0, 0, 0.8);
