@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import styled from 'styled-components';
+import CurrentStyleContext from '../../contexts/CurrentStyleContext';
 import SizesContainer from './SizesContainer';
 import Quantity from './Quantity';
 
@@ -17,7 +18,8 @@ const QtyDropdownContainer = styled.div`
   margin-bottom: 20px;
 `;
 
-function SizeQtyContainer({ currentStyle, updateCartSku, updateCartQty }) {
+function SizeQtyContainer({ updateCartSku, updateCartQty }) {
+  const { currentStyle, setCurrentStyle } = useContext(CurrentStyleContext);
   const [selectedSku, setSelectedSku] = useState('');
   const [selectedQty, setSelectedQty] = useState(null);
 
@@ -39,8 +41,7 @@ function SizeQtyContainer({ currentStyle, updateCartSku, updateCartQty }) {
 
   return (
     <StyledSizesContainer>
-      <SizesContainer currentStyle={currentStyle}
-                      updateSelectedSku={updateSelectedSku}
+      <SizesContainer updateSelectedSku={updateSelectedSku}
                       updateCartSku={updateCartSku} />
       <ContainerSubheader>
         <div>
@@ -49,7 +50,6 @@ function SizeQtyContainer({ currentStyle, updateCartSku, updateCartQty }) {
       </ContainerSubheader>
       <QtyDropdownContainer>
         <Quantity selectedSku={selectedSku}
-                  currentStyle={currentStyle}
                   updateQty={updateQty} />
       </QtyDropdownContainer>
     </StyledSizesContainer>

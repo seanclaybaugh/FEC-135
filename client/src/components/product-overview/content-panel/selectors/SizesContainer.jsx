@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import styled from 'styled-components';
+import CurrentStyleContext from '../../contexts/CurrentStyleContext';
 import Size from './Size';
 
 const ContainerSubheader = styled.div`
@@ -28,7 +29,8 @@ const StyledSizesContainer = styled.div`
   margin: 0 10px 0 10px;
 `;
 
-function SizesContainer({ currentStyle, updateSelectedSku, updateCartSku }) {
+function SizesContainer({ updateSelectedSku, updateCartSku }) {
+  const { currentStyle, setCurrentStyle } = useContext(CurrentStyleContext);
   const skus = [];
 
   for (const sku in currentStyle.skus) {

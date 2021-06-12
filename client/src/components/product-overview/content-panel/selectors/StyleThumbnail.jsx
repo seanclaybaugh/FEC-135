@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
+import CurrentStyleContext from '../../contexts/CurrentStyleContext';
 
 const Container = styled.div`
   position: relative;
@@ -28,17 +29,19 @@ const Img = styled.img`
   }
 `;
 
-function StyleThumbnail({ style, index, currentStyle, updateCurrentStyle, previewCurrentStyle, revertCurrentStyle }) {
+function StyleThumbnail({ style, index }) {
+  const { currentStyle, setCurrentStyle } = useContext(CurrentStyleContext);
+
   function handleClick() {
-    updateCurrentStyle(style);
+    setCurrentStyle(style);
   }
 
   function handleMouseOver() {
-    previewCurrentStyle(style);
+    // previewCurrentStyle(style);
   }
 
   function handleMouseLeave() {
-    revertCurrentStyle();
+    // revertCurrentStyle();
   }
 
   return (

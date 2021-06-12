@@ -82,7 +82,7 @@ const Button = styled.button`
   }
 `;
 
-function AddToCart({ product, currentStyle, sku, qty }) {
+function AddToCart({ product, sku, qty }) {
   const [items, setItems] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
@@ -143,7 +143,6 @@ function AddToCart({ product, currentStyle, sku, qty }) {
       {!isMissingSku && sku > 0 ? (
         <CartModal showModal={showModal}
                    setShowModal={setShowModal}
-                   currentStyle={currentStyle}
                    product={product}
                    items={items}
                    sku={sku}

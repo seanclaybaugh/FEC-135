@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
+import CurrentStyleContext from './contexts/CurrentStyleContext';
 import Spinner from './spinner/LoadingSpinner';
 import GalleryPanel from './gallery-panel/GalleryPanel';
 import ContentPanel from './content-panel/ContentPanel';
-import CurrentStyleContext from './contexts/CurrentStyleContext';
 
 const OverviewContainer = styled.div`
   display: flex;
@@ -30,7 +30,6 @@ function ProductOverview() {
   const [isError, setIsError] = useState(false);
   const [metaData, setMetaData] = useState({});
   const [isLoading, setIsLoading] = useState(true);
-  const [prevStyle, setPrevStyle] = useState('');
   const [currentStyle, setCurrentStyle] = useState('');
   const [styles, setStyles] = useState([]);
 
@@ -66,7 +65,6 @@ function ProductOverview() {
         const defaultStyle = results.data.results.filter((style) => (
           style['default?']
         ));
-        setPrevStyle(defaultStyle[0]);
         setCurrentStyle(defaultStyle[0]);
       } catch (err) {
         setIsError(true);
@@ -75,19 +73,6 @@ function ProductOverview() {
     };
     fetchData();
   }, []);
-
-  function updateCurrentStyle(select) {
-    setPrevStyle(currentStyle);
-    setCurrentStyle(select);
-  }
-
-  function previewCurrentStyle(preview) {
-    setCurrentStyle(preview);
-  }
-
-  function revertCurrentStyle() {
-    setCurrentStyle(prevStyle);
-  }
 
   return (
     isLoading
@@ -103,10 +88,6 @@ function ProductOverview() {
                 product={product}
                 metaData={metaData}
                 styles={styles}
-                updateCurrentStyle={updateCurrentStyle}
-                previewCurrentStyle={previewCurrentStyle}
-                revertCurrentStyle={revertCurrentStyle}
-                currentStyle={currentStyle}
               />
             </ContentDiv>
           </OverviewContainer>

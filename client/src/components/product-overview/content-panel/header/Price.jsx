@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
+import CurrentStyleContext from '../../contexts/CurrentStyleContext';
 
 const StyledPriceContainer = styled.div`
   display: flex;
@@ -28,7 +29,8 @@ const NewPrice = styled.div`
   text-align: center;
 `;
 
-function Price({ price, currentStyle }) {
+function Price({ price }) {
+  const { currentStyle } = useContext(CurrentStyleContext);
   const currentPrice = !currentStyle ? price : parseInt(currentStyle.original_price, 10);
   const salePrice = !currentStyle.sale_price ? null : parseInt(currentStyle.sale_price, 10);
   let newPriceDisplay;
@@ -41,7 +43,8 @@ function Price({ price, currentStyle }) {
 
   return (
     <StyledPriceContainer>
-      <OriginalPrice currentStyle={currentStyle}>{`$${currentPrice}`}</OriginalPrice> {newPriceDisplay}
+      <OriginalPrice currentStyle={currentStyle}>{`$${currentPrice}`}</OriginalPrice>
+      {newPriceDisplay}
     </StyledPriceContainer>
   );
 }

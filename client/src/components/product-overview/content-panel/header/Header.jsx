@@ -21,7 +21,7 @@ const StyledTitleContainer = styled.div`
   align-items: flex-start;
 `;
 
-function Header({ category, name, price, metaData, description, currentStyle }) {
+function Header({ category, name, price, metaData, description }) {
   const [rating, setRating] = useState(0);
   const [reviewCount, setReviewCount] = useState(0);
 
@@ -39,7 +39,7 @@ function Header({ category, name, price, metaData, description, currentStyle }) 
       <Breadcrumb category={category} />
       <StyledTitleContainer>
         <Title name={name} />
-        <Price price={price} currentStyle={currentStyle} />
+        <Price price={price} />
       </StyledTitleContainer>
       {rating && <StarsContainer rating={rating} reviewCount={reviewCount} />}
       <Description description={description} />

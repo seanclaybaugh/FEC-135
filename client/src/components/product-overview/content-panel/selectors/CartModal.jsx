@@ -1,5 +1,6 @@
-import React, { useEffect, useRef, useCallback } from 'react';
+import React, { useEffect, useRef, useCallback, useContext } from 'react';
 import styled from 'styled-components';
+import CurrentStyleContext from '../../contexts/CurrentStyleContext';
 import { useSpring, animated } from 'react-spring';
 import { MdClose } from 'react-icons/md';
 
@@ -118,7 +119,8 @@ const CloseModalButton = styled(MdClose)`
   }
 `;
 
-function CartModal({ showModal, setShowModal, product, currentStyle, sku, qty }) {
+function CartModal({ showModal, setShowModal, product, sku, qty }) {
+  const { currentStyle } = useContext(CurrentStyleContext);
   const price = currentStyle.sale_price || currentStyle.original_price;
   const name = product;
   const style = currentStyle.name;

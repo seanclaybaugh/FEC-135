@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import styled from 'styled-components';
+import CurrentStyleContext from '../../contexts/CurrentStyleContext';
 import getQtyList from './helpers/getQtyList';
 
 const Select = styled.select`
@@ -27,7 +28,8 @@ const Select = styled.select`
   }
 `;
 
-function Quantity({ selectedSku, currentStyle, updateQty }) {
+function Quantity({ selectedSku, updateQty }) {
+  const { currentStyle, setCurrentStyle } = useContext(CurrentStyleContext);
   const [qtyAvailable, setQtyAvailable] = useState(0);
 
   useEffect(() => {

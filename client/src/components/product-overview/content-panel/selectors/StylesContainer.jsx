@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
+import CurrentStyleContext from '../../contexts/CurrentStyleContext';
 import StyleThumbnail from './StyleThumbnail';
 
 const OuterContainer = styled.div`
@@ -23,8 +24,8 @@ const ThumbnailContainer = styled.div`
   margin: 10px;
 `;
 
-function StylesContainer({ styles, currentStyle, updateCurrentStyle, previewCurrentStyle, revertCurrentStyle }) {
-  const {name} = currentStyle;
+function StylesContainer({ styles }) {
+  const { currentStyle, setCurrentStyle } = useContext(CurrentStyleContext);
 
   return (
     <OuterContainer>
@@ -33,18 +34,16 @@ function StylesContainer({ styles, currentStyle, updateCurrentStyle, previewCurr
           <h5>STYLE</h5>
         </StyleNameTitleDiv>
         <div>
-          <h5>{name}</h5>
+          <h5>{currentStyle.name}</h5>
         </div>
       </StyleNameContainer>
       <ThumbnailContainer>
         {styles.map((style, index) => (
-          <StyleThumbnail key={index}
-                          index={style.style_id}
-                          style={style}
-                          currentStyle={currentStyle}
-                          updateCurrentStyle={updateCurrentStyle}
-                          previewCurrentStyle={previewCurrentStyle}
-                          revertCurrentStyle={revertCurrentStyle} />
+          <StyleThumbnail
+            key={index}
+            index={style.style_id}
+            style={style}
+          />
         ))}
       </ThumbnailContainer>
     </OuterContainer>
