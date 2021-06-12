@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
 import Header from './header/Header';
+import SelectedSkuContext from './contexts/SelectedSkuContext';
+import SelectedQtyContext from './contexts/SelectedQtyContext';
 import StylesContainer from './selectors/StylesContainer';
 import SizeQtyContainer from './selectors/SizeQtyContainer';
 import AddToCart from './selectors/AddToCart';
 import Share from './Share';
 
 function ContentPanel({ product, metaData, styles }) {
-  const [cartSku, setCartSku] = useState(null);
-  const [cartQty, setCartQty] = useState(0);
+  const [selectedSku, setSelectedSku] = useState(null);
+  const [selectedQty, setSelectedQty] = useState(null);
 
   function updateCartSku(sku) {
     setCartSku(sku);
@@ -26,19 +28,16 @@ function ContentPanel({ product, metaData, styles }) {
         description={product.description}
         price={product.price}
       />
-      <StylesContainer
-        styles={styles}
-      />
-      <SizeQtyContainer
-        updateCartSku={updateCartSku}
-        updateCartQty={updateCartQty}
-      />
-      <AddToCart
-        product={product.name}
-        sku={cartSku}
-        qty={cartQty}
-      />
-      <Share />
+      <SelectedSkuContext.Provider value={{ selectedSku, setSelectedSku }}>
+        <SelectedQtyContext.Provider value={{ selectedQty, setSelectedQty }}>
+          <StylesContainer
+            styles={styles}
+          />
+          <SizeQtyContainer />
+          <AddToCart product={product.name} />
+          <Share />
+        </SelectedQtyContext.Provider>
+      </SelectedSkuContext.Provider>
     </>
   );
 }

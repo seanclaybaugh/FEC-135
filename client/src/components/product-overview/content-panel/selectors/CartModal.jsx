@@ -1,6 +1,8 @@
 import React, { useEffect, useRef, useCallback, useContext } from 'react';
 import styled from 'styled-components';
 import CurrentStyleContext from '../../contexts/CurrentStyleContext';
+import SelectedSkuContext from '../contexts/SelectedSkuContext';
+import SelectedQtyContext from '../contexts/SelectedQtyContext';
 import { useSpring, animated } from 'react-spring';
 import { MdClose } from 'react-icons/md';
 
@@ -119,12 +121,14 @@ const CloseModalButton = styled(MdClose)`
   }
 `;
 
-function CartModal({ showModal, setShowModal, product, sku, qty }) {
+function CartModal({ showModal, setShowModal, product }) {
   const { currentStyle } = useContext(CurrentStyleContext);
+  const { selectedSku } = useContext(SelectedSkuContext);
+  const { selectedQty } = useContext(SelectedQtyContext);
   const price = currentStyle.sale_price || currentStyle.original_price;
   const name = product;
   const style = currentStyle.name;
-  const {size} = currentStyle.skus[sku];
+  const {size} = currentStyle.skus[selectedSku];
   const modalRef = useRef();
   const imgUrl = currentStyle.photos[0].url;
 
@@ -170,7 +174,7 @@ function CartModal({ showModal, setShowModal, product, sku, qty }) {
               </ModalProductDetails>
               <ModalContent>
                 <h4>YOUR BAG</h4>
-                  {qty > 1 ? `${qty} items` : `${qty} item`} <br />
+                  {selectedQty > 1 ? `${selectedQty} items` : `${selectedQty} item`} <br />
                 <StyledTable>
                   <tbody>
                     <tr>

@@ -1,5 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import styled, { keyframes } from 'styled-components';
+import SelectedSkuContext from '../contexts/SelectedSkuContext';
+import SelectedQtyContext from '../contexts/SelectedQtyContext';
 import axios from 'axios';
 import CartModal from './CartModal';
 
@@ -82,7 +84,9 @@ const Button = styled.button`
   }
 `;
 
-function AddToCart({ product, sku, qty }) {
+function AddToCart({ product }) {
+  const { selectedSku, setSelectedSku } = useContext(SelectedSkuContext);
+  const { selectedQty, setSelectedQty } = useContext(SelectedQtyContext);
   const [items, setItems] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
@@ -91,21 +95,21 @@ function AddToCart({ product, sku, qty }) {
 
   useEffect(() => {
     setIsMissingSku(false);
-  }, [sku]);
+  }, [selectedSku]);
 
   function addToCart() {
     setIsLoading(true);
-    return axios.post('http://localhost:3000/api/cart', { sku_id: sku });
+    return axios.post('http://localhost:3000/api/cart', { sku_id: selectedSku });
   }
 
   function revealModal() {
     setShowModal(true);
   }
 
-  function addAllItems(quantity) {
+  function addAllItems(qty) {
     const promises = [];
 
-    for (let i = 0; i < quantity; i++) {
+    for (let i = 0; i < qty; i++) {
       promises.push(addToCart());
     }
 
@@ -118,18 +122,15 @@ function AddToCart({ product, sku, qty }) {
         setIsLoading(false);
         revealModal();
       })
-      .then(() => {
-        // clear items
-      })
       .catch(() => setIsError(true));
   }
 
   function handleSubmit(e) {
     e.preventDefault();
-    if (sku === '') {
+    if (!selectedSku) {
       setIsMissingSku(true);
     } else {
-      addAllItems(qty);
+      addAllItems(selectedQty);
       revealModal();
     }
   }
@@ -140,13 +141,11 @@ function AddToCart({ product, sku, qty }) {
         <Button>{isLoading ? <Spinner /> : 'ADD TO BAG'}</Button>
         {isMissingSku ? <h5>Please select a size</h5> : <h5> </h5>}
       </Container>
-      {!isMissingSku && sku > 0 ? (
+      {!isMissingSku && selectedSku > 0 ? (
         <CartModal showModal={showModal}
                    setShowModal={setShowModal}
                    product={product}
                    items={items}
-                   sku={sku}
-                   qty={qty}
                    isError={isError} />
       ) : null}
     </OuterContainer>

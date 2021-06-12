@@ -1,6 +1,7 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
 import CurrentStyleContext from '../../contexts/CurrentStyleContext';
+import SelectedSkuContext from '../contexts/SelectedSkuContext';
 import Size from './Size';
 
 const ContainerSubheader = styled.div`
@@ -29,8 +30,9 @@ const StyledSizesContainer = styled.div`
   margin: 0 10px 0 10px;
 `;
 
-function SizesContainer({ updateSelectedSku, updateCartSku }) {
-  const { currentStyle, setCurrentStyle } = useContext(CurrentStyleContext);
+function SizesContainer() {
+  const { currentStyle } = useContext(CurrentStyleContext);
+  const { selectedSku } = useContext(SelectedSkuContext);
   const skus = [];
 
   for (const sku in currentStyle.skus) {
@@ -40,29 +42,12 @@ function SizesContainer({ updateSelectedSku, updateCartSku }) {
     });
   }
 
-  const [selectedSize, setSelectedSize] = useState('Select a size');
-  const [selectedSku, setSelectedSku] = useState('');
-  const [inStock, setStockStatus] = useState('');
+  let size, quantity, status;
 
-  useEffect(() => {
-    setSelectedSize('Select a size');
-    setSelectedSku('');
-    setStockStatus('');
-  }, [currentStyle]);
-
-  useEffect(() => {
-    updateSelectedSku(selectedSku);
-    updateCartSku(selectedSku);
-  }, [selectedSize]);
-
-  function updateSizeSelection(sku) {
-    const {size} = currentStyle.skus[sku];
-    const {quantity} = currentStyle.skus[sku];
-    const status = quantity > 0 ? 'IN STOCK' : 'OUT OF STOCK';
-
-    setSelectedSize(size);
-    setSelectedSku(sku);
-    setStockStatus(status);
+  if (currentStyle.skus[selectedSku]) {
+    size = currentStyle.skus[selectedSku].size;
+    quantity = currentStyle.skus[selectedSku].quantity;
+    status = quantity > 0 ? 'IN STOCK' : 'OUT OF STOCK';
   }
 
   return (
@@ -73,23 +58,23 @@ function SizesContainer({ updateSelectedSku, updateCartSku }) {
         </div>
         <SelectedSizeInfoContainer>
           <SizeInfoDiv>
-            <h5>{selectedSize}</h5>
+            <h5>{size || 'Select a size'}</h5>
           </SizeInfoDiv>
           <SizeInfoDiv>
-            <h5>{inStock}</h5>
+            <h5>{status || null}</h5>
           </SizeInfoDiv>
           <SizeInfoDiv>
-            <h5>{selectedSku > 0 ? `#${selectedSku}` : ''}</h5>
+            <h5>{selectedSku ? `#${selectedSku}` : null}</h5>
           </SizeInfoDiv>
         </SelectedSizeInfoContainer>
       </ContainerSubheader>
       <StyledSizesContainer>
         {skus.map((item, index) => (
-          <Size key={index}
-                sku={item.sku}
-                size={item.details.size}
-                updateSizeSelection={updateSizeSelection}
-                isSelected={selectedSku === item.sku} />
+          <Size
+            key={index}
+            sku={item.sku}
+            size={item.details.size}
+          />
         ))}
       </StyledSizesContainer>
     </>

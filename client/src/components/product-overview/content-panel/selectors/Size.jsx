@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
+import SelectedSkuContext from '../contexts/SelectedSkuContext';
 
 const Button = styled.button`
   margin: 20px 2.5px;
@@ -18,19 +19,21 @@ const Button = styled.button`
   }
 `;
 
-function Size({ sku, size, updateSizeSelection, isSelected }) {
+function Size({ sku, size }) {
+  const { selectedSku, setSelectedSku } = useContext(SelectedSkuContext);
+
   function handleClick() {
-    updateSizeSelection(sku);
+    setSelectedSku(sku);
   }
 
   return (
-    <div>
+    <>
       <Button sku={sku}
               onClick={handleClick}
-              bgColor={isSelected ? '#fff' : '#E9EAEC'}
-              borderColor={isSelected ? '#000' : '#E9EAEC'}>{size}
+              bgColor={sku === selectedSku ? '#fff' : '#E9EAEC'}
+              borderColor={sku === selectedSku ? '#000' : '#E9EAEC'}>{size}
       </Button>
-    </div>
+    </>
   );
 }
 

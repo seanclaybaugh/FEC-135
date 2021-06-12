@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useContext } from 'react';
 import styled from 'styled-components';
 import CurrentStyleContext from '../../contexts/CurrentStyleContext';
+import SelectedSkuContext from '../contexts/SelectedSkuContext';
+import SelectedQtyContext from '../contexts/SelectedQtyContext';
 import getQtyList from './helpers/getQtyList';
 
 const Select = styled.select`
@@ -28,37 +30,22 @@ const Select = styled.select`
   }
 `;
 
-function Quantity({ selectedSku, updateQty }) {
-  const { currentStyle, setCurrentStyle } = useContext(CurrentStyleContext);
+function Quantity() {
+  const { currentStyle } = useContext(CurrentStyleContext);
+  const { selectedSku } = useContext(SelectedSkuContext);
+  const { setSelectedQty } = useContext(SelectedQtyContext);
   const [qtyAvailable, setQtyAvailable] = useState(0);
 
   useEffect(() => {
-    const qty = selectedSku === '' ? 0 : currentStyle.skus[selectedSku].quantity;
+    const qty = selectedSku ? currentStyle.skus[selectedSku].quantity : 0;
     setQtyAvailable(qty);
   }, [selectedSku]);
 
   const options = qtyAvailable > 0 ? getQtyList(qtyAvailable) : ['---'];
 
-  const [qtySelected, setQtySelected] = useState(null);
-  const [skuSelected, setSkuSelected] = useState('');
-
-  useEffect(() => {
-    if (selectedSku > 0) {
-      setSkuSelected(selectedSku);
-    }
-    if (!qtySelected) {
-      setQtySelected(1);
-    }
-  }, [selectedSku]);
-
-  useEffect(() => {
-    updateQty(qtySelected);
-  }, [skuSelected]);
-
   function handleChange(e) {
     const value = Number(e.target.value);
-    setQtySelected(value);
-    updateQty(value);
+    setSelectedQty(value);
   }
 
   const isActive = qtyAvailable > 0 ? null : true;
