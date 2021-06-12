@@ -7,9 +7,6 @@ const Search = styled.input`
 
   box-sizing: border-box;
   width: 100%;
-
-  // margin-right: 20px;
-  // margin-left: 20px;
   padding: 10px;
   border-radius: 10px;
   font-size: 12px;
@@ -19,11 +16,19 @@ const Search = styled.input`
   background-position: 97% center;
   background-size: 16px;
   border-color: teal;
+  transition: all 250ms ease-in-out;
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
 
-  outline: none;
-  // &:hover {
-  //   font-size: 30px;
-  // }
+  &:hover,
+  &:focus {
+    padding: 12px 0;
+    outline: 0;
+    border: 1px solid transparent;
+    border-bottom: 1px solid #575756;
+    border-radius: 0;
+    background-position: 100% center;
+  }
 
 `
 
@@ -33,9 +38,6 @@ const SearchContainer = styled.div`
   padding-left: 20px;
   padding-right: 20px;
 `
-
-
-
 
 const SearchQuestions = props => {
 
