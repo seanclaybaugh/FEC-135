@@ -10,7 +10,6 @@ const Container = styled.div`
   // background-color: orange;
 `
 
-
 function ProductQuestions() {
 
   const props = {
@@ -21,9 +20,7 @@ function ProductQuestions() {
   const [filteredQuestions, setFilteredQuestions] = useState([]);
   const [isError, setIsError] = useState(false);
   const [searchText, setSearchText] = useState('');
-  // const [fetchedExpandedQuestions, setFetchedExpandedQuestions] = useState(false);
   const questionsPerPage = 5;
-
 
   const fetchInitialQuestions = async () => {
 
@@ -40,10 +37,6 @@ function ProductQuestions() {
 
 
   const fetchAllQuestions = async () => {
-
-    // if (fetchedExpandedQuestions) {
-    //   return;
-    // }
 
     let fetchingData = true;
     let newQuestions = [];
@@ -77,7 +70,7 @@ function ProductQuestions() {
   };
 
   useEffect(() => {
-    // fetchQuestions();
+
     fetchInitialQuestions();
   }, []);
 
@@ -125,7 +118,6 @@ function ProductQuestions() {
     fetchAllQuestions();
   }
 
-
   const handleAddedAnswer = (questionId, newAnswers) => {
 
     const newList = questionList.map((question) => {
@@ -139,16 +131,10 @@ function ProductQuestions() {
 
   }
 
-
   const handleAnswerHelpful = (answerId, questionId) => {
 
-    //questionList
-      //question
-        //answers: {answerID: {answer}, answerId2: {answer2}};
-
-      //question
     const newList = questionList.map((question) => {
-      // console.log(question)
+
       if (question.question_id === questionId) {
         question.answers[answerId].helpfulness++;
       }
@@ -166,7 +152,6 @@ function ProductQuestions() {
   }
 
   const handleQuestionHelpful = (questionId) => {
-    // fetchAllQuestions();
 
     const newList = questionList.map((question) => {
       if (question.question_id === questionId) {
@@ -178,10 +163,6 @@ function ProductQuestions() {
     setQuestionList(newList);
   }
 
-  // console.log('q list')
-
-
-// questionList.question_id[questionId];
   return (
     <Container>
 
@@ -204,10 +185,9 @@ function ProductQuestions() {
         handleAnswerReport={handleAnswerReport}
         handleQuestionHelpful={handleQuestionHelpful}
         searchText={searchText}
-
       />
-      </Container>
 
+    </Container>
   )
 }
 
