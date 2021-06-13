@@ -24,7 +24,7 @@ const QuestionListItem = props => {
       console.log(error)
     }
 
-    props.handleQuestionHelpful();
+    props.handleQuestionHelpful(questionId);
   }
 
   const dismissAnswerForm = () => {

@@ -144,7 +144,7 @@ function ProductQuestions() {
 
     //questionList
       //question
-        //answers: {answerID: {answer}, answerId2: {}};
+        //answers: {answerID: {answer}, answerId2: {answer2}};
 
       //question
     const newList = questionList.map((question) => {
@@ -165,8 +165,17 @@ function ProductQuestions() {
     fetchAllQuestions();
   }
 
-  const handleQuestionHelpful = (answerId, questionId) => {
-    fetchAllQuestions();
+  const handleQuestionHelpful = (questionId) => {
+    // fetchAllQuestions();
+
+    const newList = questionList.map((question) => {
+      if (question.question_id === questionId) {
+        question.question_helpfulness++;
+      }
+      return question;
+    })
+
+    setQuestionList(newList);
   }
 
   // console.log('q list')
