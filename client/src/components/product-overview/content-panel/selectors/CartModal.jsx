@@ -170,7 +170,7 @@ function CartModal({ showModal, setShowModal, product }) {
           <animated.div style={animation}>
             <ModalContentWrapper showModal={showModal}>
               <ModalHeader>
-                {<HeaderText>SUCCESSFULLY ADDED TO BAG!</HeaderText>}
+                {<HeaderText>Your items have been added!</HeaderText>}
               </ModalHeader>
               <ModalImgWrapper>
                 <ModalImg src={imgUrl} alt="product image" />
