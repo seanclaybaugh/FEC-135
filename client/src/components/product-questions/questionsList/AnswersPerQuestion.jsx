@@ -36,7 +36,9 @@ const AnswersPerQuestion = props => {
       console.log(error)
     }
 
-    props.handleAnswerHelpful();
+    props.handleAnswerHelpful(answerId, props.questionId);
+    console.log(answerId)
+    console.log(props.questionId)
 
   }
 
@@ -49,7 +51,8 @@ const AnswersPerQuestion = props => {
       console.log(error)
     }
 
-    props.handleAnswerReport();
+    props.handleAnswerReport(answerId, props.questionId);
+
   }
 
 

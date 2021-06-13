@@ -1,8 +1,6 @@
 import React from 'react';
 
-
 function HighlightedText(props) {
-
 
   //props.textBody
   //props.searchText

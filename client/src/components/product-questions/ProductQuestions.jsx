@@ -140,15 +140,32 @@ function ProductQuestions() {
   }
 
 
-  const handleAnswerHelpful = () => {
+  const handleAnswerHelpful = (answerId, questionId) => {
+
+    //questionList
+      //question
+        //answers: {answerID: {answer}, answerId2: {}};
+
+      //question
+    const newList = questionList.map((question) => {
+      // console.log(question)
+      if (question.question_id === questionId) {
+        question.answers[answerId].helpfulness++;
+      }
+      //we need to find the answer in this question that matches the answerID
+      return question;
+
+    });
+
+    setQuestionList(newList);
+
+  }
+
+  const handleAnswerReport = (answerId, questionId) => {
     fetchAllQuestions();
   }
 
-  const handleAnswerReport = () => {
-    fetchAllQuestions();
-  }
-
-  const handleQuestionHelpful = () => {
+  const handleQuestionHelpful = (answerId, questionId) => {
     fetchAllQuestions();
   }
 

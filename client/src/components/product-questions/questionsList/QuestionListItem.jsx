@@ -100,6 +100,7 @@ const QuestionListItem = props => {
           handleAnswerHelpful={props.handleAnswerHelpful}
           handleAnswerReport={props.handleAnswerReport}
           searchText={props.searchText}
+          questionId={questionId}
           />
         )}
 
