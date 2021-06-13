@@ -17,10 +17,10 @@ const rotate360 = keyframes`
 const Spinner = styled.div`
   animation: ${rotate360} 2s linear infinite;
   transform: translateZ(0);
-  border-top: 1px solid #e7e7e7;
-  border-right: 1px solid #e7e7e7;
-  border-bottom: 1px solid #e7e7e7;
-  border-left: 2px solid #e7e7e7;
+  border-top: 2px solid #e7e7e7;
+  border-right: 2px solid #e7e7e7;
+  border-bottom: 2px solid #fff;
+  border-left: 2px solid #fff;
   background: transparent;
   width: 20px;
   height: 20px;
