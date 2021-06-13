@@ -150,65 +150,22 @@ function ProductQuestions() {
     // console.log('index')
     // console.log(index)
 
-    // let questionToUpdate = questionList[index];
-
-    // console.log('questionToUpdate')
-    // console.log(questionToUpdate)
-
-    // questionToUpdate.answers = newAnswers;
-
-    // questionList[index] = questionToUpdate;
-    // console.log('UGH')
-    // console.log(questionList[index]);
-    // console.log(questionList)
-
-    // setQuestionList(questionList);
-
 
     fetchAllQuestions();
-
-    // console.log(questionId)
-    // let index;
-    // let question;
-
-    // for (let i = 0; i < questionList.length; i++) {
-    //   if (questionList[i].question_id = questionId) {
-    //     question = questionList[i].question_id;
-    //     console.log('question')
-    //     console.log(question)
-    //     index = i;
-    //   }
-    // }
-    // console.log('indexxxx')
-    // console.log(index)
-
-
-    // console.log('question')
-    // console.log(question)
-
-    // console.log('new answers?')
-    // questionList[index][question].answers = newAnswers;
-    // console.log(questionList[index][question].answers)
-
-    // questionList[index] = question;
-
-    // setQuestionList(questionList);
-
-
 
   }
 
 
   const handleAnswerHelpful = () => {
-
+    fetchAllQuestions();
   }
 
   const handleAnswerReport = () => {
-
+    fetchAllQuestions();
   }
 
   const handleQuestionHelpful = () => {
-
+    fetchAllQuestions();
   }
 
   // console.log('q list')
@@ -233,6 +190,10 @@ function ProductQuestions() {
         questionsPerPage={questionsPerPage}
         handleAddedQuestion={handleAddedQuestion}
         handleAddedAnswer={handleAddedAnswer}
+        handleAnswerHelpful={ handleAnswerHelpful}
+        handleAnswerReport={handleAnswerReport}
+        handleQuestionHelpful={handleQuestionHelpful}
+
       />
       </Container>
 

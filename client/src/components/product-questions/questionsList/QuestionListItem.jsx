@@ -22,6 +22,8 @@ const QuestionListItem = props => {
       console.log('error with question helpful click')
       console.log(error)
     }
+
+    props.handleQuestionHelpful();
   }
 
   const dismissAnswerForm = () => {
@@ -83,6 +85,8 @@ const QuestionListItem = props => {
           <AnswersPerQuestion
           key={i}
           answer={answer}
+          handleAnswerHelpful={props.handleAnswerHelpful}
+          handleAnswerReport={props.handleAnswerReport}
           />
         )}
 

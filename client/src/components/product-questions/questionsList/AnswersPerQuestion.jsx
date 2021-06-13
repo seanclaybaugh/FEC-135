@@ -35,7 +35,7 @@ const AnswersPerQuestion = props => {
       console.log(error)
     }
 
-    // props.handleAnswerHelpful();
+    props.handleAnswerHelpful();
 
   }
 
@@ -47,6 +47,8 @@ const AnswersPerQuestion = props => {
       console.log('error with answer report click')
       console.log(error)
     }
+
+    props.handleAnswerReport();
   }
 
 
