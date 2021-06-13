@@ -56,14 +56,42 @@ const StyledArrowContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 40px;
+  font-size: 30px;
   color: #27231F;
-  width: 50px;
-  height: 100%;
+  width: 40px;
+  height: 40px;
+  vertical-align: middle;
   left: ${(props) => props.position};
+
   :hover {
     cursor: pointer;
     opacity: 75%;
+  }
+`;
+
+const StyledArrowRight = styled(MdKeyboardArrowRight)`
+  border-radius: 50%;
+
+  :hover {
+    background-color: #E9EAEC;
+    color: #000;
+    font-size: 1.1em;
+    transition: transform 0.2s;
+    padding-left: 2px;
+    margin-bottom: 2px;
+  }
+`;
+
+const StyledArrowLeft = styled(MdKeyboardArrowLeft)`
+  border-radius: 50%;
+
+  :hover {
+    background-color: #E9EAEC;
+    color: #000;
+    font-size: 1.1em;
+    transition: transform 0.2s;
+    padding-right: 2px;
+    margin-bottom: 2px;
   }
 `;
 
@@ -92,7 +120,7 @@ function MainView() {
             onClick={prevPhoto}
             position="10%"
           >
-            {currentPhotoIndex !== 0 && <MdKeyboardArrowLeft />}
+            {currentPhotoIndex !== 0 && <StyledArrowLeft />}
           </StyledArrowContainer>
           <StyledImage
             src={previewStyle.photos[currentPhotoIndex].url}
@@ -112,7 +140,7 @@ function MainView() {
             onClick={nextPhoto}
             position="90%"
           >
-            {currentPhotoIndex !== previewStyle.photos.length - 1 && <MdKeyboardArrowRight />}
+            {currentPhotoIndex !== previewStyle.photos.length - 1 && <StyledArrowRight />}
           </StyledArrowContainer>
         </StyledImageContainer>
         <ThumbnailBottomNav />

@@ -54,9 +54,7 @@ function ContentPanel({ styles }) {
           />
           <SelectedSkuContext.Provider value={{ selectedSku, setSelectedSku }}>
             <SelectedQtyContext.Provider value={{ selectedQty, setSelectedQty }}>
-              <StylesContainer
-                styles={styles}
-              />
+              <StylesContainer styles={styles} />
               <SizeQtyContainer />
               <AddToCart product={product.name} />
               <Share />

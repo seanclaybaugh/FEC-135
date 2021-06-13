@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import CurrentStyleContext from '../../contexts/CurrentStyleContext';
 import PreviewStyleContext from '../../contexts/PreviewStyleContext';
 
-const Container = styled.div`
+const ThumbnailContainer = styled.div`
   position: relative;
   width: 50px;
   height: 50px;
@@ -47,13 +47,17 @@ function StyleThumbnail({ style, index }) {
   }
 
   return (
-    <Container onClick={handleClick}
-               onMouseOver={handleMouseOver}
-               onMouseLeave={handleMouseLeave}
-               boxShadow={index === currentStyle.style_id ? '0 0 0 1px #000' : '0 0 3px #888'}>
-      <Img src={style.photos[0].thumbnail_url}
-           alt={style.name} />
-    </Container>
+    <ThumbnailContainer
+      onClick={handleClick}
+      onMouseOver={handleMouseOver}
+      onMouseLeave={handleMouseLeave}
+      boxShadow={index === currentStyle.style_id ? '0 0 0 1px #000' : '0 0 3px #888'}
+    >
+      <Img
+        src={style.photos[0].thumbnail_url}
+        alt={style.name}
+      />
+    </ThumbnailContainer>
   );
 }
 

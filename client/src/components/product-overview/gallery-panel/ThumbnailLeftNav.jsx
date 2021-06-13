@@ -1,29 +1,57 @@
-import React, { useContext } from 'react';
+import React, { useContext, useRef } from 'react';
 import styled from 'styled-components';
+import { GoChevronUp, GoChevronDown } from 'react-icons/go';
 import PreviewStyleContext from '../contexts/PreviewStyleContext';
+import PhotoIndexContext from '../contexts/PhotoIndexContext';
 import ThumbnailLeft from './ThumbnailLeft';
 
-const ThumbnailList = styled.div`
+const ThumbnailSlideWrapper = styled.div`
   order: -1;
-`;
-
-const ThumbnailContainer = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: center;
+  height: 750px;
   margin-top: 30px;
-  width: auto;
 
   @media screen and (max-width: 1000px) {
     display: none;
   }
 `;
 
+const Slider = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: 700px;
+  width: auto;
+  overflow-y: hidden;
+  flex-wrap: nowrap;
+`;
+
+const StyledArrowContainer = styled.div`
+  :hover {
+    cursor: pointer;
+  }
+`;
+
 function ThumbnailLeftNav() {
   const { previewStyle } = useContext(PreviewStyleContext);
+  const { currentPhotoIndex, setCurrentPhotoIndex } = useContext(PhotoIndexContext);
+  const sliderRef = useRef();
+
+  function scrollSliderUp() {
+    sliderRef.current.scrollTop -= 90;
+  }
+
+  function scrollSliderDown() {
+    sliderRef.current.scrollTop += 90;
+  }
 
   return (
-    <ThumbnailList>
-      <ThumbnailContainer>
+    <ThumbnailSlideWrapper>
+      <StyledArrowContainer onClick={scrollSliderUp}>
+        <GoChevronUp />
+      </StyledArrowContainer>
+      <Slider ref={sliderRef}>
         {previewStyle.photos.map((photo, index) => (
           <ThumbnailLeft
             key={index}
@@ -31,8 +59,11 @@ function ThumbnailLeftNav() {
             photo={photo}
           />
         ))}
-      </ThumbnailContainer>
-    </ThumbnailList>
+      </Slider>
+      <StyledArrowContainer onClick={scrollSliderDown}>
+        <GoChevronDown />
+      </StyledArrowContainer>
+    </ThumbnailSlideWrapper>
   );
 }
 
