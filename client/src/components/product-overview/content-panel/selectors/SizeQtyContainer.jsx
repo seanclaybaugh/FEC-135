@@ -10,7 +10,7 @@ const StyledSizesContainer = styled.div`
 function SizeQtyContainer() {
   return (
     <StyledSizesContainer>
-      <SizesContainer />
+      <SizesContainer/>
       <QtyContainer />
     </StyledSizesContainer>
   );

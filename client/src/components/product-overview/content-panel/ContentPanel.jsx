@@ -2,6 +2,7 @@ import React, { useState, useEffect} from 'react';
 import axios from 'axios';
 import SelectedSkuContext from './contexts/SelectedSkuContext';
 import SelectedQtyContext from './contexts/SelectedQtyContext';
+import MissingSkuContext from './contexts/MissingSkuContext';
 import Spinner from '../spinner/LoadingSpinner';
 import Header from './header/Header';
 import StylesContainer from './selectors/StylesContainer';
@@ -16,6 +17,7 @@ function ContentPanel({ styles }) {
   const [isLoading, setIsLoading] = useState(true);
   const [selectedSku, setSelectedSku] = useState(null);
   const [selectedQty, setSelectedQty] = useState(null);
+  const [isMissingSku, setIsMissingSku] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -43,6 +45,10 @@ function ContentPanel({ styles }) {
     fetchMeta();
   }, []);
 
+  function handleMissingSku(val) {
+    setIsMissingSku(val);
+  }
+
   return (
     isLoading
       ? <Spinner />
@@ -55,8 +61,10 @@ function ContentPanel({ styles }) {
           <SelectedSkuContext.Provider value={{ selectedSku, setSelectedSku }}>
             <SelectedQtyContext.Provider value={{ selectedQty, setSelectedQty }}>
               <StylesContainer styles={styles} />
-              <SizeQtyContainer />
-              <AddToCart product={product.name} />
+              <MissingSkuContext.Provider value={{ isMissingSku, setIsMissingSku }}>
+                <SizeQtyContainer isMissingSku={isMissingSku} />
+              </MissingSkuContext.Provider>
+              <AddToCart product={product.name} handleMissingSku={handleMissingSku} />
               <Share />
             </SelectedQtyContext.Provider>
           </SelectedSkuContext.Provider>

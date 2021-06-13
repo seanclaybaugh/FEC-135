@@ -1,7 +1,8 @@
 import React, { useContext } from 'react';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import CurrentStyleContext from '../../contexts/CurrentStyleContext';
 import SelectedSkuContext from '../contexts/SelectedSkuContext';
+import MissingSkuContext from '../contexts/MissingSkuContext';
 import Size from './Size';
 
 const ContainerSubheader = styled.div`
@@ -23,6 +24,24 @@ const SizeInfoDiv = styled.div`
   margin-right: 50px;
 `;
 
+const shake = keyframes`
+  0% {
+    left: -5px;
+  }
+  100% {
+    right: -5px;
+  }
+`;
+
+const SizeErrorDiv = styled.div`
+  width: 100px;
+  margin-right: 50px;
+  color: red;
+  position: relative;
+  animation: ${shake} 0.1s linear;
+  animation-iteration-count: 3;
+`;
+
 const StyledSizesContainer = styled.div`
   display: flex;
   flex-direction: row;
@@ -33,16 +52,19 @@ const StyledSizesContainer = styled.div`
 function SizesContainer() {
   const { currentStyle } = useContext(CurrentStyleContext);
   const { selectedSku } = useContext(SelectedSkuContext);
+  const { isMissingSku, setIsMissingSku } = useContext(MissingSkuContext);
   const skus = [];
 
   for (const sku in currentStyle.skus) {
     skus.push({
-      sku: sku,
-      details: currentStyle.skus[sku]
+      sku,
+      details: currentStyle.skus[sku],
     });
   }
 
-  let size, quantity, status;
+  let size,
+      quantity,
+      status;
 
   if (currentStyle.skus[selectedSku]) {
     size = currentStyle.skus[selectedSku].size;
@@ -57,9 +79,17 @@ function SizesContainer() {
           <h5>SIZE</h5>
         </div>
         <SelectedSizeInfoContainer>
-          <SizeInfoDiv>
-            <h5>{size || 'Select a size'}</h5>
-          </SizeInfoDiv>
+          {!isMissingSku
+            ? (
+              <SizeInfoDiv>
+                <h5>{size || 'Select a size'}</h5>
+              </SizeInfoDiv>
+            )
+            : (
+              <SizeErrorDiv>
+                <h5>Please select a size</h5>
+              </SizeErrorDiv>
+            )}
           <SizeInfoDiv>
             <h5>{status || null}</h5>
           </SizeInfoDiv>

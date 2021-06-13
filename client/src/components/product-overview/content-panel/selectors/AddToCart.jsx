@@ -83,7 +83,7 @@ const Button = styled.button`
   }
 `;
 
-function AddToCart({ product }) {
+function AddToCart({ product, handleMissingSku }) {
   const { selectedSku, setSelectedSku } = useContext(SelectedSkuContext);
   const { selectedQty, setSelectedQty } = useContext(SelectedQtyContext);
   const [items, setItems] = useState(0);
@@ -128,6 +128,7 @@ function AddToCart({ product }) {
     e.preventDefault();
     if (!selectedSku) {
       setIsMissingSku(true);
+      handleMissingSku(true);
     } else {
       addAllItems(selectedQty);
       revealModal();
@@ -138,7 +139,6 @@ function AddToCart({ product }) {
     <OuterContainer>
       <Container onSubmit={handleSubmit}>
         <Button>{isLoading ? <Spinner /> : 'ADD TO BAG'}</Button>
-        {isMissingSku ? <h5>Please select a size</h5> : <h5> </h5>}
       </Container>
       {!isMissingSku && selectedSku ? (
         <CartModal
