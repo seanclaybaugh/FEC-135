@@ -11,6 +11,7 @@ import StarsContainer from './stars/StarsContainer';
 const HeaderContainer = styled.div`
   display: flex;
   flex-direction: column;
+  padding-bottom: 20px;
   border-bottom: 2px solid #e2e2e2;
 `;
 
