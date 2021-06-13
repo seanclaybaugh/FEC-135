@@ -123,8 +123,8 @@ const CloseModalButton = styled(MdClose)`
 
 function CartModal({ showModal, setShowModal, product }) {
   const { currentStyle } = useContext(CurrentStyleContext);
-  const { selectedSku } = useContext(SelectedSkuContext);
-  const { selectedQty } = useContext(SelectedQtyContext);
+  const { selectedSku, setSelectedSku } = useContext(SelectedSkuContext);
+  const { selectedQty, setSelectedQty } = useContext(SelectedQtyContext);
 
   const price = currentStyle.sale_price || currentStyle.original_price;
   const name = product;
@@ -163,6 +163,11 @@ function CartModal({ showModal, setShowModal, product }) {
     return () => document.removeEventListener('keydown', keyPress);
   }, [keyPress]);
 
+  function resetCart() {
+    setSelectedSku(null);
+    setSelectedQty(null);
+  }
+
   return (
     <>
       {showModal ? (
@@ -200,8 +205,8 @@ function CartModal({ showModal, setShowModal, product }) {
                       </tr>
                   </tbody>
                 </StyledTable>
-                <button>VIEW BAG</button>
-                <button>CHECKOUT</button>
+                <button onClick={resetCart}>VIEW BAG</button>
+                <button onClick={resetCart}>CHECKOUT</button>
               </ModalContent>
               <CloseModalButton aria-label="Close modal" onClick={() => setShowModal((prev) => !prev)} />
             </ModalContentWrapper>
