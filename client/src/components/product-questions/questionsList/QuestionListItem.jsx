@@ -10,13 +10,13 @@ const QuestionListItem = props => {
 
   let answers = props.question.answers || [];
   const questionId = props.question.question_id;
+  let answerLength = Object.keys(answers).length;
 
 
   const handleHelpfulClick = async () => {
 
     try {
       const res = await axios.put(`/api/qa/questions/${questionId}/helpful`);
-      // console.log(res.data);
 
     } catch(error) {
       console.log('error with question helpful click')
@@ -36,14 +36,23 @@ const QuestionListItem = props => {
 
 
   const handleAddedAnswer = async () => {
+    //while loop here as well
+    //pick a page size that is equal to the old numbers of answers plus  TWO!!
+
+    let fetchingAnswers = true;
+    let newAnswers = [];
+    let count = answerLength + 2;
+    let page = 1;
+
 
     try {
 
-      const res = await axios.get(`/api/qa/questions/${questionId}/answers?count=100`);
-      console.log('get request for answers')
-      console.log(res.data.results)
-
-      const newAnswers = res.data.results;
+      while (fetchingAnswers) {
+        const res = await axios.get(`/api/qa/questions/${questionId}/answers?page=${page}&count=${count}`);
+        newAnswers = newAnswers.concat(res.data.results);
+        fetchingAnswers = newAnswers.length > count;
+        page++
+      }
 
       props.handleAddedAnswer(questionId, newAnswers);
 
@@ -51,7 +60,6 @@ const QuestionListItem = props => {
       console.log('error with adding answer')
       console.log(error)
     }
-
   }
 
 
