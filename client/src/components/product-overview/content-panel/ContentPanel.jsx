@@ -60,9 +60,9 @@ function ContentPanel({ styles }) {
           />
           <SelectedSkuContext.Provider value={{ selectedSku, setSelectedSku }}>
             <SelectedQtyContext.Provider value={{ selectedQty, setSelectedQty }}>
-              <StylesContainer styles={styles} />
               <MissingSkuContext.Provider value={{ isMissingSku, setIsMissingSku }}>
-                <SizeQtyContainer isMissingSku={isMissingSku} />
+                <StylesContainer styles={styles} />
+                <SizeQtyContainer />
               </MissingSkuContext.Provider>
               <AddToCart product={product.name} handleMissingSku={handleMissingSku} />
               <Share />

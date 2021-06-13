@@ -25,7 +25,7 @@ const ThumbnailContainer = styled.div`
 `;
 
 function StylesContainer({ styles }) {
-  const { previewStyle, setPreviewStyle } = useContext(PreviewStyleContext);
+  const { previewStyle } = useContext(PreviewStyleContext);
 
   return (
     <OuterContainer>

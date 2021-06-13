@@ -2,6 +2,9 @@ import React, { useContext } from 'react';
 import styled from 'styled-components';
 import CurrentStyleContext from '../../contexts/CurrentStyleContext';
 import PreviewStyleContext from '../../contexts/PreviewStyleContext';
+import SelectedSkuContext from '../contexts/SelectedSkuContext';
+import SelectedQtyContext from '../contexts/SelectedQtyContext';
+import MissingSkuContext from '../contexts/MissingSkuContext';
 
 const ThumbnailContainer = styled.div`
   position: relative;
@@ -33,9 +36,15 @@ const Img = styled.img`
 function StyleThumbnail({ style, index }) {
   const { currentStyle, setCurrentStyle } = useContext(CurrentStyleContext);
   const { previewStyle, setPreviewStyle } = useContext(PreviewStyleContext);
+  const { selectedSku, setSelectedSku } = useContext(SelectedSkuContext);
+  const { selectedQty, setSelectedQty} = useContext(SelectedQtyContext);
+  const { isMissingSku, setIsMissingSku } = useContext(MissingSkuContext);
 
   function handleClick() {
     setCurrentStyle(style);
+    setSelectedSku(null);
+    setSelectedQty(null);
+    setIsMissingSku(false);
   }
 
   function handleMouseOver() {
