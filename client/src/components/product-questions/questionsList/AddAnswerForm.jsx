@@ -37,6 +37,7 @@ const AddAnswerForm = props => {
     setEmail('');
     setPhotos([]);
 
+    props.handleAddedAnswer();
     props.dismissAnswerForm();
   }
 

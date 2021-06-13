@@ -53,6 +53,7 @@ const QuestionsList = props => {
        <QuestionListItem
         key={index}
         question={question}
+        handleAddedAnswer={props.handleAddedAnswer}
         />
       )}
       </ul>

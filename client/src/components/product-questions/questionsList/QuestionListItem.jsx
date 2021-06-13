@@ -16,7 +16,7 @@ const QuestionListItem = props => {
 
     try {
       const res = await axios.put(`/api/qa/questions/${questionId}/helpful`);
-      console.log(res.data);
+      // console.log(res.data);
 
     } catch(error) {
       console.log('error with question helpful click')
@@ -31,6 +31,27 @@ const QuestionListItem = props => {
   const toggleExpanded = () => {
     setExpanded(!expanded);
   }
+
+
+  const handleAddedAnswer = async () => {
+
+    try {
+
+      const res = await axios.get(`/api/qa/questions/${questionId}/answers?count=100`);
+      console.log('get request for answers')
+      console.log(res.data.results)
+
+      const newAnswers = res.data.results;
+
+      props.handleAddedAnswer()
+
+    } catch (error) {
+      console.log('error with adding answer')
+      console.log(error)
+    }
+
+  }
+
 
   //if state is expanded, we want all the answer, else we want to slice 0,2
   const allAnswers = Object.values(answers);
@@ -53,6 +74,7 @@ const QuestionListItem = props => {
               questionId={questionId}
               dismissAnswerForm={dismissAnswerForm}
               question={props.question.question_body}
+              handleAddedAnswer={handleAddedAnswer}
             />}
         <br/>
         </li>

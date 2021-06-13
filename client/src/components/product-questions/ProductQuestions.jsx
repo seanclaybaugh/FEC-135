@@ -126,6 +126,76 @@ function ProductQuestions() {
 
   const handleAddedAnswer = () => {
     //need to ask why api does not return an id back for the created answer
+
+    //when new answer is added: fetch the anwsers for that question
+    //get the question with the new answers
+
+    //overwrite that question's answers
+    //set the question list
+
+
+    //get the index of the question from the question list where questionID matches
+    //retrive the question from questionList at that index
+    //replace the answer property from that question
+    //reset question list at that index to this new question
+
+    // console.log(questionList)
+    // let index;
+    // for (let i = 0; i < questionList.length; i++) {
+    //   if (questionList[i].question_id === questionId) {
+    //     index = i;
+    //   }
+    // }
+
+    // console.log('index')
+    // console.log(index)
+
+    // let questionToUpdate = questionList[index];
+
+    // console.log('questionToUpdate')
+    // console.log(questionToUpdate)
+
+    // questionToUpdate.answers = newAnswers;
+
+    // questionList[index] = questionToUpdate;
+    // console.log('UGH')
+    // console.log(questionList[index]);
+    // console.log(questionList)
+
+    // setQuestionList(questionList);
+
+
+    fetchAllQuestions();
+
+    // console.log(questionId)
+    // let index;
+    // let question;
+
+    // for (let i = 0; i < questionList.length; i++) {
+    //   if (questionList[i].question_id = questionId) {
+    //     question = questionList[i].question_id;
+    //     console.log('question')
+    //     console.log(question)
+    //     index = i;
+    //   }
+    // }
+    // console.log('indexxxx')
+    // console.log(index)
+
+
+    // console.log('question')
+    // console.log(question)
+
+    // console.log('new answers?')
+    // questionList[index][question].answers = newAnswers;
+    // console.log(questionList[index][question].answers)
+
+    // questionList[index] = question;
+
+    // setQuestionList(questionList);
+
+
+
   }
 
 
@@ -141,8 +211,10 @@ function ProductQuestions() {
 
   }
 
+  // console.log('q list')
 
 
+// questionList.question_id[questionId];
   return (
     <Container>
 
@@ -160,6 +232,7 @@ function ProductQuestions() {
         productId={props.productId}
         questionsPerPage={questionsPerPage}
         handleAddedQuestion={handleAddedQuestion}
+        handleAddedAnswer={handleAddedAnswer}
       />
       </Container>
 
