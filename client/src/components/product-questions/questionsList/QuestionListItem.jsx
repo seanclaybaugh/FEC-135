@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import AnswersPerQuestion from './AnswersPerQuestion';
 import AddAnswerForm from './AddAnswerForm';
+import HighlightedText from './HighlightedText';
 import axios from 'axios';
 
 const QuestionListItem = props => {
@@ -38,12 +39,10 @@ const QuestionListItem = props => {
   const handleAddedAnswer = async () => {
     //while loop here as well
     //pick a page size that is equal to the old numbers of answers plus  TWO!!
-
     let fetchingAnswers = true;
     let newAnswers = [];
     let count = answerLength + 2;
     let page = 1;
-
 
     try {
 
@@ -63,7 +62,7 @@ const QuestionListItem = props => {
   }
 
 
-  //if state is expanded, we want all the answer, else we want to slice 0,2
+  //if state is expanded, we want all the answers, else we want to slice 0,2
   const allAnswers = Object.values(answers);
   const visibleAnswers = expanded ? allAnswers : allAnswers.slice(0, 2);
   const enoughAnswersToExpand = allAnswers.length > 2;
@@ -73,7 +72,12 @@ const QuestionListItem = props => {
     <>
       <div>
         <li className="QuestionItem">
-          Q: {props.question.question_body} |
+          Q:
+            <HighlightedText
+            textBody={props.question.question_body}
+            searchText={props.searchText}
+            />
+           |
           Helpful?
 
           <button onClick={handleHelpfulClick}>Yes</button>
@@ -95,6 +99,7 @@ const QuestionListItem = props => {
           answer={answer}
           handleAnswerHelpful={props.handleAnswerHelpful}
           handleAnswerReport={props.handleAnswerReport}
+          searchText={props.searchText}
           />
         )}
 

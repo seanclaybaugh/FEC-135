@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
+import HighLightedText from './HighlightedText';
 import moment from 'moment';
 import axios from 'axios';
 
@@ -55,7 +56,10 @@ const AnswersPerQuestion = props => {
   return (
 
     <span className="answerListItem">
-      A: {props.answer.body}
+      A: <HighLightedText
+      textBody={props.answer.body}
+      searchText={props.searchText}
+      />
       <div>
       By: {props.answer.answerer_name} |
       {date} |

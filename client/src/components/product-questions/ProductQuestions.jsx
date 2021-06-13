@@ -20,8 +20,10 @@ function ProductQuestions() {
   const [questionList, setQuestionList] = useState([]);
   const [filteredQuestions, setFilteredQuestions] = useState([]);
   const [isError, setIsError] = useState(false);
+  const [searchText, setSearchText] = useState('');
   // const [fetchedExpandedQuestions, setFetchedExpandedQuestions] = useState(false);
   const questionsPerPage = 5;
+
 
   const fetchInitialQuestions = async () => {
 
@@ -83,10 +85,10 @@ function ProductQuestions() {
     fetchAllQuestions();
   }
 
-  const handlSearchTextChanged = (searchText) => {
-
-    if (searchText.length > 3) {
-      const searchTextLowerCase = searchText.toLowerCase();
+  const handlSearchTextChanged = (text) => {
+    setSearchText(text);
+    if (text.length > 3) {
+      const searchTextLowerCase = text.toLowerCase();
       const results = questionList.filter((question) => {
         if (question.question_body.toLowerCase().indexOf(searchTextLowerCase) !== -1) {
           return true;
@@ -175,6 +177,7 @@ function ProductQuestions() {
         handleAnswerHelpful={ handleAnswerHelpful}
         handleAnswerReport={handleAnswerReport}
         handleQuestionHelpful={handleQuestionHelpful}
+        searchText={searchText}
 
       />
       </Container>
