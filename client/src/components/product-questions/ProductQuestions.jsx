@@ -124,34 +124,16 @@ function ProductQuestions() {
   }
 
 
-  const handleAddedAnswer = () => {
-    //need to ask why api does not return an id back for the created answer
+  const handleAddedAnswer = (questionId, newAnswers) => {
 
-    //when new answer is added: fetch the anwsers for that question
-    //get the question with the new answers
+    const newList = questionList.map((question) => {
+      if (question.question_id === questionId) {
+        question.answers = newAnswers;
+      }
+      return question;
+    });
 
-    //overwrite that question's answers
-    //set the question list
-
-
-    //get the index of the question from the question list where questionID matches
-    //retrive the question from questionList at that index
-    //replace the answer property from that question
-    //reset question list at that index to this new question
-
-    // console.log(questionList)
-    // let index;
-    // for (let i = 0; i < questionList.length; i++) {
-    //   if (questionList[i].question_id === questionId) {
-    //     index = i;
-    //   }
-    // }
-
-    // console.log('index')
-    // console.log(index)
-
-
-    fetchAllQuestions();
+    setQuestionList(newList);
 
   }
 

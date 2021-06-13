@@ -45,7 +45,7 @@ const QuestionListItem = props => {
 
       const newAnswers = res.data.results;
 
-      props.handleAddedAnswer()
+      props.handleAddedAnswer(questionId, newAnswers);
 
     } catch (error) {
       console.log('error with adding answer')
