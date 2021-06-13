@@ -44,12 +44,13 @@ function ThumbnailLeftNav() {
 
   function scrollSliderDown() {
     sliderRef.current.scrollTop += 90;
+    console.log(sliderRef.current.scrollTop);
   }
 
   return (
     <ThumbnailSlideWrapper>
       <StyledArrowContainer onClick={scrollSliderUp}>
-        <GoChevronUp />
+        {sliderRef.current && sliderRef.current.scrollTop !== 0 && <GoChevronUp />}
       </StyledArrowContainer>
       <Slider ref={sliderRef}>
         {previewStyle.photos.map((photo, index) => (

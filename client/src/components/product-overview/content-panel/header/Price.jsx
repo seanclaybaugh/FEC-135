@@ -9,23 +9,15 @@ const StyledPriceContainer = styled.div`
 `;
 
 const OriginalPrice = styled.div`
-  line-height: 100%;
-  font-size: 1.2em;
   text-decoration: ${(props) => (
     !props.currentStyle.sale_price ? 'none' : 'line-through'
   )};
-  height: 100px;
-  line-height: 100px;
   text-align: center;
 `;
 
 const NewPrice = styled.div`
-  line-height: 100%;
-  font-size: 1.2em;
   color: red;
   margin-left: 20px;
-  height: 100px;
-  line-height: 100px;
   text-align: center;
 `;
 

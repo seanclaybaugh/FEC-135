@@ -20,6 +20,7 @@ const StyledTitleContainer = styled.div`
   flex-direction: row;
   justify-content: space-between;
   align-items: flex-start;
+  margin: 20px 0;
 `;
 
 function Header({ product, metaData }) {
