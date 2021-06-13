@@ -63,7 +63,8 @@ const StyledArrowContainer = styled.div`
   left: ${(props) => props.position};
   :hover {
     cursor: pointer;
-    opacity: 75%;
+    opacity: 50%;
+    margin-bottom: 4px;
   }
 `;
 
