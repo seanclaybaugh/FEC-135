@@ -8,7 +8,8 @@ import axios from 'axios';
 const Img = styled.img`
   width: 130px;
   height: 100px;
-  padding-right: 5px;
+  padding-right: 8px;
+  padding-top: 5px;
   border-radius: 10px;
   order: 2;
 
@@ -33,6 +34,7 @@ const AnswerInfoWrapper = styled.div`
   justify-content: flex-start;
   align-items: center;
   align-content: center;
+  font-weight: lighter;
 
 `
 
@@ -48,6 +50,7 @@ const ImageWrapper = styled.div`
 const Answer = styled.div`
   order: 1;
   flex-basis: 5%;
+  font-weight: bold;
 `
 
 const AnswerBody = styled.div`
@@ -62,19 +65,21 @@ const AnswerInfo = styled.div`
 
 const AnswerInfoName = styled.div`
   order: 2;
-  flex-basis: 20%;
-`
-const AnswerInfoDate = styled.div`
-  order: 3;
-  flex-basis: 25%;
+  flex-basis: 40%;
+  border-right: solid;
+  border-width: 1px
 `
 
 const AnswerInfoHelp = styled.div`
-  order: 4;
+  order: 3;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-right: solid;
+  border-width: 1px
 `
 
 const AnswerInfoReport = styled.div`
-  order: 5;
+  order: 4;
 `
 
 const Image = styled.div`
@@ -133,12 +138,8 @@ const AnswersPerQuestion = props => {
         <AnswerInfo></AnswerInfo>
 
         <AnswerInfoName>
-          By: {props.answer.answerer_name}
+          By: {props.answer.answerer_name}, {date}
         </AnswerInfoName>
-
-        <AnswerInfoDate>
-          {date}
-        </AnswerInfoDate>
 
         <AnswerInfoHelp>
           Helpful?

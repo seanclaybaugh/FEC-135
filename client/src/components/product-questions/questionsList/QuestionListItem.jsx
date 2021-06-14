@@ -27,16 +27,20 @@ const Wrapper = styled.div`
 const Question = styled.div`
   order: 1;
   flex-basis: 5%;
+  font-weight: bold;
 `
 const QuestionBody = styled.div`
   order: 2;
   flex-basis: 55%;
+  font-weight: bold;
 
 `
 
 const QuestionHelpful = styled.div`
   order: 3;
-  flex-basis: 23%;
+  flex-basis: 22%;
+  border-right: solid;
+  border-width: 1px
 `
 
 const QuestionAddAnswer = styled.div`
