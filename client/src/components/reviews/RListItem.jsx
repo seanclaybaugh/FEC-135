@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import moment from 'moment';
 import ReviewPhotoItem from './RPhotoItem'
 import styled from 'styled-components';
+import { FcCheckmark } from 'react-icons/fc';
 
 const Header = styled.div`
 display: flex;
@@ -58,7 +59,7 @@ function ReviewListItem ({ body, date, helpfulness, photos, rating, recommend, r
       </div>
     </Header>
     <div>
-      {(recommend) && <RecContainer>I recommend this product -checkmark-</RecContainer>}
+      {(recommend) && <RecContainer>I recommend this product <FcCheckmark /></RecContainer>}
     </div>
     <div>
       <SumContainer>

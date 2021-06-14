@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import styled from 'styled-components';
+import StarRating from './StarRating';
+import ReviewChars from './ReviewChars';
 
 const Overlay = styled.div`
   position: fixed;
@@ -48,7 +50,7 @@ const FormSubtext = styled.span`
 font-weight: 100;
 font-size: .5em;
 `
-const AddReviewModal = ({isShowing, toggle, username, setUsername, reviewSummary, setReviewSummary, product, reviewBody, setReviewBody, email, setPhotos, fileUploadHandler}) => isShowing ? ReactDOM.createPortal(
+const AddReviewModal = ({isShowing, toggle, username, setUsername, reviewSummary, setReviewSummary, product, reviewBody, setReviewBody, email, setEmail, setPhotos, fileUploadHandler, thumbs, rating, setRating, recommend, setRecommend, reviewSubmit, setFitNum, setComNum , setLenNum, setQualNum, characteristics, setSizeNum, setWidthNum }) => isShowing ? ReactDOM.createPortal(
 
   <>
     <Overlay/>
@@ -62,8 +64,11 @@ const AddReviewModal = ({isShowing, toggle, username, setUsername, reviewSummary
           </ModalHeader>
         <h3>Write your review</h3>
         <h5>about {product}</h5>
-        <form onSubmit={()=>{toggle()}}>
+        <form onSubmit={(e)=>{
+          toggle()
+          reviewSubmit(e)}}>
         <ModalForm>
+            <StarRating rating={rating} setRating={setRating} />
           <label>Username*:
             <input  type="text" value={username} placeholder="Example: jackson11!" maxLength="60" style={{ width:"200px"}} onChange={(e)=> setUsername(e.target.value)}></input>
           </label>
@@ -79,11 +84,19 @@ const AddReviewModal = ({isShowing, toggle, username, setUsername, reviewSummary
             <input type="text" value={email} placeholder="Example: jackson11@email.com" style={{ width:"200px"}} onChange={(e)=> setEmail(e.target.value)}></input>
           </label>
           <FormSubtext>For authentication reasons, you will not be emailed</FormSubtext>
-          </ModalForm>
-          <label> Add Photos:
-            <input type="file" onChange={(e)=> setPhotos(e.target.files)}></input>
-            <button onClick={fileUploadHandler}>Upload</button>
+
+          <ReviewChars setFitNum={setFitNum} setComNum={setComNum} setLenNum={setLenNum} setQualNum={setQualNum} characteristics={characteristics} setSizeNum={setSizeNum} setWidthNum={setWidthNum} />
+
+          <label> Recommend this product?
+          <input type="radio" name="recommend" value={true} onChange={()=> setRecommend(true)}/>Yes
+          <input type="radio" name="recommend" value={false} onChange={()=> setRecommend(false)} />No
           </label>
+          <label> {`Add Photos: `}
+            <input type="file" onChange={(e)=> setPhotos(e.target.files)}></input>
+            <button onClick={()=>fileUploadHandler(event)}>Upload</button>
+          </label>
+          </ModalForm>
+          <input type="submit" value="Submit" />
         </form>
       </Modal>
     </Wrapper>
@@ -91,7 +104,3 @@ const AddReviewModal = ({isShowing, toggle, username, setUsername, reviewSummary
 ) : null;
 
 export default AddReviewModal;
-//Portal - this allows react components to render in another part of the DOM, outside of their parent component
-//use a portal to mount this modal component to the end of document.body, rather than as a child of another component
-//For better accessibility - portal allows us to append the modal componenet to the outside of inner elements
-//createPortal takes 2 arguments: 1 - the component we want to render, 2 - the location of where we want to append the componenet - document.body

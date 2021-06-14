@@ -7,6 +7,7 @@ import styled from 'styled-components';
 import AddReviewModal from './AddReviewModal';
 import useModals from './useModals';
 import config from '../../../../config.js'
+import postHelperChars from './helpers/postHelperChars'
 
 const MainContainer = styled.div`
 display: flex;
@@ -46,22 +47,63 @@ function reviewsIndex(props) {
   const [reviewBody, setReviewBody] = useState('');
   const [email, setEmail] = useState('');
   const [photos, setPhotos] = useState([]);
+  const [thumbs, setThumbs] = useState([]);
+  const [photoUrls, setPhotoUrls] = useState([]);
+  const [rating, setRating] = useState(null);
+  const [recommend, setRecommend] = useState(null);
+  const [fitNum, setFitNum] = useState(null);
+  const [comNum, setComNum] = useState(null);
+  const [lenNum, setLenNum] = useState(null);
+  const [qualNum, setQualNum] = useState(null);
+  const [widthNum, setWidthNum] = useState(null);
+  const [sizeNum, setSizeNum] = useState(null);
+  const [characteristics, setCharacteristics] = useState({})
 
+  function reviewSubmit () {
 
+    //format data from state
+    //submit data to API w post
+    //clear all state
+    const charsobj = postHelperChars(metaData.characteristics);
+    const body = {
+      product_id: props.productId,
+      rating: rating,
+      summary: reviewSummary,
+      body: reviewBody,
+      recommend: recommend,
+      name: username,
+      email: email,
+      photos: photoUrls,
+      characteristics: charsobj,
+    }
+    console.log(body)
+    //axios.post('/api/reviews', body)
 
+  }
 
+//uploads files to imgBB and returns thumb/image urls
+
+/*TODO:
+handle multiple image uploads at once
+limit to 5 images- conditional render based on photos.length => 5
+display thumbnails in modal
+figure out upload button to not close modal or reset review data
+*/
   function fileUploadHandler () {
     const fd = new FormData();
     fd.append('image', photos[0], photos[0].name);
-    axios.post(`https://api.imgbb.com/1/upload?key=${config.imgtoken}`, fd)
-      .then(res => {
-      console.log(res);
-
-      res.data.image
-      })
-
-    //
+    const getUrls = async (form) =>{
+      const result = await axios.post(`https://api.imgbb.com/1/upload?key=${config.imgtoken}`, form)
+      let x = thumbs;
+      let y = photoUrls;
+      x.push(result.data.data.thumb.url);
+      y.push(result.data.data.image.url);
+      setPhotoUrls(y);
+      setThumbs(x);
+    }
+      getUrls(fd);
   }
+
 
 
 
@@ -81,8 +123,10 @@ function reviewsIndex(props) {
     const getMeta = async () => {
       const result = await axios.get(`/api/reviews/meta?product_id=${props.productId}`);
       setMetaData(result.data);
+      setCharacteristics(postHelperChars(result.data.characteristics));
     };
     getMeta();
+    setCharacteristics();
   }, []);
 
   useEffect(()=>{
@@ -127,7 +171,8 @@ function reviewsIndex(props) {
         )}
         <div>
               {!isShowing && <Button1 onClick={toggle}>Add Review</Button1>}
-              <AddReviewModal isShowing={isShowing} toggle={toggle} setUsername={setUsername} username={username} reviewSummary={reviewSummary} setReviewSummary={setReviewSummary} product={product} reviewBody={reviewBody} setReviewBody={setReviewBody} setPhotos={setPhotos} fileUploadHandler={fileUploadHandler} />
+              <AddReviewModal isShowing={isShowing} toggle={toggle} setUsername={setUsername} username={username} reviewSummary={reviewSummary} setReviewSummary={setReviewSummary} product={product} reviewBody={reviewBody} setReviewBody={setReviewBody} setPhotos={setPhotos} fileUploadHandler={fileUploadHandler} thumbs={thumbs} rating={rating} setRating={setRating} recommend={recommend} setRecommend={setRecommend} email={email} setEmail={setEmail} reviewSubmit={reviewSubmit}
+              setFitNum={setFitNum} setComNum={setComNum} setLenNum={setLenNum} setQualNum={setQualNum} setSizeNum={setSizeNum} setWidthNum={setWidthNum} characteristics={characteristics} />
         </div>
     </>
 
