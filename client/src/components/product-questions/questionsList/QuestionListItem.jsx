@@ -10,6 +10,37 @@ const ShowAnswerBtn = styled.div`
   background: transparent;
   font-weight: bold;
   cursor: pointer;
+  &:hover {
+    text-decoration: underline;
+  }
+`
+
+const Wrapper = styled.div`
+  display: flex;
+  flex-direciton: column;
+  justify-content: flex-start;
+  align-items: center;
+  align-content: center;
+  // padding: 5px;
+
+`
+const Question = styled.div`
+  order: 1;
+  flex-basis: 5%;
+`
+const QuestionBody = styled.div`
+  order: 2;
+  flex-basis: 55%;
+
+`
+
+const QuestionHelpful = styled.div`
+  order: 3;
+  flex-basis: 23%;
+`
+
+const QuestionAddAnswer = styled.div`
+  order: 4;
 `
 
 const List = styled.ul`
@@ -83,28 +114,35 @@ const QuestionListItem = props => {
 
   return (
     <>
-      <div>
-        <span>
-          Q: <HighlightedText
-            textBody={props.question.question_body}
-            searchText={props.searchText}
-            />
-           |
-          Helpful?
+    <Wrapper>
+      <Question>Q:</Question>
 
-          <SharedStyles.QuestionBtn onClick={handleHelpfulClick}>Yes</SharedStyles.QuestionBtn>
+      <QuestionBody>
+        <HighlightedText
+        textBody={props.question.question_body}
+        searchText={props.searchText}
+        />
+      </QuestionBody>
 
-          #({props.question.question_helpfulness}) |
-          <SharedStyles.QuestionBtn onClick={dismissAnswerForm}> Add Answer </SharedStyles.QuestionBtn>
-            {addAnswerClicked && <AddAnswerForm
-              questionId={questionId}
-              dismissAnswerForm={dismissAnswerForm}
-              question={props.question.question_body}
-              handleAddedAnswer={handleAddedAnswer}
-            />}
-        <br/>
-        </span>
+      <QuestionHelpful>
+        Helpful?
+        <SharedStyles.QuestionBtn onClick={handleHelpfulClick}>Yes</SharedStyles.QuestionBtn>
+        #({props.question.question_helpfulness})
+      </QuestionHelpful>
 
+      <QuestionAddAnswer>
+        <SharedStyles.QuestionBtn onClick={dismissAnswerForm}> Add Answer </SharedStyles.QuestionBtn>
+          {addAnswerClicked && <AddAnswerForm
+            questionId={questionId}
+            dismissAnswerForm={dismissAnswerForm}
+            question={props.question.question_body}
+            handleAddedAnswer={handleAddedAnswer}
+          />}
+      </QuestionAddAnswer>
+
+    </Wrapper>
+
+          <br/>
         {visibleAnswers.map((answer, i) =>
           <AnswersPerQuestion
           key={i}
@@ -119,8 +157,6 @@ const QuestionListItem = props => {
       {enoughAnswersToExpand && <ShowAnswerBtn onClick={toggleExpanded}>{buttonText}</ShowAnswerBtn>}
 
       <br/>
-      <br/>
-      </div>
 
     </>
   )

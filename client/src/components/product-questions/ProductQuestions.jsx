@@ -173,6 +173,7 @@ function ProductQuestions() {
   }
 
   return (
+
     <Container>
 
       {isError && <div>Error with get data...</div>}
@@ -181,7 +182,6 @@ function ProductQuestions() {
       <SearchQuestions
         handlSearchTextChanged={handlSearchTextChanged}
       />
-
 
       <QuestionsList
         questions={filteredQuestions}

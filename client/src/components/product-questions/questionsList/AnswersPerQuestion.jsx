@@ -8,14 +8,78 @@ import axios from 'axios';
 const Img = styled.img`
   width: 130px;
   height: 100px;
-  padding: 5px;
+  padding-right: 5px;
   border-radius: 10px;
+  order: 2;
 
-  // &:hover,
-  // &:focus {
-  //   border-radius: 20px;
-  // }
+  &:hover,
+  &:focus {
+    border-radius: 20px;
+  }
+`
 
+const AnswerWrapper = styled.div`
+  display: flex;
+  flex-direciton: column;
+  justify-content: flex-start;
+  align-items: center;
+  align-content: center;
+  // padding: 5px;
+
+`
+const AnswerInfoWrapper = styled.div`
+  display: flex;
+  flex-direciton: column;
+  justify-content: flex-start;
+  align-items: center;
+  align-content: center;
+
+`
+
+const ImageWrapper = styled.div`
+  display: flex;
+  flex-direciton: column;
+  justify-content: flex-start;
+  align-items: center;
+  align-content: center;
+
+`
+
+const Answer = styled.div`
+  order: 1;
+  flex-basis: 5%;
+`
+
+const AnswerBody = styled.div`
+  order: 2;
+
+`
+
+const AnswerInfo = styled.div`
+  order: 1;
+  flex-basis: 5%;
+`
+
+const AnswerInfoName = styled.div`
+  order: 2;
+  flex-basis: 20%;
+`
+const AnswerInfoDate = styled.div`
+  order: 3;
+  flex-basis: 25%;
+`
+
+const AnswerInfoHelp = styled.div`
+  order: 4;
+`
+
+const AnswerInfoReport = styled.div`
+  order: 5;
+`
+
+const Image = styled.div`
+  order: 1;
+  flex-basis: 5%;
 `
 
 const AnswersPerQuestion = props => {
@@ -53,30 +117,52 @@ const AnswersPerQuestion = props => {
 
 
   return (
+    <>
+      <AnswerWrapper>
+        <Answer>A:</Answer>
 
-    <span className="answerListItem">
-      A: <HighLightedText
-      textBody={props.answer.body}
-      searchText={props.searchText}
-      />
-      <div>
-      By: {props.answer.answerer_name} |
-      {date} |
-      Helpful?
-      <SharedStyles.QuestionBtn onClick={handleHelpfulAnswerClick}>Yes</SharedStyles.QuestionBtn>
-       #({props.answer.helpfulness}) |
+        <AnswerBody>
+          <HighLightedText
+          textBody={props.answer.body}
+          searchText={props.searchText}
+          />
+        </AnswerBody>
+      </AnswerWrapper>
 
-      <SharedStyles.QuestionBtn onClick={handleReportAnswerClick}>Report</SharedStyles.QuestionBtn>
+      <AnswerInfoWrapper>
+        <AnswerInfo></AnswerInfo>
 
-      <div>
+        <AnswerInfoName>
+          By: {props.answer.answerer_name}
+        </AnswerInfoName>
+
+        <AnswerInfoDate>
+          {date}
+        </AnswerInfoDate>
+
+        <AnswerInfoHelp>
+          Helpful?
+          <SharedStyles.QuestionBtn onClick={handleHelpfulAnswerClick}>Yes</SharedStyles.QuestionBtn>
+          #({props.answer.helpfulness})
+        </AnswerInfoHelp>
+
+        <AnswerInfoReport>
+          <SharedStyles.QuestionBtn onClick={handleReportAnswerClick}>Report</SharedStyles.QuestionBtn>
+        </AnswerInfoReport>
+
+      </AnswerInfoWrapper>
+
+      <ImageWrapper>
+
+        <Image></Image>
+
         {photos.map((photo, index) => {
           return <Img key={index} src={photo}/>
         })}
-      </div>
-      </div>
-      <br/>
-    </span>
+      </ImageWrapper>
 
+      <br/>
+</>
   )
 
 }
