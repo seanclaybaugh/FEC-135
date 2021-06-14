@@ -3,6 +3,9 @@ import styled from 'styled-components';
 import AnswerStyles from './AnswerStyles.jsx';
 import SharedStyles from '../SharedStyles';
 import HighLightedText from './HighlightedText';
+// import { BiCaretUp } from "react-icons/bi";
+import { AiFillCaretUp } from "react-icons/ai";
+import { BsFlagFill } from "react-icons/bs";
 import moment from 'moment';
 import axios from 'axios';
 
@@ -63,13 +66,11 @@ const AnswersPerQuestion = props => {
 
         <AnswerStyles.AnswerInfoHelp>
           Helpful?
-          <SharedStyles.QuestionItem onClick={handleHelpfulAnswerClick}>Yes</SharedStyles.QuestionItem>
+          <SharedStyles.QuestionItem onClick={handleHelpfulAnswerClick}><AiFillCaretUp/></SharedStyles.QuestionItem>
           #({props.answer.helpfulness})
         </AnswerStyles.AnswerInfoHelp>
 
-        <AnswerStyles.AnswerInfoReport>
-          <SharedStyles.QuestionItem onClick={handleReportAnswerClick}>Report</SharedStyles.QuestionItem>
-        </AnswerStyles.AnswerInfoReport>
+        <AnswerStyles.AnswerInfoReport onClick={handleReportAnswerClick}>Report <BsFlagFill/></AnswerStyles.AnswerInfoReport>
 
       </AnswerStyles.AnswerInfoWrapper>
 

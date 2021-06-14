@@ -5,6 +5,7 @@ import HighlightedText from './HighlightedText';
 import styled from 'styled-components';
 import QuestionItemStyle from './QuestionItemStyle';
 import SharedStyles from '../SharedStyles';
+import { AiFillCaretUp } from "react-icons/ai";
 import axios from 'axios';
 
 
@@ -86,19 +87,19 @@ const QuestionListItem = props => {
 
         <QuestionItemStyle.QuestionHelpful>
           Helpful?
-          <SharedStyles.QuestionItem onClick={handleHelpfulClick}>Yes</SharedStyles.QuestionItem>
+          <SharedStyles.QuestionItem onClick={handleHelpfulClick}><AiFillCaretUp/></SharedStyles.QuestionItem>
           #({props.question.question_helpfulness})
         </QuestionItemStyle.QuestionHelpful>
 
-        <QuestionItemStyle.QuestionAddAnswer>
-          <SharedStyles.QuestionItem onClick={dismissAnswerForm}> Answer this Question </SharedStyles.QuestionItem>
+
+          <QuestionItemStyle.QuestionAddAnswer onClick={dismissAnswerForm}> Answer this Question </QuestionItemStyle.QuestionAddAnswer>
             {addAnswerClicked && <AddAnswerForm
               questionId={questionId}
               dismissAnswerForm={dismissAnswerForm}
               question={props.question.question_body}
               handleAddedAnswer={handleAddedAnswer}
             />}
-        </QuestionItemStyle.QuestionAddAnswer>
+
 
         </QuestionItemStyle.Wrapper>
           <br/>

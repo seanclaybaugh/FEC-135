@@ -45,11 +45,22 @@ const QuestionHelpful = styled.div`
   padding-left: 1px;
 `
 
-const QuestionAddAnswer = styled.div`
+const QuestionAddAnswer = styled.button`
   order: 4;
   font-weight: 300;
-  font-size: 10px;
-  padding-left: 1px;
+  font-size: 12px;
+  padding-left: 6px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  &:hover {
+    text-decoration: underline;
+  }
+  display: inline-block;
+
+  font-family:  Roboto, Arial, Helvetica, sans-serif;
+  letter-spacing: .05rem;
+
 `
 
 const List = styled.ul`

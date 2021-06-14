@@ -4,21 +4,33 @@ import styled from 'styled-components';
 const Button = styled.button`
   background-color: transparent;
   border-radius: 10px;
-  border: 2px solid red;
-  color: red;
+  border: 2px solid teal;
+  color: teal;
   margin: 0.5em 1em;
   padding: 1rem 1rem;
-  transition: border-color 0.2s ease 0s;
+  cursor: pointer;
+
+  &:hover,
+  &:focus {
+    border: 1px solid transparent;
+    border-bottom: 1px solid #575756;
+    border-radius: 0;
+    background-position: 100% center;
+  }
+
 `
 
 //helpfulness, add answer, report answer
 const QuestionItem = styled.button`
   background: transparent;
   border: none;
-  text-decoration: underline;
+  // text-decoration: underline;
   cursor: pointer;
-  font-weight: 100;
-  font-size: 12px;
+  // font-weight: 20;
+  // font-size: 12px;
+  &:hover {
+    text-decoration: underline;
+  }
 `
 
 export default {

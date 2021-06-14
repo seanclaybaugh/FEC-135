@@ -78,11 +78,21 @@ const AnswerInfoHelp = styled.div`
 
 `
 
-const AnswerInfoReport = styled.div`
+const AnswerInfoReport = styled.button`
   order: 4;
   padding-left: 5px;
-  // font-family:  Roboto, Arial, Helvetica, sans-serif;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-weight: 20;
+  font-size: 10px;
+  &:hover {
+    text-decoration: underline;
+  }
+  display: inline-block;
 
+  font-family:  Roboto, Arial, Helvetica, sans-serif;
+  letter-spacing: .05rem;
 `
 
 const Image = styled.div`
