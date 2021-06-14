@@ -61,10 +61,22 @@ function reviewsIndex(props) {
 
   function reviewSubmit () {
 
-    //format data from state
-    //submit data to API w post
-    //clear all state
-    const charsobj = postHelperChars(metaData.characteristics);
+  let charObjHelper = (characteristics) => {
+      let result = {}
+      for (var key in characteristics) {
+        let val;
+        key == 'Fit' ? val = fitNum
+        : key == 'Size' ? val = sizeNum
+        : key == 'Quality' ? val = qualNum
+        : key == 'Width' ? val = widthNum
+        : key == 'Length' ? val = lenNum
+        : val = comNum
+        result[characteristics[key]] = val
+      }
+      return result;
+    };
+    let charsobj = charObjHelper(characteristics);
+
     const body = {
       product_id: props.productId,
       rating: rating,
@@ -76,14 +88,19 @@ function reviewsIndex(props) {
       photos: photoUrls,
       characteristics: charsobj,
     }
-    console.log(body)
-    //axios.post('/api/reviews', body)
 
+    const postReview = async () => {
+      const result = await axios.post(`/api/reviews`, body);
+      console.log(result);
+      //reset reviews states
+    }
+    postReview();
   }
 
-//uploads files to imgBB and returns thumb/image urls
 
-/*TODO:
+/*
+uploads image files to imgBB and returns thumb/image urls
+TODO:
 handle multiple image uploads at once
 limit to 5 images- conditional render based on photos.length => 5
 display thumbnails in modal

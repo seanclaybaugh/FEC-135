@@ -93,11 +93,15 @@ const AddReviewModal = ({isShowing, toggle, username, setUsername, reviewSummary
           </label>
           <label> {`Add Photos: `}
             <input type="file" onChange={(e)=> setPhotos(e.target.files)}></input>
-            <button onClick={()=>fileUploadHandler(event)}>Upload</button>
+            <button onClick={()=>fileUploadHandler()}>Upload</button>
           </label>
           </ModalForm>
-          <input type="submit" value="Submit" />
+          <button onClick={(e)=>{
+
+            reviewSubmit(e)
+            toggle()}} >Submit Review</button>
         </form>
+
       </Modal>
     </Wrapper>
   </>, document.body
