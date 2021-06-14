@@ -46,6 +46,20 @@ const List = styled.ul`
   padding: none;
 `
 
+const MoreWrapper = styled.div`
+  display: flex;
+`
+
+const MoreAnswer = styled.div`
+  order: 1;
+  flex-basis: 5%;
+`
+
+const MoreTxt = styled.div`
+  order: 2;
+
+`
+
 export default {
   ShowAnswerBtn,
   Wrapper,
@@ -54,4 +68,7 @@ export default {
   QuestionHelpful,
   QuestionAddAnswer,
   List,
+  MoreWrapper,
+  MoreAnswer,
+  MoreTxt,
 };

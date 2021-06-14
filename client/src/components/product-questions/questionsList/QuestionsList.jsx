@@ -37,7 +37,7 @@ const QuestionsList = props => {
 
   const visibleQuestions = expanded ? props.questions : props.questions.slice(0, props.questionsPerPage - 1);
   const enoughQuestionsToShowExpand = props.questions.length > props.questionsPerPage - 1;
-  const buttonText = expanded ? "Collapse Questions" : "Show More Questions";
+  const buttonText = expanded ? "COLLAPSE QUESTIONS" : "MORE ANSWERED QUESTIONS";
   const toggleFunction = expanded ? handleCollapse : handleExpand;
 
 
@@ -63,7 +63,7 @@ const QuestionsList = props => {
       <div>
         {enoughQuestionsToShowExpand && <SharedStyles.Button onClick={toggleFunction}>{buttonText}</SharedStyles.Button>}
 
-        <SharedStyles.Button onClick={handleAddQuestionClicked}>Add Question</SharedStyles.Button>
+        <SharedStyles.Button onClick={handleAddQuestionClicked}>ADD A QUESTION</SharedStyles.Button>
         {addQuestionClicked && <AddQuestionForm
         handleDismissAddQuestion={handleDismissAddQuestion}
         productId={props.productId}

@@ -69,7 +69,7 @@ const QuestionListItem = props => {
   const allAnswers = Object.values(answers);
   const visibleAnswers = expanded ? allAnswers : allAnswers.slice(0, 2);
   const enoughAnswersToExpand = allAnswers.length > 2;
-  const buttonText = expanded ? "Collapse Answers" : "Show More Answers";
+  const buttonText = expanded ? "COLLAPSE ANSWERS" : "LOAD MORE ANSWERS";
 
   return (
     <>
@@ -113,10 +113,22 @@ const QuestionListItem = props => {
           />
         )}
 
-      {enoughAnswersToExpand && <QuestionItemStyle.ShowAnswerBtn onClick={toggleExpanded}>{buttonText}</QuestionItemStyle.ShowAnswerBtn>}
+
+
+
+        {enoughAnswersToExpand &&
+          <QuestionItemStyle.MoreWrapper>
+
+            <QuestionItemStyle.MoreAnswer></QuestionItemStyle.MoreAnswer>
+
+            <QuestionItemStyle.MoreTxt>
+              <QuestionItemStyle.ShowAnswerBtn onClick={toggleExpanded}>{buttonText}</QuestionItemStyle.ShowAnswerBtn>
+            </QuestionItemStyle.MoreTxt>
+
+          </QuestionItemStyle.MoreWrapper>
+        }
 
       <br/>
-
     </>
   )
 }
