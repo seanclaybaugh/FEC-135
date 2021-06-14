@@ -9,28 +9,55 @@ import Price from './Price';
 import CurrentStyleContext from '../../contexts/CurrentStyleContext';
 import sampleStyle from '../../../../../spec/sampleStyle';
 
-function renderStyleContext(style, props) {
-  return render(
-    <CurrentStyleContext.Provider value={style}>
-      <Price price={props} />
-    </CurrentStyleContext.Provider>,
-  );
-}
+// function renderStyleContext(style, price) {
+//   return render(
+    // <CurrentStyleContext.Provider value={style}>
+    //   <Price price={price} />
+    // </CurrentStyleContext.Provider>,
+//   );
+// }
 
 describe('Price', () => {
-  test('should render component', () => {
-    const style = sampleStyle;
+  test('should render component with the original price of the current style', () => {
     const defaultPrice = '$100';
-    const original = '$90';
-    const sale = null;
-    render(renderStyleContext(style, defaultPrice));
+    const style = {
+      currentStyle: sampleStyle[0],
+      setCurrentStyle: () => {},
+    };
+
+    render(
+      <CurrentStyleContext.Provider value={style}>
+        <Price price={defaultPrice} />
+      </CurrentStyleContext.Provider>,
+    );
+
+    const originalPriceComponent = screen.getByTestId('original');
+
+    expect(originalPriceComponent).toBeInTheDocument();
+    expect(originalPriceComponent.textContent).toEqual('$99');
+    expect(originalPriceComponent.textContent).not.toEqual(defaultPrice);
+    expect(originalPriceComponent.textContent).not.toEqual(null);
+  });
+  test('should render component with the sale price if not null', () => {
+    const defaultPrice = '$100';
+    const style = {
+      currentStyle: sampleStyle[1],
+      setCurrentStyle: () => {},
+    };
+
+    render(
+      <CurrentStyleContext.Provider value={style}>
+        <Price price={defaultPrice} />
+      </CurrentStyleContext.Provider>,
+    );
 
     const originalPriceComponent = screen.getByTestId('original');
     const salePriceComponent = screen.getByTestId('sale');
 
     expect(originalPriceComponent).toBeInTheDocument();
     expect(originalPriceComponent.textContent).not.toEqual(defaultPrice);
-    expect(originalPriceComponent.textContent).toEqual(original);
-    expect(salePriceComponent).not.toBeInTheDocument();
+    expect(originalPriceComponent.textContent).toEqual('$140');
+    expect(salePriceComponent).toBeInTheDocument();
+    expect(salePriceComponent.textContent).toEqual('$100');
   });
 });

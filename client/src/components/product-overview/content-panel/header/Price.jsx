@@ -23,7 +23,6 @@ const NewPrice = styled.div`
 
 function Price({ price }) {
   const { currentStyle } = useContext(CurrentStyleContext);
-  console.log(price);
   const currentPrice = !currentStyle ? price : parseInt(currentStyle.original_price, 10);
   const salePrice = !currentStyle.sale_price ? null : parseInt(currentStyle.sale_price, 10);
   let newPriceDisplay;

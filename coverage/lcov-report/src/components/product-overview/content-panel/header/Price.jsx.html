@@ -23,16 +23,16 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">73.33% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>33/45</span>
+                <span class='fraction'>44/44</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">33.33% </span>
+                <span class="strong">87.5% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>2/6</span>
+                <span class='fraction'>7/8</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">73.33% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>33/45</span>
+                <span class='fraction'>44/44</span>
             </div>
         
             
@@ -55,7 +55,7 @@
             Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
         </p>
     </div>
-    <div class='status-line medium'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -101,8 +101,7 @@
 <a name='L42'></a><a href='#L42'>42</a>
 <a name='L43'></a><a href='#L43'>43</a>
 <a name='L44'></a><a href='#L44'>44</a>
-<a name='L45'></a><a href='#L45'>45</a>
-<a name='L46'></a><a href='#L46'>46</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L45'></a><a href='#L45'>45</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -125,26 +124,25 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React, { useContext } from 'react';
@@ -172,24 +170,23 @@ const NewPrice = styled.div`
 &nbsp;
 function Price({ price }) {
   const { currentStyle } = useContext(CurrentStyleContext);
-  console.log(price);
-  const currentPrice = <span class="branch-0 cbranch-no" title="branch not covered" >!currentStyle ? price : parseInt(c</span>urrentStyle.original_price, 10);
-  const salePrice = <span class="branch-0 cbranch-no" title="branch not covered" ><span class="branch-0 cbranch-no" title="branch not covered" >!currentStyle.sale_price ? null : p</span>arseInt(c</span>urrentStyle.sale_price, 10);
+  const currentPrice = <span class="branch-0 cbranch-no" title="branch not covered" >!currentStyle ? price : p</span>arseInt(currentStyle.original_price, 10);
+  const salePrice = !currentStyle.sale_price ? null : parseInt(currentStyle.sale_price, 10);
   let newPriceDisplay;
 &nbsp;
-  if (salePrice) <span class="branch-0 cbranch-no" title="branch not covered" >{</span>
-<span class="cstat-no" title="statement not covered" >    newPriceDisplay = &lt;NewPrice data-testid="sale"&gt;{`$${salePrice}`}&lt;/NewPrice&gt;;</span>
-<span class="cstat-no" title="statement not covered" >  } else {</span>
-<span class="cstat-no" title="statement not covered" >    newPriceDisplay = '';</span>
-<span class="cstat-no" title="statement not covered" >  }</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >  return (</span>
-<span class="cstat-no" title="statement not covered" >    &lt;StyledPriceContainer&gt;</span>
-<span class="cstat-no" title="statement not covered" >      &lt;OriginalPrice data-testid="original" currentStyle={currentStyle}&gt;{`$${currentPrice}`}&lt;/OriginalPrice&gt;</span>
-<span class="cstat-no" title="statement not covered" >      {newPriceDisplay}</span>
-<span class="cstat-no" title="statement not covered" >    &lt;/StyledPriceContainer&gt;</span>
-<span class="cstat-no" title="statement not covered" >  );</span>
-<span class="cstat-no" title="statement not covered" >}</span>
+  if (salePrice) {
+    newPriceDisplay = &lt;NewPrice data-testid="sale"&gt;{`$${salePrice}`}&lt;/NewPrice&gt;;
+  } else {
+    newPriceDisplay = '';
+  }
+&nbsp;
+  return (
+    &lt;StyledPriceContainer&gt;
+      &lt;OriginalPrice data-testid="original" currentStyle={currentStyle}&gt;{`$${currentPrice}`}&lt;/OriginalPrice&gt;
+      {newPriceDisplay}
+    &lt;/StyledPriceContainer&gt;
+  );
+}
 &nbsp;
 export default Price;
 &nbsp;</pre></td></tr></table></pre>
@@ -199,7 +196,7 @@ export default Price;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Sun Jun 13 2021 23:17:51 GMT-0700 (Pacific Daylight Time)
+                at Mon Jun 14 2021 13:12:51 GMT-0700 (Pacific Daylight Time)
             </div>
         </div>
         <script src="../../../../../prettify.js"></script>
