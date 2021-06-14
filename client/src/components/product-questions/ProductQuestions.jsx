@@ -15,7 +15,7 @@ const Container = styled.div`
 function ProductQuestions() {
 
   const props = {
-    productId: 25279
+    productId: 25167
   }
 
   const [questionList, setQuestionList] = useState([]);

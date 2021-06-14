@@ -26,14 +26,14 @@ const CloseButton = styled.button`
   float: right;
 `
 
-const Button = styled.button`
-  background-color: transparent;
-  border-radius: 3px;
-  border: 2px solid teal;
-  color: teal;
-  margin: 0.5em 1em;
-  padding: 1rem 2rem;
-`
+// const Button = styled.button`
+//   background-color: transparent;
+//   border-radius: 3px;
+//   border: 2px solid teal;
+//   color: teal;
+//   margin: 0.5em 1em;
+//   padding: 1rem 2rem;
+// `
 const QuestionBtn = styled.button`
   background: transparent;
   border: none;
@@ -47,6 +47,6 @@ export default {
   ModalBackground,
   ModalContent,
   CloseButton,
-  Button,
+
   QuestionBtn,
 }

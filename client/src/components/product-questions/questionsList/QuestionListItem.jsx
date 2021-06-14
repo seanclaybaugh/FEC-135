@@ -72,49 +72,46 @@ const QuestionListItem = props => {
   const buttonText = expanded ? "COLLAPSE ANSWERS" : "LOAD MORE ANSWERS";
 
   return (
-    <>
-    <QuestionItemStyle.Wrapper>
-      <QuestionItemStyle.Question>Q:</QuestionItemStyle.Question>
+    <QuestionItemStyle.Container>
 
-      <QuestionItemStyle.QuestionBody>
-        <HighlightedText
-        textBody={props.question.question_body}
-        searchText={props.searchText}
-        />
-      </QuestionItemStyle.QuestionBody>
+      <QuestionItemStyle.Wrapper>
+        <QuestionItemStyle.Question>Q:</QuestionItemStyle.Question>
 
-      <QuestionItemStyle.QuestionHelpful>
-        Helpful?
-        <SharedStyles.QuestionItem onClick={handleHelpfulClick}>Yes</SharedStyles.QuestionItem>
-        #({props.question.question_helpfulness})
-      </QuestionItemStyle.QuestionHelpful>
-
-      <QuestionItemStyle.QuestionAddAnswer>
-        <SharedStyles.QuestionItem onClick={dismissAnswerForm}> Add Answer </SharedStyles.QuestionItem>
-          {addAnswerClicked && <AddAnswerForm
-            questionId={questionId}
-            dismissAnswerForm={dismissAnswerForm}
-            question={props.question.question_body}
-            handleAddedAnswer={handleAddedAnswer}
-          />}
-      </QuestionItemStyle.QuestionAddAnswer>
-
-    </QuestionItemStyle.Wrapper>
-
-          <br/>
-        {visibleAnswers.map((answer, i) =>
-          <AnswersPerQuestion
-          key={i}
-          answer={answer}
-          handleAnswerHelpful={props.handleAnswerHelpful}
-          handleAnswerReport={props.handleAnswerReport}
+        <QuestionItemStyle.QuestionBody>
+          <HighlightedText
+          textBody={props.question.question_body}
           searchText={props.searchText}
-          questionId={questionId}
           />
-        )}
+        </QuestionItemStyle.QuestionBody>
 
+        <QuestionItemStyle.QuestionHelpful>
+          Helpful?
+          <SharedStyles.QuestionItem onClick={handleHelpfulClick}>Yes</SharedStyles.QuestionItem>
+          #({props.question.question_helpfulness})
+        </QuestionItemStyle.QuestionHelpful>
 
+        <QuestionItemStyle.QuestionAddAnswer>
+          <SharedStyles.QuestionItem onClick={dismissAnswerForm}> Answer this Question </SharedStyles.QuestionItem>
+            {addAnswerClicked && <AddAnswerForm
+              questionId={questionId}
+              dismissAnswerForm={dismissAnswerForm}
+              question={props.question.question_body}
+              handleAddedAnswer={handleAddedAnswer}
+            />}
+        </QuestionItemStyle.QuestionAddAnswer>
 
+        </QuestionItemStyle.Wrapper>
+          <br/>
+          {visibleAnswers.map((answer, i) =>
+            <AnswersPerQuestion
+            key={i}
+            answer={answer}
+            handleAnswerHelpful={props.handleAnswerHelpful}
+            handleAnswerReport={props.handleAnswerReport}
+            searchText={props.searchText}
+            questionId={questionId}
+            />
+          )}
 
         {enoughAnswersToExpand &&
           <QuestionItemStyle.MoreWrapper>
@@ -128,8 +125,7 @@ const QuestionListItem = props => {
           </QuestionItemStyle.MoreWrapper>
         }
 
-      <br/>
-    </>
+    </QuestionItemStyle.Container>
   )
 }
 

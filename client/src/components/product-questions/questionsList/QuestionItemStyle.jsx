@@ -2,11 +2,17 @@ import styled from 'styled-components';
 
 const ShowAnswerBtn = styled.div`
   background: transparent;
-  font-weight: bold;
+  font-weight: 500;
   cursor: pointer;
   &:hover {
     text-decoration: underline;
   }
+`
+
+const Container = styled.div`
+  margin-bottom: 30px;
+  padding-bottom: 30px;
+  border-bottom: 1PX dashed #ddd;
 `
 
 const Wrapper = styled.div`
@@ -15,30 +21,35 @@ const Wrapper = styled.div`
   justify-content: flex-start;
   align-items: center;
   align-content: center;
-  // padding: 5px;
 
 `
 const Question = styled.div`
   order: 1;
   flex-basis: 5%;
-  font-weight: bold;
+
 `
 const QuestionBody = styled.div`
   order: 2;
   flex-basis: 55%;
-  font-weight: bold;
+
 
 `
 
 const QuestionHelpful = styled.div`
   order: 3;
-  flex-basis: 22%;
+  flex-basis: 18%;
   border-right: solid;
-  border-width: 1px
+  border-width: 1px;
+  font-weight: 300;
+  font-size: 12px;
+  padding-left: 1px;
 `
 
 const QuestionAddAnswer = styled.div`
   order: 4;
+  font-weight: 300;
+  font-size: 10px;
+  padding-left: 1px;
 `
 
 const List = styled.ul`
@@ -53,15 +64,19 @@ const MoreWrapper = styled.div`
 const MoreAnswer = styled.div`
   order: 1;
   flex-basis: 5%;
+
 `
 
 const MoreTxt = styled.div`
   order: 2;
+  font-size: 12px;
+  font-weight: 200;
 
 `
 
 export default {
   ShowAnswerBtn,
+  Container,
   Wrapper,
   Question,
   QuestionBody,

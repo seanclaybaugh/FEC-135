@@ -20,7 +20,6 @@ const AnswerWrapper = styled.div`
   justify-content: flex-start;
   align-items: center;
   align-content: center;
-  // padding: 5px;
 
 `
 const AnswerInfoWrapper = styled.div`
@@ -29,8 +28,8 @@ const AnswerInfoWrapper = styled.div`
   justify-content: flex-start;
   align-items: center;
   align-content: center;
-  font-weight: lighter;
-
+  font-weight: 100;
+  font-size: 10px;
 `
 
 const ImageWrapper = styled.div`
@@ -45,36 +44,45 @@ const ImageWrapper = styled.div`
 const Answer = styled.div`
   order: 1;
   flex-basis: 5%;
-  font-weight: bold;
+  font-weight: 500;
 `
 
 const AnswerBody = styled.div`
   order: 2;
+  font-weight: 350;
+  flex-basis: 100%;
+  justify-content: space-around;
 
 `
 
 const AnswerInfo = styled.div`
   order: 1;
   flex-basis: 5%;
+
 `
 
 const AnswerInfoName = styled.div`
   order: 2;
-  flex-basis: 40%;
+  flex-basis: 28%;
   border-right: solid;
   border-width: 1px
+
 `
 
 const AnswerInfoHelp = styled.div`
   order: 3;
-  padding-left: 10px;
-  padding-right: 10px;
+  padding-left: 7px;
+  padding-right: 7px;
   border-right: solid;
   border-width: 1px
+
 `
 
 const AnswerInfoReport = styled.div`
   order: 4;
+  padding-left: 5px;
+  // font-family:  Roboto, Arial, Helvetica, sans-serif;
+
 `
 
 const Image = styled.div`
