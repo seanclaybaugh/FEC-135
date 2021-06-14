@@ -158,7 +158,6 @@ function ProductQuestions() {
 
     setQuestionList(newList);
 
-    // fetchAllQuestions();
   }
 
   const handleQuestionHelpful = (questionId) => {

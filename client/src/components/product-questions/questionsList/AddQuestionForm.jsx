@@ -8,15 +8,25 @@ const AddQuestionForm = props => {
   const [body, setBody] = useState('');
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
-  // const [inputValue, setInputValue] = useState('');
-
-  // const onChangeHandler = event => {
-  //   setInputValue(event.target.value);
-  // }
 
   const handleSubmitQuestion = async (event) => {
 
     event.preventDefault();
+
+    if (body.length === 0) {
+      alert('Please enter an question!')
+      return;
+    }
+
+    if (name.length === 0) {
+      alert('Please enter an name!')
+      return;
+    }
+
+    if (email.length === 0 || email.indexOf('@') === -1) {
+      alert('Please enter an valid email')
+      return;
+    }
 
     let question = {
       body: body,
@@ -40,15 +50,9 @@ const AddQuestionForm = props => {
     setBody('');
     setName('');
     setEmail('');
-    // setInputValue('');
+
     props.handleDismissAddQuestion();
   }
-
-  // const handleFormChange = (event) => {
-  //   setBody([event.target.name].value);
-  //   setName(event.target.value);
-  //   setEmail(event.target.value);
-  // }
 
   return (
 

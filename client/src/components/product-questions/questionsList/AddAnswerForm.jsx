@@ -13,6 +13,22 @@ const AddAnswerForm = props => {
 
     event.preventDefault();
 
+    if (body.length === 0) {
+      alert('Please enter an answer!')
+      return;
+    }
+
+    if (name.length === 0) {
+      alert('Please enter an name!')
+      return;
+    }
+
+    if (email.length === 0 || email.indexOf('@') === -1) {
+      alert('Please enter an valid email')
+      return;
+    }
+
+
     const answer = {
       body: body,
       name: name,
