@@ -97,7 +97,7 @@ const AddReviewModal = ({isShowing, toggle, username, setUsername, reviewSummary
           </label>
           </ModalForm>
           <button onClick={(e)=>{
-
+            
             reviewSubmit(e)
             toggle()}} >Submit Review</button>
         </form>

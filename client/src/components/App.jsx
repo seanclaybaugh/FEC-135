@@ -9,7 +9,7 @@ function App() {
     <>
       <h2>Reviews</h2>
       <div>
-        <ReviewsIndex productId={25178} />
+        <ReviewsIndex productId={25173} />
       </div>
 
     </>

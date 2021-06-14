@@ -101,6 +101,7 @@ function reviewsIndex(props) {
 /*
 uploads image files to imgBB and returns thumb/image urls
 TODO:
+debug upload button/form submit issue
 handle multiple image uploads at once
 limit to 5 images- conditional render based on photos.length => 5
 display thumbnails in modal
