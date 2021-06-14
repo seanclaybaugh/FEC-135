@@ -8,7 +8,7 @@ const TitleContainer = styled.div`
 
 function Title({ name }) {
   return (
-    <TitleContainer>
+    <TitleContainer data-testid="title">
       {name}
     </TitleContainer>
   );

@@ -8,7 +8,7 @@ const StyledHeader = styled.div`
 `;
 
 function Breadcrumb({ category }) {
-  return <StyledHeader>{`COLLECTIONS > ${category}`}</StyledHeader>;
+  return <StyledHeader data-testid="breadcrumb">{`COLLECTIONS > ${category}`}</StyledHeader>;
 }
 
 export default Breadcrumb;
