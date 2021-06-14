@@ -9,7 +9,13 @@ const Img = styled.img`
   width: 130px;
   height: 100px;
   padding: 5px;
-  border-radius: 5px;
+  border-radius: 10px;
+
+  // &:hover,
+  // &:focus {
+  //   border-radius: 20px;
+  // }
+
 `
 
 const AnswersPerQuestion = props => {
@@ -27,10 +33,6 @@ const AnswersPerQuestion = props => {
 
     try {
       const res = axios.put(`/api/qa/answers/${answerId}/helpful`)
-      // props.answer.helpfulness
-      // not good enough to update props
-      // need to tell parent so it can update the list
-      // ProductQuestions component needs to know
     } catch (error) {
       console.log('error with answer helpful click')
       console.log(error)
@@ -41,6 +43,7 @@ const AnswersPerQuestion = props => {
   }
 
   const handleReportAnswerClick = async () => {
+
     try {
       const res = axios.put(`/api/qa/answers/${answerId}/report`)
     } catch (error) {

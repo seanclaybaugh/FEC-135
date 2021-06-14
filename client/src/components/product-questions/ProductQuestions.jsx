@@ -148,7 +148,17 @@ function ProductQuestions() {
   }
 
   const handleAnswerReport = (answerId, questionId) => {
-    fetchAllQuestions();
+
+    const newList = questionList.map((question) => {
+      if (question.question_id === questionId) {
+        delete question.answers[answerId];
+      }
+      return question;
+    });
+
+    setQuestionList(newList);
+
+    // fetchAllQuestions();
   }
 
   const handleQuestionHelpful = (questionId) => {
