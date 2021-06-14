@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
+import SharedStyles from '../SharedStyles';
 import HighLightedText from './HighlightedText';
 import moment from 'moment';
 import axios from 'axios';
@@ -26,7 +27,6 @@ const AnswersPerQuestion = props => {
 
     try {
       const res = axios.put(`/api/qa/answers/${answerId}/helpful`)
-      console.log(res.data)
       // props.answer.helpfulness
       // not good enough to update props
       // need to tell parent so it can update the list
@@ -37,15 +37,12 @@ const AnswersPerQuestion = props => {
     }
 
     props.handleAnswerHelpful(answerId, props.questionId);
-    console.log(answerId)
-    console.log(props.questionId)
 
   }
 
   const handleReportAnswerClick = async () => {
     try {
       const res = axios.put(`/api/qa/answers/${answerId}/report`)
-      console.log(res.data)
     } catch (error) {
       console.log('error with answer report click')
       console.log(error)
@@ -67,10 +64,10 @@ const AnswersPerQuestion = props => {
       By: {props.answer.answerer_name} |
       {date} |
       Helpful?
-      <button onClick={handleHelpfulAnswerClick}>Yes</button>
+      <SharedStyles.QuestionBtn onClick={handleHelpfulAnswerClick}>Yes</SharedStyles.QuestionBtn>
        #({props.answer.helpfulness}) |
 
-      <button onClick={handleReportAnswerClick}>Report</button>
+      <SharedStyles.QuestionBtn onClick={handleReportAnswerClick}>Report</SharedStyles.QuestionBtn>
 
       <div>
         {photos.map((photo, index) => {

@@ -1,8 +1,21 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import AnswersPerQuestion from './AnswersPerQuestion';
 import AddAnswerForm from './AddAnswerForm';
 import HighlightedText from './HighlightedText';
+import styled from 'styled-components';
+import SharedStyles from '../SharedStyles';
 import axios from 'axios';
+
+const ShowAnswerBtn = styled.div`
+  background: transparent;
+  font-weight: bold;
+  cursor: pointer;
+`
+
+const List = styled.ul`
+  list-style-type: none;
+  padding: none;
+`
 
 const QuestionListItem = props => {
 
@@ -71,19 +84,18 @@ const QuestionListItem = props => {
   return (
     <>
       <div>
-        <li className="QuestionItem">
-          Q:
-            <HighlightedText
+        <span>
+          Q: <HighlightedText
             textBody={props.question.question_body}
             searchText={props.searchText}
             />
            |
           Helpful?
 
-          <button onClick={handleHelpfulClick}>Yes</button>
+          <SharedStyles.QuestionBtn onClick={handleHelpfulClick}>Yes</SharedStyles.QuestionBtn>
 
           #({props.question.question_helpfulness}) |
-          <button onClick={dismissAnswerForm}> Add Answer </button>
+          <SharedStyles.QuestionBtn onClick={dismissAnswerForm}> Add Answer </SharedStyles.QuestionBtn>
             {addAnswerClicked && <AddAnswerForm
               questionId={questionId}
               dismissAnswerForm={dismissAnswerForm}
@@ -91,7 +103,7 @@ const QuestionListItem = props => {
               handleAddedAnswer={handleAddedAnswer}
             />}
         <br/>
-        </li>
+        </span>
 
         {visibleAnswers.map((answer, i) =>
           <AnswersPerQuestion
@@ -104,7 +116,7 @@ const QuestionListItem = props => {
           />
         )}
 
-      {enoughAnswersToExpand && <button onClick={toggleExpanded}>{buttonText}</button>}
+      {enoughAnswersToExpand && <ShowAnswerBtn onClick={toggleExpanded}>{buttonText}</ShowAnswerBtn>}
 
       <br/>
       <br/>

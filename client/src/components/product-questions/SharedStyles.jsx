@@ -31,11 +31,19 @@ const Button = styled.button`
   margin: 0.5em 1em;
   padding: 1rem 2rem;
 `
+const QuestionBtn = styled.button`
+  background: transparent;
+  border: none;
+  text-decoration: underline;
+  cursor: pointer;
+`
+
 
 
 export default {
   ModalBackground,
   ModalContent,
   CloseButton,
-  Button
+  Button,
+  QuestionBtn,
 }
