@@ -1,4 +1,4 @@
-const fakeStylesData = {
+const sampleStyles = {
   product_id: '25171',
   results: [
     {
@@ -23,4 +23,4 @@ const fakeStylesData = {
   ],
 };
 
-export default fakeStylesData;
+export default sampleStyles;
