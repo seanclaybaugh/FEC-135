@@ -9,17 +9,10 @@ import Title from './Title';
 
 describe('Title', () => {
   test('should render component', () => {
-    render(<Title />);
-    const component = screen.getByTestId('title');
+    const name = 'Camo Onesie';
+    render(<Title name={name} />);
+    const component = screen.getByText('Camo Onesie');
 
     expect(component).toBeInTheDocument();
-  });
-  test('should display a product name', () => {
-    const name = 'Camo Onesie';
-
-    render(<Title name={name} />);
-    const { textContent } = screen.getByTestId('title');
-
-    expect(textContent).toEqual(name);
   });
 });

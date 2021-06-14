@@ -55,7 +55,7 @@ function ProductOverview() {
     isLoading
       ? <Spinner />
       : (
-        <PreviewStyleContext.Provider value={{ previewStyle, setPreviewStyle }} data-testid="overview">
+        <PreviewStyleContext.Provider value={{ previewStyle, setPreviewStyle }}>
           <OverviewContainer>
             <GalleryDiv>
               <GalleryPanel />

@@ -14,4 +14,11 @@ describe('Breadcrumb', () => {
 
     expect(component).toBeInTheDocument();
   });
+  test('should update with the product category name when the prop value updates', () => {
+    const category = 'Pants';
+    render(<Breadcrumb category={category} />);
+    const { textContent } = screen.getByTestId('breadcrumb');
+
+    expect(textContent).toContain('Pants');
+  });
 });
