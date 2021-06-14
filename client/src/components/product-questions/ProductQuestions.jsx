@@ -11,10 +11,11 @@ const Container = styled.div`
 `
 //25178
 //25177
+//25183
 function ProductQuestions() {
 
   const props = {
-    productId: 25177
+    productId: 25279
   }
 
   const [questionList, setQuestionList] = useState([]);
@@ -68,6 +69,9 @@ function ProductQuestions() {
       setFilteredQuestions(newQuestions);
       console.log('new question list:')
       console.log(newQuestions);
+      if (newQuestions.length > 0) {
+        setIsQuestionList(true);
+      }
 
     } catch (error) {
       setIsError(true);
@@ -119,6 +123,7 @@ function ProductQuestions() {
       //looks like i have to do a fetch for all the questions b/c:
       //im not getting a question id back when question is added
       //there doesnt seem to be a deterministic order for questions that have the same helpfulness
+
 
     fetchAllQuestions();
   }
