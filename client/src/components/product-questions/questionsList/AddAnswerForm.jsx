@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import SharedStyles from '../SharedStyles';
+import ModalStyles from '../ModalStyles';
 
 const AddAnswerForm = props => {
 
@@ -58,31 +58,34 @@ const AddAnswerForm = props => {
   }
 
   return (
-    <SharedStyles.ModalBackground>
-      <SharedStyles.ModalContent>
-        <SharedStyles.CloseButton onClick={props.dismissAnswerForm}>X</SharedStyles.CloseButton>
-        <div>Submit Your Answer for: {props.question}</div>
+    <ModalStyles.ModalBackground>
+      <ModalStyles.ModalContent>
+        <ModalStyles.CloseButton onClick={props.dismissAnswerForm}>X</ModalStyles.CloseButton>
+        <div>Submit Your Answer for: </div>
+        <br/>
+        <div>{props.question}</div>
+        <br/>
         <form onSubmit={handleSubmitAnswer}>
-          <label>Your Answer:</label>
+          <label>Your Answer: </label>
           <input name="body" value={body} placeholder="" onChange={e => setBody(e.target.value)}/>
           <br/>
 
-          <label>What is your nickname:</label>
+          <label>What is your nickname: </label>
           <input name="name" value={name} placeholder="Example: jackson11!" onChange={e => setName(e.target.value)}/>
           <br/>
 
-          <label>Your Email:</label>
+          <label>Your Email: </label>
           <input name="email" value={email} placeholder="Example: jack@email.com" onChange={e => setEmail(e.target.value)}/>
           <p>For authentication reasons, you will not be emailed</p>
           <br/>
 
-          <label>Upload Your Photos:</label>
+          <label>Upload Your Photos: </label>
           <input name="photos" value={photos} placeholder="Submit Photo" onChange={e => setPhotos(e.target.value)}/>
           <br/>
           <button type="submit">Submit Answer</button>
         </form>
-      </SharedStyles.ModalContent>
-    </SharedStyles.ModalBackground>
+      </ModalStyles.ModalContent>
+    </ModalStyles.ModalBackground>
 
   )
 }

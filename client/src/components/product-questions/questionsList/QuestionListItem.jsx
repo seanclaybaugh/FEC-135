@@ -130,12 +130,12 @@ const QuestionListItem = props => {
 
       <QuestionHelpful>
         Helpful?
-        <SharedStyles.QuestionBtn onClick={handleHelpfulClick}>Yes</SharedStyles.QuestionBtn>
+        <SharedStyles.QuestionItem onClick={handleHelpfulClick}>Yes</SharedStyles.QuestionItem>
         #({props.question.question_helpfulness})
       </QuestionHelpful>
 
       <QuestionAddAnswer>
-        <SharedStyles.QuestionBtn onClick={dismissAnswerForm}> Add Answer </SharedStyles.QuestionBtn>
+        <SharedStyles.QuestionItem onClick={dismissAnswerForm}> Add Answer </SharedStyles.QuestionItem>
           {addAnswerClicked && <AddAnswerForm
             questionId={questionId}
             dismissAnswerForm={dismissAnswerForm}

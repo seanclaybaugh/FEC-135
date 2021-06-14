@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import SharedStyles from '../SharedStyles';
+import ModalStyles from '../ModalStyles';
 
 
 const AddQuestionForm = props => {
@@ -57,27 +57,27 @@ const AddQuestionForm = props => {
   return (
 
       <>
-      <SharedStyles.ModalBackground>
-        <SharedStyles.ModalContent>
-          <SharedStyles.CloseButton onClick={props.handleDismissAddQuestion}>X</SharedStyles.CloseButton>
+      <ModalStyles.ModalBackground>
+        <ModalStyles.ModalContent>
+          <ModalStyles.CloseButton onClick={props.handleDismissAddQuestion}>X</ModalStyles.CloseButton>
             <form onSubmit={handleSubmitQuestion}>
-              <label>Your Question:</label>
+              <label>Your Question: </label>
               <input name="body" value={body} placeholder="" onChange={e => setBody(e.target.value)}/>
               <br/>
 
-              <label>What is your nickname:</label>
+              <label>What is your nickname: </label>
               <input name="name" value={name} placeholder="Example: jackson11!" onChange={e => setName(e.target.value)}/>
               <br/>
 
-              <label>Your Email:</label>
+              <label>Your Email: </label>
               <input name="email" value={email} placeholder="Example: jack@email.com" onChange={e => setEmail(e.target.value)}/>
               <p>For authentication reasons, you will not be emailed</p>
               <br/>
 
               <button type="submit">Submit Question</button>
             </form>
-            </SharedStyles.ModalContent>
-        </SharedStyles.ModalBackground>
+            </ModalStyles.ModalContent>
+        </ModalStyles.ModalBackground>
       </>
 
   )
