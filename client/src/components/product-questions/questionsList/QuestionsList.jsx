@@ -43,31 +43,33 @@ const QuestionsList = props => {
 
   return (
     <>
-      <Container>
-      <ul>
-      {visibleQuestions.map((question, index) =>
-
-       <QuestionListItem
-        key={index}
-        question={question}
-        handleAddedAnswer={props.handleAddedAnswer}
-        handleAnswerReport={props.handleAnswerReport}
-        handleAnswerHelpful={props.handleAnswerHelpful}
-        handleQuestionHelpful={props.handleQuestionHelpful}
-        searchText={props.searchText}
-        />
-      )}
-      </ul>
-      </Container>
+      {props.isQuestionList &&
+        <Container>
+          <ul>
+            {visibleQuestions.map((question, index) =>
+              <QuestionListItem
+                key={index}
+                question={question}
+                handleAddedAnswer={props.handleAddedAnswer}
+                handleAnswerReport={props.handleAnswerReport}
+                handleAnswerHelpful={props.handleAnswerHelpful}
+                handleQuestionHelpful={props.handleQuestionHelpful}
+                searchText={props.searchText}
+                />
+              )}
+            </ul>
+        </Container>
+      }
 
       <div>
         {enoughQuestionsToShowExpand && <SharedStyles.Button onClick={toggleFunction}>{buttonText}</SharedStyles.Button>}
 
         <SharedStyles.Button onClick={handleAddQuestionClicked}>ADD A QUESTION</SharedStyles.Button>
+
         {addQuestionClicked && <AddQuestionForm
-        handleDismissAddQuestion={handleDismissAddQuestion}
-        productId={props.productId}
-        handleAddedQuestion={props.handleAddedQuestion}
+          handleDismissAddQuestion={handleDismissAddQuestion}
+          productId={props.productId}
+          handleAddedQuestion={props.handleAddedQuestion}
         />}
       </div>
     </>

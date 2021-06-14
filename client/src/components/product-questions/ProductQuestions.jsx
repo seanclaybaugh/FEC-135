@@ -9,15 +9,17 @@ const Container = styled.div`
   width: 700px;
   // background-color: orange;
 `
-
+//25178
+//25177
 function ProductQuestions() {
 
   const props = {
-    productId: 25167
+    productId: 25177
   }
 
   const [questionList, setQuestionList] = useState([]);
   const [filteredQuestions, setFilteredQuestions] = useState([]);
+  const [isQuestionList, setIsQuestionList] = useState(false);
   const [isError, setIsError] = useState(false);
   const [searchText, setSearchText] = useState('');
   const questionsPerPage = 5;
@@ -29,6 +31,9 @@ function ProductQuestions() {
       const newQuestionList = questionList.concat(res.data.results)
       setQuestionList(newQuestionList);
       setFilteredQuestions(newQuestionList);
+      if (newQuestionList.length > 0) {
+        setIsQuestionList(true);
+      }
 
     } catch(error) {
       setIsError(true)
@@ -178,7 +183,6 @@ function ProductQuestions() {
 
       {isError && <div>Error with get data...</div>}
 
-
       <SearchQuestions
         handlSearchTextChanged={handlSearchTextChanged}
       />
@@ -194,6 +198,7 @@ function ProductQuestions() {
         handleAnswerReport={handleAnswerReport}
         handleQuestionHelpful={handleQuestionHelpful}
         searchText={searchText}
+        isQuestionList={isQuestionList}
       />
 
     </Container>
