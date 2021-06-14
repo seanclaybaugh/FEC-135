@@ -3,54 +3,10 @@ import AnswersPerQuestion from './AnswersPerQuestion';
 import AddAnswerForm from './AddAnswerForm';
 import HighlightedText from './HighlightedText';
 import styled from 'styled-components';
+import QuestionItemStyle from './QuestionItemStyle';
 import SharedStyles from '../SharedStyles';
 import axios from 'axios';
 
-const ShowAnswerBtn = styled.div`
-  background: transparent;
-  font-weight: bold;
-  cursor: pointer;
-  &:hover {
-    text-decoration: underline;
-  }
-`
-
-const Wrapper = styled.div`
-  display: flex;
-  flex-direciton: column;
-  justify-content: flex-start;
-  align-items: center;
-  align-content: center;
-  // padding: 5px;
-
-`
-const Question = styled.div`
-  order: 1;
-  flex-basis: 5%;
-  font-weight: bold;
-`
-const QuestionBody = styled.div`
-  order: 2;
-  flex-basis: 55%;
-  font-weight: bold;
-
-`
-
-const QuestionHelpful = styled.div`
-  order: 3;
-  flex-basis: 22%;
-  border-right: solid;
-  border-width: 1px
-`
-
-const QuestionAddAnswer = styled.div`
-  order: 4;
-`
-
-const List = styled.ul`
-  list-style-type: none;
-  padding: none;
-`
 
 const QuestionListItem = props => {
 
@@ -109,7 +65,6 @@ const QuestionListItem = props => {
     }
   }
 
-
   //if state is expanded, we want all the answers, else we want to slice 0,2
   const allAnswers = Object.values(answers);
   const visibleAnswers = expanded ? allAnswers : allAnswers.slice(0, 2);
@@ -118,23 +73,23 @@ const QuestionListItem = props => {
 
   return (
     <>
-    <Wrapper>
-      <Question>Q:</Question>
+    <QuestionItemStyle.Wrapper>
+      <QuestionItemStyle.Question>Q:</QuestionItemStyle.Question>
 
-      <QuestionBody>
+      <QuestionItemStyle.QuestionBody>
         <HighlightedText
         textBody={props.question.question_body}
         searchText={props.searchText}
         />
-      </QuestionBody>
+      </QuestionItemStyle.QuestionBody>
 
-      <QuestionHelpful>
+      <QuestionItemStyle.QuestionHelpful>
         Helpful?
         <SharedStyles.QuestionItem onClick={handleHelpfulClick}>Yes</SharedStyles.QuestionItem>
         #({props.question.question_helpfulness})
-      </QuestionHelpful>
+      </QuestionItemStyle.QuestionHelpful>
 
-      <QuestionAddAnswer>
+      <QuestionItemStyle.QuestionAddAnswer>
         <SharedStyles.QuestionItem onClick={dismissAnswerForm}> Add Answer </SharedStyles.QuestionItem>
           {addAnswerClicked && <AddAnswerForm
             questionId={questionId}
@@ -142,9 +97,9 @@ const QuestionListItem = props => {
             question={props.question.question_body}
             handleAddedAnswer={handleAddedAnswer}
           />}
-      </QuestionAddAnswer>
+      </QuestionItemStyle.QuestionAddAnswer>
 
-    </Wrapper>
+    </QuestionItemStyle.Wrapper>
 
           <br/>
         {visibleAnswers.map((answer, i) =>
@@ -158,7 +113,7 @@ const QuestionListItem = props => {
           />
         )}
 
-      {enoughAnswersToExpand && <ShowAnswerBtn onClick={toggleExpanded}>{buttonText}</ShowAnswerBtn>}
+      {enoughAnswersToExpand && <QuestionItemStyle.ShowAnswerBtn onClick={toggleExpanded}>{buttonText}</QuestionItemStyle.ShowAnswerBtn>}
 
       <br/>
 
