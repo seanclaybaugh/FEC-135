@@ -38,7 +38,7 @@ const QuestionsList = props => {
 
   const visibleQuestions = expanded ? props.questions : props.questions.slice(0, props.questionsPerPage - 1);
   const enoughQuestionsToShowExpand = props.questions.length > props.questionsPerPage - 1;
-  const buttonText = expanded ? "COLLAPSE QUESTIONS" : "SHOW MORE QUESTIONS & ANSWERS";
+  const buttonText = expanded ? "SHOW LESS" : "SHOW MORE QUESTIONS & ANSWERS";
   const toggleFunction = expanded ? handleCollapse : handleExpand;
 
 

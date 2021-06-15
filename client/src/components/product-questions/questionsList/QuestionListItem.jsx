@@ -70,7 +70,7 @@ const QuestionListItem = props => {
   const allAnswers = Object.values(answers);
   const visibleAnswers = expanded ? allAnswers : allAnswers.slice(0, 2);
   const enoughAnswersToExpand = allAnswers.length > 2;
-  const buttonText = expanded ? "COLLAPSE ANSWERS" : "LOAD MORE ANSWERS";
+  const buttonText = expanded ? "SHOW LESS" : `${allAnswers.length -2} MORE ANSWERS`;
 
   return (
     <QuestionItemStyle.Container>
@@ -120,7 +120,7 @@ const QuestionListItem = props => {
             <QuestionItemStyle.MoreAnswer></QuestionItemStyle.MoreAnswer>
 
             <QuestionItemStyle.MoreTxt>
-              <QuestionItemStyle.ShowAnswerBtn onClick={toggleExpanded}>{buttonText} ({allAnswers.length})</QuestionItemStyle.ShowAnswerBtn>
+              <QuestionItemStyle.ShowAnswerBtn onClick={toggleExpanded}>{buttonText}</QuestionItemStyle.ShowAnswerBtn>
             </QuestionItemStyle.MoreTxt>
 
           </QuestionItemStyle.MoreWrapper>
