@@ -120,7 +120,7 @@ const QuestionListItem = props => {
             <QuestionItemStyle.MoreAnswer></QuestionItemStyle.MoreAnswer>
 
             <QuestionItemStyle.MoreTxt>
-              <QuestionItemStyle.ShowAnswerBtn onClick={toggleExpanded}>{buttonText}</QuestionItemStyle.ShowAnswerBtn>
+              <QuestionItemStyle.ShowAnswerBtn onClick={toggleExpanded}>{buttonText} ({allAnswers.length})</QuestionItemStyle.ShowAnswerBtn>
             </QuestionItemStyle.MoreTxt>
 
           </QuestionItemStyle.MoreWrapper>

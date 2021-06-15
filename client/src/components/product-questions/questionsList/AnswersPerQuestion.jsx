@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import AnswerStyles from './AnswerStyles.jsx';
 import SharedStyles from '../SharedStyles';
 import HighLightedText from './HighlightedText';
-// import { BiCaretUp } from "react-icons/bi";
 import { AiFillCaretUp } from "react-icons/ai";
 import { BsFlagFill } from "react-icons/bs";
 import moment from 'moment';
