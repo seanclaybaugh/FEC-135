@@ -22,7 +22,7 @@ function ContentPanel({ styles }) {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const result = await axios(`http://localhost:3000/api/products/${25167}`);
+        const result = await axios(`http://localhost:3000/api/products/${25171}`);
         setProduct(result.data);
       } catch (err) {
         setIsError(true);
@@ -35,7 +35,7 @@ function ContentPanel({ styles }) {
   useEffect(() => {
     const fetchMeta = async () => {
       try {
-        const result = await axios(`/api/reviews/meta?product_id=${25167}`);
+        const result = await axios(`/api/reviews/meta?product_id=${25171}`);
         setMetaData(result.data);
       } catch (err) {
         setIsError(true);

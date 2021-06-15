@@ -1,4 +1,6 @@
-import React, { useEffect, useRef, useCallback, useContext } from 'react';
+import React, {
+  useEffect, useRef, useCallback, useContext,
+} from 'react';
 import styled from 'styled-components';
 import { useSpring, animated } from 'react-spring';
 import { MdClose } from 'react-icons/md';
@@ -123,8 +125,8 @@ const CloseModalButton = styled(MdClose)`
 
 function CartModal({ showModal, setShowModal, product }) {
   const { currentStyle } = useContext(CurrentStyleContext);
-  const { selectedSku, setSelectedSku } = useContext(SelectedSkuContext);
-  const { selectedQty, setSelectedQty } = useContext(SelectedQtyContext);
+  const { selectedSku } = useContext(SelectedSkuContext);
+  const { selectedQty } = useContext(SelectedQtyContext);
 
   const price = currentStyle.sale_price || currentStyle.original_price;
   const name = product;
@@ -170,7 +172,7 @@ function CartModal({ showModal, setShowModal, product }) {
           <animated.div style={animation}>
             <ModalContentWrapper showModal={showModal}>
               <ModalHeader>
-                {<HeaderText>Your items have been added!</HeaderText>}
+                <HeaderText>Your items have been added!</HeaderText>
               </ModalHeader>
               <ModalImgWrapper>
                 <ModalImg src={imgUrl} alt="product image" />
@@ -180,28 +182,36 @@ function CartModal({ showModal, setShowModal, product }) {
               </ModalProductDetails>
               <ModalContent>
                 <h4>YOUR BAG</h4>
-                  {selectedQty > 1 ? `${selectedQty} items` : `${selectedQty} item`} <br />
+                {selectedQty > 1 ? `${selectedQty} items` : `${selectedQty} item`}
+                {' '}
+                <br />
                 <StyledTable>
                   <tbody>
                     <tr>
-                        <td>Total Product Cost:</td>
-                        <td></td>
-                        <td>${(price * selectedQty).toFixed(2)}</td>
-                      </tr>
-                      <tr>
-                        <td>Total Delivery Cost:</td>
-                        <td></td>
-                        <td>$0.00</td>
-                      </tr>
-                      <tr>
-                        <td>Total:</td>
-                        <td></td>
-                        <td>${(price * selectedQty).toFixed(2)}</td>
-                      </tr>
+                      <td>Total Product Cost:</td>
+                      <td />
+                      <td>
+                        $
+                        {(price * selectedQty).toFixed(2)}
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>Total Delivery Cost:</td>
+                      <td />
+                      <td>$0.00</td>
+                    </tr>
+                    <tr>
+                      <td>Total:</td>
+                      <td />
+                      <td>
+                        $
+                        {(price * selectedQty).toFixed(2)}
+                      </td>
+                    </tr>
                   </tbody>
                 </StyledTable>
-                <button>VIEW BAG</button>
-                <button>CHECKOUT</button>
+                <button type="button">VIEW BAG</button>
+                <button type="button">CHECKOUT</button>
               </ModalContent>
               <CloseModalButton aria-label="Close modal" onClick={() => setShowModal((prev) => !prev)} />
             </ModalContentWrapper>

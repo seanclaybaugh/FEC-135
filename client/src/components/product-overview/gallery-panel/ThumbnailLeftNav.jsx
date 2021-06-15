@@ -1,8 +1,7 @@
-import React, { useContext, useRef } from 'react';
+import React, { useState, useContext, useRef } from 'react';
 import styled from 'styled-components';
 import { GoChevronUp, GoChevronDown } from 'react-icons/go';
 import PreviewStyleContext from '../contexts/PreviewStyleContext';
-import PhotoIndexContext from '../contexts/PhotoIndexContext';
 import ThumbnailLeft from './ThumbnailLeft';
 
 const ThumbnailSlideWrapper = styled.div`
@@ -35,23 +34,29 @@ const StyledArrowContainer = styled.div`
 
 function ThumbnailLeftNav() {
   const { previewStyle } = useContext(PreviewStyleContext);
-  const { currentPhotoIndex, setCurrentPhotoIndex } = useContext(PhotoIndexContext);
+  const { length } = previewStyle.photos;
+  const [position, setPosition] = useState(0);
   const sliderRef = useRef();
 
   function scrollSliderUp() {
     sliderRef.current.scrollTop -= 90;
+    setPosition(sliderRef.current.scrollTop);
   }
 
   function scrollSliderDown() {
     sliderRef.current.scrollTop += 90;
-    console.log(sliderRef.current.scrollTop);
+    setPosition(sliderRef.current.scrollTop);
   }
 
   return (
     <ThumbnailSlideWrapper>
-      <StyledArrowContainer onClick={scrollSliderUp}>
-        {sliderRef.current && sliderRef.current.scrollTop !== 0 && <GoChevronUp />}
-      </StyledArrowContainer>
+      {length > 7
+        ? (
+          <StyledArrowContainer onClick={scrollSliderUp}>
+            {position !== 0 && <GoChevronUp />}
+          </StyledArrowContainer>
+        )
+        : null}
       <Slider ref={sliderRef}>
         {previewStyle.photos.map((photo, index) => (
           <ThumbnailLeft
@@ -61,9 +66,13 @@ function ThumbnailLeftNav() {
           />
         ))}
       </Slider>
-      <StyledArrowContainer onClick={scrollSliderDown}>
-        <GoChevronDown />
-      </StyledArrowContainer>
+      {length > 7
+        ? (
+          <StyledArrowContainer onClick={scrollSliderDown}>
+            <GoChevronDown />
+          </StyledArrowContainer>
+        )
+        : null}
     </ThumbnailSlideWrapper>
   );
 }

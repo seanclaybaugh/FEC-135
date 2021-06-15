@@ -1,9 +1,12 @@
-import React, { lazy, Suspense, useState, useEffect } from 'react';
+import React, {
+  lazy, Suspense, useState, useEffect,
+} from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
 import CurrentStyleContext from './contexts/CurrentStyleContext';
 import PreviewStyleContext from './contexts/PreviewStyleContext';
 import Spinner from './spinner/LoadingSpinner';
+
 const GalleryPanel = lazy(() => import('./gallery-panel/GalleryPanel'));
 const ContentPanel = lazy(() => import('./content-panel/ContentPanel'));
 
@@ -36,7 +39,7 @@ function ProductOverview() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const results = await axios(`http://localhost:3000/api/products/${25167}/styles`);
+        const results = await axios(`http://localhost:3000/api/products/${25171}/styles`);
         setStyles(results.data.results);
         const defaultStyle = results.data.results.filter((style) => (
           style['default?']
@@ -54,19 +57,20 @@ function ProductOverview() {
   return (
     <Suspense fallback={<Spinner />}>
       {!isLoading
-      &&
-        <PreviewStyleContext.Provider value={{ previewStyle, setPreviewStyle }}>
-          <OverviewContainer>
-            <GalleryDiv>
-              <GalleryPanel />
-            </GalleryDiv>
-            <CurrentStyleContext.Provider value={{ currentStyle, setCurrentStyle }}>
-              <ContentDiv>
-                <ContentPanel styles={styles} />
-              </ContentDiv>
-            </CurrentStyleContext.Provider>
-          </OverviewContainer>
-        </PreviewStyleContext.Provider>}
+      && (
+      <PreviewStyleContext.Provider value={{ previewStyle, setPreviewStyle }}>
+        <OverviewContainer>
+          <GalleryDiv>
+            <GalleryPanel />
+          </GalleryDiv>
+          <CurrentStyleContext.Provider value={{ currentStyle, setCurrentStyle }}>
+            <ContentDiv>
+              <ContentPanel styles={styles} />
+            </ContentDiv>
+          </CurrentStyleContext.Provider>
+        </OverviewContainer>
+      </PreviewStyleContext.Provider>
+      )}
     </Suspense>
   );
 }
