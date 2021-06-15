@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import AnswersPerQuestion from './AnswersPerQuestion';
-import AddAnswerForm from './AddAnswerForm';
-import HighlightedText from './HighlightedText';
+import AnswersPerQuestion from '../AnswersPerQuestion/AnswersPerQuestion';
+import AddAnswerForm from '../AddAnswer/AddAnswerForm';
+import HighlightedText from '../Helpers/HighlightedTextHelper';
 import styled from 'styled-components';
 import QuestionItemStyle from './QuestionItemStyle';
-import SharedStyles from '../SharedStyles';
+import SharedButton from '../../SharedStyles/SharedButton';
 import { AiFillCaretUp } from "react-icons/ai";
 import moment from 'moment';
 import axios from 'axios';
@@ -89,7 +89,7 @@ const QuestionListItem = props => {
 
         <QuestionItemStyle.QuestionHelpful>
           Helpful?
-          <SharedStyles.QuestionItem onClick={handleHelpfulClick}><AiFillCaretUp/></SharedStyles.QuestionItem>
+          <SharedButton.QuestionItem onClick={handleHelpfulClick}><AiFillCaretUp/></SharedButton.QuestionItem>
           #({props.question.question_helpfulness})
         </QuestionItemStyle.QuestionHelpful>
 

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import QuestionsList from './questionsList/QuestionsList';
-import SearchQuestions from './SearchQuestions';
+import SearchQuestions from './SearchQuestions/SearchQuestions';
 import styled from 'styled-components';
 import axios from 'axios';
 

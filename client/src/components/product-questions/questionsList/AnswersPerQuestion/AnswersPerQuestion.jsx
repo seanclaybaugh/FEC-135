@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import AnswerStyles from './AnswerStyles.jsx';
-import SharedStyles from '../SharedStyles';
-import HighLightedText from './HighlightedText';
+import SharedButton from '../../SharedStyles/SharedButton';
+import HighLightedText from '../Helpers/HighlightedTextHelper';
 import { AiFillCaretUp } from "react-icons/ai";
 import { BsFlagFill } from "react-icons/bs";
 import moment from 'moment';
@@ -65,7 +65,7 @@ const AnswersPerQuestion = props => {
 
         <AnswerStyles.AnswerInfoHelp>
           Helpful?
-          <SharedStyles.QuestionItem onClick={handleHelpfulAnswerClick}><AiFillCaretUp/></SharedStyles.QuestionItem>
+          <SharedButton.QuestionItem onClick={handleHelpfulAnswerClick}><AiFillCaretUp/></SharedButton.QuestionItem>
           #({props.answer.helpfulness})
         </AnswerStyles.AnswerInfoHelp>
 

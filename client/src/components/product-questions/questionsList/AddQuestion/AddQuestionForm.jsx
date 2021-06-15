@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import ModalStyles from '../ModalStyles';
+import ModalStyles from '../../SharedStyles/ModalStyles';
 
 
 const AddQuestionForm = props => {

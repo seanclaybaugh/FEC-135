@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import QuestionListItem from './QuestionListItem';
+import QuestionListItem from './QuestionListItem/QuestionListItem';
 import styled from 'styled-components';
-import AddQuestionForm from './AddQuestionForm';
-import SharedStyles from '../SharedStyles';
+import AddQuestionForm from './AddQuestion/AddQuestionForm';
+import SharedButton from '../SharedStyles/SharedButton';
 // import { GrAdd } from "react-icons/gr";
 
 const Container = styled.div`
@@ -63,9 +63,9 @@ const QuestionsList = props => {
       }
 
       <div>
-        {enoughQuestionsToShowExpand && <SharedStyles.Button onClick={toggleFunction}>{buttonText}</SharedStyles.Button>}
+        {enoughQuestionsToShowExpand && <SharedButton.Button onClick={toggleFunction}>{buttonText}</SharedButton.Button>}
 
-        <SharedStyles.Button onClick={handleAddQuestionClicked}>ASK A QUESTION</SharedStyles.Button>
+        <SharedButton.Button onClick={handleAddQuestionClicked}>ASK A QUESTION</SharedButton.Button>
 
         {addQuestionClicked && <AddQuestionForm
           handleDismissAddQuestion={handleDismissAddQuestion}
