@@ -35,10 +35,10 @@ const Img = styled.img`
 
 function StyleThumbnail({ style, index }) {
   const { currentStyle, setCurrentStyle } = useContext(CurrentStyleContext);
-  const { previewStyle, setPreviewStyle } = useContext(PreviewStyleContext);
-  const { selectedSku, setSelectedSku } = useContext(SelectedSkuContext);
-  const { selectedQty, setSelectedQty} = useContext(SelectedQtyContext);
-  const { isMissingSku, setIsMissingSku } = useContext(MissingSkuContext);
+  const { setPreviewStyle } = useContext(PreviewStyleContext);
+  const { setSelectedSku } = useContext(SelectedSkuContext);
+  const { setSelectedQty} = useContext(SelectedQtyContext);
+  const { setIsMissingSku } = useContext(MissingSkuContext);
 
   function handleClick() {
     setCurrentStyle(style);

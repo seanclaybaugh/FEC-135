@@ -34,7 +34,7 @@ const shake = keyframes`
 `;
 
 const SizeErrorDiv = styled.div`
-  width: 100px;
+  width: 200px;
   margin-right: 50px;
   color: red;
   position: relative;

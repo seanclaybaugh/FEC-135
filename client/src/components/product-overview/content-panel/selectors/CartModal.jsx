@@ -163,11 +163,6 @@ function CartModal({ showModal, setShowModal, product }) {
     return () => document.removeEventListener('keydown', keyPress);
   }, [keyPress]);
 
-  function resetCart() {
-    setSelectedSku(null);
-    setSelectedQty(null);
-  }
-
   return (
     <>
       {showModal ? (
@@ -205,8 +200,8 @@ function CartModal({ showModal, setShowModal, product }) {
                       </tr>
                   </tbody>
                 </StyledTable>
-                <button onClick={resetCart}>VIEW BAG</button>
-                <button onClick={resetCart}>CHECKOUT</button>
+                <button>VIEW BAG</button>
+                <button>CHECKOUT</button>
               </ModalContent>
               <CloseModalButton aria-label="Close modal" onClick={() => setShowModal((prev) => !prev)} />
             </ModalContentWrapper>
