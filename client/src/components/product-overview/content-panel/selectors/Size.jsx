@@ -34,7 +34,6 @@ function Size({ sku, size }) {
   const { currentStyle } = useContext(CurrentStyleContext);
   const { selectedSku, setSelectedSku } = useContext(SelectedSkuContext);
   const { isMissingSku, setIsMissingSku } = useContext(MissingSkuContext);
-  console.log(currentStyle);
   const isInStock = currentStyle.skus[sku].quantity > 0;
 
   function handleClick() {

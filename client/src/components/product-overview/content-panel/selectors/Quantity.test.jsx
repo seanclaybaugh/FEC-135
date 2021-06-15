@@ -105,4 +105,41 @@ describe('Quantity', () => {
     expect(options[3].selected).toBeTruthy();
     expect(options[4].selected).toBeFalsy();
   });
+  test('should update the selected quantity when a user selects from the dropdown', () => {
+    const sku = {
+      selectedSku: 828950,
+      setSelectedSku: () => {},
+    };
+    const qty = {
+      selectedQty: null,
+      setSelectedQty: () => {},
+    };
+    const style = {
+      currentStyle: sampleStyle[0],
+      setCurrentStyle: () => {},
+    };
+
+    render(
+      <SelectedSkuContext.Provider value={sku}>
+        <SelectedQtyContext.Provider value={qty}>
+          <CurrentStyleContext.Provider value={style}>
+            <Quantity />
+          </CurrentStyleContext.Provider>
+        </SelectedQtyContext.Provider>
+      </SelectedSkuContext.Provider>,
+    );
+
+    const dropdown = screen.getByTestId('dropdown');
+
+    fireEvent.click(dropdown);
+    fireEvent.change(dropdown, { target: { value: 4 } });
+
+    let options = screen.getAllByTestId('option');
+
+    expect(options[0].selected).toBeFalsy();
+    expect(options[1].selected).toBeFalsy();
+    expect(options[2].selected).toBeFalsy();
+    expect(options[3].selected).toBeTruthy();
+    expect(options[4].selected).toBeFalsy();
+  });
 });

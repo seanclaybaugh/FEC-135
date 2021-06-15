@@ -21,7 +21,7 @@ const sampleStyle = [
         size: '7.5',
       },
       828952: {
-        quantity: 9,
+        quantity: 0,
         size: '8',
       },
       828953: {
