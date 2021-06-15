@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for src/components/product-overview/content-panel/header/Price.jsx</title>
+    <title>Code coverage report for src/components/product-overview/content-panel/selectors/Size.jsx</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../../../../../prettify.css" />
     <link rel="stylesheet" href="../../../../../base.css" />
@@ -19,34 +19,34 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../../../../../index.html">All files</a> / <a href="index.html">src/components/product-overview/content-panel/header</a> Price.jsx</h1>
+        <h1><a href="../../../../../index.html">All files</a> / <a href="index.html">src/components/product-overview/content-panel/selectors</a> Size.jsx</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">94.74% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>44/44</span>
+                <span class='fraction'>54/57</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">87.5% </span>
+                <span class="strong">71.43% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>7/8</span>
+                <span class='fraction'>5/7</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">50% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>1/1</span>
+                <span class='fraction'>1/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">94.74% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>44/44</span>
+                <span class='fraction'>54/57</span>
             </div>
         
             
@@ -101,7 +101,29 @@
 <a name='L42'></a><a href='#L42'>42</a>
 <a name='L43'></a><a href='#L43'>43</a>
 <a name='L44'></a><a href='#L44'>44</a>
-<a name='L45'></a><a href='#L45'>45</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L45'></a><a href='#L45'>45</a>
+<a name='L46'></a><a href='#L46'>46</a>
+<a name='L47'></a><a href='#L47'>47</a>
+<a name='L48'></a><a href='#L48'>48</a>
+<a name='L49'></a><a href='#L49'>49</a>
+<a name='L50'></a><a href='#L50'>50</a>
+<a name='L51'></a><a href='#L51'>51</a>
+<a name='L52'></a><a href='#L52'>52</a>
+<a name='L53'></a><a href='#L53'>53</a>
+<a name='L54'></a><a href='#L54'>54</a>
+<a name='L55'></a><a href='#L55'>55</a>
+<a name='L56'></a><a href='#L56'>56</a>
+<a name='L57'></a><a href='#L57'>57</a>
+<a name='L58'></a><a href='#L58'>58</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -131,10 +153,14 @@
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
@@ -148,47 +174,60 @@
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React, { useContext } from 'react';
 import styled from 'styled-components';
 import CurrentStyleContext from '../../contexts/CurrentStyleContext';
+import SelectedSkuContext from '../contexts/SelectedSkuContext';
+import MissingSkuContext from '../contexts/MissingSkuContext';
 &nbsp;
-const StyledPriceContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  order: 2;
-`;
+const Button = styled.button`
+  margin: 20px 2.5px;
+  background-color: ${(props) =&gt; props.bgColor};
+  color: #000;
+  border: solid 1px ${(props) =&gt; props.borderColor};
+  padding: 5px;
+  width: 70px;
+  height: 40px;
+  transition: background-color 0.5s ease;
 &nbsp;
-const OriginalPrice = styled.div`
-  text-decoration: ${(props) =&gt; (
-    !props.currentStyle.sale_price ? 'none' : 'line-through'
-  )};
-  text-align: center;
-`;
-&nbsp;
-const NewPrice = styled.div`
-  color: red;
-  margin-left: 20px;
-  text-align: center;
-`;
-&nbsp;
-function Price({ price }) {
-  const { currentStyle } = useContext(CurrentStyleContext);
-  const currentPrice = <span class="branch-0 cbranch-no" title="branch not covered" >!currentStyle ? price : p</span>arseInt(currentStyle.original_price, 10);
-  const salePrice = !currentStyle.sale_price ? null : parseInt(currentStyle.sale_price, 10);
-  let newPriceDisplay;
-&nbsp;
-  if (salePrice) {
-    newPriceDisplay = &lt;NewPrice data-testid="sale"&gt;{`$${salePrice}`}&lt;/NewPrice&gt;;
-  } else {
-    newPriceDisplay = '';
+  :hover {
+    cursor: pointer;
+    background-color: #000;
+    color: #fff;
   }
 &nbsp;
+  :disabled {
+    background-color: #f7f7f7;
+    color: #b3b4b5;
+&nbsp;
+    :hover {
+      cursor: not-allowed;
+    }
+  }
+`;
+&nbsp;
+function Size({ sku, size }) {
+  const { currentStyle } = useContext(CurrentStyleContext);
+  const { selectedSku, setSelectedSku } = useContext(SelectedSkuContext);
+  const { isMissingSku, setIsMissingSku } = useContext(MissingSkuContext);
+  const isInStock = currentStyle.skus[sku].quantity &gt; 0;
+&nbsp;
+<span class="fstat-no" title="function not covered" >  function handleClick() {</span>
+<span class="cstat-no" title="statement not covered" >    setSelectedSku(sku);</span>
+<span class="cstat-no" title="statement not covered" >    setIsMissingSku(false);</span>
+<span class="cstat-no" title="statement not covered" >  }</span>
+&nbsp;
   return (
-    &lt;StyledPriceContainer&gt;
-      &lt;OriginalPrice data-testid="original" currentStyle={currentStyle}&gt;{`$${currentPrice}`}&lt;/OriginalPrice&gt;
-      {newPriceDisplay}
-    &lt;/StyledPriceContainer&gt;
+    &lt;&gt;
+      &lt;Button
+        sku={sku}
+        onClick={handleClick}
+        bgColor={<span class="branch-0 cbranch-no" title="branch not covered" >sku === selectedSku ? '#fff' : '</span>#E9EAEC'}
+        borderColor={<span class="branch-0 cbranch-no" title="branch not covered" >sku === selectedSku ? '#000' : '</span>#E9EAEC'}
+        disabled={isInStock ? null : 'active'}&gt;{size}
+      &lt;/Button&gt;
+    &lt;/&gt;
   );
 }
 &nbsp;
-export default Price;
+export default Size;
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
@@ -196,7 +235,7 @@ export default Price;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Tue Jun 15 2021 00:01:01 GMT-0700 (Pacific Daylight Time)
+                at Mon Jun 14 2021 23:42:30 GMT-0700 (Pacific Daylight Time)
             </div>
         </div>
         <script src="../../../../../prettify.js"></script>

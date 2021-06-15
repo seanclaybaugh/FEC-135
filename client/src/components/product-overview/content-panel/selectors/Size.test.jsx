@@ -11,7 +11,7 @@ import MissingSkuContext from '../contexts/MissingSkuContext';
 import CurrentStyleContext from '../../contexts/CurrentStyleContext';
 import sampleStyle from '../../../../../spec/sampleStyle';
 
-describe('Quantity', () => {
+describe('Size', () => {
   test('should not allow users to select a size if it is not in stock', () => {
     const sku = {
       selectedSku: null,
