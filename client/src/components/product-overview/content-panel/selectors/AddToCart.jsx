@@ -1,9 +1,9 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { lazy, Suspense, useState, useEffect, useContext } from 'react';
 import styled, { keyframes } from 'styled-components';
 import axios from 'axios';
 import SelectedSkuContext from '../contexts/SelectedSkuContext';
 import SelectedQtyContext from '../contexts/SelectedQtyContext';
-import CartModal from './CartModal';
+const CartModal = lazy(() => import('./CartModal'));
 
 const rotate360 = keyframes`
   from {
@@ -140,15 +140,19 @@ function AddToCart({ product, handleMissingSku }) {
       <Container onSubmit={handleClick} name="checkout-form">
         <Button>{isLoading ? <Spinner /> : 'ADD TO BAG'}</Button>
       </Container>
-      {!isMissingSku && selectedSku ? (
-        <CartModal
-          showModal={showModal}
-          setShowModal={setShowModal}
-          product={product}
-          items={items}
-          isError={isError}
-        />
-      ) : null}
+      <Suspense fallback={<div>Loading...</div>}>
+        {!isMissingSku
+          && selectedSku
+          && (
+            <CartModal
+              showModal={showModal}
+              setShowModal={setShowModal}
+              product={product}
+              items={items}
+              isError={isError}
+            />
+          )}
+      </Suspense>
     </OuterContainer>
   );
 }
