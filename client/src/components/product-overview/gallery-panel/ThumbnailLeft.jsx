@@ -33,11 +33,12 @@ function ThumbnailLeft({ index, photo }) {
   }
 
   return (
-    <ListItem onClick={handleClick}>
+    <ListItem onClick={handleClick} aria-label="left-image-thumbnail">
       <Img
         src={photo.thumbnail_url}
         padding={isSelected ? '2px' : '1px'}
         border={isSelected ? 'solid 1px #000' : 'none'}
+        alt="photo-thumbnail"
       />
     </ListItem>
   );

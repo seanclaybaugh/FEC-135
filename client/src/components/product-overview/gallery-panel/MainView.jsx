@@ -98,6 +98,7 @@ function MainView() {
           <StyledImage
             src={previewStyle.photos[currentPhotoIndex].url}
             onClick={viewModal}
+            alt="main-image"
           />
           {modal && (
           <Dialog open>
