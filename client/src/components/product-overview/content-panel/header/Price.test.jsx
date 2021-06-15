@@ -9,14 +9,6 @@ import Price from './Price';
 import CurrentStyleContext from '../../contexts/CurrentStyleContext';
 import sampleStyle from '../../../../../spec/sampleStyle';
 
-function renderStyleContext(style, price) {
-  return render(
-    <CurrentStyleContext.Provider value={style}>
-      <Price price={price} />
-    </CurrentStyleContext.Provider>,
-  );
-}
-
 describe('Price', () => {
   test('should render component with the original price of the current style', () => {
     const defaultPrice = '$100';

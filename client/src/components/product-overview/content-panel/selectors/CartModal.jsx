@@ -171,7 +171,7 @@ function CartModal({ showModal, setShowModal, product }) {
   return (
     <>
       {showModal ? (
-        <Background ref={modalRef} onClick={closeModal}>
+        <Background ref={modalRef} onClick={closeModal} data-testid="cart-modal">
           <animated.div style={animation}>
             <ModalContentWrapper showModal={showModal}>
               <ModalHeader>

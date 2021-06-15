@@ -136,8 +136,8 @@ function AddToCart({ product, handleMissingSku }) {
   }
 
   return (
-    <OuterContainer>
-      <Container onSubmit={handleClick} name="checkout">
+    <OuterContainer data-testid="checkout-container">
+      <Container onSubmit={handleClick} name="checkout-form">
         <Button>{isLoading ? <Spinner /> : 'ADD TO BAG'}</Button>
       </Container>
       {!isMissingSku && selectedSku ? (
