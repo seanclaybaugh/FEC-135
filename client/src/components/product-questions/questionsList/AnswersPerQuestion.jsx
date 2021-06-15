@@ -60,7 +60,7 @@ const AnswersPerQuestion = props => {
         <AnswerStyles.AnswerInfo></AnswerStyles.AnswerInfo>
 
         <AnswerStyles.AnswerInfoName>
-          By: {props.answer.answerer_name}, {date}
+          Answered By: {props.answer.answerer_name}, {date}
         </AnswerStyles.AnswerInfoName>
 
         <AnswerStyles.AnswerInfoHelp>

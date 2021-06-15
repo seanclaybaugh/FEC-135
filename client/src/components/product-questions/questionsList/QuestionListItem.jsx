@@ -6,6 +6,7 @@ import styled from 'styled-components';
 import QuestionItemStyle from './QuestionItemStyle';
 import SharedStyles from '../SharedStyles';
 import { AiFillCaretUp } from "react-icons/ai";
+import moment from 'moment';
 import axios from 'axios';
 
 
@@ -17,6 +18,7 @@ const QuestionListItem = props => {
   let answers = props.question.answers || [];
   const questionId = props.question.question_id;
   let answerLength = Object.keys(answers).length;
+  let date = moment(props.question.question_date).format('LL');
 
 
   const handleHelpfulClick = async () => {
@@ -100,8 +102,16 @@ const QuestionListItem = props => {
               handleAddedAnswer={handleAddedAnswer}
             />}
 
-
         </QuestionItemStyle.Wrapper>
+
+        <QuestionItemStyle.QuestionAskerWrapper>
+          <QuestionItemStyle.QuestionAsker></QuestionItemStyle.QuestionAsker>
+
+          <QuestionItemStyle.QuestionAskerInfo>
+            Asked by: {props.question.asker_name}, {date}
+          </QuestionItemStyle.QuestionAskerInfo>
+        </QuestionItemStyle.QuestionAskerWrapper>
+
           <br/>
           {visibleAnswers.map((answer, i) =>
             <AnswersPerQuestion

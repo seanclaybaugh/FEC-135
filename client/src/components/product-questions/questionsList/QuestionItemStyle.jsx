@@ -63,6 +63,25 @@ const QuestionAddAnswer = styled.button`
 
 `
 
+
+const QuestionAskerWrapper = styled.div`
+  display: flex;
+`
+
+const QuestionAskerInfo = styled.div`
+  order: 2;
+  font-weight: 200;
+  font-size: 10px;
+  padding-top: 4px;
+`
+
+const QuestionAsker = styled.div`
+  order: 1;
+  flex-basis: 4%;
+`
+
+
+
 const List = styled.ul`
   list-style-type: none;
   padding: none;
@@ -97,4 +116,7 @@ export default {
   MoreWrapper,
   MoreAnswer,
   MoreTxt,
+  QuestionAskerWrapper,
+  QuestionAsker,
+  QuestionAskerInfo,
 };
