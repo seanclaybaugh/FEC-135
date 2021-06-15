@@ -28,6 +28,7 @@ const Button1 = styled.button`
    color: white;
    text-align:center;
    transition: all 0.15s;
+   margin-left: 20px;
    &:hover {
      background-color: white;
      color: black;
