@@ -84,8 +84,8 @@ const Button = styled.button`
 `;
 
 function AddToCart({ product, handleMissingSku }) {
-  const { selectedSku, setSelectedSku } = useContext(SelectedSkuContext);
-  const { selectedQty, setSelectedQty } = useContext(SelectedQtyContext);
+  const { selectedSku } = useContext(SelectedSkuContext);
+  const { selectedQty } = useContext(SelectedQtyContext);
   const [items, setItems] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
@@ -124,7 +124,7 @@ function AddToCart({ product, handleMissingSku }) {
       .catch(() => setIsError(true));
   }
 
-  function handleSubmit(e) {
+  function handleClick(e) {
     e.preventDefault();
     if (!selectedSku) {
       setIsMissingSku(true);
@@ -137,7 +137,7 @@ function AddToCart({ product, handleMissingSku }) {
 
   return (
     <OuterContainer>
-      <Container onSubmit={handleSubmit}>
+      <Container onSubmit={handleClick} name="checkout">
         <Button>{isLoading ? <Spinner /> : 'ADD TO BAG'}</Button>
       </Container>
       {!isMissingSku && selectedSku ? (

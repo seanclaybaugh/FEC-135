@@ -8,7 +8,7 @@ import '@testing-library/jest-dom';
 import Title from './Title';
 
 describe('Title', () => {
-  test('should render component', () => {
+  test('should render title information', () => {
     const name = 'Camo Onesie';
     render(<Title name={name} />);
     const component = screen.getByText('Camo Onesie');
