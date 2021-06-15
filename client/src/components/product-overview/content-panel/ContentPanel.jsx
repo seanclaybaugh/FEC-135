@@ -1,14 +1,14 @@
-import React, { useState, useEffect} from 'react';
+import React, { lazy, Suspense, useState, useEffect} from 'react';
 import axios from 'axios';
 import SelectedSkuContext from './contexts/SelectedSkuContext';
 import SelectedQtyContext from './contexts/SelectedQtyContext';
 import MissingSkuContext from './contexts/MissingSkuContext';
 import Spinner from '../spinner/LoadingSpinner';
-import Header from './header/Header';
-import StylesContainer from './selectors/StylesContainer';
-import SizeQtyContainer from './selectors/SizeQtyContainer';
-import AddToCart from './selectors/AddToCart';
-import Share from './Share';
+const Header = lazy(() => import('./header/Header'));
+const StylesContainer = lazy(() => import('./selectors/StylesContainer'));
+const SizeQtyContainer = lazy(() => import('./selectors/SizeQtyContainer'));
+const AddToCart = lazy(() => import('./selectors/AddToCart'));
+const Share = lazy(() => import('./Share'));
 
 function ContentPanel({ styles }) {
   const [product, setProduct] = useState([]);
@@ -50,26 +50,27 @@ function ContentPanel({ styles }) {
   }
 
   return (
-    isLoading
-      ? <Spinner />
-      : (
-        <>
-          <Header
-            product={product}
-            metaData={metaData}
-          />
-          <SelectedSkuContext.Provider value={{ selectedSku, setSelectedSku }}>
-            <SelectedQtyContext.Provider value={{ selectedQty, setSelectedQty }}>
-              <MissingSkuContext.Provider value={{ isMissingSku, setIsMissingSku }}>
-                <StylesContainer styles={styles} />
-                <SizeQtyContainer />
-              </MissingSkuContext.Provider>
-              <AddToCart product={product.name} handleMissingSku={handleMissingSku} />
-              <Share />
-            </SelectedQtyContext.Provider>
-          </SelectedSkuContext.Provider>
-        </>
-      )
+    <Suspense fallback={<Spinner />}>
+      {!isLoading
+        && (
+          <>
+            <Header
+              product={product}
+              metaData={metaData}
+            />
+            <SelectedSkuContext.Provider value={{ selectedSku, setSelectedSku }}>
+              <SelectedQtyContext.Provider value={{ selectedQty, setSelectedQty }}>
+                <MissingSkuContext.Provider value={{ isMissingSku, setIsMissingSku }}>
+                  <StylesContainer styles={styles} />
+                  <SizeQtyContainer />
+                </MissingSkuContext.Provider>
+                <AddToCart product={product.name} handleMissingSku={handleMissingSku} />
+                <Share />
+              </SelectedQtyContext.Provider>
+            </SelectedSkuContext.Provider>
+          </>
+        )}
+    </Suspense>
   );
 }
 
