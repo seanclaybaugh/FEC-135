@@ -33,7 +33,7 @@ const Button = styled.button`
 function Size({ sku, size }) {
   const { currentStyle } = useContext(CurrentStyleContext);
   const { selectedSku, setSelectedSku } = useContext(SelectedSkuContext);
-  const { isMissingSku, setIsMissingSku } = useContext(MissingSkuContext);
+  const { setIsMissingSku } = useContext(MissingSkuContext);
   const isInStock = currentStyle.skus[sku].quantity > 0;
 
   function handleClick() {

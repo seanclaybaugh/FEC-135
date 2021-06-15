@@ -10,6 +10,6 @@ const getAvgRating = (ratings) => {
   result = parseFloat(sum / count).toFixed(1);
 
   return result;
-}
+};
 
 export default getAvgRating;

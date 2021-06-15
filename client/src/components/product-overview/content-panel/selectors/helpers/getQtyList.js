@@ -1,7 +1,7 @@
 const getQtyList = (qty) => {
-  let options = [];
+  const options = [];
   let int = 1;
-  let max = qty < 15 ? qty : 15;
+  const max = qty < 15 ? qty : 15;
 
   while (max >= int) {
     options.push(int);
@@ -9,6 +9,6 @@ const getQtyList = (qty) => {
   }
 
   return options;
-}
+};
 
 export default getQtyList;

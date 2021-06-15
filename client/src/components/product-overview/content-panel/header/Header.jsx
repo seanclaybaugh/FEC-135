@@ -29,9 +29,9 @@ function Header({ product, metaData }) {
 
   useEffect(() => {
     if (metaData.ratings) {
-      let result = getAvgRating(metaData.ratings);
+      const result = getAvgRating(metaData.ratings);
       setRating(result);
-      let count = getReviewCount(metaData.ratings);
+      const count = getReviewCount(metaData.ratings);
       setReviewCount(count);
     }
   }, [metaData]);

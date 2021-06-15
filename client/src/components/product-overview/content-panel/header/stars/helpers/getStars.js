@@ -1,7 +1,7 @@
 const getStars = (rating) => {
   rating = rating || 0;
 
-  let stars = [];
+  const stars = [];
 
   while (stars.length < 5) {
     if (rating > 1) { // push full stars until you get to the last filled star

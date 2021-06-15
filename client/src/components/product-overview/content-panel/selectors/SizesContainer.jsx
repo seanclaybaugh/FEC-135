@@ -52,7 +52,7 @@ const StyledSizesContainer = styled.div`
 function SizesContainer() {
   const { currentStyle } = useContext(CurrentStyleContext);
   const { selectedSku } = useContext(SelectedSkuContext);
-  const { isMissingSku, setIsMissingSku } = useContext(MissingSkuContext);
+  const { isMissingSku } = useContext(MissingSkuContext);
   const skus = [];
 
   for (const sku in currentStyle.skus) {
@@ -62,9 +62,9 @@ function SizesContainer() {
     });
   }
 
-  let size,
-      quantity,
-      status;
+  let size;
+  let quantity;
+  let status;
 
   if (currentStyle.skus[selectedSku]) {
     size = currentStyle.skus[selectedSku].size;

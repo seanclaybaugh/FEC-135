@@ -6,6 +6,6 @@ const getReviewCount = (ratings) => {
   }
 
   return count;
-}
+};
 
 export default getReviewCount;
