@@ -5,27 +5,29 @@ const StarContainer = styled.div`
   display: inline-block;
   height: 20px;
   width: 20px;
+  --star-size: 20px;
+  --star-color: #E9EAEC;
+  --star-background: #000;
 `;
 
-const StarBar = styled.div`
+const StyledStar = styled.div`
+  --percent: calc(${(props) => props.width * 100}%);
+
   display: inline-block;
-  position: relative;
-  height: 20px;
-  width: ${(props) => props.width * 20}px;
-  background-color: #000;
-`;
+  font-size: var(--star-size);
+  font-family: Times;
+  line-height: 1;
 
-const StyledStar = styled.img`
-  height: 20px;
-  width: 20px;
+  background: linear-gradient(90deg, var(--star-background) var(--percent), var(--star-color) var(--percent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
 `;
 
 function StarItem({ value }) {
   return (
     <StarContainer>
-      <StarBar width={value}>
-        <StyledStar src="http://localhost:3000/assets/star.png" />
-      </StarBar>
+      <StyledStar width={value}>★</StyledStar>
     </StarContainer>
   );
 }
