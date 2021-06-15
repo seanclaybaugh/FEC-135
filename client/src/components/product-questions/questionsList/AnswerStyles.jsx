@@ -43,7 +43,7 @@ const ImageWrapper = styled.div`
 
 const Answer = styled.div`
   order: 1;
-  flex-basis: 5%;
+  flex-basis: 4%;
   font-weight: 500;
 `
 
@@ -57,7 +57,7 @@ const AnswerBody = styled.div`
 
 const AnswerInfo = styled.div`
   order: 1;
-  flex-basis: 5%;
+  flex-basis: 4%;
 
 `
 
@@ -97,7 +97,7 @@ const AnswerInfoReport = styled.button`
 
 const Image = styled.div`
   order: 1;
-  flex-basis: 5%;
+  flex-basis: 4%;
 `
 
 export default {

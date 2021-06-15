@@ -25,7 +25,7 @@ const Wrapper = styled.div`
 `
 const Question = styled.div`
   order: 1;
-  flex-basis: 5%;
+  flex-basis: 4%;
 
 `
 const QuestionBody = styled.div`
@@ -74,7 +74,7 @@ const MoreWrapper = styled.div`
 
 const MoreAnswer = styled.div`
   order: 1;
-  flex-basis: 5%;
+  flex-basis: 4%;
 
 `
 
