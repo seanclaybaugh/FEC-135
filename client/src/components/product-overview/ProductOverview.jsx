@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { lazy, Suspense, useState, useEffect } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
 import CurrentStyleContext from './contexts/CurrentStyleContext';
 import PreviewStyleContext from './contexts/PreviewStyleContext';
 import Spinner from './spinner/LoadingSpinner';
-import GalleryPanel from './gallery-panel/GalleryPanel';
-import ContentPanel from './content-panel/ContentPanel';
+const GalleryPanel = lazy(() => import('./gallery-panel/GalleryPanel'));
+const ContentPanel = lazy(() => import('./content-panel/ContentPanel'));
 
 const OverviewContainer = styled.div`
   display: flex;
@@ -52,9 +52,9 @@ function ProductOverview() {
   }, []);
 
   return (
-    isLoading
-      ? <Spinner />
-      : (
+    <Suspense fallback={<Spinner />}>
+      {!isLoading
+      &&
         <PreviewStyleContext.Provider value={{ previewStyle, setPreviewStyle }}>
           <OverviewContainer>
             <GalleryDiv>
@@ -66,8 +66,8 @@ function ProductOverview() {
               </ContentDiv>
             </CurrentStyleContext.Provider>
           </OverviewContainer>
-        </PreviewStyleContext.Provider>
-      )
+        </PreviewStyleContext.Provider>}
+    </Suspense>
   );
 }
 
