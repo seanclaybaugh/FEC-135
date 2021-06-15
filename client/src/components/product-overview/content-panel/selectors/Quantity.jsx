@@ -53,9 +53,9 @@ function Quantity() {
 
   return (
     <div>
-      <Select onChange={handleChange} disabled={isActive}>
+      <Select onChange={handleChange} disabled={isActive} data-testid="dropdown">
         {options.map((option, index) => (
-          <option key={index} value={option}>{option}</option>
+          <option key={index} value={option} data-testid="option">{option}</option>
         ))}
       </Select>
     </div>

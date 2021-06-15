@@ -5,65 +5,20 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import AddToCart from './AddToCart';
+import Quantity from './Quantity';
 import SelectedSkuContext from '../contexts/SelectedSkuContext';
 import SelectedQtyContext from '../contexts/SelectedQtyContext';
 import CurrentStyleContext from '../../contexts/CurrentStyleContext';
 import sampleStyle from '../../../../../spec/sampleStyle';
 
-describe('Add Item(s) To Cart', () => {
-  test('should render `Add To Cart` button', () => {
+describe('Quantity', () => {
+  test('should not allow users to select from the dropdown when a size is not selected', () => {
     const sku = {
       selectedSku: null,
       setSelectedSku: () => {},
     };
     const qty = {
       selectedQty: null,
-      setSelectedQty: () => {},
-    };
-
-    render(
-      <SelectedSkuContext.Provider value={sku}>
-        <SelectedQtyContext.Provider value={qty}>
-          <AddToCart />
-        </SelectedQtyContext.Provider>
-      </SelectedSkuContext.Provider>,
-    );
-
-    const button = screen.getByRole('button', { name: /ADD TO BAG/i });
-
-    expect(button).toBeInTheDocument();
-  });
-  test('should call `handleMissingSku` function when `Add To Cart` button is clicked and size has not been selected', () => {
-    const sku = {
-      selectedSku: null,
-      setSelectedSku: () => {},
-    };
-    const qty = {
-      selectedQty: null,
-      setSelectedQty: () => {},
-    };
-    const handleMissingSku = jest.fn();
-
-    render(
-      <SelectedSkuContext.Provider value={sku}>
-        <SelectedQtyContext.Provider value={qty}>
-          <AddToCart handleMissingSku={handleMissingSku} />
-        </SelectedQtyContext.Provider>
-      </SelectedSkuContext.Provider>,
-    );
-
-    fireEvent.submit(screen.getByRole('form'));
-
-    expect(handleMissingSku).toHaveBeenCalled();
-  });
-  test('should open CartModal component when `Add To Cart` button is clicked and size has been selected', () => {
-    const sku = {
-      selectedSku: 828950,
-      setSelectedSku: () => {},
-    };
-    const qty = {
-      selectedQty: 1,
       setSelectedQty: () => {},
     };
     const style = {
@@ -75,19 +30,79 @@ describe('Add Item(s) To Cart', () => {
       <SelectedSkuContext.Provider value={sku}>
         <SelectedQtyContext.Provider value={qty}>
           <CurrentStyleContext.Provider value={style}>
-            <AddToCart />
+            <Quantity />
           </CurrentStyleContext.Provider>
         </SelectedQtyContext.Provider>
       </SelectedSkuContext.Provider>,
     );
 
-    const container = screen.getByTestId('checkout-container');
-    const button = screen.getByRole('button');
+    const dropdown = screen.getByTestId('dropdown');
 
-    fireEvent.click(button);
+    expect(dropdown).toBeDisabled();
+  });
+  test('should allow users to select from the dropdown when a size is selected', () => {
+    const sku = {
+      selectedSku: 828950,
+      setSelectedSku: () => {},
+    };
+    const qty = {
+      selectedQty: null,
+      setSelectedQty: () => {},
+    };
+    const style = {
+      currentStyle: sampleStyle[0],
+      setCurrentStyle: () => {},
+    };
 
-    const modal = screen.getByTestId('cart-modal');
+    render(
+      <SelectedSkuContext.Provider value={sku}>
+        <SelectedQtyContext.Provider value={qty}>
+          <CurrentStyleContext.Provider value={style}>
+            <Quantity />
+          </CurrentStyleContext.Provider>
+        </SelectedQtyContext.Provider>
+      </SelectedSkuContext.Provider>,
+    );
 
-    expect(container).toContainElement(modal);
+    const dropdown = screen.getByTestId('dropdown');
+
+    expect(dropdown).not.toBeDisabled();
+  });
+  test('should update the selected quantity when a user selects from the dropdown', () => {
+    const sku = {
+      selectedSku: 828950,
+      setSelectedSku: () => {},
+    };
+    const qty = {
+      selectedQty: null,
+      setSelectedQty: () => {},
+    };
+    const style = {
+      currentStyle: sampleStyle[0],
+      setCurrentStyle: () => {},
+    };
+
+    render(
+      <SelectedSkuContext.Provider value={sku}>
+        <SelectedQtyContext.Provider value={qty}>
+          <CurrentStyleContext.Provider value={style}>
+            <Quantity />
+          </CurrentStyleContext.Provider>
+        </SelectedQtyContext.Provider>
+      </SelectedSkuContext.Provider>,
+    );
+
+    const dropdown = screen.getByTestId('dropdown');
+
+    fireEvent.click(dropdown);
+    fireEvent.change(dropdown, { target: { value: 4 } });
+
+    let options = screen.getAllByTestId('option');
+
+    expect(options[0].selected).toBeFalsy();
+    expect(options[1].selected).toBeFalsy();
+    expect(options[2].selected).toBeFalsy();
+    expect(options[3].selected).toBeTruthy();
+    expect(options[4].selected).toBeFalsy();
   });
 });
