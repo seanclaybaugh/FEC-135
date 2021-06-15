@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
+import CurrentStyleContext from '../../contexts/CurrentStyleContext';
 import SelectedSkuContext from '../contexts/SelectedSkuContext';
 import MissingSkuContext from '../contexts/MissingSkuContext';
 
@@ -18,11 +19,23 @@ const Button = styled.button`
     background-color: #000;
     color: #fff;
   }
+
+  :disabled {
+    background-color: #f7f7f7;
+    color: #b3b4b5;
+
+    :hover {
+      cursor: not-allowed;
+    }
+  }
 `;
 
 function Size({ sku, size }) {
+  const { currentStyle } = useContext(CurrentStyleContext);
   const { selectedSku, setSelectedSku } = useContext(SelectedSkuContext);
   const { isMissingSku, setIsMissingSku } = useContext(MissingSkuContext);
+  console.log(currentStyle);
+  const isInStock = currentStyle.skus[sku].quantity > 0;
 
   function handleClick() {
     setSelectedSku(sku);
@@ -35,7 +48,8 @@ function Size({ sku, size }) {
         sku={sku}
         onClick={handleClick}
         bgColor={sku === selectedSku ? '#fff' : '#E9EAEC'}
-        borderColor={sku === selectedSku ? '#000' : '#E9EAEC'}>{size}
+        borderColor={sku === selectedSku ? '#000' : '#E9EAEC'}
+        disabled={isInStock ? null : 'active'}>{size}
       </Button>
     </>
   );
