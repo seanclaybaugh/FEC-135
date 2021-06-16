@@ -36,6 +36,3 @@ router.all('/api/*', async (req, res) => {
 });
 
 module.exports = router;
-
-// client side example: axios.get('/api/products')
-// axios.post('/api/reviews?product_id=${product.id}', req.body)
