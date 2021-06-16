@@ -11,7 +11,7 @@ const SearchQuestions = props => {
 
     let inputValue = event.target.value;
     setSearchText(inputValue);
-    props.handlSearchTextChanged(inputValue);
+    props.handleSearchTextChanged(inputValue);
   }
 
   return (

@@ -1,5 +1,10 @@
 import React from 'react';
 
+// test()
+//   render(<HighlightedText textBody=".." searchText="..." />)
+//   expect() to be in the dom
+
+//rendering the text body
 function HighlightedText(props) {
 
   //props.textBody
