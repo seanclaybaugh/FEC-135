@@ -3,24 +3,24 @@
  */
 
  import React from 'react';
- import { render, fireEvent } from '@testing-library/react';
+ import { render, screen } from '@testing-library/react';
  import '@testing-library/jest-dom';
  import SearchQuestions from '../src/components/product-questions/SearchQuestions/SearchQuestions.jsx';
 
+describe('SearchQuestions', () => {
+
+  test('search questions should have a placeholder string', () => {
+
+    let placeholderTxt = 'HAVE A QUESTION? SEARCH FOR ANSWERS';
+
+    render(<SearchQuestions
+            placeholderTxt={placeholderTxt}
+           />);
 
 
-    test('renders placeholder text', () => {
-      // const {getByPlaceholderText} = render(<SearchQuestions
-      //                                 placeholder="HAVE A QUESTION? SEARCH FOR ANSWERS"
-      //                                 />);
+    const elementOne = screen.getByPlaceholderText(placeholderTxt);
+    expect(elementOne).toBeInTheDocument();
+  });
 
-      //   const inputNode = getByPlaceholderText('HAVE A QUESTION? SEARCH FOR ANSWERS');
-
-      //   expect(inputNode.value).toMatch('') //tests input value is empty
-      //   fireEvent.change(inputNode, { target: { value: 'Some text' } });
-
-      //   expect(inputNode.value).toMatch('Some text');
-
-
-    })
+})
 
