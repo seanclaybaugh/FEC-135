@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
+import ProductOverview from './product-overview/ProductOverview';
 import ReviewsIndex from './reviews/reviewsIndex';
 
 function App() {
   return (
     <>
-      <h1>Products N' Stuff</h1>
-      <div>
-        <ReviewsIndex productId={25167} />
-      </div>
+      {/* <h1>What up my Quadratic Quokkas Q.Q</h1> */}
+      <ProductOverview />
+      {/* <ReviewsIndex /> */}
     </>
   );
 }
