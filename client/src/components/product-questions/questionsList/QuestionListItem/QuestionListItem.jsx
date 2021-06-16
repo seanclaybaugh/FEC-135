@@ -36,8 +36,6 @@ const QuestionListItem = (props) => {
   };
 
   const handleAddedAnswer = async () => {
-    // while loop here as well
-    // pick a page size that is equal to the old numbers of answers plus  TWO!!
     let fetchingAnswers = true;
     let newAnswers = [];
     const count = answerLength + 2;
@@ -57,7 +55,6 @@ const QuestionListItem = (props) => {
     }
   };
 
-  // if state is expanded, we want all the answers, else we want to slice 0,2
   const allAnswers = Object.values(answers);
   const visibleAnswers = expanded ? allAnswers : allAnswers.slice(0, 2);
   const enoughAnswersToExpand = allAnswers.length > 2;

@@ -9,7 +9,6 @@ const Button = styled.button`
   margin: 0.5em 1em;
   padding: 1rem 1rem;
   cursor: pointer;
-
   &:hover,
   &:focus {
     border: 1px solid transparent;
@@ -23,10 +22,7 @@ const Button = styled.button`
 const QuestionItem = styled.button`
   background: transparent;
   border: none;
-  // text-decoration: underline;
   cursor: pointer;
-  // font-weight: 20;
-  // font-size: 12px;
   &:hover {
     text-decoration: underline;
   }

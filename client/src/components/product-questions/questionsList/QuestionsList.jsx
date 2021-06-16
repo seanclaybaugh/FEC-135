@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import QuestionListItem from './QuestionListItem/QuestionListItem';
 import AddQuestionForm from './AddQuestion/AddQuestionForm';
 import SharedButton from '../SharedStyles/SharedButton';
-// import { GrAdd } from "react-icons/gr";
 
 const Container = styled.div`
   overflow-y: scroll;

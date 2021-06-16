@@ -28,13 +28,6 @@ router.all('/api/*', async (req, res) => {
       headers: { Authorization: authToken },
       data: req.body,
     });
-    console.log('SENDING THIS:')
-    console.log(req.method)
-    console.log(requestUrl)
-    console.log(req.body)
-    console.log('SERVER IS SENDING BACK:')
-
-    console.log(results.data)
     res.status(results.status).send(results.data);
   } catch (err) {
     console.log(err);
@@ -43,6 +36,3 @@ router.all('/api/*', async (req, res) => {
 });
 
 module.exports = router;
-
-// client side example: axios.get('/api/products')
-// axios.post('/api/reviews?product_id=${product.id}', req.body)

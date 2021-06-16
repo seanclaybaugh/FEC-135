@@ -10,7 +10,7 @@ import App from '../src/components/App.jsx';
 describe('App', () => {
   test('renders App component', () => {
     render(<App />);
-    // screen.getByText('What up my Quadratic Quokkas Q.Q');
+
     expect(screen.getByText('Question and Answers')).toBeInTheDocument();
   });
 });

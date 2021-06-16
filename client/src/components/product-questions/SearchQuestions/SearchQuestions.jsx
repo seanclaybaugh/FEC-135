@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import SearchStyle from './SearchStyle';
-// import { IoMdSearch } from 'react-icons/io';
 
 const SearchQuestions = (props) => {
   const [searchText, setSearchText] = useState('');

@@ -1,11 +1,5 @@
 import React from 'react';
 
-// test()
-//   render(<HighlightedText textBody=".." searchText="..." />)
-//   expect() to be in the dom
-
-// rendering the text body
-
 function HighlightedText(props) {
   if (props.searchText.length < 3) {
     return <span>{props.textBody}</span>;

@@ -6,7 +6,6 @@ import SearchQuestions from './SearchQuestions/SearchQuestions';
 
 const Container = styled.div`
   width: 700px;
-  // background-color: orange;
 `;
 
 function ProductQuestions() {
@@ -47,9 +46,7 @@ function ProductQuestions() {
 
         const res = await axios.get(url);
 
-        // Collect this page of questions
         newQuestions = newQuestions.concat(res.data.results);
-        // want to keep fetching if this page is full
         fetchingData = res.data.results.length === count;
         page++;
       }

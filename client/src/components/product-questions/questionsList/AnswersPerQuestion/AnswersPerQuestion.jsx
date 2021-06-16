@@ -36,7 +36,6 @@ const AnswersPerQuestion = (props) => {
     <>
       <AnswerStyles.AnswerWrapper>
         <AnswerStyles.Answer>A:</AnswerStyles.Answer>
-
         <AnswerStyles.AnswerBody>
           <HighLightedText
             textBody={props.answer.body}
@@ -47,7 +46,6 @@ const AnswersPerQuestion = (props) => {
 
       <AnswerStyles.AnswerInfoWrapper>
         <AnswerStyles.AnswerInfo />
-
         <AnswerStyles.AnswerInfoName>
           Answered By:
           {' '}
@@ -72,13 +70,10 @@ const AnswersPerQuestion = (props) => {
           Report
           <BsFlagFill />
         </AnswerStyles.AnswerInfoReport>
-
       </AnswerStyles.AnswerInfoWrapper>
 
       <AnswerStyles.ImageWrapper>
-
         <AnswerStyles.Image />
-
         {photos.map((photo, index) => <AnswerStyles.Img key={index} src={photo} />)}
       </AnswerStyles.ImageWrapper>
 
