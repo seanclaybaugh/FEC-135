@@ -5,7 +5,7 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import Title from './Title';
+import Title from '../src/components/product-overview/content-panel/header/Title';
 
 describe('Title', () => {
   test('should render title information', () => {

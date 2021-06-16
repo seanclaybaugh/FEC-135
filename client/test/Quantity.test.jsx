@@ -5,11 +5,11 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import Quantity from './Quantity';
-import SelectedSkuContext from '../contexts/SelectedSkuContext';
-import SelectedQtyContext from '../contexts/SelectedQtyContext';
-import CurrentStyleContext from '../../contexts/CurrentStyleContext';
-import sampleStyle from '../../../../../spec/sampleStyle';
+import Quantity from '../src/components/product-overview/content-panel/selectors/Quantity';
+import SelectedSkuContext from '../src/components/product-overview/content-panel/contexts/SelectedSkuContext';
+import SelectedQtyContext from '../src/components/product-overview/content-panel/contexts/SelectedQtyContext';
+import CurrentStyleContext from '../src/components/product-overview/contexts/CurrentStyleContext';
+import sampleStyle from './sampleData/sampleStyle';
 
 describe('Quantity', () => {
   test('should not allow users to select from the dropdown when a size is not selected', () => {
