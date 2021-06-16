@@ -5,7 +5,8 @@ module.exports = {
     node: true,
   },
   extends: [
-    'plugin:react/recommended',
+
+    // 'plugin:react/recommended',
     'airbnb',
   ],
   parserOptions: {
