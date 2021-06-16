@@ -63,7 +63,6 @@ const QuestionListItem = props => {
       props.handleAddedAnswer(questionId, newAnswers);
 
     } catch (error) {
-      console.log('error with adding answer')
       console.log(error)
     }
   }
@@ -82,15 +81,15 @@ const QuestionListItem = props => {
 
         <QuestionItemStyle.QuestionBody>
           <HighlightedText
-          textBody={props.question.question_body}
-          searchText={props.searchText}
+            textBody={props.question.question_body}
+            searchText={props.searchText}
           />
         </QuestionItemStyle.QuestionBody>
 
         <QuestionItemStyle.QuestionHelpful>
           Helpful?
           <SharedButton.QuestionItem onClick={handleHelpfulClick}><AiFillCaretUp/></SharedButton.QuestionItem>
-          #({props.question.question_helpfulness})
+            #({props.question.question_helpfulness})
         </QuestionItemStyle.QuestionHelpful>
 
 
@@ -115,12 +114,12 @@ const QuestionListItem = props => {
           <br/>
           {visibleAnswers.map((answer, i) =>
             <AnswersPerQuestion
-            key={i}
-            answer={answer}
-            handleAnswerHelpful={props.handleAnswerHelpful}
-            handleAnswerReport={props.handleAnswerReport}
-            searchText={props.searchText}
-            questionId={questionId}
+              key={i}
+              answer={answer}
+              handleAnswerHelpful={props.handleAnswerHelpful}
+              handleAnswerReport={props.handleAnswerReport}
+              searchText={props.searchText}
+              questionId={questionId}
             />
           )}
 
