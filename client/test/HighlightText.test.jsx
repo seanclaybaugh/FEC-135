@@ -2,20 +2,19 @@
  * @jest-environment jsdom
  */
 
- import React from 'react';
- import { render, screen } from '@testing-library/react';
- import '@testing-library/jest-dom';
- import HighlightedText from '../src/components/product-questions/questionsList/Helpers/HighlightedTextHelper.jsx';
+import React from 'react';
+import { render, screen } from '@testing-library/react';
+import '@testing-library/jest-dom';
+import HighlightedText from '../src/components/product-questions/questionsList/Helpers/HighlightedTextHelper.jsx';
 
 describe('HighlightedTextHelper', () => {
-
   test('nothing is highlighted when search text is not found', () => {
     const textBody = 'test text';
 
     render(<HighlightedText
-            textBody={textBody}
-            searchText={'search text'}
-            />);
+      textBody={textBody}
+      searchText="search text"
+    />);
 
     const element = screen.getByText(textBody);
     expect(element).toBeInTheDocument();
@@ -27,9 +26,9 @@ describe('HighlightedTextHelper', () => {
     const searchText = 'search';
 
     render(<HighlightedText
-            textBody={textBody}
-            searchText={searchText}
-            />);
+      textBody={textBody}
+      searchText={searchText}
+    />);
 
     const elementOne = screen.getByText('test text with');
     expect(elementOne).toBeInTheDocument();
@@ -48,12 +47,12 @@ describe('HighlightedTextHelper', () => {
     const textBody = 'test text';
 
     render(<HighlightedText
-            textBody={textBody}
-            searchText={'t'}
-            />);
+      textBody={textBody}
+      searchText="t"
+    />);
 
     const element = screen.getByText(textBody);
     expect(element).toBeInTheDocument();
     expect(element.tagName.toLowerCase()).toEqual('span');
   });
-})
+});
