@@ -20,7 +20,7 @@ progress[value]::-webkit-progress-value {
 }
 `;
 
-function DistBar ({value}) {
+function DistBar ({ value }) {
   return (
     <ProgContainer value={value}>
     <progress value={value} max="100" />
