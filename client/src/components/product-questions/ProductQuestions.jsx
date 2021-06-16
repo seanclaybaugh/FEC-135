@@ -87,43 +87,6 @@ function ProductQuestions() {
     fetchAllQuestions();
   }
 
-  // two kinds of functions
-  // 1) no side effects
-  //    input / output
-  //    easy to test - give it some input, expect some output
-  // 2) side effects
-  //    input
-  //    hard to test - give it some input, expect something to have changed
-
-  // test:
-  // it('should set the filtered questions to the entire question list when the searchText length is < 3', () => {
-    // render(<ProductQuestions />)
-    // component.handleSearchTextChanged('ab');
-    // expect(all questions) to be in the document
-  // });
-  // it('should set the filtered questions to matching questions when the searchText length is >= 3', () => {
-    // render(<ProductQuestions />)
-    // component.handleSearchTextChanged('abcd');
-    // expect(only some subset of questions) to be in the document
-  // });
-  // const handleSearchTextChangedUnitTestFriendly = (text) => {
-  //   const newQuestionList = functionalHardWorkGetFilteredQuestions(questionList, text);
-  //   setFilteredQuestions(newQuestionList);
-  // };
-
-  // const functionalHardWorkGetFilteredQuestions = (questionList, searchText) => {
-  //   // does all the hard work
-  //   // returns the new question list
-  // }
-
-  // const testQuestionlist = [q1, q2, q3]
-  // const result = functionalHardWork...(testQuestionList, 'abc')
-  // expect(result).to.deep.equal([q1])
-
-  // testing this - you need
-  // a component (gets its questions from the server...wtf), that has questions
-  // run this function
-  // then somehow check the state
   const handleSearchTextChanged = (text) => {
     setSearchText(text);
     if (text.length > 3) {
