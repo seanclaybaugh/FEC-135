@@ -17,10 +17,8 @@ describe('SearchQuestions', () => {
             placeholderTxt={placeholderTxt}
            />);
 
-
     const elementOne = screen.getByPlaceholderText(placeholderTxt);
     expect(elementOne).toBeInTheDocument();
   });
 
 })
-

@@ -17,7 +17,6 @@ describe('AddAnswerForm', () => {
             name={name}
            />);
 
-
     const elementOne = screen.getByPlaceholderText(name);
     expect(elementOne).toBeInTheDocument();
   });

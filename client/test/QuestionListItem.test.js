@@ -3,7 +3,7 @@
  */
 
  import React from 'react';
- import { render, screen, waitFor } from '@testing-library/react';
+ import { render, screen } from '@testing-library/react';
  import '@testing-library/jest-dom';
  import QuestionListItem from '../src/components/product-questions/questionsList/QuestionListItem/QuestionListItem.jsx';
 
@@ -23,9 +23,7 @@ describe('QuestionListItem', () => {
             searchText={searchText}
             />);
 
-
     const elementOne = screen.getByText(question.question_body);
     expect(elementOne).toBeInTheDocument();
   });
-
 })

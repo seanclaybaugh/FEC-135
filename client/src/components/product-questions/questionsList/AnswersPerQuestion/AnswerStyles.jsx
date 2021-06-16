@@ -12,7 +12,7 @@ const Img = styled.img`
   &:focus {
     border-radius: 20px;
   }
-`
+`;
 
 const AnswerWrapper = styled.div`
   display: flex;
@@ -20,8 +20,8 @@ const AnswerWrapper = styled.div`
   justify-content: flex-start;
   align-items: center;
   align-content: center;
+`;
 
-`
 const AnswerInfoWrapper = styled.div`
   display: flex;
   flex-direciton: column;
@@ -30,7 +30,7 @@ const AnswerInfoWrapper = styled.div`
   align-content: center;
   font-weight: 100;
   font-size: 10px;
-`
+`;
 
 const ImageWrapper = styled.div`
   display: flex;
@@ -38,36 +38,32 @@ const ImageWrapper = styled.div`
   justify-content: flex-start;
   align-items: center;
   align-content: center;
-
-`
+`;
 
 const Answer = styled.div`
   order: 1;
   flex-basis: 4%;
   font-weight: 500;
-`
+`;
 
 const AnswerBody = styled.div`
   order: 2;
   font-weight: 350;
   flex-basis: 100%;
   justify-content: space-around;
-
-`
+`;
 
 const AnswerInfo = styled.div`
   order: 1;
   flex-basis: 4%;
-
-`
+`;
 
 const AnswerInfoName = styled.div`
   order: 2;
   flex-basis: 40%;
   border-right: solid;
   border-width: 1px
-
-`
+`;
 
 const AnswerInfoHelp = styled.div`
   order: 3;
@@ -75,8 +71,7 @@ const AnswerInfoHelp = styled.div`
   padding-right: 7px;
   border-right: solid;
   border-width: 1px
-
-`
+`;
 
 const AnswerInfoReport = styled.button`
   order: 4;
@@ -93,12 +88,12 @@ const AnswerInfoReport = styled.button`
 
   font-family:  Roboto, Arial, Helvetica, sans-serif;
   letter-spacing: .05rem;
-`
+`;
 
 const Image = styled.div`
   order: 1;
   flex-basis: 4%;
-`
+`;
 
 export default {
   Img,

@@ -1,47 +1,38 @@
-import React, { useState, useEffect } from 'react';
-import styled from 'styled-components';
-import AnswerStyles from './AnswerStyles.jsx';
-import SharedButton from '../../SharedStyles/SharedButton';
-import HighLightedText from '../Helpers/HighlightedTextHelper';
-import { AiFillCaretUp } from "react-icons/ai";
-import { BsFlagFill } from "react-icons/bs";
+import React from 'react';
+import { AiFillCaretUp } from 'react-icons/ai';
+import { BsFlagFill } from 'react-icons/bs';
 import moment from 'moment';
 import axios from 'axios';
+import HighLightedText from '../Helpers/HighlightedTextHelper';
+import SharedButton from '../../SharedStyles/SharedButton';
+import AnswerStyles from './AnswerStyles';
 
-
-const AnswersPerQuestion = props => {
-
-  let date = moment(props.answer.date).format('LL');
+const AnswersPerQuestion = (props) => {
+  const date = moment(props.answer.date).format('LL');
   const answerId = props.answer.id;
   const photos = props.answer.photos || [];
-  const hasImg = props.answer.photos.length > 0;
 
   const handleHelpfulAnswerClick = async () => {
-
     try {
-      const res = axios.put(`/api/qa/answers/${answerId}/helpful`)
+      const res = axios.put(`/api/qa/answers/${answerId}/helpful`);
     } catch (error) {
-      console.log('error with answer helpful click')
-      console.log(error)
+      console.log('error with answer helpful click');
+      console.log(error);
     }
 
     props.handleAnswerHelpful(answerId, props.questionId);
-
-  }
+  };
 
   const handleReportAnswerClick = async () => {
-
     try {
-      const res = axios.put(`/api/qa/answers/${answerId}/report`)
+      const res = axios.put(`/api/qa/answers/${answerId}/report`);
     } catch (error) {
-      console.log('error with answer report click')
-      console.log(error)
+      console.log('error with answer report click');
+      console.log(error);
     }
 
     props.handleAnswerReport(answerId, props.questionId);
-
-  }
-
+  };
 
   return (
     <>
@@ -50,42 +41,52 @@ const AnswersPerQuestion = props => {
 
         <AnswerStyles.AnswerBody>
           <HighLightedText
-          textBody={props.answer.body}
-          searchText={props.searchText}
+            textBody={props.answer.body}
+            searchText={props.searchText}
           />
         </AnswerStyles.AnswerBody>
       </AnswerStyles.AnswerWrapper>
 
       <AnswerStyles.AnswerInfoWrapper>
-        <AnswerStyles.AnswerInfo></AnswerStyles.AnswerInfo>
+        <AnswerStyles.AnswerInfo />
 
         <AnswerStyles.AnswerInfoName>
-          Answered By: {props.answer.answerer_name}, {date}
+          Answered By:
+          {' '}
+          {props.answer.answerer_name}
+          ,
+          {' '}
+          {date}
         </AnswerStyles.AnswerInfoName>
 
         <AnswerStyles.AnswerInfoHelp>
           Helpful?
-          <SharedButton.QuestionItem onClick={handleHelpfulAnswerClick}><AiFillCaretUp/></SharedButton.QuestionItem>
-          #({props.answer.helpfulness})
+          <SharedButton.QuestionItem onClick={handleHelpfulAnswerClick}>
+            <AiFillCaretUp />
+          </SharedButton.QuestionItem>
+
+          #(
+          {props.answer.helpfulness}
+          )
         </AnswerStyles.AnswerInfoHelp>
 
-        <AnswerStyles.AnswerInfoReport onClick={handleReportAnswerClick}>Report <BsFlagFill/></AnswerStyles.AnswerInfoReport>
+        <AnswerStyles.AnswerInfoReport onClick={handleReportAnswerClick}>
+          Report
+          <BsFlagFill />
+        </AnswerStyles.AnswerInfoReport>
 
       </AnswerStyles.AnswerInfoWrapper>
 
       <AnswerStyles.ImageWrapper>
 
-        <AnswerStyles.Image></AnswerStyles.Image>
+        <AnswerStyles.Image />
 
-        {photos.map((photo, index) => {
-          return <AnswerStyles.Img key={index} src={photo}/>
-        })}
+        {photos.map((photo, index) => <AnswerStyles.Img key={index} src={photo} />)}
       </AnswerStyles.ImageWrapper>
 
-      <br/>
+      <br />
     </>
-  )
-
-}
+  );
+};
 
 export default AnswersPerQuestion;

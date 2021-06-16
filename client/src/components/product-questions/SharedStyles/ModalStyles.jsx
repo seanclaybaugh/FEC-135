@@ -9,7 +9,7 @@ const ModalBackground = styled.div`
   height: 100%;
   overflow: auto;
   background-color: rgba(0,0,0,0.4);
-`
+`;
 
 const ModalContent = styled.div`
   background-color: #fefefe;
@@ -20,33 +20,22 @@ const ModalContent = styled.div`
   width: 50%;
 
   text-align: center;
-`
+`;
 const CloseButton = styled.button`
   display: inline;
   float: right;
-`
+`;
 
-// const Button = styled.button`
-//   background-color: transparent;
-//   border-radius: 3px;
-//   border: 2px solid teal;
-//   color: teal;
-//   margin: 0.5em 1em;
-//   padding: 1rem 2rem;
-// `
 const QuestionBtn = styled.button`
   background: transparent;
   border: none;
   text-decoration: underline;
   cursor: pointer;
-`
-
-
+`;
 
 export default {
   ModalBackground,
   ModalContent,
   CloseButton,
-
   QuestionBtn,
-}
+};

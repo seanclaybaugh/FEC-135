@@ -30,16 +30,16 @@ const Search = styled.input`
   &::placeholder {
     color: #ddd;
 }
-`
+`;
 
 const SearchContainer = styled.div`
   box-sizing: border-box;
   width: 100%;
   padding-left: 20px;
   padding-right: 20px;
-`
+`;
 
 export default {
   Search,
   SearchContainer,
-}
+};

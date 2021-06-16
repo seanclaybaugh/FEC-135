@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-//show more questions btn, add question btn
+// show more questions btn, add question btn
 const Button = styled.button`
   background-color: transparent;
   border-radius: 10px;
@@ -17,10 +17,9 @@ const Button = styled.button`
     border-radius: 0;
     background-position: 100% center;
   }
+`;
 
-`
-
-//helpfulness, add answer, report answer
+// helpfulness, add answer, report answer
 const QuestionItem = styled.button`
   background: transparent;
   border: none;
@@ -31,9 +30,9 @@ const QuestionItem = styled.button`
   &:hover {
     text-decoration: underline;
   }
-`
+`;
 
 export default {
   Button,
   QuestionItem,
-}
+};
