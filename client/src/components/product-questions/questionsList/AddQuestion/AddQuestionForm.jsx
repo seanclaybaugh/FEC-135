@@ -68,7 +68,7 @@ const AddQuestionForm = (props) => {
             <p>For authentication reasons, you will not be emailed</p>
             <br />
 
-            <button type="submit">Submit Question</button>
+            <ModalStyles.ModalSubmitBtn type="submit">Submit Question</ModalStyles.ModalSubmitBtn>
           </form>
         </ModalStyles.ModalContent>
       </ModalStyles.ModalBackground>

@@ -16,7 +16,6 @@ const AnswersPerQuestion = (props) => {
     try {
       const res = axios.put(`/api/qa/answers/${answerId}/helpful`);
     } catch (error) {
-      console.log('error with answer helpful click');
       console.log(error);
     }
 
@@ -27,7 +26,6 @@ const AnswersPerQuestion = (props) => {
     try {
       const res = axios.put(`/api/qa/answers/${answerId}/report`);
     } catch (error) {
-      console.log('error with answer report click');
       console.log(error);
     }
 

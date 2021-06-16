@@ -18,9 +18,22 @@ const ModalContent = styled.div`
   border: 1px solid #888;
   // height: 60%;
   width: 50%;
-
   text-align: center;
+  font-weight: 20;
+  font-size: 10px;
 `;
+
+const ModalSubmitBtn = styled.button`
+  font-weight: 20;
+  font-size: 10px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  &:hover {
+    text-decoration: underline;
+  }
+`;
+
 const CloseButton = styled.button`
   display: inline;
   float: right;
@@ -38,4 +51,5 @@ export default {
   ModalContent,
   CloseButton,
   QuestionBtn,
+  ModalSubmitBtn,
 };

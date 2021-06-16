@@ -68,13 +68,14 @@ const AddAnswerForm = (props) => {
 
           <label>Your Email: </label>
           <input name="email" value={email} placeholder="Example: jack@email.com" onChange={(e) => setEmail(e.target.value)} />
-          <p>For authentication reasons, you will not be emailed</p>
-          <br />
+          <p>(For authentication reasons, you will not be emailed)</p>
+
 
           <label>Upload Your Photos: </label>
           <input name="photos" value={photos} placeholder="Submit Photo" onChange={(e) => setPhotos(e.target.value)} />
           <br />
-          <button type="submit">Submit Answer</button>
+          <br />
+          <ModalStyles.ModalSubmitBtn type="submit">Submit Answer</ModalStyles.ModalSubmitBtn>
         </form>
       </ModalStyles.ModalContent>
     </ModalStyles.ModalBackground>
