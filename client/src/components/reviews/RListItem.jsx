@@ -5,43 +5,43 @@ import styled from 'styled-components';
 import { FcCheckmark } from 'react-icons/fc';
 
 const Header = styled.div`
-display: flex;
-justify-content: space-between;
-font-weight: 200;
-font-size: .8em;
-`
+  display: flex;
+  justify-content: space-between;
+  font-weight: 200;
+  font-size: .8em;
+  `
 const Spacer = styled.div`
-flex: flex-grow 2
-`
+  flex: flex-grow 2
+  `
 const Container = styled.div`
-padding: 3px 5px 3px 5px;
-border-top: 1px solid #e2e2e2;
-margin-bottom: 1em;
-`
+  padding: 3px 5px 3px 5px;
+  border-top: 1px solid #e2e2e2;
+  margin-bottom: 1em;
+  `
 const SumContainer = styled.div`
-font-weight: bold;
-font-family: Roboto, sans-serif;
-font-size: 1.2em;
-`
+  font-weight: bold;
+  font-family: Roboto, sans-serif;
+  font-size: 1.2em;
+  `
 const BodyContainer = styled.span`
-font-weight: 200;
-`
+  font-weight: 200;
+  `
 const RecContainer = styled.span`
-font-weight: 100;
-font-size: .6em;
-margin-right: 1em;
-`
+  font-weight: 100;
+  font-size: .6em;
+  margin-right: 1em;
+  `
 const PhotoContainer = styled.div`
-display: flex;
-justify-content: flex-start;
-margin: .5em 0em .5em 0em
-`
+  display: flex;
+  justify-content: flex-start;
+  margin: .5em 0em .5em 0em
+  `
 const ReportContainer = styled.span`
-font-weight: 100;
-font-size: .6em;
-border-left: 1px solid #e2e2e2;
-padding-left: 1em;
-`
+  font-weight: 100;
+  font-size: .6em;
+  border-left: 1px solid #e2e2e2;
+  padding-left: 1em;
+  `
 
 function ReviewListItem ({ body, date, helpfulness, photos, rating, recommend, response, reviewer_id, reviewer_name, summary }) {
   const [expandedReview, setExpandedReview] = useState(false);
@@ -49,15 +49,15 @@ function ReviewListItem ({ body, date, helpfulness, photos, rating, recommend, r
   return (
     <>
     <Container>
-    <Header>
-      <div>
-        {`Rating: ${rating}`}
-      </div>
-      <Spacer> <div></div></Spacer>
-      <div>
-        {`${reviewer_name} - ${moment(date).format('MMMM DD, YYYY')}`}
-      </div>
-    </Header>
+      <Header>
+          <div>
+            {`Rating: ${rating}`}
+          </div>
+        <Spacer> <div></div></Spacer>
+          <div>
+            {`${reviewer_name} - ${moment(date).format('MMMM DD, YYYY')}`}
+          </div>
+      </Header>
     <div>
       {(recommend) && <RecContainer>I recommend this product <FcCheckmark /></RecContainer>}
     </div>
@@ -65,7 +65,7 @@ function ReviewListItem ({ body, date, helpfulness, photos, rating, recommend, r
       <SumContainer>
         <h4>{summary}</h4>
       </SumContainer>
-      { (expandedReview) ? <BodyContainer>{body}</BodyContainer> :
+        { (expandedReview) ? <BodyContainer>{body}</BodyContainer> :
       <>
       <BodyContainer>
           {body.substring(0, 250)}

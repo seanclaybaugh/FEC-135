@@ -3,28 +3,28 @@ import styled from 'styled-components';
 
 
 const CharsContainer = styled.div`
-dispaly: flex;
-flex-direction: column;
-justify-content: space-around;
-font-family: Roboto, sans-serif;
-margin: 5px;
-`
+  dispaly: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  font-family: Roboto, sans-serif;
+  margin: 5px;
+  `
 const CharsTitle = styled.span`
-font-weight: 400;
-font-size: 1.1em;
-`
+  font-weight: 400;
+  font-size: 1.1em;
+  `
 const Char = styled.div`
-font-weight: 300;
-font-size: .9em;
-margin-top: 12px;
-margin-bottom: 7px;
-border-top: solid #e2e2e2 1px
-`
+  font-weight: 300;
+  font-size: .9em;
+  margin-top: 12px;
+  margin-bottom: 7px;
+  border-top: solid #e2e2e2 1px
+  `
 
 const CharDescription = styled.label`
-font-weight: 100;
-font-size: .8em;
-`
+  font-weight: 100;
+  font-size: .8em;
+  `
 
 
 function ReviewChars ({setFitNum, setComNum , setLenNum, setQualNum, characteristics, setSizeNum, setWidthNum }) {

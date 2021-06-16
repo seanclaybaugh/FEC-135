@@ -39,17 +39,18 @@ const ModalHeader = styled.div`
   justify-content: flex-end;
 `
 const ModalForm = styled.div`
-display: flex;
-flex-direction: column;
-justify-content: space-around;
-font-family: Roboto, sans-serif;
-font-weight: 200;
-font-size: .8em;
-`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  font-family: Roboto, sans-serif;
+  font-weight: 200;
+  font-size: .8em;
+  `
 const FormSubtext = styled.span`
-font-weight: 100;
-font-size: .5em;
-`
+  font-weight: 100;
+  font-size: .5em;
+  `
+
 const AddReviewModal = ({isShowing, toggle, username, setUsername, reviewSummary, setReviewSummary, product, reviewBody, setReviewBody, email, setEmail, setPhotos, fileUploadHandler, thumbs, rating, setRating, recommend, setRecommend, reviewSubmit, setFitNum, setComNum , setLenNum, setQualNum, characteristics, setSizeNum, setWidthNum }) => isShowing ? ReactDOM.createPortal(
 
   <>
@@ -88,8 +89,8 @@ const AddReviewModal = ({isShowing, toggle, username, setUsername, reviewSummary
           <ReviewChars setFitNum={setFitNum} setComNum={setComNum} setLenNum={setLenNum} setQualNum={setQualNum} characteristics={characteristics} setSizeNum={setSizeNum} setWidthNum={setWidthNum} />
 
           <label> Recommend this product?
-          <input type="radio" name="recommend" value={true} onChange={()=> setRecommend(true)}/>Yes
-          <input type="radio" name="recommend" value={false} onChange={()=> setRecommend(false)} />No
+            <input type="radio" name="recommend" value={true} onChange={()=> setRecommend(true)}/>Yes
+            <input type="radio" name="recommend" value={false} onChange={()=> setRecommend(false)} />No
           </label>
           <label> {`Add Photos: `}
             <input type="file" onChange={(e)=> setPhotos(e.target.files)}></input>
@@ -97,7 +98,7 @@ const AddReviewModal = ({isShowing, toggle, username, setUsername, reviewSummary
           </label>
           </ModalForm>
           <button onClick={(e)=>{
-            
+
             reviewSubmit(e)
             toggle()}} >Submit Review</button>
         </form>

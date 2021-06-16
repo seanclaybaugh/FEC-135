@@ -9,13 +9,13 @@ import styled from 'styled-components';
 import StarsContainer from './StarContainer';
 
 const SummaryContainer = styled.div`
-display: flex;
-flex-direction: column;
-font-size: .8em;
-font-weight: 200;
-margin: 0px 0px 1em 1em;
-width: 13em;
-`
+  display: flex;
+  flex-direction: column;
+  font-size: .8em;
+  font-weight: 200;
+  margin: 0px 0px 1em 1em;
+  width: 13em;
+  `
 
 const CharColumn = styled.div`
   display: flex;

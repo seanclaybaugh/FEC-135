@@ -4,18 +4,17 @@ import styled from 'styled-components';
 
 
 const Starinput = styled.input`
-display: none;
-`
+  display: none;
+  `
 const Ratingdiv = styled.div`
-font-family: Roboto, sans-serif;
-font-size: 1.1em;
-font-weight: 200;
-margin: 0px 0px 0px 10px;
-`
+  font-family: Roboto, sans-serif;
+  font-size: 1.1em;
+  font-weight: 200;
+  margin: 0px 0px 0px 10px;
+  `
 const StarRow = styled.div`
-display:flex;
-
-margin: 0px 0px 5px 0px`
+  display:flex;
+  margin: 0px 0px 5px 0px`
 
 function StarRating ({setRating, rating}) {
   const [hover, setHover] = useState(null);

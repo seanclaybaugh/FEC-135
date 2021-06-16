@@ -10,9 +10,9 @@ import config from '../../../../config.js'
 import postHelperChars from './helpers/postHelperChars'
 
 const MainContainer = styled.div`
-display: flex;
-font-family: 'Roboto', sans-serif;
-`
+  display: flex;
+  font-family: 'Roboto', sans-serif;
+  `
 
 const Button1 = styled.button`
    display:inline-block;
@@ -62,21 +62,21 @@ function reviewsIndex(props) {
 
   function reviewSubmit () {
 
-  let charObjHelper = (characteristics) => {
-      let result = {}
-      for (var key in characteristics) {
-        let val;
-        key == 'Fit' ? val = fitNum
-        : key == 'Size' ? val = sizeNum
-        : key == 'Quality' ? val = qualNum
-        : key == 'Width' ? val = widthNum
-        : key == 'Length' ? val = lenNum
-        : val = comNum
-        result[characteristics[key]] = val
-      }
-      return result;
-    };
-    let charsobj = charObjHelper(characteristics);
+      const charObjHelper = (characteristics) => {
+          let result = {}
+          for (var key in characteristics) {
+            let val;
+            key == 'Fit' ? val = fitNum
+            : key == 'Size' ? val = sizeNum
+            : key == 'Quality' ? val = qualNum
+            : key == 'Width' ? val = widthNum
+            : key == 'Length' ? val = lenNum
+            : val = comNum
+            result[characteristics[key]] = val
+          }
+          return result;
+        };
+    const charsobj = charObjHelper(characteristics);
 
     const body = {
       product_id: props.productId,
@@ -190,8 +190,33 @@ figure out upload button to not close modal or reset review data
         )}
         <div>
               {!isShowing && <Button1 onClick={toggle}>Add Review</Button1>}
-              <AddReviewModal isShowing={isShowing} toggle={toggle} setUsername={setUsername} username={username} reviewSummary={reviewSummary} setReviewSummary={setReviewSummary} product={product} reviewBody={reviewBody} setReviewBody={setReviewBody} setPhotos={setPhotos} fileUploadHandler={fileUploadHandler} thumbs={thumbs} rating={rating} setRating={setRating} recommend={recommend} setRecommend={setRecommend} email={email} setEmail={setEmail} reviewSubmit={reviewSubmit}
-              setFitNum={setFitNum} setComNum={setComNum} setLenNum={setLenNum} setQualNum={setQualNum} setSizeNum={setSizeNum} setWidthNum={setWidthNum} characteristics={characteristics} />
+              <AddReviewModal
+              isShowing={isShowing}
+              toggle={toggle}
+              setUsername={setUsername}
+              username={username}
+              reviewSummary={reviewSummary}
+              setReviewSummary={setReviewSummary}
+              product={product}
+              reviewBody={reviewBody}
+              setReviewBody={setReviewBody}
+              setPhotos={setPhotos}
+              fileUploadHandler={fileUploadHandler}
+              thumbs={thumbs}
+              rating={rating}
+              setRating={setRating}
+              recommend={recommend}
+              setRecommend={setRecommend}
+              email={email}
+              setEmail={setEmail}
+              reviewSubmit={reviewSubmit}
+              setFitNum={setFitNum}
+              setComNum={setComNum}
+              setLenNum={setLenNum}
+              setQualNum={setQualNum}
+              setSizeNum={setSizeNum}
+              setWidthNum={setWidthNum}
+              characteristics={characteristics} />
         </div>
     </>
 

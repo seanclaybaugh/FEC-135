@@ -3,11 +3,11 @@ import ReviewListItem from './RListItem';
 import styled from 'styled-components';
 
 const RListContainer = styled.div`
-display: flex-column;
-justify-content: space-between;
-margin-left: 1em;
-margin-top: 1em;
-`
+  display: flex-column;
+  justify-content: space-between;
+  margin-left: 1em;
+  margin-top: 1em;
+  `
 const Button1 = styled.button`
    display:inline-block;
    padding:0.5em 3em;
@@ -29,9 +29,9 @@ const Button1 = styled.button`
    }
 `
 const ButtonContainer = styled.div`
-display: flex;
-justify-content: flex-end;
-`
+  display: flex;
+  justify-content: flex-end;
+  `
 
 function Rlist({ reviews }) {
   const [nToDisplay, setNToDisplay] = useState(2);

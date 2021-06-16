@@ -3,42 +3,43 @@ import styled from 'styled-components';
 
 
 const CharTitle = styled.div`
-margin: .5em 0em .5em 0em;
-`
+  margin: .5em 0em .5em 0em;
+  `
 const CharBarContainer = styled.div`
-display: flex;
-height: .5em;
-background-color: #e2e2e2;
-width: 10em;
-`
+  display: flex;
+  height: .5em;
+  background-color: #e2e2e2;
+  width: 10em;
+  `
 const CharBarFill = styled.div`
-display: flex;
-height: .5em;
-background-color: #e2e2e2;
-flex-basis: ${props => `${props.per}`}%;
-justify-content: flex-end;
-`
+  display: flex;
+  height: .5em;
+  background-color: #e2e2e2;
+  flex-basis: ${props => `${props.per}`}%;
+  justify-content: flex-end;
+  `
+  
 const CharMin = styled.div`
-height: .5em;
-display: flex;
-justify-content: flex-start;
-flex-basis: 60%;
-font-size: .7em;
-`
+  height: .5em;
+  display: flex;
+  justify-content: flex-start;
+  flex-basis: 60%;
+  font-size: .7em;
+  `
 
 const CharMax = styled.div`
-height: .5em;
-display: flex;
-justify-content: flex-end;
-font-size: .7em;
-`
+  height: .5em;
+  display: flex;
+  justify-content: flex-end;
+  font-size: .7em;
+  `
 
 const MinMaxContainer = styled.div`
-height: .5em;
-width: 12em;
-display: flex;
+  height: .5em;
+  width: 12em;
+  display: flex;
 
-`
+  `
 
 
 function CharacteristicItem({ char, per }) {
