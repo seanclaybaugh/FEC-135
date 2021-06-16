@@ -1,5 +1,6 @@
 config.js
 node_modules
+coverage
 client/dist/bundle.js
 client/dist/bundle.js.LICENSE.txt
 client/dist/client_src_components_product-overview_content-panel_ContentPanel_jsx.bundle.js
