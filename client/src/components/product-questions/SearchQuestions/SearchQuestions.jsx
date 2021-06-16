@@ -18,6 +18,7 @@ const SearchQuestions = props => {
 
     <SearchStyle.SearchContainer>
       <SearchStyle.Search
+        searchId="search-button"
         type="text"
         placeholder="HAVE A QUESTION? SEARCH FOR ANSWERS"
         onChange={handleChange}
