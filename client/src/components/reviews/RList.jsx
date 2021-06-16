@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import ReviewListItem from './RListItem';
 import styled from 'styled-components';
@@ -51,11 +52,11 @@ function Rlist({ reviews }) {
       <Button1 onClick={()=> {setNToDisplay(nToDisplay + 2)}}>See More...</Button1>}
       {(nToDisplay > 2) && <Button1 onClick= {() => setNToDisplay(2)}>See Less</Button1>}
       </ButtonContainer>
+
     </div>
   );
 }
 
+
 export default Rlist;
-
-
 

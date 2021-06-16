@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+
 import ratingHelper from './helpers/ratingHelper';
 import percentageHelper from './helpers/percentageHelper';
 import SumRatingDistItem from './SumRatingDistItem';

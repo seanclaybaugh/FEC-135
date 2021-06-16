@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import axios from 'axios';
 import Rlist from './RList';
 import Summary from './Summary';
+
 import styled from 'styled-components';
 import AddReviewModal from './AddReviewModal';
 import useModals from './useModals';
@@ -35,6 +36,7 @@ const Button1 = styled.button`
      border-color: white;
    }
 `
+
 
 function reviewsIndex(props) {
   const [reviews, setReviews] = useState([]);
@@ -154,11 +156,14 @@ figure out upload button to not close modal or reset review data
       setProduct(result.data.name);
     };
     getProduct();
+
   }, []);
 
   useEffect(() => {
     const getReviews = async () => {
+
       const result = await axios.get(`/api/reviews?product_id=${props.productId}&page=1&count=20&sort=relevant`);
+
       setReviews(result.data.results);
       setIsLoading(false);
     };
@@ -218,6 +223,7 @@ figure out upload button to not close modal or reset review data
               setWidthNum={setWidthNum}
               characteristics={characteristics} />
         </div>
+
     </>
 
   );
