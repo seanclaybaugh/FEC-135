@@ -111,19 +111,6 @@ function ProductQuestions() {
   }
 
   const handleAddedQuestion = () => {
-    //area for optimization - dont always need to fetch new question
-
-    //goal: fetch the new question that was just created - maybe???
-    //expanded state - always fetch
-    //
-    //not expanded:
-      //less than 4 questions total (expanded button not shown) - fetch initialData
-      //expanded button is shown but not clicked - dont need to fetch
-
-      //looks like i have to do a fetch for all the questions b/c:
-      //im not getting a question id back when question is added
-      //there doesnt seem to be a deterministic order for questions that have the same helpfulness
-
 
     fetchAllQuestions();
   }
