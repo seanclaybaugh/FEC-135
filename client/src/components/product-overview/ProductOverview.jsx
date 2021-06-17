@@ -29,7 +29,7 @@ const ContentDiv = styled.div`
   width: 450px;
 `;
 
-function ProductOverview({ productId }) {
+function ProductOverview({ handleLoading, productId }) {
   const [isError, setIsError] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [styles, setStyles] = useState([]);
@@ -50,6 +50,7 @@ function ProductOverview({ productId }) {
         setIsError(true);
       }
       setIsLoading(false);
+      loadNextComponents(true);
     };
     fetchData();
   }, []);
