@@ -29,7 +29,7 @@ const ContentDiv = styled.div`
   width: 450px;
 `;
 
-function ProductOverview({ handleLoading, productId }) {
+function ProductOverview({ loadNextComponents, productId }) {
   const [isError, setIsError] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [styles, setStyles] = useState([]);
