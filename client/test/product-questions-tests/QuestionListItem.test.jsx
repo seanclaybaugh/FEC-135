@@ -10,7 +10,7 @@ import QuestionListItem from '../../src/components/product-questions/questionsLi
 describe('QuestionListItem', () => {
   test('each question list item should have an answers property and a question id', () => {
     const question = {
-      question_body: 'why', sker_name: 'no', question_date: '', question_helpfulness: 2,
+      question_body: 'why', asker_name: 'no', question_date: '', question_helpfulness: 2,
     };
     question.question_id = 123;
     const questionID = parseInt(question.question_id);
