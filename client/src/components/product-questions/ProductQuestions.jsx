@@ -6,6 +6,7 @@ import SearchQuestions from './SearchQuestions/SearchQuestions';
 import getQuestionHelpful from './ProductQuestionHelpers/getQuestionHelpful.js';
 import getAnswerReport from './ProductQuestionHelpers/getAnswerReport.js'
 import getAnswerHelpful from './ProductQuestionHelpers/getAnswerHelpful.js'
+import getNewAnswer from './ProductQuestionHelpers/getNewAnswer.js';
 
 const Container = styled.div`
   width: 700px;
@@ -42,17 +43,13 @@ function ProductQuestions({ productId }) {
     try {
       while (fetchingData) {
         const url = `/api/qa/questions?product_id=${productId}&page=${page}&count=${count}`;
-
         const res = await axios.get(url);
-
         newQuestions = newQuestions.concat(res.data.results);
         fetchingData = res.data.results.length === count;
         page++;
       }
-
       setQuestionList(newQuestions);
       setFilteredQuestions(newQuestions);
-
       if (newQuestions.length > 0) {
         setIsQuestionList(true);
       }
@@ -97,13 +94,7 @@ function ProductQuestions({ productId }) {
   };
 
   const handleAddedAnswer = (questionId, newAnswers) => {
-    const newList = questionList.map((question) => {
-      if (question.question_id === questionId) {
-        question.answers = newAnswers;
-      }
-      return question;
-    });
-
+    const newList = getNewAnswer(questionList, questionId, newAnswers);
     setQuestionList(newList);
   };
 
