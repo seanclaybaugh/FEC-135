@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import axios from 'axios';
 import QuestionsList from './questionsList/QuestionsList';
 import SearchQuestions from './SearchQuestions/SearchQuestions';
+import getQuestionHelpful from './ProductQuestionHelpers/getQuestionHelpful.js';
 
 const Container = styled.div`
   width: 700px;
@@ -127,12 +128,7 @@ function ProductQuestions({ productId }) {
   };
 
   const handleQuestionHelpful = (questionId) => {
-    const newList = questionList.map((question) => {
-      if (question.question_id === questionId) {
-        question.question_helpfulness++;
-      }
-      return question;
-    });
+    const newList = getQuestionHelpful(questionList, questionId);
 
     setQuestionList(newList);
   };
