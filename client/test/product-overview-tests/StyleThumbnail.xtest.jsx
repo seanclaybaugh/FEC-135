@@ -11,7 +11,7 @@ import PreviewStyleContext from '../../src/components/product-overview/contexts/
 import SelectedSkuContext from '../../src/components/product-overview/content-panel/contexts/SelectedSkuContext';
 import SelectedQtyContext from '../../src/components/product-overview/content-panel/contexts/SelectedQtyContext';
 import MissingSkuContext from '../../src/components/product-overview/content-panel/contexts/MissingSkuContext';
-import sampleStyle from '../sampleData/sampleStyle';
+import sampleStyle from '../sampleData/sampleStyles';
 
 describe('Style Thumbnails', () => {
   test('should allow users to select another style', () => {

@@ -9,7 +9,7 @@ import AddToCart from '../../src/components/product-overview/content-panel/selec
 import SelectedSkuContext from '../../src/components/product-overview/content-panel/contexts/SelectedSkuContext';
 import SelectedQtyContext from '../../src/components/product-overview/content-panel/contexts/SelectedQtyContext';
 import CurrentStyleContext from '../../src/components/product-overview/contexts/CurrentStyleContext';
-import sampleStyle from '../sampleData/sampleStyle';
+import sampleStyle from '../sampleData/sampleStyles';
 
 describe('Add Item(s) To Cart', () => {
   test('should render `Add To Cart` button', () => {
