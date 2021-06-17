@@ -39,7 +39,7 @@ function ProductOverview({ loadNextComponents, productId }) {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const results = await axios(`http://localhost:3000/api/products/${productId}/styles`);
+        const results = await axios(`/api/products/${productId}/styles`);
         setStyles(results.data.results);
         const defaultStyle = results.data.results.filter((style) => (
           style['default?']
