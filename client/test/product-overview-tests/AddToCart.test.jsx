@@ -81,7 +81,6 @@ describe('Add Item(s) To Cart', () => {
       </SelectedSkuContext.Provider>,
     );
 
-    const container = screen.getByTestId('checkout-container');
     const button = screen.getByRole('button');
 
     fireEvent.click(button);
