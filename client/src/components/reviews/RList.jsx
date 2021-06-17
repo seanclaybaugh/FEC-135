@@ -27,6 +27,7 @@ const Button1 = styled.button`
      background-color: white;
      color: black;
      border-color: white;
+     cursor: pointer;
    }
 `
 const ButtonContainer = styled.div`

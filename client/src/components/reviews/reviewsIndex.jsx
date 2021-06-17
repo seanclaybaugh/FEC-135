@@ -31,6 +31,7 @@ const Button1 = styled.button`
    transition: all 0.15s;
    margin-left: 20px;
    &:hover {
+     cursor: pointer;
      background-color: white;
      color: black;
      border-color: white;
@@ -94,10 +95,26 @@ function reviewsIndex(props) {
 
     const postReview = async () => {
       const result = await axios.post(`/api/reviews`, body);
+
       console.log(result);
-      //reset reviews states
+
+      const reviews = await axios.get(`/api/reviews?product_id=${props.productId}&page=1&count=30&sort=relevant`);
+      setReviews(reviews.data.results);
+      setReviewBody('');
+      setReviewSummary('');
+      setRating(null);
+      setUsername('');
+      setRecommend(null);
+      setFitNum(null);
+      setComNum(null);
+      setLenNum(null);
+      setQualNum(null);
+      setWidthNum(null);
+      setEmail('');
     }
+
     postReview();
+
   }
 
 
@@ -162,15 +179,13 @@ figure out upload button to not close modal or reset review data
   useEffect(() => {
     const getReviews = async () => {
 
-      const result = await axios.get(`/api/reviews?product_id=${props.productId}&page=1&count=20&sort=relevant`);
+    const result = await axios.get(`/api/reviews?product_id=${props.productId}&page=1&count=30&sort=relevant`);
 
       setReviews(result.data.results);
       setIsLoading(false);
     };
     getReviews();
   }, []);
-
-  // *** add -Add Review- button with conditional render (appear once is loading is false), separate from main conditional render
 
 
   return (
