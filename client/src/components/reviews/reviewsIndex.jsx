@@ -12,7 +12,27 @@ import postHelperChars from './helpers/postHelperChars'
 
 const MainContainer = styled.div`
   display: flex;
-  font-family: 'Roboto', sans-serif;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+  background-color: #fff;
+`;
+
+const DropdownDiv = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+  background-color: #fff;
+`
+const AddReviewDiv = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+  background-color: #fff;
+  margin: 10px 0px 10px 0px;
+  padding: 10px;
   `
 
 const Button1 = styled.button`
@@ -29,8 +49,9 @@ const Button1 = styled.button`
    color: white;
    text-align:center;
    transition: all 0.15s;
-   margin-left: 20px;
+   margin-left: 180px;
    &:hover {
+     cursor: pointer;
      background-color: white;
      color: black;
      border-color: white;
@@ -94,10 +115,26 @@ function reviewsIndex(props) {
 
     const postReview = async () => {
       const result = await axios.post(`/api/reviews`, body);
+
       console.log(result);
-      //reset reviews states
+
+      const reviews = await axios.get(`/api/reviews?product_id=${props.productId}&page=1&count=100&sort=relevant`);
+      setReviews(reviews.data.results);
+      setReviewBody('');
+      setReviewSummary('');
+      setRating(null);
+      setUsername('');
+      setRecommend(null);
+      setFitNum(null);
+      setComNum(null);
+      setLenNum(null);
+      setQualNum(null);
+      setWidthNum(null);
+      setEmail('');
     }
+
     postReview();
+
   }
 
 
@@ -162,7 +199,7 @@ figure out upload button to not close modal or reset review data
   useEffect(() => {
     const getReviews = async () => {
 
-      const result = await axios.get(`/api/reviews?product_id=${props.productId}&page=1&count=20&sort=relevant`);
+    const result = await axios.get(`/api/reviews?product_id=${props.productId}&page=1&count=100&sort=relevant`);
 
       setReviews(result.data.results);
       setIsLoading(false);
@@ -170,22 +207,20 @@ figure out upload button to not close modal or reset review data
     getReviews();
   }, []);
 
-  // *** add -Add Review- button with conditional render (appear once is loading is false), separate from main conditional render
-
 
   return (
     <>
       {(isLoading || reviews.length === 0) ? <div>No Reviews</div>
         : (
           <>
-            <div id={'reviews'}>
+            <DropdownDiv id={'reviews'}>
               {`${reviews.length} reviews, sorted by:`}
               <select value={dropdown} onChange={(event) => {console.log(event.target.value); reviewSortDrop(event.target.value)}}>
                 <option value='relevant'>relevant</option>
                 <option value='newest'>newest</option>
                 <option value='helpful'>helpful</option>
               </select>
-            </div>
+            </DropdownDiv>
             <MainContainer>
               <Summary metaData={metaData} />
               <Rlist reviews={reviews} />
@@ -193,7 +228,7 @@ figure out upload button to not close modal or reset review data
 
           </>
         )}
-        <div>
+        <AddReviewDiv>
               {!isShowing && <Button1 onClick={toggle}>Add Review</Button1>}
               <AddReviewModal
               isShowing={isShowing}
@@ -222,7 +257,7 @@ figure out upload button to not close modal or reset review data
               setSizeNum={setSizeNum}
               setWidthNum={setWidthNum}
               characteristics={characteristics} />
-        </div>
+        </AddReviewDiv>
 
     </>
 

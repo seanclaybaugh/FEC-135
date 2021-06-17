@@ -16,6 +16,7 @@ const OverviewContainer = styled.div`
   justify-content: center;
   flex-wrap: wrap;
   background-color: #fff;
+  margin-bottom: 15px;
 `;
 
 const GalleryDiv = styled.div`

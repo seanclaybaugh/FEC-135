@@ -17,11 +17,13 @@ const Container = styled.div`
   padding: 3px 5px 3px 5px;
   border-top: 1px solid #e2e2e2;
   margin-bottom: 1em;
+  width: 60em;
   `
 const SumContainer = styled.div`
   font-weight: bold;
   font-family: Roboto, sans-serif;
   font-size: 1.2em;
+  width: 60em;
   `
 const BodyContainer = styled.span`
   font-weight: 200;

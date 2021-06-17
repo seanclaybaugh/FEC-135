@@ -8,6 +8,8 @@ const RListContainer = styled.div`
   justify-content: space-between;
   margin-left: 1em;
   margin-top: 1em;
+  width: 60em;
+
   `
 const Button1 = styled.button`
    display:inline-block;
@@ -27,11 +29,15 @@ const Button1 = styled.button`
      background-color: white;
      color: black;
      border-color: white;
+     cursor: pointer;
    }
 `
 const ButtonContainer = styled.div`
   display: flex;
   justify-content: flex-end;
+  
+  border-bottom: solid #e2e2e2 2px;
+  padding-bottom: 10px;
   `
 
 function Rlist({ reviews }) {

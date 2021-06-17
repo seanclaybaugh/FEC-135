@@ -28,12 +28,12 @@ const CharDescription = styled.label`
 
 
 function ReviewChars ({setFitNum, setComNum , setLenNum, setQualNum, characteristics, setSizeNum, setWidthNum }) {
-const [comfort, setComfort] = useState('None selected');
-const [fit, setFit] = useState('None Selected');
-const [Length, setLength] = useState('None Selected');
-const [quality, setQuality] = useState('None Selected');
-const [size, setSize] = useState('None Selected');
-const [width, setWidth] = useState('None Selected');
+  const [comfort, setComfort] = useState('None selected');
+  const [fit, setFit] = useState('None Selected');
+  const [Length, setLength] = useState('None Selected');
+  const [quality, setQuality] = useState('None Selected');
+  const [size, setSize] = useState('None Selected');
+  const [width, setWidth] = useState('None Selected');
 
 return(
     <CharsContainer>
