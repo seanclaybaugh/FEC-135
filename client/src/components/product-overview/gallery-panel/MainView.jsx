@@ -75,10 +75,20 @@ function MainView({ imageRefs }) {
 
   function nextPhoto() {
     setCurrentPhotoIndex((prevIndex) => prevIndex + 1);
+    imageRefs[currentPhotoIndex + 1].current.scrollIntoView({
+      behavior: 'smooth',
+      block: 'end',
+      inline: 'center',
+    });
   }
 
   function prevPhoto() {
     setCurrentPhotoIndex((prevIndex) => prevIndex - 1);
+    imageRefs[currentPhotoIndex + 1].current.scrollIntoView({
+      behavior: 'smooth',
+      block: 'end',
+      inline: 'center',
+    });
   }
 
   function viewModal() {
