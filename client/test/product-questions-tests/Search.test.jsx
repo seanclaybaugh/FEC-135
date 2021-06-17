@@ -5,7 +5,7 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import SearchQuestions from '../src/components/product-questions/SearchQuestions/SearchQuestions.jsx';
+import SearchQuestions from '../../src/components/product-questions/SearchQuestions/SearchQuestions.jsx';
 
 describe('SearchQuestions', () => {
   test('search questions should have a placeholder string', () => {

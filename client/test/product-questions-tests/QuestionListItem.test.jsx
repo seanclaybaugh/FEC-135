@@ -5,7 +5,7 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import QuestionListItem from '../src/components/product-questions/questionsList/QuestionListItem/QuestionListItem.jsx';
+import QuestionListItem from '../../src/components/product-questions/questionsList/QuestionListItem/QuestionListItem.jsx';
 
 describe('QuestionListItem', () => {
   test('each question list item should have an answers property and a question id', () => {

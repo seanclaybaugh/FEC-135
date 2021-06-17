@@ -5,7 +5,7 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import Breadcrumb from './Breadcrumb';
+import Breadcrumb from '../../src/components/product-overview/content-panel/header/Breadcrumb';
 
 describe('Breadcrumb', () => {
   test('should render component', () => {

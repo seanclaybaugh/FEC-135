@@ -5,13 +5,13 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import AddQuestionForm from '../src/components/product-questions/questionsList/AddQuestion/AddQuestionForm.jsx';
+import AddAnswerForm from '../../src/components/product-questions/questionsList/AddAnswer/AddAnswerForm.jsx';
 
-describe('AddQuestionForm', () => {
-  test('add question form should have a placeholder string', () => {
+describe('AddAnswerForm', () => {
+  test('add answer form should have a placeholder string', () => {
     const name = '';
 
-    render(<AddQuestionForm
+    render(<AddAnswerForm
       name={name}
     />);
 
