@@ -15,6 +15,11 @@ const StyledSpan = styled.span`
   font-size: 12px;
   vertical-align: baseline;
   margin-left: 10px;
+  text-decoration: underline;
+
+  :hover {
+    cursor: pointer;
+  }
 `;
 
 function StarsContainer({ rating, reviewCount }) {
@@ -25,7 +30,9 @@ function StarsContainer({ rating, reviewCount }) {
       {stars.map((star, index) => (
         <StarItem key={index} value={star} />
       ))}
-      {reviewCount > 0 ? <StyledSpan>{`Read all ${reviewCount} reviews`}</StyledSpan> : <StyledSpan>{'Be the first to review!'}</StyledSpan>}
+      <StyledSpan onClick={() => window.location.replace("/#reviews")}>
+        {reviewCount > 0 ? `Read all reviews (${reviewCount})` : 'Be the first to review!'}
+      </StyledSpan>
     </StyledStarsContainer>
   );
 }

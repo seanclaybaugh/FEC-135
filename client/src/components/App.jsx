@@ -5,11 +5,13 @@ import ReviewsIndex from './reviews/reviewsIndex';
 import styled from 'styled-components';
 
 function App() {
+  const productId = 25171;
+
   return (
     <>
-      <ProductOverview />
-      <ReviewsIndex productId={25178} />
-      <ProductQuestions />
+      <ProductOverview productId={productId} />
+      <ReviewsIndex productId={productId} />
+      <ProductQuestions productId={productId} />
     </>
   );
 }

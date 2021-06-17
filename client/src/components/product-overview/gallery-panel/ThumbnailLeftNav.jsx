@@ -1,4 +1,4 @@
-import React, { useState, useContext, useRef } from 'react';
+import React, { useState, useContext, useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import { GoChevronUp, GoChevronDown } from 'react-icons/go';
 import PreviewStyleContext from '../contexts/PreviewStyleContext';
@@ -22,21 +22,33 @@ const Slider = styled.div`
   flex-direction: column;
   height: 700px;
   width: auto;
-  overflow-y: hidden;
+  overflow-y: scroll;
   flex-wrap: nowrap;
+
+  ::-webkit-scrollbar {
+    width: 0px;
+    background: transparent;
+  }
 `;
 
 const StyledArrowContainer = styled.div`
+  padding: 10px;
+
   :hover {
     cursor: pointer;
   }
 `;
 
-function ThumbnailLeftNav() {
+function ThumbnailLeftNav({ receiveImgRefs }) {
   const { previewStyle } = useContext(PreviewStyleContext);
   const { length } = previewStyle.photos;
   const [position, setPosition] = useState(0);
   const sliderRef = useRef();
+  const imgRefs = previewStyle.photos.map(() => useRef());
+
+  useEffect(() => {
+    receiveImgRefs(imgRefs);
+  }, [previewStyle]);
 
   function scrollSliderUp() {
     sliderRef.current.scrollTop -= 90;
@@ -63,6 +75,7 @@ function ThumbnailLeftNav() {
             key={index}
             index={index}
             photo={photo}
+            forwardedRef={imgRefs[index]}
           />
         ))}
       </Slider>

@@ -68,17 +68,27 @@ const StyledArrowContainer = styled.div`
   }
 `;
 
-function MainView() {
+function MainView({ imageRefs }) {
   const { previewStyle } = useContext(PreviewStyleContext);
   const { currentPhotoIndex, setCurrentPhotoIndex } = useContext(PhotoIndexContext);
   const [modal, setModal] = useState(false);
 
   function nextPhoto() {
     setCurrentPhotoIndex((prevIndex) => prevIndex + 1);
+    imageRefs[currentPhotoIndex + 1].current.scrollIntoView({
+      behavior: 'smooth',
+      block: 'end',
+      inline: 'center',
+    });
   }
 
   function prevPhoto() {
     setCurrentPhotoIndex((prevIndex) => prevIndex - 1);
+    imageRefs[currentPhotoIndex + 1].current.scrollIntoView({
+      behavior: 'smooth',
+      block: 'end',
+      inline: 'center',
+    });
   }
 
   function viewModal() {
@@ -117,7 +127,7 @@ function MainView() {
             {currentPhotoIndex !== previewStyle.photos.length - 1 && <MdKeyboardArrowRight />}
           </StyledArrowContainer>
         </StyledImageContainer>
-        <ThumbnailBottomNav />
+        <ThumbnailBottomNav imageRefs={imageRefs} />
       </MainViewContainer>
     </>
   );

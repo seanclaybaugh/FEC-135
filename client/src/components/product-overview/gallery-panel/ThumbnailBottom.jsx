@@ -14,11 +14,16 @@ const StyledIndicator = styled.div`
   }
 `;
 
-function ThumbnailBottom({ index, photo }) {
+function ThumbnailBottom({ index, imageRefs }) {
   const { currentPhotoIndex, setCurrentPhotoIndex } = useContext(PhotoIndexContext);
 
   function handleClick() {
     setCurrentPhotoIndex(index);
+    imageRefs[index].current.scrollIntoView({
+      behavior: 'smooth',
+      block: 'end',
+      inline: 'center',
+    });
   }
 
   return (

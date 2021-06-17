@@ -9,7 +9,7 @@ import Quantity from '../../src/components/product-overview/content-panel/select
 import SelectedSkuContext from '../../src/components/product-overview/content-panel/contexts/SelectedSkuContext';
 import SelectedQtyContext from '../../src/components/product-overview/content-panel/contexts/SelectedQtyContext';
 import CurrentStyleContext from '../../src/components/product-overview/contexts/CurrentStyleContext';
-import sampleStyle from '../sampleData/sampleStyle';
+import sampleStyle from '../sampleData/sampleStyles';
 
 describe('Quantity', () => {
   test('should not allow users to select from the dropdown when a size is not selected', () => {

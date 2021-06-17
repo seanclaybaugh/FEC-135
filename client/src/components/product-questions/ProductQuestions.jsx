@@ -8,11 +8,7 @@ const Container = styled.div`
   width: 700px;
 `;
 
-function ProductQuestions() {
-  const props = {
-    productId: 25167,
-  };
-
+function ProductQuestions({ productId }) {
   const [questionList, setQuestionList] = useState([]);
   const [filteredQuestions, setFilteredQuestions] = useState([]);
   const [isQuestionList, setIsQuestionList] = useState(false);
@@ -22,7 +18,7 @@ function ProductQuestions() {
 
   const fetchInitialQuestions = async () => {
     try {
-      const res = await axios.get(`/api/qa/questions?product_id=${props.productId}&count=${questionsPerPage}`);
+      const res = await axios.get(`/api/qa/questions?product_id=${productId}&count=${questionsPerPage}`);
       const newQuestionList = questionList.concat(res.data.results);
       setQuestionList(newQuestionList);
       setFilteredQuestions(newQuestionList);
@@ -42,7 +38,7 @@ function ProductQuestions() {
 
     try {
       while (fetchingData) {
-        const url = `/api/qa/questions?product_id=${props.productId}&page=${page}&count=${count}`;
+        const url = `/api/qa/questions?product_id=${productId}&page=${page}&count=${count}`;
 
         const res = await axios.get(url);
 
@@ -154,7 +150,7 @@ function ProductQuestions() {
       <QuestionsList
         questions={filteredQuestions}
         handleExpandQuestions={handleExpandQuestions}
-        productId={props.productId}
+        productId={productId}
         questionsPerPage={questionsPerPage}
         handleAddedQuestion={handleAddedQuestion}
         handleAddedAnswer={handleAddedAnswer}

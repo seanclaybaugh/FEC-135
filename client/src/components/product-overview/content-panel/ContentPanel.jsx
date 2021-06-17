@@ -10,7 +10,7 @@ const SizeQtyContainer = lazy(() => import('./selectors/SizeQtyContainer'));
 const AddToCart = lazy(() => import('./selectors/AddToCart'));
 const Share = lazy(() => import('./Share'));
 
-function ContentPanel({ styles }) {
+function ContentPanel({ productId, styles }) {
   const [product, setProduct] = useState([]);
   const [metaData, setMetaData] = useState({});
   const [isError, setIsError] = useState(false);
@@ -22,7 +22,7 @@ function ContentPanel({ styles }) {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const result = await axios(`http://localhost:3000/api/products/${25171}`);
+        const result = await axios(`http://localhost:3000/api/products/${productId}`);
         setProduct(result.data);
       } catch (err) {
         setIsError(true);
@@ -35,8 +35,9 @@ function ContentPanel({ styles }) {
   useEffect(() => {
     const fetchMeta = async () => {
       try {
-        const result = await axios(`/api/reviews/meta?product_id=${25171}`);
+        const result = await axios(`/api/reviews/meta?product_id=${productId}`);
         setMetaData(result.data);
+        console.log(result.data);
       } catch (err) {
         setIsError(true);
       };

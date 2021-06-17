@@ -31,7 +31,7 @@ function Header({ product, metaData }) {
     if (metaData.ratings) {
       const result = getAvgRating(metaData.ratings);
       setRating(result);
-      const count = getReviewCount(metaData.ratings);
+      const count = getReviewCount(metaData.recommended);
       setReviewCount(count);
     }
   }, [metaData]);
