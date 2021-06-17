@@ -5,7 +5,7 @@ import ReviewsIndex from './reviews/reviewsIndex';
 import styled from 'styled-components';
 
 function App() {
-  const productId = 25171;
+  const productId = 25178;
 
   return (
     <>
