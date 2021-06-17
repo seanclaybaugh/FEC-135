@@ -37,6 +37,7 @@ function ContentPanel({ productId, styles }) {
       try {
         const result = await axios(`/api/reviews/meta?product_id=${productId}`);
         setMetaData(result.data);
+        console.log(result.data);
       } catch (err) {
         setIsError(true);
       };
