@@ -24,5 +24,7 @@ client/dist/client_src_components_reviews_reviewsIndex_jsx-node_modules_moment_l
 client/dist/vendors-node_modules_babel_runtime_helpers_esm_toConsumableArray_js-node_modules_react-icons_-bf2927.bundle.js
 client/dist/vendors-node_modules_moment_locale_af_js-node_modules_moment_locale_ar-dz_js-node_modules_mom-248d90.bundle.js
 client/dist/vendors-node_modules_react-icons_ai_index_esm_js-node_modules_react-icons_bs_index_esm_js.bundle.js
+client/dist/client_src_components_reviews_reviewsIndex_jsx.bundle.js
+client/dist/vendors-node_modules_moment_locale_af_js-node_modules_moment_locale_ar-dz_js-node_modules_mom-bdec1a.bundle.js
 client/dist/vendors-node_modules_react-icons_fa_index_esm_js.bundle.js
 package-lock.json
