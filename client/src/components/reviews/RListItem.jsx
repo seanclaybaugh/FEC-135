@@ -3,6 +3,7 @@ import moment from 'moment';
 import ReviewPhotoItem from './RPhotoItem'
 import styled from 'styled-components';
 import { FcCheckmark } from 'react-icons/fc';
+import StarsContainer from './StarContainer';
 
 const Header = styled.div`
   display: flex;
@@ -53,7 +54,7 @@ function ReviewListItem ({ body, date, helpfulness, photos, rating, recommend, r
     <Container>
       <Header>
           <div>
-            {`Rating: ${rating}`}
+            <StarsContainer rating={rating}/>
           </div>
         <Spacer> <div></div></Spacer>
           <div>
