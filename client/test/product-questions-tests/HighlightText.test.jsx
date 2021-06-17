@@ -5,7 +5,7 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import HighlightedText from '../src/components/product-questions/questionsList/Helpers/HighlightedTextHelper.jsx';
+import HighlightedText from '../../src/components/product-questions/questionsList/Helpers/HighlightedTextHelper.jsx';
 
 describe('HighlightedTextHelper', () => {
   test('nothing is highlighted when search text is not found', () => {

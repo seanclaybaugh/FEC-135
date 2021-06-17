@@ -5,9 +5,9 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import Price from '../src/components/product-overview/content-panel/header/Price';
-import CurrentStyleContext from '../src/components/product-overview/contexts/CurrentStyleContext';
-import sampleStyle from './sampleData/sampleStyle';
+import Price from '../../src/components/product-overview/content-panel/header/Price';
+import CurrentStyleContext from '../../src/components/product-overview/contexts/CurrentStyleContext';
+import sampleStyle from '../sampleData/sampleStyle';
 
 describe('Price', () => {
   test('should render component with the original price of the current style', () => {

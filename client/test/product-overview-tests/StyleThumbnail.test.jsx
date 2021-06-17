@@ -6,12 +6,12 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import StyleThumbnail from '../src/components/product-overview/content-panel/selectors/StyleThumbnail';
-import CurrentStyleContext from '../src/components/product-overview/contexts/CurrentStyleContext';
-import PreviewStyleContext from '../src/components/product-overview/contexts/PreviewStyleContext';
-import SelectedSkuContext from '../src/components/product-overview/content-panel/contexts/SelectedSkuContext';
-import SelectedQtyContext from '../src/components/product-overview/content-panel/contexts/SelectedQtyContext';
-import MissingSkuContext from '../src/components/product-overview/content-panel/contexts/MissingSkuContext';
-import sampleStyle from './sampleData/sampleStyle';
+import CurrentStyleContext from '../../src/components/product-overview/contexts/CurrentStyleContext';
+import PreviewStyleContext from '../../src/components/product-overview/contexts/PreviewStyleContext';
+import SelectedSkuContext from '../../src/components/product-overview/content-panel/contexts/SelectedSkuContext';
+import SelectedQtyContext from '../../src/components/product-overview/content-panel/contexts/SelectedQtyContext';
+import MissingSkuContext from '../../src/components/product-overview/content-panel/contexts/MissingSkuContext';
+import sampleStyle from '../sampleData/sampleStyle';
 
 describe('Style Thumbnails', () => {
   xtest('should select the default style on page load', () => {

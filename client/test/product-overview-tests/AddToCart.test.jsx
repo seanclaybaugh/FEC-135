@@ -5,11 +5,11 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import AddToCart from '../src/components/product-overview/content-panel/selectors/AddToCart';
-import SelectedSkuContext from '../src/components/product-overview/content-panel/contexts/SelectedSkuContext';
-import SelectedQtyContext from '../src/components/product-overview/content-panel/contexts/SelectedQtyContext';
-import CurrentStyleContext from '../src/components/product-overview/contexts/CurrentStyleContext';
-import sampleStyle from './sampleData/sampleStyle';
+import AddToCart from '../../src/components/product-overview/content-panel/selectors/AddToCart';
+import SelectedSkuContext from '../../src/components/product-overview/content-panel/contexts/SelectedSkuContext';
+import SelectedQtyContext from '../../src/components/product-overview/content-panel/contexts/SelectedQtyContext';
+import CurrentStyleContext from '../../src/components/product-overview/contexts/CurrentStyleContext';
+import sampleStyle from '../sampleData/sampleStyle';
 
 describe('Add Item(s) To Cart', () => {
   test('should render `Add To Cart` button', () => {

@@ -5,11 +5,11 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import Size from '../src/components/product-overview/content-panel/selectors/Size';
-import SelectedSkuContext from '../src/components/product-overview/content-panel/contexts/SelectedSkuContext';
-import MissingSkuContext from '../src/components/product-overview/content-panel/contexts/MissingSkuContext';
-import CurrentStyleContext from '../src/components/product-overview/contexts/CurrentStyleContext';
-import sampleStyle from './sampleData/sampleStyle';
+import Size from '../../src/components/product-overview/content-panel/selectors/Size';
+import SelectedSkuContext from '../../src/components/product-overview/content-panel/contexts/SelectedSkuContext';
+import MissingSkuContext from '../../src/components/product-overview/content-panel/contexts/MissingSkuContext';
+import CurrentStyleContext from '../../src/components/product-overview/contexts/CurrentStyleContext';
+import sampleStyle from '../sampleData/sampleStyle';
 
 describe('Size', () => {
   test('should not allow users to select a size if it is not in stock', () => {
