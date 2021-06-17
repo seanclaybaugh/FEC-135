@@ -10,7 +10,12 @@ import getNewAnswer from './ProductQuestionHelpers/getNewAnswer.js';
 import getSearchText from './ProductQuestionHelpers/getSearchText.js';
 
 const Container = styled.div`
-  width: 700px;
+  width: 1200px;
+  margin-top: 100px;
+  margin-bottom: 100px;
+  margin-right: 150px;
+  margin-left: 180px;
+  justify-content: center;
 `;
 
 function ProductQuestions({ productId }) {
@@ -111,6 +116,7 @@ function ProductQuestions({ productId }) {
       <SearchQuestions
         handleSearchTextChanged={handleSearchTextChanged}
       />
+      <br />
 
       <QuestionsList
         questions={filteredQuestions}
