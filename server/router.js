@@ -5,20 +5,11 @@ const config = require('../config');
 const atelierUrl = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/';
 const authToken = config.token;
 
-// router.all is routing all the requests coming to '/api/, whether its get, post, put, or delete
-
-// '/api' is a path prefix for forwarding requests to api
-// otherwise, without this path prefix, no other routes will match
-// (e.g. static files on the route '/')
-// '*' is the wildcard route that will handle all the incoming requests
 router.all('/api/*', async (req, res) => {
-  // this returns an array of the path components (ex: ['', 'api', 'products' 'product_id'])
   const pathComponents = req.url.split('/');
 
-  // we want everything but the first two elements of the array
   const apiPath = pathComponents.slice(2).join('/');
 
-  // construct the complete request url
   const requestUrl = atelierUrl + apiPath;
 
   try {
