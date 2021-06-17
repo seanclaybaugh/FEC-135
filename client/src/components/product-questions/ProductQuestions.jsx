@@ -5,6 +5,7 @@ import QuestionsList from './questionsList/QuestionsList';
 import SearchQuestions from './SearchQuestions/SearchQuestions';
 import getQuestionHelpful from './ProductQuestionHelpers/getQuestionHelpful.js';
 import getAnswerReport from './ProductQuestionHelpers/getAnswerReport.js'
+import getAnswerHelpful from './ProductQuestionHelpers/getAnswerHelpful.js'
 
 const Container = styled.div`
   width: 700px;
@@ -107,13 +108,7 @@ function ProductQuestions({ productId }) {
   };
 
   const handleAnswerHelpful = (answerId, questionId) => {
-    const newList = questionList.map((question) => {
-      if (question.question_id === questionId) {
-        question.answers[answerId].helpfulness++;
-      }
-      return question;
-    });
-
+    const newList = getAnswerHelpful(questionList, answerId, questionId);
     setQuestionList(newList);
   };
 
