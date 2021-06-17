@@ -60,7 +60,7 @@ const AnswerInfo = styled.div`
 
 const AnswerInfoName = styled.div`
   order: 2;
-  flex-basis: 40%;
+  flex-basis: 20%;
   border-right: solid;
   border-width: 1px
 `;

@@ -3,9 +3,19 @@ import styled from 'styled-components';
 import axios from 'axios';
 import QuestionsList from './questionsList/QuestionsList';
 import SearchQuestions from './SearchQuestions/SearchQuestions';
+import getQuestionHelpful from './ProductQuestionHelpers/getQuestionHelpful.js';
+import getAnswerReport from './ProductQuestionHelpers/getAnswerReport.js'
+import getAnswerHelpful from './ProductQuestionHelpers/getAnswerHelpful.js'
+import getNewAnswer from './ProductQuestionHelpers/getNewAnswer.js';
+import getSearchText from './ProductQuestionHelpers/getSearchText.js';
 
 const Container = styled.div`
-  width: 700px;
+  width: 1200px;
+  margin-top: 100px;
+  margin-bottom: 100px;
+  margin-right: 150px;
+  margin-left: 180px;
+  justify-content: center;
 `;
 
 function ProductQuestions({ productId }) {
@@ -39,17 +49,13 @@ function ProductQuestions({ productId }) {
     try {
       while (fetchingData) {
         const url = `/api/qa/questions?product_id=${productId}&page=${page}&count=${count}`;
-
         const res = await axios.get(url);
-
         newQuestions = newQuestions.concat(res.data.results);
         fetchingData = res.data.results.length === count;
         page++;
       }
-
       setQuestionList(newQuestions);
       setFilteredQuestions(newQuestions);
-
       if (newQuestions.length > 0) {
         setIsQuestionList(true);
       }
@@ -68,21 +74,10 @@ function ProductQuestions({ productId }) {
 
   const handleSearchTextChanged = (text) => {
     setSearchText(text);
+
     if (text.length > 3) {
       const searchTextLowerCase = text.toLowerCase();
-      const results = questionList.filter((question) => {
-        if (question.question_body.toLowerCase().indexOf(searchTextLowerCase) !== -1) {
-          return true;
-        }
-
-        const { answers } = question;
-
-        for (const key in answers) {
-          if (answers[key].body.toLowerCase().indexOf(searchTextLowerCase) !== -1) {
-            return true;
-          }
-        }
-      });
+      const results = getSearchText(questionList, searchTextLowerCase);
       setFilteredQuestions(results);
     } else {
       setFilteredQuestions(questionList);
@@ -94,58 +89,34 @@ function ProductQuestions({ productId }) {
   };
 
   const handleAddedAnswer = (questionId, newAnswers) => {
-    const newList = questionList.map((question) => {
-      if (question.question_id === questionId) {
-        question.answers = newAnswers;
-      }
-      return question;
-    });
-
+    const newList = getNewAnswer(questionList, questionId, newAnswers);
     setQuestionList(newList);
   };
 
   const handleAnswerHelpful = (answerId, questionId) => {
-    const newList = questionList.map((question) => {
-      if (question.question_id === questionId) {
-        question.answers[answerId].helpfulness++;
-      }
-      return question;
-    });
-
+    const newList = getAnswerHelpful(questionList, answerId, questionId);
     setQuestionList(newList);
   };
 
   const handleAnswerReport = (answerId, questionId) => {
-    const newList = questionList.map((question) => {
-      if (question.question_id === questionId) {
-        delete question.answers[answerId];
-      }
-      return question;
-    });
-
+    const newList = getAnswerReport(questionList, answerId, questionId);
     setQuestionList(newList);
   };
 
   const handleQuestionHelpful = (questionId) => {
-    const newList = questionList.map((question) => {
-      if (question.question_id === questionId) {
-        question.question_helpfulness++;
-      }
-      return question;
-    });
-
+    const newList = getQuestionHelpful(questionList, questionId);
     setQuestionList(newList);
   };
 
   return (
 
     <Container>
-
       {isError && <div>Error with get data...</div>}
 
       <SearchQuestions
         handleSearchTextChanged={handleSearchTextChanged}
       />
+      <br />
 
       <QuestionsList
         questions={filteredQuestions}

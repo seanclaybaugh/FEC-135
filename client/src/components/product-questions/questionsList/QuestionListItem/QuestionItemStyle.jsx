@@ -30,12 +30,12 @@ const Question = styled.div`
 
 const QuestionBody = styled.div`
   order: 2;
-  flex-basis: 55%;
+  flex-basis: 75%;
 `;
 
 const QuestionHelpful = styled.div`
   order: 3;
-  flex-basis: 18%;
+  flex-basis: 10%;
   border-right: solid;
   border-width: 1px;
   font-weight: 300;
