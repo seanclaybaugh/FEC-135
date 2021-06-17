@@ -4,6 +4,7 @@ import axios from 'axios';
 import QuestionsList from './questionsList/QuestionsList';
 import SearchQuestions from './SearchQuestions/SearchQuestions';
 import getQuestionHelpful from './ProductQuestionHelpers/getQuestionHelpful.js';
+import getAnswerReport from './ProductQuestionHelpers/getAnswerReport.js'
 
 const Container = styled.div`
   width: 700px;
@@ -117,26 +118,18 @@ function ProductQuestions({ productId }) {
   };
 
   const handleAnswerReport = (answerId, questionId) => {
-    const newList = questionList.map((question) => {
-      if (question.question_id === questionId) {
-        delete question.answers[answerId];
-      }
-      return question;
-    });
-
+    const newList = getAnswerReport(questionList, answerId, questionId);
     setQuestionList(newList);
   };
 
   const handleQuestionHelpful = (questionId) => {
     const newList = getQuestionHelpful(questionList, questionId);
-
     setQuestionList(newList);
   };
 
   return (
 
     <Container>
-
       {isError && <div>Error with get data...</div>}
 
       <SearchQuestions
