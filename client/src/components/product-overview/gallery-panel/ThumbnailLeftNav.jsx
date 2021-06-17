@@ -22,11 +22,18 @@ const Slider = styled.div`
   flex-direction: column;
   height: 700px;
   width: auto;
-  overflow-y: hidden;
+  overflow-y: scroll;
   flex-wrap: nowrap;
+
+  ::-webkit-scrollbar {
+    width: 0px;
+    background: transparent;
+  }
 `;
 
 const StyledArrowContainer = styled.div`
+  padding: 10px;
+
   :hover {
     cursor: pointer;
   }
