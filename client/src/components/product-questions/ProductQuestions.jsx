@@ -7,6 +7,7 @@ import getQuestionHelpful from './ProductQuestionHelpers/getQuestionHelpful.js';
 import getAnswerReport from './ProductQuestionHelpers/getAnswerReport.js'
 import getAnswerHelpful from './ProductQuestionHelpers/getAnswerHelpful.js'
 import getNewAnswer from './ProductQuestionHelpers/getNewAnswer.js';
+import getSearchText from './ProductQuestionHelpers/getSearchText.js';
 
 const Container = styled.div`
   width: 700px;
@@ -68,21 +69,10 @@ function ProductQuestions({ productId }) {
 
   const handleSearchTextChanged = (text) => {
     setSearchText(text);
+
     if (text.length > 3) {
       const searchTextLowerCase = text.toLowerCase();
-      const results = questionList.filter((question) => {
-        if (question.question_body.toLowerCase().indexOf(searchTextLowerCase) !== -1) {
-          return true;
-        }
-
-        const { answers } = question;
-
-        for (const key in answers) {
-          if (answers[key].body.toLowerCase().indexOf(searchTextLowerCase) !== -1) {
-            return true;
-          }
-        }
-      });
+      const results = getSearchText(questionList, searchTextLowerCase);
       setFilteredQuestions(results);
     } else {
       setFilteredQuestions(questionList);
