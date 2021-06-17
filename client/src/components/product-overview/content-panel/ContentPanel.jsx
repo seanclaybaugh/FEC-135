@@ -13,6 +13,7 @@ const Share = lazy(() => import('./Share'));
 function ContentPanel({ productId, styles }) {
   const [product, setProduct] = useState([]);
   const [metaData, setMetaData] = useState({});
+  const [reviewsData, setReviewsData] = useState([]);
   const [isError, setIsError] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [selectedSku, setSelectedSku] = useState(null);
@@ -22,7 +23,7 @@ function ContentPanel({ productId, styles }) {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const result = await axios(`http://localhost:3000/api/products/${productId}`);
+        const result = await axios(`/api/products/${productId}`);
         setProduct(result.data);
       } catch (err) {
         setIsError(true);
@@ -37,7 +38,19 @@ function ContentPanel({ productId, styles }) {
       try {
         const result = await axios(`/api/reviews/meta?product_id=${productId}`);
         setMetaData(result.data);
-        console.log(result.data);
+      } catch (err) {
+        setIsError(true);
+      };
+      setIsLoading(false);
+    };
+    fetchMeta();
+  }, []);
+
+  useEffect(() => {
+    const fetchMeta = async () => {
+      try {
+        const result = await axios(`/api/reviews?product_id=${productId}&page=1&count=5000`);
+        setReviewsData(result.data.results);
       } catch (err) {
         setIsError(true);
       };
@@ -58,6 +71,7 @@ function ContentPanel({ productId, styles }) {
             <Header
               product={product}
               metaData={metaData}
+              reviewsData={reviewsData}
             />
             <SelectedSkuContext.Provider value={{ selectedSku, setSelectedSku }}>
               <SelectedQtyContext.Provider value={{ selectedQty, setSelectedQty }}>

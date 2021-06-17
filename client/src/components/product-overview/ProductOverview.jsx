@@ -30,7 +30,7 @@ const ContentDiv = styled.div`
   width: 450px;
 `;
 
-function ProductOverview({ productId }) {
+function ProductOverview({ loadNextComponents, productId }) {
   const [isError, setIsError] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [styles, setStyles] = useState([]);
@@ -40,7 +40,7 @@ function ProductOverview({ productId }) {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const results = await axios(`http://localhost:3000/api/products/${productId}/styles`);
+        const results = await axios(`/api/products/${productId}/styles`);
         setStyles(results.data.results);
         const defaultStyle = results.data.results.filter((style) => (
           style['default?']
@@ -51,6 +51,7 @@ function ProductOverview({ productId }) {
         setIsError(true);
       }
       setIsLoading(false);
+      loadNextComponents(true);
     };
     fetchData();
   }, []);
