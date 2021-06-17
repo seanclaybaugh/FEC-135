@@ -1,4 +1,4 @@
-const sampleStyle = [
+const sampleStyles = [
   {
     style_id: 142850,
     name: 'White & White',
@@ -99,4 +99,4 @@ const sampleStyle = [
   },
 ];
 
-export default sampleStyle;
+export default sampleStyles;
