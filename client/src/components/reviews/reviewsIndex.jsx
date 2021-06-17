@@ -178,7 +178,7 @@ figure out upload button to not close modal or reset review data
       {(isLoading || reviews.length === 0) ? <div>No Reviews</div>
         : (
           <>
-            <div>
+            <div id={'reviews'}>
               {`${reviews.length} reviews, sorted by:`}
               <select value={dropdown} onChange={(event) => {console.log(event.target.value); reviewSortDrop(event.target.value)}}>
                 <option value='relevant'>relevant</option>
