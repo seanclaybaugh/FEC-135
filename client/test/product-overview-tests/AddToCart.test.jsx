@@ -57,37 +57,37 @@ describe('Add Item(s) To Cart', () => {
 
     expect(handleMissingSku).toHaveBeenCalled();
   });
-  test('should open CartModal component when `Add To Cart` button is clicked and size has been selected', () => {
-    const sku = {
-      selectedSku: 828950,
-      setSelectedSku: () => {},
-    };
-    const qty = {
-      selectedQty: 1,
-      setSelectedQty: () => {},
-    };
-    const style = {
-      currentStyle: sampleStyle[0],
-      setCurrentStyle: () => {},
-    };
+  // test('should open CartModal component when `Add To Cart` button is clicked and size has been selected', () => {
+  //   const sku = {
+  //     selectedSku: 828950,
+  //     setSelectedSku: () => {},
+  //   };
+  //   const qty = {
+  //     selectedQty: 1,
+  //     setSelectedQty: () => {},
+  //   };
+  //   const style = {
+  //     currentStyle: sampleStyle[0],
+  //     setCurrentStyle: () => {},
+  //   };
 
-    render(
-      <SelectedSkuContext.Provider value={sku}>
-        <SelectedQtyContext.Provider value={qty}>
-          <CurrentStyleContext.Provider value={style}>
-            <AddToCart />
-          </CurrentStyleContext.Provider>
-        </SelectedQtyContext.Provider>
-      </SelectedSkuContext.Provider>,
-    );
+  //   render(
+  //     <SelectedSkuContext.Provider value={sku}>
+  //       <SelectedQtyContext.Provider value={qty}>
+  //         <CurrentStyleContext.Provider value={style}>
+  //           <AddToCart />
+  //         </CurrentStyleContext.Provider>
+  //       </SelectedQtyContext.Provider>
+  //     </SelectedSkuContext.Provider>,
+  //   );
 
-    const container = screen.getByTestId('checkout-container');
-    const button = screen.getByRole('button');
+  //   const container = screen.getByTestId('checkout-container');
+  //   const button = screen.getByRole('button');
 
-    fireEvent.click(button);
+  //   fireEvent.click(button);
 
-    const modal = screen.getByTestId('cart-modal');
+  //   const modal = screen.getByTestId('cart-modal');
 
-    expect(container).toContainElement(modal);
-  });
+  //   expect(container).toContainElement(modal);
+  // });
 });
