@@ -68,7 +68,7 @@ const StyledArrowContainer = styled.div`
   }
 `;
 
-function MainView() {
+function MainView({ imageRefs }) {
   const { previewStyle } = useContext(PreviewStyleContext);
   const { currentPhotoIndex, setCurrentPhotoIndex } = useContext(PhotoIndexContext);
   const [modal, setModal] = useState(false);
@@ -117,7 +117,7 @@ function MainView() {
             {currentPhotoIndex !== previewStyle.photos.length - 1 && <MdKeyboardArrowRight />}
           </StyledArrowContainer>
         </StyledImageContainer>
-        <ThumbnailBottomNav />
+        <ThumbnailBottomNav imageRefs={imageRefs} />
       </MainViewContainer>
     </>
   );

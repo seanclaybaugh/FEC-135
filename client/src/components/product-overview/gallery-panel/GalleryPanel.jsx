@@ -14,12 +14,17 @@ const GalleryContainer = styled.div`
 
 function GalleryPanel() {
   const [currentPhotoIndex, setCurrentPhotoIndex] = useState(0);
+  const [imageRefs, setImageRefs] = useState([]);
+
+  function receiveImgRefs(refs) {
+    setImageRefs(refs);
+  }
 
   return (
     <PhotoIndexContext.Provider value={{ currentPhotoIndex, setCurrentPhotoIndex }}>
       <GalleryContainer>
-        <MainView />
-        <ThumbnailLeftNav />
+        <MainView imageRefs={imageRefs} />
+        <ThumbnailLeftNav receiveImgRefs={receiveImgRefs} />
       </GalleryContainer>
     </PhotoIndexContext.Provider>
   );

@@ -12,7 +12,7 @@ const StyledIndicatorContainer = styled.div`
   align-items: center;
 `;
 
-function ThumbnailBottomNav() {
+function ThumbnailBottomNav({ imageRefs }) {
   const { previewStyle } = useContext(PreviewStyleContext);
 
   return (
@@ -22,6 +22,7 @@ function ThumbnailBottomNav() {
           key={index}
           index={index}
           photo={photo}
+          imageRefs={imageRefs}
         />
       ))}
     </StyledIndicatorContainer>

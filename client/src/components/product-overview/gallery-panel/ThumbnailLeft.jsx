@@ -24,7 +24,7 @@ const Img = styled.img`
   border: ${(props) => props.border};
 `;
 
-function ThumbnailLeft({ index, photo }) {
+function ThumbnailLeft({ index, photo, forwardedRef }) {
   const { currentPhotoIndex, setCurrentPhotoIndex } = useContext(PhotoIndexContext);
   const isSelected = index === currentPhotoIndex;
 
@@ -39,6 +39,7 @@ function ThumbnailLeft({ index, photo }) {
         padding={isSelected ? '2px' : '1px'}
         border={isSelected ? 'solid 1px #000' : 'none'}
         alt="photo-thumbnail"
+        ref={forwardedRef}
       />
     </ListItem>
   );
