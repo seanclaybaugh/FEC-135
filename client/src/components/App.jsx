@@ -10,7 +10,7 @@ const ProductReviews = lazy(() => import('./reviews/reviewsIndex'));
 // import styled from 'styled-components';
 
 function App() {
-  const productId = 25178;
+  const productId = 25171;
   const [overviewLoaded, setOverviewLoaded] = useState(false);
 
   function loadNextComponents(val) {
