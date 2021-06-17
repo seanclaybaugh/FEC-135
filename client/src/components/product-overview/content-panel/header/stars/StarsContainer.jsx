@@ -31,7 +31,7 @@ function StarsContainer({ rating, reviewCount }) {
         <StarItem key={index} value={star} />
       ))}
       <StyledSpan onClick={() => window.location.replace("/#reviews")}>
-        {reviewCount > 0 ? `Read all ${reviewCount} reviews` : 'Be the first to review!'}
+        {reviewCount > 0 ? `Read all reviews (${reviewCount})` : 'Be the first to review!'}
       </StyledSpan>
     </StyledStarsContainer>
   );
