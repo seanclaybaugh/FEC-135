@@ -23,7 +23,7 @@ const StyledTitleContainer = styled.div`
   margin: 20px 0;
 `;
 
-function Header({ product, metaData }) {
+function Header({ product, metaData, reviewsData }) {
   const [rating, setRating] = useState(0);
   const [reviewCount, setReviewCount] = useState(0);
 
@@ -31,7 +31,7 @@ function Header({ product, metaData }) {
     if (metaData.ratings) {
       const result = getAvgRating(metaData.ratings);
       setRating(result);
-      const count = getReviewCount(metaData.recommended);
+      const count = reviewsData.length;
       setReviewCount(count);
     }
   }, [metaData]);
