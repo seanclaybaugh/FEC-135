@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
-import PhotoIndexContext from '../contexts/PhotoIndexContext';
+import { PhotoIndexContext } from '../contexts';
 
 const StyledIndicator = styled.div`
   width: 15px;

@@ -1,8 +1,8 @@
 import React, { lazy, Suspense, useState, useEffect, useContext } from 'react';
 import styled, { keyframes } from 'styled-components';
 import axios from 'axios';
-import SelectedSkuContext from '../contexts/SelectedSkuContext';
-import SelectedQtyContext from '../contexts/SelectedQtyContext';
+import { SelectedSkuContext, SelectedQtyContext, MissingSkuContext } from '../../contexts';
+
 const CartModal = lazy(() => import('./CartModal'));
 
 const rotate360 = keyframes`
@@ -41,13 +41,13 @@ const Container = styled.form`
 `;
 
 const Button = styled.button`
-  background-color: #27231F;
+  background-color: #000;
   color: #fff;
   margin: 2.5px;
-  border: solid 1px #27231F;
+  border: solid 1px #000;
   padding: 5px;
   display: inline-block;
-  width: 200px;
+  width: 390px;
   height: 60px;
   letter-spacing: 1px;
   position: relative;
@@ -73,23 +73,24 @@ const Button = styled.button`
 
   :active {
     background: #000;
-    top: 2px;
+    top: 3px;
   }
 
   :hover {
     cursor: pointer;
-    background-color: #000;
-    border: solid 1px #000;
+    background-color: #555555;
+    border: solid 1px #555555;
+    letter-spacing: .09rem;
   }
 `;
 
-function AddToCart({ product, handleMissingSku }) {
+function AddToCart({ product }) {
   const { selectedSku } = useContext(SelectedSkuContext);
   const { selectedQty } = useContext(SelectedQtyContext);
+  const { isMissingSku, setIsMissingSku } = useContext(MissingSkuContext);
   const [items, setItems] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
-  const [isMissingSku, setIsMissingSku] = useState(false);
   const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
@@ -98,7 +99,7 @@ function AddToCart({ product, handleMissingSku }) {
 
   function addToCart() {
     setIsLoading(true);
-    return axios.post('http://localhost:3000/api/cart', { sku_id: selectedSku });
+    return axios.post('/api/cart', { sku_id: selectedSku });
   }
 
   function revealModal() {
@@ -128,7 +129,6 @@ function AddToCart({ product, handleMissingSku }) {
     e.preventDefault();
     if (!selectedSku) {
       setIsMissingSku(true);
-      handleMissingSku(true);
     } else {
       addAllItems(selectedQty);
       revealModal();
@@ -140,7 +140,7 @@ function AddToCart({ product, handleMissingSku }) {
       <Container onSubmit={handleClick} name="checkout-form">
         <Button>{isLoading ? <Spinner /> : 'ADD TO BAG'}</Button>
       </Container>
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<Spinner />}>
         {!isMissingSku
           && selectedSku
           && (

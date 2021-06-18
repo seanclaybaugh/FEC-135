@@ -1,11 +1,9 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
-import CurrentStyleContext from '../../contexts/CurrentStyleContext';
-import SelectedSkuContext from '../contexts/SelectedSkuContext';
-import MissingSkuContext from '../contexts/MissingSkuContext';
+import { CurrentStyleContext, SelectedSkuContext, MissingSkuContext } from '../../contexts';
 
 const Button = styled.button`
-  margin: 20px 2.5px;
+  margin: 5px;
   background-color: ${(props) => props.bgColor};
   color: #000;
   border: solid 1px ${(props) => props.borderColor};

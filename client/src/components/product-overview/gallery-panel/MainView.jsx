@@ -1,8 +1,7 @@
 import React, { useState, useContext } from 'react';
 import styled from 'styled-components';
-import { MdKeyboardArrowRight, MdKeyboardArrowLeft } from 'react-icons/md';
-import PreviewStyleContext from '../contexts/PreviewStyleContext';
-import PhotoIndexContext from '../contexts/PhotoIndexContext';
+import { ChevronThinRight, ChevronThinLeft } from '@styled-icons/entypo';
+import { PreviewStyleContext, PhotoIndexContext } from '../contexts';
 import ThumbnailBottomNav from './ThumbnailBottomNav';
 
 const MainViewContainer = styled.div`
@@ -18,8 +17,8 @@ const StyledImageContainer = styled.div`
 
 const StyledImage = styled.img`
   object-fit: cover;
-  width: 700px;
-  height: 1000px;
+  width: 600px;
+  height: 800px;
   :hover {
     cursor: zoom-in;
   }
@@ -58,7 +57,7 @@ const StyledArrowContainer = styled.div`
   align-items: center;
   font-size: 40px;
   color: #27231F;
-  width: 50px;
+  width: 30px;
   height: 100%;
   left: ${(props) => props.position};
   :hover {
@@ -103,7 +102,7 @@ function MainView({ imageRefs }) {
             onClick={prevPhoto}
             position="10%"
           >
-            {currentPhotoIndex !== 0 && <MdKeyboardArrowLeft />}
+            {currentPhotoIndex !== 0 && <ChevronThinLeft />}
           </StyledArrowContainer>
           <StyledImage
             src={previewStyle.photos[currentPhotoIndex].url}
@@ -124,7 +123,7 @@ function MainView({ imageRefs }) {
             onClick={nextPhoto}
             position="90%"
           >
-            {currentPhotoIndex !== previewStyle.photos.length - 1 && <MdKeyboardArrowRight />}
+            {currentPhotoIndex !== previewStyle.photos.length - 1 && <ChevronThinRight />}
           </StyledArrowContainer>
         </StyledImageContainer>
         <ThumbnailBottomNav imageRefs={imageRefs} />

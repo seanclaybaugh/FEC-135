@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
-import PreviewStyleContext from '../../contexts/PreviewStyleContext';
+import { PreviewStyleContext } from '../../contexts';
 import StyleThumbnail from './StyleThumbnail';
 
 const OuterContainer = styled.div`
@@ -30,12 +30,8 @@ function StylesContainer({ styles }) {
   return (
     <OuterContainer>
       <StyleNameContainer>
-        <StyleNameTitleDiv>
-          <h5>STYLE</h5>
-        </StyleNameTitleDiv>
-        <div>
-          <h5>{previewStyle.name}</h5>
-        </div>
+        <StyleNameTitleDiv><h5>STYLE</h5></StyleNameTitleDiv>
+        <div><h5>{previewStyle.name}</h5></div>
       </StyleNameContainer>
       <ThumbnailContainer>
         {styles.map((style, index) => (

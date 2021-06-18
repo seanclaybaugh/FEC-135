@@ -4,9 +4,7 @@ import React, {
 import styled from 'styled-components';
 import { useSpring, animated } from 'react-spring';
 import { MdClose } from 'react-icons/md';
-import CurrentStyleContext from '../../contexts/CurrentStyleContext';
-import SelectedSkuContext from '../contexts/SelectedSkuContext';
-import SelectedQtyContext from '../contexts/SelectedQtyContext';
+import { CurrentStyleContext, SelectedSkuContext, SelectedQtyContext } from '../../contexts';
 
 const Background = styled.div`
   background: rgba(0, 0, 0, 0.8);

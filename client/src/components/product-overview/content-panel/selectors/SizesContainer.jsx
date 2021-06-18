@@ -1,8 +1,6 @@
 import React, { useContext } from 'react';
 import styled, { keyframes } from 'styled-components';
-import CurrentStyleContext from '../../contexts/CurrentStyleContext';
-import SelectedSkuContext from '../contexts/SelectedSkuContext';
-import MissingSkuContext from '../contexts/MissingSkuContext';
+import { CurrentStyleContext, SelectedSkuContext, MissingSkuContext } from '../../contexts';
 import Size from './Size';
 
 const ContainerSubheader = styled.div`
@@ -75,27 +73,17 @@ function SizesContainer() {
   return (
     <>
       <ContainerSubheader>
-        <div>
-          <h5>SIZE</h5>
-        </div>
+        <div><h5>SIZE</h5></div>
         <SelectedSizeInfoContainer>
           {!isMissingSku
             ? (
-              <SizeInfoDiv>
-                <h5>{size || 'Select a size'}</h5>
-              </SizeInfoDiv>
+              <SizeInfoDiv><h5>{size || 'Select a size'}</h5></SizeInfoDiv>
             )
             : (
-              <SizeErrorDiv>
-                <h5>Please select a size</h5>
-              </SizeErrorDiv>
-            )}
-          <SizeInfoDiv>
-            <h5>{status || null}</h5>
-          </SizeInfoDiv>
-          <SizeInfoDiv>
-            <h5>{selectedSku ? `#${selectedSku}` : null}</h5>
-          </SizeInfoDiv>
+              <SizeErrorDiv><h5>Please select a size</h5></SizeErrorDiv>
+          )}
+          <SizeInfoDiv><h5>{status || null}</h5></SizeInfoDiv>
+          <SizeInfoDiv><h5>{selectedSku ? `#${selectedSku}` : null}</h5></SizeInfoDiv>
         </SelectedSizeInfoContainer>
       </ContainerSubheader>
       <StyledSizesContainer>
