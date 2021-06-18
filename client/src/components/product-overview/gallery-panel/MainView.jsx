@@ -18,8 +18,8 @@ const StyledImageContainer = styled.div`
 
 const StyledImage = styled.img`
   object-fit: cover;
-  width: 700px;
-  height: 1000px;
+  width: 500px;
+  height: 800px;
   :hover {
     cursor: zoom-in;
   }
@@ -58,7 +58,7 @@ const StyledArrowContainer = styled.div`
   align-items: center;
   font-size: 40px;
   color: #27231F;
-  width: 50px;
+  width: 30px;
   height: 100%;
   left: ${(props) => props.position};
   :hover {
