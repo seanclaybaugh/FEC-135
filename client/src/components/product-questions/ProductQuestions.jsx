@@ -9,6 +9,7 @@ import getAnswerHelpful from './ProductQuestionHelpers/getAnswerHelpful.js'
 import getNewAnswer from './ProductQuestionHelpers/getNewAnswer.js';
 import getSearchText from './ProductQuestionHelpers/getSearchText.js';
 import ProductIdContext from './ProductIdContext';
+import AnswerReportContext from './AnswerReportContext';
 
 const Container = styled.div`
   width: 1200px;
@@ -119,6 +120,7 @@ function ProductQuestions({ productId }) {
       />
       <br />
     <ProductIdContext.Provider value={productId}>
+      <AnswerReportContext.Provider value={handleAnswerReport}>
       <QuestionsList
         questions={filteredQuestions}
         handleExpandQuestions={handleExpandQuestions}
@@ -127,11 +129,12 @@ function ProductQuestions({ productId }) {
         handleAddedQuestion={handleAddedQuestion}
         handleAddedAnswer={handleAddedAnswer}
         handleAnswerHelpful={handleAnswerHelpful}
-        handleAnswerReport={handleAnswerReport}
+        // handleAnswerReport={handleAnswerReport}
         handleQuestionHelpful={handleQuestionHelpful}
         searchText={searchText}
         isQuestionList={isQuestionList}
       />
+      </AnswerReportContext.Provider>
       </ProductIdContext.Provider>
     </Container>
   );

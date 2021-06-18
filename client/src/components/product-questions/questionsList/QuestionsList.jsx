@@ -50,7 +50,7 @@ const QuestionsList = (props) => {
                 key={index}
                 question={question}
                 handleAddedAnswer={props.handleAddedAnswer}
-                handleAnswerReport={props.handleAnswerReport}
+                // handleAnswerReport={props.handleAnswerReport}
                 handleAnswerHelpful={props.handleAnswerHelpful}
                 handleQuestionHelpful={props.handleQuestionHelpful}
                 searchText={props.searchText}

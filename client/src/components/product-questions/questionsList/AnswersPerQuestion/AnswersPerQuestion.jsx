@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { AiFillCaretUp } from 'react-icons/ai';
 import { BsFlagFill } from 'react-icons/bs';
 import moment from 'moment';
@@ -6,11 +6,13 @@ import axios from 'axios';
 import HighLightedText from '../Helpers/HighlightedTextHelper';
 import SharedButton from '../../SharedStyles/SharedButton';
 import AnswerStyles from './AnswerStyles';
+import AnswerReportContext from '../../AnswerReportContext';
 
 const AnswersPerQuestion = (props) => {
   const date = moment(props.answer.date).format('LL');
   const answerId = props.answer.id;
   const photos = props.answer.photos || [];
+  const handleAnswerReport = useContext(AnswerReportContext);
 
   const handleHelpfulAnswerClick = async () => {
     try {
@@ -29,7 +31,7 @@ const AnswersPerQuestion = (props) => {
       console.log(error);
     }
 
-    props.handleAnswerReport(answerId, props.questionId);
+    handleAnswerReport(answerId, props.questionId);
   };
 
   return (
