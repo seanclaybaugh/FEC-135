@@ -29,9 +29,7 @@ function ContentPanel({ productId, styles }) {
     const promises = [getProductData, getMetaData, getReviewsData];
 
     Promise.all(promises)
-      .then((responses) => {
-        return Promise.all(responses.map((response) => response))
-      })
+      .then((responses) => Promise.all(responses.map((response) => response)))
       .then((results) => {
         setProduct(results[0].data);
         setMetaData(results[1].data);
@@ -54,21 +52,14 @@ function ContentPanel({ productId, styles }) {
       {!isLoading
         && (
           <>
-            <Header
-              product={product}
-              metaData={metaData}
-              reviewsData={reviewsData}
-            />
+            <Header product={product} metaData={metaData} reviewsData={reviewsData} />
             <SelectedSkuContext.Provider value={{ selectedSku, setSelectedSku }}>
               <SelectedQtyContext.Provider value={{ selectedQty, setSelectedQty }}>
                 <MissingSkuContext.Provider value={{ isMissingSku, setIsMissingSku }}>
                   <StylesContainer styles={styles} />
                   <SizeQtyContainer />
                 </MissingSkuContext.Provider>
-                <AddToCart
-                  product={product.name}
-                  handleMissingSku={handleMissingSku}
-                />
+                <AddToCart product={product.name} handleMissingSku={handleMissingSku} />
                 <Share />
               </SelectedQtyContext.Provider>
             </SelectedSkuContext.Provider>
