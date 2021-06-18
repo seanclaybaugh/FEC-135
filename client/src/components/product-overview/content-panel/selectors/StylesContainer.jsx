@@ -30,12 +30,8 @@ function StylesContainer({ styles }) {
   return (
     <OuterContainer>
       <StyleNameContainer>
-        <StyleNameTitleDiv>
-          <h5>STYLE</h5>
-        </StyleNameTitleDiv>
-        <div>
-          <h5>{previewStyle.name}</h5>
-        </div>
+        <StyleNameTitleDiv><h5>STYLE</h5></StyleNameTitleDiv>
+        <div><h5>{previewStyle.name}</h5></div>
       </StyleNameContainer>
       <ThumbnailContainer>
         {styles.map((style, index) => (

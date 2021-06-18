@@ -16,9 +16,7 @@ function QtyContainer() {
   return (
     <>
       <ContainerSubheader>
-        <div>
-          <h5>QTY</h5>
-        </div>
+        <div><h5>QTY</h5></div>
       </ContainerSubheader>
       <QtyDropdownContainer>
         <Quantity />

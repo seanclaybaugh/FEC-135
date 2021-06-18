@@ -62,10 +62,7 @@ function StyleThumbnail({ style, index }) {
       onMouseLeave={handleMouseLeave}
       boxShadow={index === currentStyle.style_id ? '0 0 0 1px #000' : '0 0 3px #888'}
     >
-      <Img
-        src={style.photos[0].thumbnail_url}
-        alt={style.name}
-      />
+      <Img src={style.photos[0].thumbnail_url} alt={style.name} />
     </ThumbnailContainer>
   );
 }
