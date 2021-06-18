@@ -99,7 +99,7 @@ function AddToCart({ product, handleMissingSku }) {
 
   function addToCart() {
     setIsLoading(true);
-    return axios.post('api/cart', { sku_id: selectedSku });
+    return axios.post('/api/cart', { sku_id: selectedSku });
   }
 
   function revealModal() {
