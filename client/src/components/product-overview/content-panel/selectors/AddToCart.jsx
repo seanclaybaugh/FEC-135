@@ -2,6 +2,7 @@ import React, { lazy, Suspense, useState, useEffect, useContext } from 'react';
 import styled, { keyframes } from 'styled-components';
 import axios from 'axios';
 import { SelectedSkuContext, SelectedQtyContext, MissingSkuContext } from '../../contexts';
+
 const CartModal = lazy(() => import('./CartModal'));
 
 const rotate360 = keyframes`
