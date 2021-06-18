@@ -43,10 +43,6 @@ function ContentPanel({ productId, styles }) {
     fetchContentData();
   }, [])
 
-  function handleMissingSku(val) {
-    setIsMissingSku(val);
-  }
-
   return (
     <Suspense fallback={<Spinner />}>
       {!isLoading
@@ -58,11 +54,11 @@ function ContentPanel({ productId, styles }) {
                 <MissingSkuContext.Provider value={{ isMissingSku, setIsMissingSku }}>
                   <StylesContainer styles={styles} />
                   <SizeQtyContainer />
+                  <AddToCart product={product.name} />
                 </MissingSkuContext.Provider>
-                <AddToCart product={product.name} handleMissingSku={handleMissingSku} />
-                <Share />
               </SelectedQtyContext.Provider>
             </SelectedSkuContext.Provider>
+            <Share />
           </>
         )}
     </Suspense>

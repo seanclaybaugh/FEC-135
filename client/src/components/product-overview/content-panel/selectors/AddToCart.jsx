@@ -3,6 +3,7 @@ import styled, { keyframes } from 'styled-components';
 import axios from 'axios';
 import SelectedSkuContext from '../contexts/SelectedSkuContext';
 import SelectedQtyContext from '../contexts/SelectedQtyContext';
+import MissingSkuContext from '../contexts/MissingSkuContext';
 const CartModal = lazy(() => import('./CartModal'));
 
 const rotate360 = keyframes`
@@ -84,13 +85,13 @@ const Button = styled.button`
   }
 `;
 
-function AddToCart({ product, handleMissingSku }) {
+function AddToCart({ product }) {
   const { selectedSku } = useContext(SelectedSkuContext);
   const { selectedQty } = useContext(SelectedQtyContext);
+  const { isMissingSku, setIsMissingSku } = useContext(MissingSkuContext);
   const [items, setItems] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
-  const [isMissingSku, setIsMissingSku] = useState(false);
   const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
@@ -129,7 +130,6 @@ function AddToCart({ product, handleMissingSku }) {
     e.preventDefault();
     if (!selectedSku) {
       setIsMissingSku(true);
-      handleMissingSku(true);
     } else {
       addAllItems(selectedQty);
       revealModal();
@@ -141,7 +141,7 @@ function AddToCart({ product, handleMissingSku }) {
       <Container onSubmit={handleClick} name="checkout-form">
         <Button>{isLoading ? <Spinner /> : 'ADD TO BAG'}</Button>
       </Container>
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<Spinner />}>
         {!isMissingSku
           && selectedSku
           && (
