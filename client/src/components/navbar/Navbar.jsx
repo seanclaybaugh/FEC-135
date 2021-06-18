@@ -2,6 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 import { GoThreeBars } from 'react-icons/go';
+import { VscAccount } from 'react-icons/vsc';
+import { BsSearch } from 'react-icons/bs';
 
 const StyledNavbar = styled.nav`
   background: #fff;
@@ -9,6 +11,8 @@ const StyledNavbar = styled.nav`
   display: flex;
   justify-content: space-between;
   padding: 0.5rem calc((100vw - 1200px) / 2);
+  position: sticky;
+  top: 0;
   z-index: 10;
 `;
 
@@ -31,6 +35,10 @@ const StyledNavHeader = styled.h1`
 `;
 
 const StyledNavText = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
   padding: 5px 0 5px 0;
   border-bottom: solid 3px #fff;
   font-size: 14px;
@@ -40,6 +48,16 @@ const StyledNavText = styled.div`
     top: 3px;
     border-bottom: solid 3px #9a9a9a;
   }
+`;
+
+const StyledSearchIcon = styled(BsSearch)`
+  padding-right: 5px;
+  font-size: 16px;
+`;
+
+const StyledAccountIcon = styled(VscAccount)`
+  padding-right: 5px;
+  font-size: 16px;
 `;
 
 const NavMenu = styled.div`
@@ -72,10 +90,16 @@ function Navbar() {
         </StyledNavLink>
         <NavMenu>
           <StyledNavLink to="/">
-            <StyledNavText>Search</StyledNavText>
+            <StyledNavText>
+              <StyledSearchIcon />
+              Search
+            </StyledNavText>
           </StyledNavLink>
           <StyledNavLink to="/">
-            <StyledNavText>My Account</StyledNavText>
+            <StyledNavText>
+              <StyledAccountIcon />
+              My Account
+            </StyledNavText>
           </StyledNavLink>
           <StyledNavLink to="/">
             <StyledNavText>Cart</StyledNavText>
