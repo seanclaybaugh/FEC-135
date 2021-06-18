@@ -6,7 +6,7 @@ import axios from 'axios';
 import HighLightedText from '../Helpers/HighlightedTextHelper';
 import SharedButton from '../../SharedStyles/SharedButton';
 import AnswerStyles from './AnswerStyles';
-import { AnswerHelpfulContext, AnswerReportContext } from '../../ProductQuestionContexts';
+import { AnswerHelpfulContext, AnswerReportContext } from '../../contexts';
 
 const AnswersPerQuestion = (props) => {
   const date = moment(props.answer.date).format('LL');

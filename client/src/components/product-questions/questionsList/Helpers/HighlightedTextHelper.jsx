@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { SearchTextContext } from '../../ProductQuestionContexts';
+import { SearchTextContext } from '../../contexts';
 
 function HighlightedText(props) {
 

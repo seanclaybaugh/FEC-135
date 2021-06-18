@@ -7,7 +7,7 @@ import AddAnswerForm from '../AddAnswer/AddAnswerForm';
 import HighlightedText from '../Helpers/HighlightedTextHelper';
 import QuestionItemStyle from './QuestionItemStyle';
 import SharedButton from '../../SharedStyles/SharedButton';
-import { QuestionHelpfulContext, AddAnswerContext } from '../../ProductQuestionContexts';
+import { QuestionHelpfulContext, AddAnswerContext } from '../../contexts';
 
 const QuestionListItem = (props) => {
   const [addAnswerClicked, setAddAnswerClicked] = useState(false);

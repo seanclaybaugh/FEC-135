@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import axios from 'axios';
 import QuestionsList from './questionsList/QuestionsList';
 import SearchQuestions from './SearchQuestions/SearchQuestions';
-import { ProductIdContext, AnswerHelpfulContext, AnswerReportContext, QuestionHelpfulContext, SearchTextContext, AddAnswerContext, AddQuestionContext } from './ProductQuestionContexts';
+import { ProductIdContext, AnswerHelpfulContext, AnswerReportContext, QuestionHelpfulContext, SearchTextContext, AddAnswerContext, AddQuestionContext } from './contexts';
 import { getAnswerHelpful, getQuestionHelpful, getAnswerReport, getNewAnswer, getSearchText } from './ProductQuestionHelpers';
 
 const Container = styled.div`
