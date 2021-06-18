@@ -2,18 +2,26 @@ import styled from 'styled-components';
 
 // show more questions btn, add question btn
 const Button = styled.button`
-color: white;
-  background-color: black;
-  margin: 0.5em 1em;
-  padding: 1rem 1rem;
-  cursor: pointer;
-  &:hover,
-  &:focus {
-    background-position: 100% center;
-    border: none;
-    color: black;
-    background-color: white;
-  }
+display:inline-block;
+ padding:0.5em 3em;
+ border:0.16em solid black;
+ margin:0 0.3em 0.3em 0;
+ box-sizing: border-box;
+ text-decoration:none;
+ text-transform:uppercase;
+ font-family:'Roboto',sans-serif;
+ font-weight:400;
+ background-color: black;
+ color: white;
+ text-align:center;
+ transition: all 0.15s;
+ margin-left: 180px;
+ &:hover {
+   cursor: pointer;
+   background-color: white;
+   color: black;
+   border-color: white;
+ }
 `;
 
 // helpfulness, add answer, report answer

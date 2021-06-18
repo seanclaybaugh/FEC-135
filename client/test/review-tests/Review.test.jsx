@@ -1,13 +1,13 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import App from '../../src/components/App.jsx';
+import AddReviewModal from 'client/src/components/reviews/AddReviewModal.jsx';
 
 describe('App', () => {
   test('search questions should have a placeholder string', () => {
-    const placeholderTxt = 'HAVE A QUESTION? SEARCH FOR ANSWERS';
+    const placeholder = 'HAVE A QUESTION? SEARCH FOR ANSWERS';
 
-    render(<App
+    render(<AddReviewModal
       placeholderTxt={placeholderTxt}
     />);
 

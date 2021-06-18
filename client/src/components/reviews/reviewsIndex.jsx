@@ -1,14 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React, { lazy, Suspense, useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
-import Rlist from './RList';
-import Summary from './Summary';
-
 import styled from 'styled-components';
-import AddReviewModal from './AddReviewModal';
+import config from '../../../../config.js';
+import postHelperChars from './helpers/postHelperChars';
+import Spinner from '../product-overview/spinner/LoadingSpinner.jsx';
 import useModals from './useModals';
-import config from '../../../../config.js'
-import postHelperChars from './helpers/postHelperChars'
+
+const Rlist = lazy(()=> import ('./RList'));
+const Summary = lazy(()=> import ('./Summary'));
+const AddReviewModal = lazy(()=> import ('./AddReviewModal'));
+
 
 const MainContainer = styled.div`
   display: flex;
@@ -60,6 +62,7 @@ const Button1 = styled.button`
 
 
 function reviewsIndex(props) {
+
   const [reviews, setReviews] = useState([]);
   const [metaData, setMetaData] = useState({});
   const [isLoading, setIsLoading] = useState(true);
@@ -84,6 +87,24 @@ function reviewsIndex(props) {
   const [characteristics, setCharacteristics] = useState({})
 
   function reviewSubmit () {
+
+    if ( recommend || username || rating  === null) {
+      alert('Please complete your review before submitting!');
+      return;
+    }
+    if (email === null || email.indexof('@') > 1 ) {
+      alert('Please fill in a valid email address!');
+      return;
+    }
+    if (reviewBody.length < 50) {
+      alert('Your review must by greater than 50 chracters!');
+      return;
+    }
+    if (reviewSummary.length < 1) {
+      alerty('This Review needs a title doncha think??');
+      return;
+    }
+
 
       const charObjHelper = (characteristics) => {
           let result = {}
@@ -210,6 +231,7 @@ figure out upload button to not close modal or reset review data
 
   return (
     <>
+    <Suspense fallback={<Spinner/>}>
       {(isLoading || reviews.length === 0) ? <div>No Reviews</div>
         : (
           <>
@@ -258,7 +280,7 @@ figure out upload button to not close modal or reset review data
               setWidthNum={setWidthNum}
               characteristics={characteristics} />
         </AddReviewDiv>
-
+        </Suspense>
     </>
 
   );
