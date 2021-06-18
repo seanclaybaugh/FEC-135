@@ -73,7 +73,7 @@ const QuestionsList = (props) => {
         {addQuestionClicked && (
         <AddQuestionForm
           handleDismissAddQuestion={handleDismissAddQuestion}
-          productId={props.productId}
+          // productId={props.productId}
           handleAddedQuestion={props.handleAddedQuestion}
         />
         )}

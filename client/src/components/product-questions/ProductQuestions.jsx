@@ -8,6 +8,7 @@ import getAnswerReport from './ProductQuestionHelpers/getAnswerReport.js'
 import getAnswerHelpful from './ProductQuestionHelpers/getAnswerHelpful.js'
 import getNewAnswer from './ProductQuestionHelpers/getNewAnswer.js';
 import getSearchText from './ProductQuestionHelpers/getSearchText.js';
+import ProductIdContext from './ProductIdContext';
 
 const Container = styled.div`
   width: 1200px;
@@ -117,11 +118,11 @@ function ProductQuestions({ productId }) {
         handleSearchTextChanged={handleSearchTextChanged}
       />
       <br />
-
+    <ProductIdContext.Provider value={productId}>
       <QuestionsList
         questions={filteredQuestions}
         handleExpandQuestions={handleExpandQuestions}
-        productId={productId}
+        // productId={productId}
         questionsPerPage={questionsPerPage}
         handleAddedQuestion={handleAddedQuestion}
         handleAddedAnswer={handleAddedAnswer}
@@ -131,6 +132,7 @@ function ProductQuestions({ productId }) {
         searchText={searchText}
         isQuestionList={isQuestionList}
       />
+      </ProductIdContext.Provider>
     </Container>
   );
 }

@@ -1,11 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import axios from 'axios';
 import ModalStyles from '../../SharedStyles/ModalStyles';
+import ProductIdContext from '../../ProductIdContext';
 
 const AddQuestionForm = (props) => {
   const [body, setBody] = useState('');
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
+  const productId = useContext(ProductIdContext);
 
   const handleSubmitQuestion = async (event) => {
     event.preventDefault();
@@ -29,7 +31,7 @@ const AddQuestionForm = (props) => {
       body,
       name,
       email,
-      product_id: parseInt(props.productId),
+      product_id: parseInt(productId),
     };
 
     try {
