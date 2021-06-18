@@ -18,7 +18,7 @@ const StyledImageContainer = styled.div`
 
 const StyledImage = styled.img`
   object-fit: cover;
-  width: 500px;
+  width: 600px;
   height: 800px;
   :hover {
     cursor: zoom-in;

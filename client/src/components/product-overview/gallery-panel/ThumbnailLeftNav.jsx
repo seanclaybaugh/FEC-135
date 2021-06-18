@@ -10,7 +10,7 @@ const ThumbnailSlideWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   height: 750px;
-  margin-top: 30px;
+  margin-top: 20px;
 
   @media screen and (max-width: 1000px) {
     display: none;
@@ -39,7 +39,7 @@ const StyledArrowContainer = styled.div`
   }
 `;
 
-function ThumbnailLeftNav({ receiveImgRefs }) {
+function ThumbnailLeftNav({ getImgRefs }) {
   const { previewStyle } = useContext(PreviewStyleContext);
   const { length } = previewStyle.photos;
   const [position, setPosition] = useState(0);
@@ -47,7 +47,7 @@ function ThumbnailLeftNav({ receiveImgRefs }) {
   const imgRefs = previewStyle.photos.map(() => useRef());
 
   useEffect(() => {
-    receiveImgRefs(imgRefs);
+    getImgRefs(imgRefs);
   }, [previewStyle]);
 
   function scrollSliderUp() {
