@@ -117,7 +117,7 @@ const QuestionListItem = (props) => {
         <AnswersPerQuestion
           key={i}
           answer={answer}
-          handleAnswerHelpful={props.handleAnswerHelpful}
+          // handleAnswerHelpful={props.handleAnswerHelpful}
           // handleAnswerReport={props.handleAnswerReport}
           searchText={props.searchText}
           questionId={questionId}

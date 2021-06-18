@@ -51,7 +51,7 @@ const QuestionsList = (props) => {
                 question={question}
                 handleAddedAnswer={props.handleAddedAnswer}
                 // handleAnswerReport={props.handleAnswerReport}
-                handleAnswerHelpful={props.handleAnswerHelpful}
+                // handleAnswerHelpful={props.handleAnswerHelpful}
                 handleQuestionHelpful={props.handleQuestionHelpful}
                 searchText={props.searchText}
               />

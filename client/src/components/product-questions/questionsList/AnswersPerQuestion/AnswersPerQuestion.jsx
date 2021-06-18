@@ -7,12 +7,14 @@ import HighLightedText from '../Helpers/HighlightedTextHelper';
 import SharedButton from '../../SharedStyles/SharedButton';
 import AnswerStyles from './AnswerStyles';
 import AnswerReportContext from '../../AnswerReportContext';
+import AnswerHelpfulContext from '../../ProductQuestionContexts/AnswerHelpfulContext';
 
 const AnswersPerQuestion = (props) => {
   const date = moment(props.answer.date).format('LL');
   const answerId = props.answer.id;
   const photos = props.answer.photos || [];
   const handleAnswerReport = useContext(AnswerReportContext);
+  const handleAnswerHelpful = useContext(AnswerHelpfulContext);
 
   const handleHelpfulAnswerClick = async () => {
     try {
@@ -21,7 +23,7 @@ const AnswersPerQuestion = (props) => {
       console.log(error);
     }
 
-    props.handleAnswerHelpful(answerId, props.questionId);
+    handleAnswerHelpful(answerId, props.questionId);
   };
 
   const handleReportAnswerClick = async () => {

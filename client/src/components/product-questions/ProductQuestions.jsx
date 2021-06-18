@@ -10,6 +10,7 @@ import getNewAnswer from './ProductQuestionHelpers/getNewAnswer.js';
 import getSearchText from './ProductQuestionHelpers/getSearchText.js';
 import ProductIdContext from './ProductIdContext';
 import AnswerReportContext from './AnswerReportContext';
+import AnswerHelpfulContext from './ProductQuestionContexts/AnswerHelpfulContext';
 
 const Container = styled.div`
   width: 1200px;
@@ -119,22 +120,24 @@ function ProductQuestions({ productId }) {
         handleSearchTextChanged={handleSearchTextChanged}
       />
       <br />
-    <ProductIdContext.Provider value={productId}>
-      <AnswerReportContext.Provider value={handleAnswerReport}>
-      <QuestionsList
-        questions={filteredQuestions}
-        handleExpandQuestions={handleExpandQuestions}
-        // productId={productId}
-        questionsPerPage={questionsPerPage}
-        handleAddedQuestion={handleAddedQuestion}
-        handleAddedAnswer={handleAddedAnswer}
-        handleAnswerHelpful={handleAnswerHelpful}
-        // handleAnswerReport={handleAnswerReport}
-        handleQuestionHelpful={handleQuestionHelpful}
-        searchText={searchText}
-        isQuestionList={isQuestionList}
-      />
-      </AnswerReportContext.Provider>
+      <ProductIdContext.Provider value={productId}>
+        <AnswerReportContext.Provider value={handleAnswerReport}>
+          <AnswerHelpfulContext.Provider value={handleAnswerHelpful}>
+            <QuestionsList
+              questions={filteredQuestions}
+              handleExpandQuestions={handleExpandQuestions}
+              // productId={productId}
+              questionsPerPage={questionsPerPage}
+              handleAddedQuestion={handleAddedQuestion}
+              handleAddedAnswer={handleAddedAnswer}
+              // handleAnswerHelpful={handleAnswerHelpful}
+              // handleAnswerReport={handleAnswerReport}
+              handleQuestionHelpful={handleQuestionHelpful}
+              searchText={searchText}
+              isQuestionList={isQuestionList}
+            />
+          </AnswerHelpfulContext.Provider>
+        </AnswerReportContext.Provider>
       </ProductIdContext.Provider>
     </Container>
   );
