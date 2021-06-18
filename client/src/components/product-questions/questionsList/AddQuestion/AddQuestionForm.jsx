@@ -1,15 +1,16 @@
 import React, { useState, useContext } from 'react';
 import axios from 'axios';
 import ModalStyles from '../../SharedStyles/ModalStyles';
-import { ProductIdContext } from '../../ProductQuestionContexts';
+import { ProductIdContext, AddQuestionContext } from '../../ProductQuestionContexts';
 
 const AddQuestionForm = (props) => {
   const [body, setBody] = useState('');
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const productId = useContext(ProductIdContext);
+  const handleAddedQuestion = useContext(AddQuestionContext);
 
-  const handleSubmitQuestion = async (event) => {
+  const addQuestion = async (event) => {
     event.preventDefault();
 
     if (body.length === 0) {
@@ -37,7 +38,7 @@ const AddQuestionForm = (props) => {
     try {
       const result = await axios.post('/api/qa/questions', question);
 
-      props.handleAddedQuestion();
+      handleAddedQuestion();
     } catch (error) {
       console.log(error);
     }
@@ -56,7 +57,7 @@ const AddQuestionForm = (props) => {
             X
           </ModalStyles.CloseButton>
 
-          <form onSubmit={handleSubmitQuestion}>
+          <form onSubmit={addQuestion}>
             <label>Your Question: </label>
             <input name="body" value={body} placeholder="" onChange={(e) => setBody(e.target.value)} />
             <br />

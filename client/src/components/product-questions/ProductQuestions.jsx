@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import axios from 'axios';
 import QuestionsList from './questionsList/QuestionsList';
 import SearchQuestions from './SearchQuestions/SearchQuestions';
-import { ProductIdContext, AnswerHelpfulContext, AnswerReportContext, QuestionHelpfulContext, SearchTextContext } from './ProductQuestionContexts';
+import { ProductIdContext, AnswerHelpfulContext, AnswerReportContext, QuestionHelpfulContext, SearchTextContext, AddAnswerContext, AddQuestionContext } from './ProductQuestionContexts';
 import { getAnswerHelpful, getQuestionHelpful, getAnswerReport, getNewAnswer, getSearchText } from './ProductQuestionHelpers';
 
 const Container = styled.div`
@@ -114,25 +114,30 @@ function ProductQuestions({ productId }) {
         handleSearchTextChanged={handleSearchTextChanged}
       />
       <br />
+
       <ProductIdContext.Provider value={productId}>
         <AnswerReportContext.Provider value={handleAnswerReport}>
           <AnswerHelpfulContext.Provider value={handleAnswerHelpful}>
             <QuestionHelpfulContext.Provider value={handleQuestionHelpful}>
               <SearchTextContext.Provider value={searchText}>
-                <QuestionsList
-                  questions={filteredQuestions}
-                  handleExpandQuestions={handleExpandQuestions}
-                  // productId={productId}
-                  questionsPerPage={questionsPerPage}
-                  handleAddedQuestion={handleAddedQuestion}
-                  handleAddedAnswer={handleAddedAnswer}
-                  // handleAnswerHelpful={handleAnswerHelpful}
-                  // handleAnswerReport={handleAnswerReport}
-                  // handleQuestionHelpful={handleQuestionHelpful}
-                  // searchText={searchText}
-                  isQuestionList={isQuestionList}
-                />
-                </SearchTextContext.Provider>
+                <AddAnswerContext.Provider value={handleAddedAnswer}>
+                  <AddQuestionContext.Provider value={handleAddedQuestion}>
+                    <QuestionsList
+                      questions={filteredQuestions}
+                      handleExpandQuestions={handleExpandQuestions}
+                      // productId={productId}
+                      questionsPerPage={questionsPerPage}
+                      // handleAddedQuestion={handleAddedQuestion}
+                      // handleAddedAnswer={handleAddedAnswer}
+                      // handleAnswerHelpful={handleAnswerHelpful}
+                      // handleAnswerReport={handleAnswerReport}
+                      // handleQuestionHelpful={handleQuestionHelpful}
+                      // searchText={searchText}
+                      isQuestionList={isQuestionList}
+                    />
+                  </AddQuestionContext.Provider>
+                </AddAnswerContext.Provider>
+              </SearchTextContext.Provider>
             </QuestionHelpfulContext.Provider>
           </AnswerHelpfulContext.Provider>
         </AnswerReportContext.Provider>

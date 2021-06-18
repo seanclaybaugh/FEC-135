@@ -49,7 +49,7 @@ const QuestionsList = (props) => {
               <QuestionListItem
                 key={index}
                 question={question}
-                handleAddedAnswer={props.handleAddedAnswer}
+                // handleAddedAnswer={props.handleAddedAnswer}
                 // handleAnswerReport={props.handleAnswerReport}
                 // handleAnswerHelpful={props.handleAnswerHelpful}
                 // handleQuestionHelpful={props.handleQuestionHelpful}
@@ -74,7 +74,7 @@ const QuestionsList = (props) => {
         <AddQuestionForm
           handleDismissAddQuestion={handleDismissAddQuestion}
           // productId={props.productId}
-          handleAddedQuestion={props.handleAddedQuestion}
+          // handleAddedQuestion={props.handleAddedQuestion}
         />
         )}
       </div>

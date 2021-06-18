@@ -7,12 +7,13 @@ import AddAnswerForm from '../AddAnswer/AddAnswerForm';
 import HighlightedText from '../Helpers/HighlightedTextHelper';
 import QuestionItemStyle from './QuestionItemStyle';
 import SharedButton from '../../SharedStyles/SharedButton';
-import { QuestionHelpfulContext } from '../../ProductQuestionContexts';
+import { QuestionHelpfulContext, AddAnswerContext } from '../../ProductQuestionContexts';
 
 const QuestionListItem = (props) => {
   const [addAnswerClicked, setAddAnswerClicked] = useState(false);
   const [expanded, setExpanded] = useState(false);
   const handleQuestionHelpful = useContext(QuestionHelpfulContext);
+  const handleAddedAnswer = useContext(AddAnswerContext);
 
   const answers = props.question.answers || [];
   const questionId = props.question.question_id;
@@ -37,7 +38,7 @@ const QuestionListItem = (props) => {
     setExpanded(!expanded);
   };
 
-  const handleAddedAnswer = async () => {
+  const addAnswer = async () => {
     let fetchingAnswers = true;
     let newAnswers = [];
     const count = answerLength + 2;
@@ -51,7 +52,7 @@ const QuestionListItem = (props) => {
         page++;
       }
 
-      props.handleAddedAnswer(questionId, newAnswers);
+      handleAddedAnswer(questionId, newAnswers);
     } catch (error) {
       console.log(error);
     }
@@ -95,7 +96,7 @@ const QuestionListItem = (props) => {
             questionId={questionId}
             dismissAnswerForm={dismissAnswerForm}
             question={props.question.question_body}
-            handleAddedAnswer={handleAddedAnswer}
+            addAnswer={addAnswer}
           />
         )}
 
