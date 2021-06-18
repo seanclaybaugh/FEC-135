@@ -43,39 +43,30 @@ const QuestionsList = (props) => {
     <>
       {props.isQuestionList
         && (
-        <Container>
-          <ul>
-            {visibleQuestions.map((question, index) => (
-              <QuestionListItem
-                key={index}
-                question={question}
-                // handleAddedAnswer={props.handleAddedAnswer}
-                // handleAnswerReport={props.handleAnswerReport}
-                // handleAnswerHelpful={props.handleAnswerHelpful}
-                // handleQuestionHelpful={props.handleQuestionHelpful}
-                // searchText={props.searchText}
-              />
-            ))}
-          </ul>
-        </Container>
+          <Container>
+            <ul>
+              {visibleQuestions.map((question, index) => (
+                <QuestionListItem
+                  key={index}
+                  question={question}
+                />
+              ))}
+            </ul>
+          </Container>
         )}
-
       <div>
         {enoughQuestionsToShowExpand
           && (
-          <SharedButton.Button onClick={toggleFunction}>
-            {buttonText}
-          </SharedButton.Button>
+            <SharedButton.Button onClick={toggleFunction}>
+              {buttonText}
+            </SharedButton.Button>
           )}
 
         <SharedButton.Button onClick={handleAddQuestionClicked}>ASK A QUESTION</SharedButton.Button>
-
         {addQuestionClicked && (
-        <AddQuestionForm
-          handleDismissAddQuestion={handleDismissAddQuestion}
-          // productId={props.productId}
-          // handleAddedQuestion={props.handleAddedQuestion}
-        />
+          <AddQuestionForm
+            handleDismissAddQuestion={handleDismissAddQuestion}
+          />
         )}
       </div>
     </>

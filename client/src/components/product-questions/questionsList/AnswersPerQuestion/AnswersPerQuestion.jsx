@@ -42,7 +42,6 @@ const AnswersPerQuestion = (props) => {
         <AnswerStyles.AnswerBody>
           <HighLightedText
             textBody={props.answer.body}
-            // searchText={props.searchText}
           />
         </AnswerStyles.AnswerBody>
       </AnswerStyles.AnswerWrapper>

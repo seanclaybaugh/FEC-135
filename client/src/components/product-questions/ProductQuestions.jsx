@@ -125,14 +125,7 @@ function ProductQuestions({ productId }) {
                     <QuestionsList
                       questions={filteredQuestions}
                       handleExpandQuestions={handleExpandQuestions}
-                      // productId={productId}
                       questionsPerPage={questionsPerPage}
-                      // handleAddedQuestion={handleAddedQuestion}
-                      // handleAddedAnswer={handleAddedAnswer}
-                      // handleAnswerHelpful={handleAnswerHelpful}
-                      // handleAnswerReport={handleAnswerReport}
-                      // handleQuestionHelpful={handleQuestionHelpful}
-                      // searchText={searchText}
                       isQuestionList={isQuestionList}
                     />
                   </AddQuestionContext.Provider>

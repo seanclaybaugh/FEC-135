@@ -65,26 +65,20 @@ const QuestionListItem = (props) => {
 
   return (
     <QuestionItemStyle.Container>
-
       <QuestionItemStyle.Wrapper>
         <QuestionItemStyle.Question>Q:</QuestionItemStyle.Question>
 
         <QuestionItemStyle.QuestionBody>
           <HighlightedText
-            textBody={props.question.question_body}
-            // searchText={props.searchText}
-          />
+            textBody={props.question.question_body} />
         </QuestionItemStyle.QuestionBody>
 
         <QuestionItemStyle.QuestionHelpful>
           Helpful?
-          <SharedButton.QuestionItem onClick={handleHelpfulClick}>
-            <AiFillCaretUp />
-          </SharedButton.QuestionItem>
-
-          #(
-          {props.question.question_helpfulness}
-          )
+            <SharedButton.QuestionItem onClick={handleHelpfulClick}>
+              <AiFillCaretUp />
+            </SharedButton.QuestionItem>
+          #({props.question.question_helpfulness})
         </QuestionItemStyle.QuestionHelpful>
 
         <QuestionItemStyle.QuestionAddAnswer onClick={dismissAnswerForm}>
@@ -99,12 +93,10 @@ const QuestionListItem = (props) => {
             addAnswer={addAnswer}
           />
         )}
-
       </QuestionItemStyle.Wrapper>
 
       <QuestionItemStyle.QuestionAskerWrapper>
         <QuestionItemStyle.QuestionAsker />
-
         <QuestionItemStyle.QuestionAskerInfo>
           Asked by:
           {' '}
@@ -114,35 +106,26 @@ const QuestionListItem = (props) => {
           {date}
         </QuestionItemStyle.QuestionAskerInfo>
       </QuestionItemStyle.QuestionAskerWrapper>
-
       <br />
       {visibleAnswers.map((answer, i) => (
         <AnswersPerQuestion
           key={i}
           answer={answer}
-          // handleAnswerHelpful={props.handleAnswerHelpful}
-          // handleAnswerReport={props.handleAnswerReport}
-          // searchText={props.searchText}
           questionId={questionId}
         />
       ))}
 
       {enoughAnswersToExpand
-          && (
+        && (
           <QuestionItemStyle.MoreWrapper>
-
             <QuestionItemStyle.MoreAnswer />
-
             <QuestionItemStyle.MoreTxt>
               <QuestionItemStyle.ShowAnswerBtn onClick={toggleExpanded}>
                 {buttonText}
               </QuestionItemStyle.ShowAnswerBtn>
-
             </QuestionItemStyle.MoreTxt>
-
           </QuestionItemStyle.MoreWrapper>
-          )}
-
+        )}
     </QuestionItemStyle.Container>
   );
 };
