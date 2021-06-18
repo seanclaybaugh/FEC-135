@@ -52,8 +52,8 @@ const QuestionsList = (props) => {
                 handleAddedAnswer={props.handleAddedAnswer}
                 // handleAnswerReport={props.handleAnswerReport}
                 // handleAnswerHelpful={props.handleAnswerHelpful}
-                handleQuestionHelpful={props.handleQuestionHelpful}
-                searchText={props.searchText}
+                // handleQuestionHelpful={props.handleQuestionHelpful}
+                // searchText={props.searchText}
               />
             ))}
           </ul>

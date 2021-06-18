@@ -3,9 +3,7 @@ import styled from 'styled-components';
 import axios from 'axios';
 import QuestionsList from './questionsList/QuestionsList';
 import SearchQuestions from './SearchQuestions/SearchQuestions';
-import ProductIdContext from './ProductIdContext';
-import AnswerReportContext from './AnswerReportContext';
-import AnswerHelpfulContext from './ProductQuestionContexts/AnswerHelpfulContext';
+import { ProductIdContext, AnswerHelpfulContext, AnswerReportContext, QuestionHelpfulContext, SearchTextContext } from './ProductQuestionContexts';
 import { getAnswerHelpful, getQuestionHelpful, getAnswerReport, getNewAnswer, getSearchText } from './ProductQuestionHelpers';
 
 const Container = styled.div`
@@ -119,19 +117,23 @@ function ProductQuestions({ productId }) {
       <ProductIdContext.Provider value={productId}>
         <AnswerReportContext.Provider value={handleAnswerReport}>
           <AnswerHelpfulContext.Provider value={handleAnswerHelpful}>
-            <QuestionsList
-              questions={filteredQuestions}
-              handleExpandQuestions={handleExpandQuestions}
-              // productId={productId}
-              questionsPerPage={questionsPerPage}
-              handleAddedQuestion={handleAddedQuestion}
-              handleAddedAnswer={handleAddedAnswer}
-              // handleAnswerHelpful={handleAnswerHelpful}
-              // handleAnswerReport={handleAnswerReport}
-              handleQuestionHelpful={handleQuestionHelpful}
-              searchText={searchText}
-              isQuestionList={isQuestionList}
-            />
+            <QuestionHelpfulContext.Provider value={handleQuestionHelpful}>
+              <SearchTextContext.Provider value={searchText}>
+                <QuestionsList
+                  questions={filteredQuestions}
+                  handleExpandQuestions={handleExpandQuestions}
+                  // productId={productId}
+                  questionsPerPage={questionsPerPage}
+                  handleAddedQuestion={handleAddedQuestion}
+                  handleAddedAnswer={handleAddedAnswer}
+                  // handleAnswerHelpful={handleAnswerHelpful}
+                  // handleAnswerReport={handleAnswerReport}
+                  // handleQuestionHelpful={handleQuestionHelpful}
+                  // searchText={searchText}
+                  isQuestionList={isQuestionList}
+                />
+                </SearchTextContext.Provider>
+            </QuestionHelpfulContext.Provider>
           </AnswerHelpfulContext.Provider>
         </AnswerReportContext.Provider>
       </ProductIdContext.Provider>

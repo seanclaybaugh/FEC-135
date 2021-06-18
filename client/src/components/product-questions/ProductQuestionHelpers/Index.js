@@ -58,4 +58,10 @@ export function getSearchText(questionList, text) {
 };
 
 
-export default {getAnswerHelpful, getQuestionHelpful, getAnswerReport, getNewAnswer, getSearchText};
+export default {
+  getAnswerHelpful,
+  getQuestionHelpful,
+  getAnswerReport,
+  getNewAnswer,
+  getSearchText
+};

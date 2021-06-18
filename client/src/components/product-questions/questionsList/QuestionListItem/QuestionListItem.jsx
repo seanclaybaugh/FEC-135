@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { AiFillCaretUp } from 'react-icons/ai';
 import moment from 'moment';
 import axios from 'axios';
@@ -7,10 +7,12 @@ import AddAnswerForm from '../AddAnswer/AddAnswerForm';
 import HighlightedText from '../Helpers/HighlightedTextHelper';
 import QuestionItemStyle from './QuestionItemStyle';
 import SharedButton from '../../SharedStyles/SharedButton';
+import { QuestionHelpfulContext } from '../../ProductQuestionContexts';
 
 const QuestionListItem = (props) => {
   const [addAnswerClicked, setAddAnswerClicked] = useState(false);
   const [expanded, setExpanded] = useState(false);
+  const handleQuestionHelpful = useContext(QuestionHelpfulContext);
 
   const answers = props.question.answers || [];
   const questionId = props.question.question_id;
@@ -24,7 +26,7 @@ const QuestionListItem = (props) => {
       console.log(error);
     }
 
-    props.handleQuestionHelpful(questionId);
+    handleQuestionHelpful(questionId);
   };
 
   const dismissAnswerForm = () => {
@@ -69,7 +71,7 @@ const QuestionListItem = (props) => {
         <QuestionItemStyle.QuestionBody>
           <HighlightedText
             textBody={props.question.question_body}
-            searchText={props.searchText}
+            // searchText={props.searchText}
           />
         </QuestionItemStyle.QuestionBody>
 
@@ -119,7 +121,7 @@ const QuestionListItem = (props) => {
           answer={answer}
           // handleAnswerHelpful={props.handleAnswerHelpful}
           // handleAnswerReport={props.handleAnswerReport}
-          searchText={props.searchText}
+          // searchText={props.searchText}
           questionId={questionId}
         />
       ))}

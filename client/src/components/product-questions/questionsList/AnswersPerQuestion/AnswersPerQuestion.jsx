@@ -6,8 +6,7 @@ import axios from 'axios';
 import HighLightedText from '../Helpers/HighlightedTextHelper';
 import SharedButton from '../../SharedStyles/SharedButton';
 import AnswerStyles from './AnswerStyles';
-import AnswerReportContext from '../../AnswerReportContext';
-import AnswerHelpfulContext from '../../ProductQuestionContexts/AnswerHelpfulContext';
+import { AnswerHelpfulContext, AnswerReportContext } from '../../ProductQuestionContexts';
 
 const AnswersPerQuestion = (props) => {
   const date = moment(props.answer.date).format('LL');
@@ -43,7 +42,7 @@ const AnswersPerQuestion = (props) => {
         <AnswerStyles.AnswerBody>
           <HighLightedText
             textBody={props.answer.body}
-            searchText={props.searchText}
+            // searchText={props.searchText}
           />
         </AnswerStyles.AnswerBody>
       </AnswerStyles.AnswerWrapper>

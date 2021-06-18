@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import axios from 'axios';
 import ModalStyles from '../../SharedStyles/ModalStyles';
-import ProductIdContext from '../../ProductIdContext';
+import { ProductIdContext } from '../../ProductQuestionContexts';
 
 const AddQuestionForm = (props) => {
   const [body, setBody] = useState('');

@@ -1,14 +1,18 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { SearchTextContext } from '../../ProductQuestionContexts';
 
 function HighlightedText(props) {
-  if (props.searchText.length < 3) {
+
+  const searchText = useContext(SearchTextContext);
+
+  if (searchText.length < 3) {
     return <span>{props.textBody}</span>;
   }
 
-  const splitString = props.textBody.split(new RegExp(`(${props.searchText})`, 'gi'));
+  const splitString = props.textBody.split(new RegExp(`(${searchText})`, 'gi'));
 
   const elements = splitString.map((substring, index) => {
-    if (substring.toLowerCase() !== props.searchText.toLowerCase()) {
+    if (substring.toLowerCase() !== searchText.toLowerCase()) {
       return <span key={index}>{substring}</span>;
     }
     return <mark key={index}>{substring}</mark>;
