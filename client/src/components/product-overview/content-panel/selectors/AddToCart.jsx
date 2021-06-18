@@ -41,10 +41,10 @@ const Container = styled.form`
 `;
 
 const Button = styled.button`
-  background-color: #27231F;
+  background-color: #000;
   color: #fff;
   margin: 2.5px;
-  border: solid 1px #27231F;
+  border: solid 1px #000;
   padding: 5px;
   display: inline-block;
   width: 200px;
@@ -73,13 +73,14 @@ const Button = styled.button`
 
   :active {
     background: #000;
-    top: 2px;
+    top: 3px;
   }
 
   :hover {
     cursor: pointer;
-    background-color: #000;
-    border: solid 1px #000;
+    background-color: #555555;
+    border: solid 1px #555555;
+    letter-spacing: .08rem;
   }
 `;
 
