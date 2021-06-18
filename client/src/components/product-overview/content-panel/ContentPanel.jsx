@@ -4,6 +4,7 @@ import SelectedSkuContext from './contexts/SelectedSkuContext';
 import SelectedQtyContext from './contexts/SelectedQtyContext';
 import MissingSkuContext from './contexts/MissingSkuContext';
 import Spinner from '../spinner/LoadingSpinner';
+
 const Header = lazy(() => import('./header/Header'));
 const StylesContainer = lazy(() => import('./selectors/StylesContainer'));
 const SizeQtyContainer = lazy(() => import('./selectors/SizeQtyContainer'));
@@ -20,44 +21,29 @@ function ContentPanel({ productId, styles }) {
   const [selectedQty, setSelectedQty] = useState(null);
   const [isMissingSku, setIsMissingSku] = useState(false);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const result = await axios(`/api/products/${productId}`);
-        setProduct(result.data);
-      } catch (err) {
-        setIsError(true);
-      }
-      setIsLoading(false);
-    };
-    fetchData();
-  }, []);
+  function fetchContentData() {
+    const getProductData = axios.get(`/api/products/${productId}`);
+    const getMetaData = axios.get(`/api/reviews/meta?product_id=${productId}`);
+    const getReviewsData = axios.get(`/api/reviews?product_id=${productId}&page=1&count=5000`);
+
+    const promises = [getProductData, getMetaData, getReviewsData];
+
+    Promise.all(promises)
+      .then((responses) => {
+        return Promise.all(responses.map((response) => response))
+      })
+      .then((results) => {
+        setProduct(results[0].data);
+        setMetaData(results[1].data);
+        setReviewsData(results[2].data.results);
+      })
+      .then(() => setIsLoading(false))
+      .catch(() => setIsError(true));
+  }
 
   useEffect(() => {
-    const fetchMeta = async () => {
-      try {
-        const result = await axios(`/api/reviews/meta?product_id=${productId}`);
-        setMetaData(result.data);
-      } catch (err) {
-        setIsError(true);
-      };
-      setIsLoading(false);
-    };
-    fetchMeta();
-  }, []);
-
-  useEffect(() => {
-    const fetchMeta = async () => {
-      try {
-        const result = await axios(`/api/reviews?product_id=${productId}&page=1&count=5000`);
-        setReviewsData(result.data.results);
-      } catch (err) {
-        setIsError(true);
-      };
-      setIsLoading(false);
-    };
-    fetchMeta();
-  }, []);
+    fetchContentData();
+  }, [])
 
   function handleMissingSku(val) {
     setIsMissingSku(val);
@@ -79,7 +65,10 @@ function ContentPanel({ productId, styles }) {
                   <StylesContainer styles={styles} />
                   <SizeQtyContainer />
                 </MissingSkuContext.Provider>
-                <AddToCart product={product.name} handleMissingSku={handleMissingSku} />
+                <AddToCart
+                  product={product.name}
+                  handleMissingSku={handleMissingSku}
+                />
                 <Share />
               </SelectedQtyContext.Provider>
             </SelectedSkuContext.Provider>
