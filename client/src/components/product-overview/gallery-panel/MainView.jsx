@@ -1,8 +1,7 @@
 import React, { useState, useContext } from 'react';
 import styled from 'styled-components';
 import { ChevronThinRight, ChevronThinLeft } from '@styled-icons/entypo';
-import PreviewStyleContext from '../contexts/PreviewStyleContext';
-import PhotoIndexContext from '../contexts/PhotoIndexContext';
+import { PreviewStyleContext, PhotoIndexContext } from '../contexts';
 import ThumbnailBottomNav from './ThumbnailBottomNav';
 
 const MainViewContainer = styled.div`

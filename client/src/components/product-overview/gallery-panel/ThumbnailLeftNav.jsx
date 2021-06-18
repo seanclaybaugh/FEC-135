@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import { GoChevronUp, GoChevronDown } from 'react-icons/go';
-import PreviewStyleContext from '../contexts/PreviewStyleContext';
+import { PreviewStyleContext } from '../contexts';
 import ThumbnailLeft from './ThumbnailLeft';
 
 const ThumbnailSlideWrapper = styled.div`

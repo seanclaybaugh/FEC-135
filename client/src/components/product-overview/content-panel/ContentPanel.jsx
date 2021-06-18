@@ -1,8 +1,6 @@
 import React, { lazy, Suspense, useState, useEffect} from 'react';
 import axios from 'axios';
-import SelectedSkuContext from './contexts/SelectedSkuContext';
-import SelectedQtyContext from './contexts/SelectedQtyContext';
-import MissingSkuContext from './contexts/MissingSkuContext';
+import { SelectedSkuContext, SelectedQtyContext, MissingSkuContext } from '../contexts';
 import Spinner from '../spinner/LoadingSpinner';
 
 const Header = lazy(() => import('./header/Header'));

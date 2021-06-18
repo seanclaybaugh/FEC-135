@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
-import PreviewStyleContext from '../../contexts/PreviewStyleContext';
+import { PreviewStyleContext } from '../../contexts';
 import StyleThumbnail from './StyleThumbnail';
 
 const OuterContainer = styled.div`

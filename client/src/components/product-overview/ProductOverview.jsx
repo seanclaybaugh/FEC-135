@@ -3,8 +3,7 @@ import React, {
 } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
-import CurrentStyleContext from './contexts/CurrentStyleContext';
-import PreviewStyleContext from './contexts/PreviewStyleContext';
+import { CurrentStyleContext, PreviewStyleContext } from './contexts';
 import Spinner from './spinner/LoadingSpinner';
 
 const GalleryPanel = lazy(() => import('./gallery-panel/GalleryPanel'));

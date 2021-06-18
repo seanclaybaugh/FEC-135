@@ -1,10 +1,12 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
-import CurrentStyleContext from '../../contexts/CurrentStyleContext';
-import PreviewStyleContext from '../../contexts/PreviewStyleContext';
-import SelectedSkuContext from '../contexts/SelectedSkuContext';
-import SelectedQtyContext from '../contexts/SelectedQtyContext';
-import MissingSkuContext from '../contexts/MissingSkuContext';
+import {
+  CurrentStyleContext,
+  PreviewStyleContext,
+  SelectedSkuContext,
+  SelectedQtyContext,
+  MissingSkuContext
+} from '../../contexts';
 
 const ThumbnailContainer = styled.div`
   position: relative;

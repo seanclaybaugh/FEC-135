@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import PhotoIndexContext from '../contexts/PhotoIndexContext';
+import { PhotoIndexContext } from '../contexts';
 import ThumbnailLeftNav from './ThumbnailLeftNav';
 import MainView from './MainView';
 

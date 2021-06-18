@@ -1,8 +1,6 @@
 import React, { useContext } from 'react';
 import styled, { keyframes } from 'styled-components';
-import CurrentStyleContext from '../../contexts/CurrentStyleContext';
-import SelectedSkuContext from '../contexts/SelectedSkuContext';
-import MissingSkuContext from '../contexts/MissingSkuContext';
+import { CurrentStyleContext, SelectedSkuContext, MissingSkuContext } from '../../contexts';
 import Size from './Size';
 
 const ContainerSubheader = styled.div`

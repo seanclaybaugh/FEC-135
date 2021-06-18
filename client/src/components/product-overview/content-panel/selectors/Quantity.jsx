@@ -1,8 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import styled from 'styled-components';
-import CurrentStyleContext from '../../contexts/CurrentStyleContext';
-import SelectedSkuContext from '../contexts/SelectedSkuContext';
-import SelectedQtyContext from '../contexts/SelectedQtyContext';
+import { CurrentStyleContext, SelectedSkuContext, SelectedQtyContext } from '../../contexts';
 import getQtyList from './helpers/getQtyList';
 
 const Select = styled.select`

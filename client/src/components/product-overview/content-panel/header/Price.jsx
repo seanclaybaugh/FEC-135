@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
-import CurrentStyleContext from '../../contexts/CurrentStyleContext';
+import { CurrentStyleContext } from '../../contexts';
 
 const StyledPriceContainer = styled.div`
   display: flex;
