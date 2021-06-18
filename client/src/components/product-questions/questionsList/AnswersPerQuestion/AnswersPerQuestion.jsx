@@ -12,7 +12,6 @@ const AnswersPerQuestion = (props) => {
   const date = moment(props.answer.date).format('LL');
   const answerId = props.answer.id;
   const photos = props.answer.photos || [];
-  // const handleAnswerReport = useContext(AnswerReportContext);
   const {answerHelpful, answerReport} = useContext(AnswerInfoContext);
   const handleAnswerHelpful = answerHelpful;
   const handleAnswerReport = answerReport;

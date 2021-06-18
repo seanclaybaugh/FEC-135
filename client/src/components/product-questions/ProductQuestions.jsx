@@ -115,25 +115,21 @@ function ProductQuestions({ productId }) {
       />
       <br />
 
-      <ProductIdContext.Provider value={productId}>
-        {/* <AnswerReportContext.Provider value={handleAnswerReport}> */}
+      <ProductIdContext.Provider value={{id: productId, addQuestionContext: handleAddedQuestion}}>
           <AnswerInfoContext.Provider value={{answerHelpful: handleAnswerHelpful, answerReport: handleAnswerReport}}>
             <QuestionHelpfulContext.Provider value={handleQuestionHelpful}>
               <SearchTextContext.Provider value={searchText}>
-                <AddAnswerContext.Provider value={handleAddedAnswer, handleAddedQuestion}>
-                  {/* <AddQuestionContext.Provider value={handleAddedQuestion}> */}
+                <AddAnswerContext.Provider value={handleAddedAnswer}>
                     <QuestionsList
                       questions={filteredQuestions}
                       handleExpandQuestions={handleExpandQuestions}
                       questionsPerPage={questionsPerPage}
                       isQuestionList={isQuestionList}
                     />
-                  {/* </AddQuestionContext.Provider> */}
                 </AddAnswerContext.Provider>
               </SearchTextContext.Provider>
             </QuestionHelpfulContext.Provider>
           </AnswerInfoContext.Provider>
-        {/* </AnswerReportContext.Provider> */}
       </ProductIdContext.Provider>
     </Container>
   );

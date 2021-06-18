@@ -1,14 +1,15 @@
 import React, { useState, useContext } from 'react';
 import axios from 'axios';
 import ModalStyles from '../../SharedStyles/ModalStyles';
-import { ProductIdContext, AddAnswerContext } from '../../contexts';
+import { ProductIdContext } from '../../contexts';
 
 const AddQuestionForm = (props) => {
   const [body, setBody] = useState('');
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
-  const productId = useContext(ProductIdContext);
-  const handleAddedQuestion = useContext(AddAnswerContext);
+  const {id, addQuestionContext} = useContext(ProductIdContext);
+  const productId = id;
+  const handleAddedQuestion = addQuestionContext;
 
   const addQuestion = async (event) => {
     event.preventDefault();

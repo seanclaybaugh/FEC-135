@@ -14,6 +14,8 @@ const QuestionListItem = (props) => {
   const [expanded, setExpanded] = useState(false);
   const handleQuestionHelpful = useContext(QuestionHelpfulContext);
   const handleAddedAnswer = useContext(AddAnswerContext);
+  // const {addAnswerContext, addQuestionContext} = useContext(AddAnswerContext);
+  // const handleAddedAnswer = addAnswerContext;
 
   const answers = props.question.answers || [];
   const questionId = props.question.question_id;
