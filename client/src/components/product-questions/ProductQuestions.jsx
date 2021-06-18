@@ -3,14 +3,10 @@ import styled from 'styled-components';
 import axios from 'axios';
 import QuestionsList from './questionsList/QuestionsList';
 import SearchQuestions from './SearchQuestions/SearchQuestions';
-import getQuestionHelpful from './ProductQuestionHelpers/getQuestionHelpful.js';
-import getAnswerReport from './ProductQuestionHelpers/getAnswerReport.js'
-import getAnswerHelpful from './ProductQuestionHelpers/getAnswerHelpful.js'
-import getNewAnswer from './ProductQuestionHelpers/getNewAnswer.js';
-import getSearchText from './ProductQuestionHelpers/getSearchText.js';
 import ProductIdContext from './ProductIdContext';
 import AnswerReportContext from './AnswerReportContext';
 import AnswerHelpfulContext from './ProductQuestionContexts/AnswerHelpfulContext';
+import { getAnswerHelpful, getQuestionHelpful, getAnswerReport, getNewAnswer, getSearchText } from './ProductQuestionHelpers';
 
 const Container = styled.div`
   width: 1200px;
