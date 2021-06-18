@@ -6,14 +6,17 @@ import axios from 'axios';
 import HighLightedText from '../Helpers/HighlightedTextHelper';
 import SharedButton from '../../SharedStyles/SharedButton';
 import AnswerStyles from './AnswerStyles';
-import { AnswerHelpfulContext, AnswerReportContext } from '../../contexts';
+import { AnswerInfoContext } from '../../contexts';
 
 const AnswersPerQuestion = (props) => {
   const date = moment(props.answer.date).format('LL');
   const answerId = props.answer.id;
   const photos = props.answer.photos || [];
-  const handleAnswerReport = useContext(AnswerReportContext);
-  const handleAnswerHelpful = useContext(AnswerHelpfulContext);
+  // const handleAnswerReport = useContext(AnswerReportContext);
+  const {answerHelpful, answerReport} = useContext(AnswerInfoContext);
+  const handleAnswerHelpful = answerHelpful;
+  const handleAnswerReport = answerReport;
+
 
   const handleHelpfulAnswerClick = async () => {
     try {

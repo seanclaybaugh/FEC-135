@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import axios from 'axios';
 import QuestionsList from './questionsList/QuestionsList';
 import SearchQuestions from './SearchQuestions/SearchQuestions';
-import { ProductIdContext, AnswerHelpfulContext, AnswerReportContext, QuestionHelpfulContext, SearchTextContext, AddAnswerContext, AddQuestionContext } from './contexts';
+import { ProductIdContext, AnswerInfoContext, AddAnswerContext, SearchTextContext, QuestionHelpfulContext } from './contexts';
 import { getAnswerHelpful, getQuestionHelpful, getAnswerReport, getNewAnswer, getSearchText } from './ProductQuestionHelpers';
 
 const Container = styled.div`
@@ -116,24 +116,24 @@ function ProductQuestions({ productId }) {
       <br />
 
       <ProductIdContext.Provider value={productId}>
-        <AnswerReportContext.Provider value={handleAnswerReport}>
-          <AnswerHelpfulContext.Provider value={handleAnswerHelpful}>
+        {/* <AnswerReportContext.Provider value={handleAnswerReport}> */}
+          <AnswerInfoContext.Provider value={{answerHelpful: handleAnswerHelpful, answerReport: handleAnswerReport}}>
             <QuestionHelpfulContext.Provider value={handleQuestionHelpful}>
               <SearchTextContext.Provider value={searchText}>
-                <AddAnswerContext.Provider value={handleAddedAnswer}>
-                  <AddQuestionContext.Provider value={handleAddedQuestion}>
+                <AddAnswerContext.Provider value={handleAddedAnswer, handleAddedQuestion}>
+                  {/* <AddQuestionContext.Provider value={handleAddedQuestion}> */}
                     <QuestionsList
                       questions={filteredQuestions}
                       handleExpandQuestions={handleExpandQuestions}
                       questionsPerPage={questionsPerPage}
                       isQuestionList={isQuestionList}
                     />
-                  </AddQuestionContext.Provider>
+                  {/* </AddQuestionContext.Provider> */}
                 </AddAnswerContext.Provider>
               </SearchTextContext.Provider>
             </QuestionHelpfulContext.Provider>
-          </AnswerHelpfulContext.Provider>
-        </AnswerReportContext.Provider>
+          </AnswerInfoContext.Provider>
+        {/* </AnswerReportContext.Provider> */}
       </ProductIdContext.Provider>
     </Container>
   );
