@@ -47,7 +47,7 @@ const Button = styled.button`
   border: solid 1px #000;
   padding: 5px;
   display: inline-block;
-  width: 200px;
+  width: 390px;
   height: 60px;
   letter-spacing: 1px;
   position: relative;
@@ -80,7 +80,7 @@ const Button = styled.button`
     cursor: pointer;
     background-color: #555555;
     border: solid 1px #555555;
-    letter-spacing: .08rem;
+    letter-spacing: .09rem;
   }
 `;
 
