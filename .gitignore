@@ -28,4 +28,6 @@ client/dist/client_src_components_reviews_reviewsIndex_jsx.bundle.js
 client/dist/vendors-node_modules_moment_locale_af_js-node_modules_moment_locale_ar-dz_js-node_modules_mom-bdec1a.bundle.js
 client/dist/vendors-node_modules_react-icons_fa_index_esm_js.bundle.js
 client/dist/vendors-node_modules_react-icons_ai_index_esm_js.bundle.js
+client/dist/vendors-node_modules_babel_runtime_helpers_esm_toConsumableArray_js-node_modules_moment_local-aad480.bundle.js
+client/dist/client_src_components_product-questions_ProductQuestions_jsx.bundle.js
 package-lock.json
