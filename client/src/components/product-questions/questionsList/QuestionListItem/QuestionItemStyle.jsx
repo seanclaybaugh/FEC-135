@@ -21,6 +21,7 @@ const Wrapper = styled.div`
   justify-content: flex-start;
   align-items: center;
   align-content: center;
+  font-weight: 800;
 `;
 
 const Question = styled.div`
