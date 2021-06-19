@@ -3,15 +3,15 @@ import styled from 'styled-components';
 import ModalStyles from '../../SharedStyles/ModalStyles';
 
 const Image = styled.img`
-  width: 140px;
-  height: 150px;
+  // width: 140px;
+  height: 120px;
   padding-right: 8px;
   padding-top: 5px;
 `
 
 const ModalImage = styled.img`
   width: 540px;
-  height: 550px;
+  // height: 550px;
   padding-right: 8px;
   padding-top: 5px;
 
@@ -35,7 +35,6 @@ const Photo = ({ photo }) => {
       )}
     </>
   )
-
 }
 
 export default Photo;
