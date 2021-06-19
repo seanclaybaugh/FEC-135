@@ -4,6 +4,7 @@ import axios from 'axios';
 import QuestionsContainer from './SharedStyles/QuestionsContainer';
 import { ProductIdContext, AnswerInfoContext, AddAnswerContext, SearchTextContext, QuestionHelpfulContext } from './contexts';
 import { getAnswerHelpful, getQuestionHelpful, getAnswerReport, getNewAnswer, getSearchText } from './ProductQuestionHelpers';
+import Spinner from '../product-overview/spinner/LoadingSpinner';
 
 const QuestionsList = lazy( () => import('./questionsList/QuestionsList'));
 const SearchQuestions = lazy( () => import('./SearchQuestions/SearchQuestions'));
@@ -99,7 +100,7 @@ function ProductQuestions({ productId }) {
   };
 
   return (
-    <Suspense fallback={<div>Error with questions & answers...</div>}>
+    <Suspense fallback={<Spinner />}>
       {!isError
         && (
           <QuestionsContainer.Wrap>
