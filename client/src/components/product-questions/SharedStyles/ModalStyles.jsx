@@ -34,10 +34,31 @@ const ModalSubmitBtn = styled.button`
 `;
 
 const CloseButton = styled.button`
-  display: inline;
-  float: right;
-`;
+  display: inline-block;
+  padding:0.1em .2em;
+  border:0.16em solid black;
+  margin:0 0.3em 0.3em 0;
+  box-sizing: border-box;
+  text-decoration:none;
+  text-transform:uppercase;
+  font-family:'Roboto',sans-serif;
+  font-weight:400;
+  background-color: black;
+  color: white;
+  text-align: center;
+  transition: all 0.15s;
+  &:hover {
+    cursor: pointer;
+    background-color: white;
+    color: black;
+    border-color: white;
+  }
+  `
 
+const CloseContainer = styled.div`
+  display: flex;
+  justify-content: flex-end;
+`
 const QuestionBtn = styled.button`
   background: transparent;
   border: none;
@@ -51,4 +72,5 @@ export default {
   CloseButton,
   QuestionBtn,
   ModalSubmitBtn,
+  CloseContainer
 };
