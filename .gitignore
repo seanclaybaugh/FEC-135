@@ -3,6 +3,7 @@ coverage
 node_modules
 FEC3.pem
 login.sh
+package-lock.json
 coverage
 client/dist
 !index.html
