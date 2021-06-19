@@ -15,6 +15,7 @@ const Thumbnail = styled.img`
   &:hover {
     border-radius: 6px;
     border-color: black;
+    cursor: pointer;
   }
 `
 
