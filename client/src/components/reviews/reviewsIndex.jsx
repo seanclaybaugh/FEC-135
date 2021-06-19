@@ -88,14 +88,20 @@ function reviewsIndex(props) {
 
   function reviewSubmit () {
 
-    if ( recommend || username || rating  === null) {
+    if (recommend === null) {
       alert('Please complete your review before submitting!');
       return;
     }
-    if (email === null || email.indexof('@') > 1 ) {
+    const emailtest = email.split('');
+    if (email === null) {
       alert('Please fill in a valid email address!');
       return;
     }
+    if (emailtest.indexOf('@') < 0){
+      alert('Please enter a valid email!')
+      return;
+    }
+
     if (reviewBody.length < 50) {
       alert('Your review must by greater than 50 chracters!');
       return;
