@@ -55,10 +55,6 @@ const CloseButton = styled.button`
   }
   `
 
-const CloseContainer = styled.div`
-  display: flex;
-  justify-content: flex-end;
-`
 const QuestionBtn = styled.button`
   background: transparent;
   border: none;
@@ -72,5 +68,4 @@ export default {
   CloseButton,
   QuestionBtn,
   ModalSubmitBtn,
-  CloseContainer
 };

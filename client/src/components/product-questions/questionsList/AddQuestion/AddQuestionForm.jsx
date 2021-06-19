@@ -54,11 +54,9 @@ const AddQuestionForm = (props) => {
     <>
       <ModalStyles.ModalBackground>
         <ModalStyles.ModalContent>
-         <ModalStyles.CloseContainer>
             <ModalStyles.CloseButton onClick={props.handleDismissAddQuestion}>
               X
             </ModalStyles.CloseButton>
-          </ModalStyles.CloseContainer>
 
           <form onSubmit={addQuestion}>
             <label>Your Question: </label>
