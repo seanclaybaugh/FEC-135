@@ -2,6 +2,7 @@ import React, { lazy, Suspense, useState, useEffect, useContext } from 'react';
 import styled, { keyframes } from 'styled-components';
 import axios from 'axios';
 import { SelectedSkuContext, SelectedQtyContext, MissingSkuContext } from '../../contexts';
+import { CartItemsContext } from '../../../contexts/CartItemsContext';
 
 const CartModal = lazy(() => import('./CartModal'));
 
@@ -88,7 +89,7 @@ function AddToCart({ product }) {
   const { selectedSku } = useContext(SelectedSkuContext);
   const { selectedQty } = useContext(SelectedQtyContext);
   const { isMissingSku, setIsMissingSku } = useContext(MissingSkuContext);
-  const [items, setItems] = useState(0);
+  const { items, setItems } = useContext(CartItemsContext);
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
   const [showModal, setShowModal] = useState(false);
