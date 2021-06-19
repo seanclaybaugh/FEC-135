@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
+import useModals from './useModals';
+import PhotoModal from './PhotoModal';
 
 //onclick create modal window w full size img
 const Thumbnail = styled.img`
@@ -16,9 +18,16 @@ const Thumbnail = styled.img`
   }
 `
 
+
+
 function reviewPhotoItem({ url }) {
+  const {isShowing, toggle} = useModals();
+
   return (
-    <Thumbnail src={url}></Thumbnail>
+    <>
+    <Thumbnail src={url} onClick={toggle}></Thumbnail>
+    <PhotoModal isShowing={isShowing} toggle={toggle} url={url} />
+    </>
   );
 }
 
