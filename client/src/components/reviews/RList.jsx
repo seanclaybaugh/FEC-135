@@ -35,7 +35,7 @@ const Button1 = styled.button`
 const ButtonContainer = styled.div`
   display: flex;
   justify-content: flex-end;
-  
+
   border-bottom: solid #e2e2e2 2px;
   padding-bottom: 10px;
   `

@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
-import PhotoIndexContext from '../contexts/PhotoIndexContext';
+import { PhotoIndexContext } from '../contexts';
 
 const ListItem = styled.button`
   padding: 0;

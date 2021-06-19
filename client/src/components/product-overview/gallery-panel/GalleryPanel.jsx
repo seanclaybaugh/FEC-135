@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import PhotoIndexContext from '../contexts/PhotoIndexContext';
+import { PhotoIndexContext } from '../contexts';
 import ThumbnailLeftNav from './ThumbnailLeftNav';
 import MainView from './MainView';
 
@@ -16,7 +16,7 @@ function GalleryPanel() {
   const [currentPhotoIndex, setCurrentPhotoIndex] = useState(0);
   const [imageRefs, setImageRefs] = useState([]);
 
-  function receiveImgRefs(refs) {
+  function getImgRefs(refs) {
     setImageRefs(refs);
   }
 
@@ -24,7 +24,7 @@ function GalleryPanel() {
     <PhotoIndexContext.Provider value={{ currentPhotoIndex, setCurrentPhotoIndex }}>
       <GalleryContainer>
         <MainView imageRefs={imageRefs} />
-        <ThumbnailLeftNav receiveImgRefs={receiveImgRefs} />
+        <ThumbnailLeftNav getImgRefs={getImgRefs} />
       </GalleryContainer>
     </PhotoIndexContext.Provider>
   );

@@ -3,8 +3,7 @@ import React, {
 } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
-import CurrentStyleContext from './contexts/CurrentStyleContext';
-import PreviewStyleContext from './contexts/PreviewStyleContext';
+import { CurrentStyleContext, PreviewStyleContext } from './contexts';
 import Spinner from './spinner/LoadingSpinner';
 
 const GalleryPanel = lazy(() => import('./gallery-panel/GalleryPanel'));
@@ -16,7 +15,7 @@ const OverviewContainer = styled.div`
   justify-content: center;
   flex-wrap: wrap;
   background-color: #fff;
-  margin-bottom: 15px;
+  margin: 0 auto 15px auto;
 `;
 
 const GalleryDiv = styled.div`
