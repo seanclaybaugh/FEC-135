@@ -93,6 +93,10 @@ const Image = styled.div`
   flex-basis: 4%;
 `;
 
+const ImageContainer = styled.div`
+  order: 2;
+`
+
 export default {
   Img,
   AnswerWrapper,
@@ -105,4 +109,5 @@ export default {
   AnswerInfoHelp,
   AnswerInfoReport,
   Image,
+  ImageContainer,
 };

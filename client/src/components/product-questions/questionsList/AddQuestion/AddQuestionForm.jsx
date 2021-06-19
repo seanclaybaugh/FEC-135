@@ -1,6 +1,7 @@
 import React, { useState, useContext } from 'react';
 import axios from 'axios';
 import ModalStyles from '../../SharedStyles/ModalStyles';
+import FormStyles from '../../SharedStyles/FormStyles';
 import { ProductIdContext } from '../../contexts';
 
 const AddQuestionForm = (props) => {
@@ -54,28 +55,32 @@ const AddQuestionForm = (props) => {
     <>
       <ModalStyles.ModalBackground>
         <ModalStyles.ModalContent>
-         <ModalStyles.CloseContainer>
             <ModalStyles.CloseButton onClick={props.handleDismissAddQuestion}>
               X
             </ModalStyles.CloseButton>
-          </ModalStyles.CloseContainer>
 
-          <form onSubmit={addQuestion}>
-            <label>Your Question: </label>
-            <input name="body" value={body} placeholder="" onChange={(e) => setBody(e.target.value)} />
-            <br />
+          <FormStyles.Container>
+            <form onSubmit={addQuestion}>
+              <label>Your Question: </label>
+              <br />
+              <FormStyles.TextBody type="text" name="body" value={body} placeholder="" onChange={(e) => setBody(e.target.value)} />
+              <br />
 
-            <label>What is your nickname: </label>
-            <input name="name" value={name} placeholder="Example: jackson11!" onChange={(e) => setName(e.target.value)} />
-            <br />
+              <label>What is your nickname: </label>
+              <br />
+              <FormStyles.TextInfo type="text" name="name" value={name} placeholder="Example: jackson11!" onChange={(e) => setName(e.target.value)} />
+              <br />
 
-            <label>Your Email: </label>
-            <input name="email" value={email} placeholder="Example: jack@email.com" onChange={(e) => setEmail(e.target.value)} />
-            <p>For authentication reasons, you will not be emailed</p>
-            <br />
+              <label>Your Email: </label>
+              <br />
+              <FormStyles.TextInfo type="text" name="email" value={email} placeholder="Example: jack@email.com" onChange={(e) => setEmail(e.target.value)} />
+              <p>For authentication reasons, you will not be emailed</p>
+              <br />
 
-            <ModalStyles.ModalSubmitBtn type="submit">Submit Question</ModalStyles.ModalSubmitBtn>
-          </form>
+              <ModalStyles.ModalSubmitBtn type="submit">Submit Question</ModalStyles.ModalSubmitBtn>
+            </form>
+          </FormStyles.Container>
+
         </ModalStyles.ModalContent>
       </ModalStyles.ModalBackground>
     </>
