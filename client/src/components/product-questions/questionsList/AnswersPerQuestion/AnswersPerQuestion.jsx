@@ -7,6 +7,7 @@ import HighLightedText from '../Helpers/HighlightedTextHelper';
 import SharedButton from '../../SharedStyles/SharedButton';
 import AnswerStyles from './AnswerStyles';
 import { AnswerInfoContext } from '../../contexts';
+import Photo from './Photo';
 
 const AnswersPerQuestion = (props) => {
   const date = moment(props.answer.date).format('LL');
@@ -78,9 +79,14 @@ const AnswersPerQuestion = (props) => {
 
       <AnswerStyles.ImageWrapper>
         <AnswerStyles.Image />
-        {photos.map((photo, index) => <AnswerStyles.Img key={index} src={photo} />)}
+          {photos.map((photo, index) => (
+            <AnswerStyles.ImageContainer key={index}>
+              <Photo
+                photo={photo}
+              />
+            </AnswerStyles.ImageContainer>
+          ))}
       </AnswerStyles.ImageWrapper>
-
       <br />
     </>
   );
