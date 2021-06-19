@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 import { GoThreeBars } from 'react-icons/go';
@@ -70,7 +70,13 @@ const NavMenu = styled.div`
   }
 `;
 
-function Navbar() {
+function Navbar({ items }) {
+  const [cartItems, setCartItems] = useState(0);
+
+  useEffect(() => {
+    setCartItems(cartItems + items);
+  }, [items])
+
   return (
     <>
       <StyledNavbar>
@@ -102,7 +108,7 @@ function Navbar() {
             </StyledNavText>
           </StyledNavLink>
           <StyledNavLink to="/">
-            <StyledNavText>Cart</StyledNavText>
+            <StyledNavText>{`Cart (${cartItems})`}</StyledNavText>
           </StyledNavLink>
         </NavMenu>
       </StyledNavbar>
