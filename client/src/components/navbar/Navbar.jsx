@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
+import { FaBars } from 'react-icons/fa';
 import { GoThreeBars } from 'react-icons/go';
 import { VscAccount } from 'react-icons/vsc';
 import { BsSearch } from 'react-icons/bs';
@@ -10,6 +11,7 @@ const StyledNavbar = styled.nav`
   height: 40px;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   padding: 0.5rem calc((100vw - 1200px) / 2);
   position: sticky;
   top: 0;
@@ -60,6 +62,21 @@ const StyledNavText = styled.div`
   }
 `;
 
+const Bars = styled(FaBars)`
+  display: none;
+  color: #000;
+
+  @media screen and (max-width: 768px) {
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    transform: translate(-100%, 75%);
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
+`;
+
 const StyledSearchIcon = styled(BsSearch)`
   padding-right: 5px;
   font-size: 16px;
@@ -81,35 +98,16 @@ function Navbar({ items }) {
     <>
       <StyledNavbar>
         <NavMenu>
-          <StyledNavLink to="/">
-            <StyledNavText>New!</StyledNavText>
-          </StyledNavLink>
-          <StyledNavLink to="/">
-            <StyledNavText>Shop</StyledNavText>
-          </StyledNavLink>
-          <StyledNavLink to="/">
-            <StyledNavText>About</StyledNavText>
-          </StyledNavLink>
+          <StyledNavLink to="/"><StyledNavText>New!</StyledNavText></StyledNavLink>
+          <StyledNavLink to="/"><StyledNavText>Shop</StyledNavText></StyledNavLink>
+          <StyledNavLink to="/"><StyledNavText>About</StyledNavText></StyledNavLink>
         </NavMenu>
-        <StyledNavLink to="/">
-          <StyledNavHeader>FOREVER 31</StyledNavHeader>
-        </StyledNavLink>
+        <Bars />
+        <StyledNavLink to="/"><StyledNavHeader>FOREVER 31</StyledNavHeader></StyledNavLink>
         <NavMenu>
-          <StyledNavLink to="/">
-            <StyledNavText>
-              <StyledSearchIcon />
-              Search
-            </StyledNavText>
-          </StyledNavLink>
-          <StyledNavLink to="/">
-            <StyledNavText>
-              <StyledAccountIcon />
-              My Account
-            </StyledNavText>
-          </StyledNavLink>
-          <StyledNavLink to="/">
-            <StyledNavText>{`Cart (${cartItems})`}</StyledNavText>
-          </StyledNavLink>
+          <StyledNavLink to="/"><StyledNavText><StyledSearchIcon />Search</StyledNavText></StyledNavLink>
+          <StyledNavLink to="/"><StyledNavText><StyledAccountIcon />My Account</StyledNavText></StyledNavLink>
+          <StyledNavLink to="/"><StyledNavText>{`Cart (${cartItems})`}</StyledNavText></StyledNavLink>
         </NavMenu>
       </StyledNavbar>
     </>
