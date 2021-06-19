@@ -1,11 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { lazy, Suspense, useState, useEffect, } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
-import QuestionsList from './questionsList/QuestionsList';
-import SearchQuestions from './SearchQuestions/SearchQuestions';
 import QuestionsContainer from './SharedStyles/QuestionsContainer';
 import { ProductIdContext, AnswerInfoContext, AddAnswerContext, SearchTextContext, QuestionHelpfulContext } from './contexts';
 import { getAnswerHelpful, getQuestionHelpful, getAnswerReport, getNewAnswer, getSearchText } from './ProductQuestionHelpers';
+import Spinner from '../product-overview/spinner/LoadingSpinner';
+
+const QuestionsList = lazy( () => import('./questionsList/QuestionsList'));
+const SearchQuestions = lazy( () => import('./SearchQuestions/SearchQuestions'));
 
 function ProductQuestions({ productId }) {
   const [questionList, setQuestionList] = useState([]);
@@ -98,33 +100,36 @@ function ProductQuestions({ productId }) {
   };
 
   return (
-    <QuestionsContainer.Wrap>
-      <QuestionsContainer.Container>
-        {isError && <div>Error with get data...</div>}
+    <Suspense fallback={<Spinner />}>
+      {!isError
+        && (
+          <QuestionsContainer.Wrap>
+            <QuestionsContainer.Container>
+              <SearchQuestions
+                handleSearchTextChanged={handleSearchTextChanged}
+              />
+              <br />
 
-        <SearchQuestions
-          handleSearchTextChanged={handleSearchTextChanged}
-        />
-        <br />
-
-        <ProductIdContext.Provider value={{id: productId, addQuestionContext: handleAddedQuestion}}>
-            <AnswerInfoContext.Provider value={{answerHelpful: handleAnswerHelpful, answerReport: handleAnswerReport}}>
-              <QuestionHelpfulContext.Provider value={handleQuestionHelpful}>
-                <SearchTextContext.Provider value={searchText}>
-                  <AddAnswerContext.Provider value={handleAddedAnswer}>
-                      <QuestionsList
-                        questions={filteredQuestions}
-                        handleExpandQuestions={handleExpandQuestions}
-                        questionsPerPage={questionsPerPage}
-                        isQuestionList={isQuestionList}
-                      />
-                  </AddAnswerContext.Provider>
-                </SearchTextContext.Provider>
-              </QuestionHelpfulContext.Provider>
-            </AnswerInfoContext.Provider>
-        </ProductIdContext.Provider>
-      </QuestionsContainer.Container>
-    </QuestionsContainer.Wrap>
+              <ProductIdContext.Provider value={{id: productId, addQuestionContext: handleAddedQuestion}}>
+                  <AnswerInfoContext.Provider value={{answerHelpful: handleAnswerHelpful, answerReport: handleAnswerReport}}>
+                    <QuestionHelpfulContext.Provider value={handleQuestionHelpful}>
+                      <SearchTextContext.Provider value={searchText}>
+                        <AddAnswerContext.Provider value={handleAddedAnswer}>
+                            <QuestionsList
+                              questions={filteredQuestions}
+                              handleExpandQuestions={handleExpandQuestions}
+                              questionsPerPage={questionsPerPage}
+                              isQuestionList={isQuestionList}
+                            />
+                        </AddAnswerContext.Provider>
+                      </SearchTextContext.Provider>
+                    </QuestionHelpfulContext.Provider>
+                  </AnswerInfoContext.Provider>
+              </ProductIdContext.Provider>
+            </QuestionsContainer.Container>
+          </QuestionsContainer.Wrap>
+        )}
+    </Suspense>
   );
 }
 

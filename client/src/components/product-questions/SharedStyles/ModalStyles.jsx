@@ -23,18 +23,27 @@ const ModalContent = styled.div`
 `;
 
 const ModalSubmitBtn = styled.button`
-  font-weight: 20;
-  font-size: 10px;
-  background: transparent;
-  border: none;
-  cursor: pointer;
+  padding:0.1em .2em;
+  border:0.16em solid black;
+  margin:0 0.3em 0.3em 0;
+  box-sizing: border-box;
+  text-decoration:none;
+  text-transform:uppercase;
+  font-family:'Roboto',sans-serif;
+  font-weight:500;
+  background-color: black;
+  color: white;
+  text-align: center;
+  transition: all 0.15s;
   &:hover {
-    text-decoration: underline;
+    cursor: pointer;
+    background-color: white;
+    color: black;
+    border-color: white;
   }
 `;
 
 const CloseButton = styled.button`
-  display: inline-block;
   padding:0.1em .2em;
   border:0.16em solid black;
   margin:0 0.3em 0.3em 0;
@@ -46,6 +55,7 @@ const CloseButton = styled.button`
   background-color: black;
   color: white;
   text-align: center;
+  float: right;
   transition: all 0.15s;
   &:hover {
     cursor: pointer;
@@ -55,10 +65,6 @@ const CloseButton = styled.button`
   }
   `
 
-const CloseContainer = styled.div`
-  display: flex;
-  justify-content: flex-end;
-`
 const QuestionBtn = styled.button`
   background: transparent;
   border: none;
@@ -72,5 +78,4 @@ export default {
   CloseButton,
   QuestionBtn,
   ModalSubmitBtn,
-  CloseContainer
 };
