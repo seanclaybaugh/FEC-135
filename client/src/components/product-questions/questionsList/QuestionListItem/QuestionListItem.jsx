@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { AiFillCaretUp } from 'react-icons/ai';
 import moment from 'moment';
 import axios from 'axios';
@@ -7,10 +7,13 @@ import AddAnswerForm from '../AddAnswer/AddAnswerForm';
 import HighlightedText from '../Helpers/HighlightedTextHelper';
 import QuestionItemStyle from './QuestionItemStyle';
 import SharedButton from '../../SharedStyles/SharedButton';
+import { QuestionHelpfulContext, AddAnswerContext } from '../../contexts';
 
 const QuestionListItem = (props) => {
   const [addAnswerClicked, setAddAnswerClicked] = useState(false);
   const [expanded, setExpanded] = useState(false);
+  const handleQuestionHelpful = useContext(QuestionHelpfulContext);
+  const handleAddedAnswer = useContext(AddAnswerContext);
 
   const answers = props.question.answers || [];
   const questionId = props.question.question_id;
@@ -24,7 +27,7 @@ const QuestionListItem = (props) => {
       console.log(error);
     }
 
-    props.handleQuestionHelpful(questionId);
+    handleQuestionHelpful(questionId);
   };
 
   const dismissAnswerForm = () => {
@@ -35,7 +38,7 @@ const QuestionListItem = (props) => {
     setExpanded(!expanded);
   };
 
-  const handleAddedAnswer = async () => {
+  const addAnswer = async () => {
     let fetchingAnswers = true;
     let newAnswers = [];
     const count = answerLength + 2;
@@ -49,7 +52,7 @@ const QuestionListItem = (props) => {
         page++;
       }
 
-      props.handleAddedAnswer(questionId, newAnswers);
+      handleAddedAnswer(questionId, newAnswers);
     } catch (error) {
       console.log(error);
     }
@@ -62,26 +65,20 @@ const QuestionListItem = (props) => {
 
   return (
     <QuestionItemStyle.Container>
-
       <QuestionItemStyle.Wrapper>
         <QuestionItemStyle.Question>Q:</QuestionItemStyle.Question>
 
         <QuestionItemStyle.QuestionBody>
           <HighlightedText
-            textBody={props.question.question_body}
-            searchText={props.searchText}
-          />
+            textBody={props.question.question_body} />
         </QuestionItemStyle.QuestionBody>
 
         <QuestionItemStyle.QuestionHelpful>
           Helpful?
-          <SharedButton.QuestionItem onClick={handleHelpfulClick}>
-            <AiFillCaretUp />
-          </SharedButton.QuestionItem>
-
-          #(
-          {props.question.question_helpfulness}
-          )
+            <SharedButton.QuestionItem onClick={handleHelpfulClick}>
+              <AiFillCaretUp />
+            </SharedButton.QuestionItem>
+          #({props.question.question_helpfulness})
         </QuestionItemStyle.QuestionHelpful>
 
         <QuestionItemStyle.QuestionAddAnswer onClick={dismissAnswerForm}>
@@ -93,15 +90,13 @@ const QuestionListItem = (props) => {
             questionId={questionId}
             dismissAnswerForm={dismissAnswerForm}
             question={props.question.question_body}
-            handleAddedAnswer={handleAddedAnswer}
+            addAnswer={addAnswer}
           />
         )}
-
       </QuestionItemStyle.Wrapper>
 
       <QuestionItemStyle.QuestionAskerWrapper>
         <QuestionItemStyle.QuestionAsker />
-
         <QuestionItemStyle.QuestionAskerInfo>
           Asked by:
           {' '}
@@ -111,35 +106,26 @@ const QuestionListItem = (props) => {
           {date}
         </QuestionItemStyle.QuestionAskerInfo>
       </QuestionItemStyle.QuestionAskerWrapper>
-
       <br />
       {visibleAnswers.map((answer, i) => (
         <AnswersPerQuestion
           key={i}
           answer={answer}
-          handleAnswerHelpful={props.handleAnswerHelpful}
-          handleAnswerReport={props.handleAnswerReport}
-          searchText={props.searchText}
           questionId={questionId}
         />
       ))}
 
       {enoughAnswersToExpand
-          && (
+        && (
           <QuestionItemStyle.MoreWrapper>
-
             <QuestionItemStyle.MoreAnswer />
-
             <QuestionItemStyle.MoreTxt>
               <QuestionItemStyle.ShowAnswerBtn onClick={toggleExpanded}>
                 {buttonText}
               </QuestionItemStyle.ShowAnswerBtn>
-
             </QuestionItemStyle.MoreTxt>
-
           </QuestionItemStyle.MoreWrapper>
-          )}
-
+        )}
     </QuestionItemStyle.Container>
   );
 };

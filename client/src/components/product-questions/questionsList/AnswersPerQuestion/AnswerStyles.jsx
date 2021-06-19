@@ -20,6 +20,7 @@ const AnswerWrapper = styled.div`
   justify-content: flex-start;
   align-items: center;
   align-content: center;
+  font-weight: 375;
 `;
 
 const AnswerInfoWrapper = styled.div`
@@ -28,7 +29,6 @@ const AnswerInfoWrapper = styled.div`
   justify-content: flex-start;
   align-items: center;
   align-content: center;
-  font-weight: 100;
   font-size: 10px;
 `;
 
@@ -43,12 +43,10 @@ const ImageWrapper = styled.div`
 const Answer = styled.div`
   order: 1;
   flex-basis: 4%;
-  font-weight: 500;
 `;
 
 const AnswerBody = styled.div`
   order: 2;
-  font-weight: 350;
   flex-basis: 100%;
   justify-content: space-around;
 `;

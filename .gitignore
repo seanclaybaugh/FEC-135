@@ -4,7 +4,8 @@ node_modules
 FEC3.pem
 login.sh
 package-lock.json
-coverage
-client/dist
+client/dist/*
 !index.html
 !stylesheet.css
+!client/dist/favicon/
+

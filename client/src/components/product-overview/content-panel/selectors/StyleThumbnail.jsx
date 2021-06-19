@@ -1,10 +1,12 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
-import CurrentStyleContext from '../../contexts/CurrentStyleContext';
-import PreviewStyleContext from '../../contexts/PreviewStyleContext';
-import SelectedSkuContext from '../contexts/SelectedSkuContext';
-import SelectedQtyContext from '../contexts/SelectedQtyContext';
-import MissingSkuContext from '../contexts/MissingSkuContext';
+import {
+  CurrentStyleContext,
+  PreviewStyleContext,
+  SelectedSkuContext,
+  SelectedQtyContext,
+  MissingSkuContext
+} from '../../contexts';
 
 const ThumbnailContainer = styled.div`
   position: relative;
@@ -62,10 +64,7 @@ function StyleThumbnail({ style, index }) {
       onMouseLeave={handleMouseLeave}
       boxShadow={index === currentStyle.style_id ? '0 0 0 1px #000' : '0 0 3px #888'}
     >
-      <Img
-        src={style.photos[0].thumbnail_url}
-        alt={style.name}
-      />
+      <Img src={style.photos[0].thumbnail_url} alt={style.name} />
     </ThumbnailContainer>
   );
 }

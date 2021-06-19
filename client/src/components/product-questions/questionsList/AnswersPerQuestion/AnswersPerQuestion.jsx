@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { AiFillCaretUp } from 'react-icons/ai';
 import { BsFlagFill } from 'react-icons/bs';
 import moment from 'moment';
@@ -6,11 +6,16 @@ import axios from 'axios';
 import HighLightedText from '../Helpers/HighlightedTextHelper';
 import SharedButton from '../../SharedStyles/SharedButton';
 import AnswerStyles from './AnswerStyles';
+import { AnswerInfoContext } from '../../contexts';
 
 const AnswersPerQuestion = (props) => {
   const date = moment(props.answer.date).format('LL');
   const answerId = props.answer.id;
   const photos = props.answer.photos || [];
+  const {answerHelpful, answerReport} = useContext(AnswerInfoContext);
+  const handleAnswerHelpful = answerHelpful;
+  const handleAnswerReport = answerReport;
+
 
   const handleHelpfulAnswerClick = async () => {
     try {
@@ -19,7 +24,7 @@ const AnswersPerQuestion = (props) => {
       console.log(error);
     }
 
-    props.handleAnswerHelpful(answerId, props.questionId);
+    handleAnswerHelpful(answerId, props.questionId);
   };
 
   const handleReportAnswerClick = async () => {
@@ -29,7 +34,7 @@ const AnswersPerQuestion = (props) => {
       console.log(error);
     }
 
-    props.handleAnswerReport(answerId, props.questionId);
+    handleAnswerReport(answerId, props.questionId);
   };
 
   return (
@@ -39,7 +44,6 @@ const AnswersPerQuestion = (props) => {
         <AnswerStyles.AnswerBody>
           <HighLightedText
             textBody={props.answer.body}
-            searchText={props.searchText}
           />
         </AnswerStyles.AnswerBody>
       </AnswerStyles.AnswerWrapper>
