@@ -34,7 +34,6 @@ const ModalSubmitBtn = styled.button`
 `;
 
 const CloseButton = styled.button`
-  display: inline-block;
   padding:0.1em .2em;
   border:0.16em solid black;
   margin:0 0.3em 0.3em 0;
@@ -46,6 +45,7 @@ const CloseButton = styled.button`
   background-color: black;
   color: white;
   text-align: center;
+  float: right;
   transition: all 0.15s;
   &:hover {
     cursor: pointer;
