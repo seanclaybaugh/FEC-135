@@ -16,6 +16,15 @@ const StyledNavbar = styled.nav`
   z-index: 10;
 `;
 
+const NavMenu = styled.div`
+  display: flex;
+  align-items: center;
+
+  @media screen and (max-width: 1200px) {
+    display: none;
+  }
+`;
+
 const StyledNavLink = styled(NavLink)`
   color: #000;
   display: flex;
@@ -31,7 +40,8 @@ const StyledNavLink = styled(NavLink)`
 `;
 
 const StyledNavHeader = styled.h1`
-  font-family: 'Benne', 'Roboto', 'Arial', 'Helvetica', serif;
+  font-family: 'Oswald', 'Roboto', 'Arial', 'Helvetica', serif;
+  font-size: 28px;
 `;
 
 const StyledNavText = styled.div`
@@ -60,16 +70,6 @@ const StyledAccountIcon = styled(VscAccount)`
   font-size: 16px;
 `;
 
-const NavMenu = styled.div`
-  display: flex;
-  align-items: center;
-  margin-right: -24px;
-
-  @media screen and (max-width: 1200px) {
-    display: none;
-  }
-`;
-
 function Navbar({ items }) {
   const [cartItems, setCartItems] = useState(0);
 
@@ -92,7 +92,7 @@ function Navbar({ items }) {
           </StyledNavLink>
         </NavMenu>
         <StyledNavLink to="/">
-          <StyledNavHeader>Company Name</StyledNavHeader>
+          <StyledNavHeader>FOREVER 31</StyledNavHeader>
         </StyledNavLink>
         <NavMenu>
           <StyledNavLink to="/">
