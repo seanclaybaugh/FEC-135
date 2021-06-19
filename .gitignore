@@ -1,9 +1,11 @@
 config.js
 coverage
 node_modules
+FEC3.pem
+login.sh
 package-lock.json
-
 client/dist/*
 !index.html
 !stylesheet.css
 !client/dist/favicon/
+
