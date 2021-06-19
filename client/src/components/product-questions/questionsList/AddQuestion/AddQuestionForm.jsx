@@ -60,26 +60,25 @@ const AddQuestionForm = (props) => {
             </ModalStyles.CloseButton>
 
           <FormStyles.Container>
+            <form onSubmit={addQuestion}>
+              <label>Your Question: </label>
+              <br />
+              <FormStyles.TextBody type="text" name="body" value={body} placeholder="" onChange={(e) => setBody(e.target.value)} />
+              <br />
 
-          <form onSubmit={addQuestion}>
-            <label>Your Question: </label>
-            <br />
-            <FormStyles.TextBody type="text" name="body" value={body} placeholder="" onChange={(e) => setBody(e.target.value)} />
-            <br />
+              <label>What is your nickname: </label>
+              <br />
+              <FormStyles.TextInfo type="text" name="name" value={name} placeholder="Example: jackson11!" onChange={(e) => setName(e.target.value)} />
+              <br />
 
-            <label>What is your nickname: </label>
-            <br />
-            <FormStyles.TextInfo type="text" name="name" value={name} placeholder="Example: jackson11!" onChange={(e) => setName(e.target.value)} />
-            <br />
+              <label>Your Email: </label>
+              <br />
+              <FormStyles.TextInfo type="text" name="email" value={email} placeholder="Example: jack@email.com" onChange={(e) => setEmail(e.target.value)} />
+              <p>For authentication reasons, you will not be emailed</p>
+              <br />
 
-            <label>Your Email: </label>
-            <br />
-            <FormStyles.TextInfo type="text" name="email" value={email} placeholder="Example: jack@email.com" onChange={(e) => setEmail(e.target.value)} />
-            <p>For authentication reasons, you will not be emailed</p>
-            <br />
-
-            <ModalStyles.ModalSubmitBtn type="submit">Submit Question</ModalStyles.ModalSubmitBtn>
-          </form>
+              <ModalStyles.ModalSubmitBtn type="submit">Submit Question</ModalStyles.ModalSubmitBtn>
+            </form>
           </FormStyles.Container>
 
         </ModalStyles.ModalContent>
