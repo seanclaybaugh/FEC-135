@@ -17,6 +17,7 @@ const Overlay = styled.div`
   height: 100vh;
   background-color: #000;
   opacity: .5;
+  
 `
 
 const Wrapper = styled.div`
@@ -29,6 +30,7 @@ const Wrapper = styled.div`
   overflow-x: hidden;
   overflow-y: auto;
   outline: 0;
+
 `
 
 const Modal = styled.div`
@@ -39,6 +41,7 @@ const Modal = styled.div`
   border-radius: 3px;
   width: 400px;
   padding: 3rem;
+  transition: all 2s;
 `
 
 const ModalHeader = styled.div`
@@ -58,6 +61,7 @@ const ModalForm = styled.div`
 const FormSubtext = styled.span`
   font-weight: 100;
   font-size: .5em;
+  margin-bottom: 7px;
   `
 const TitleDiv = styled.div`
   display: flex;
@@ -111,6 +115,9 @@ const Button2 = styled.button`
     border-color: white;
   }
  `
+ const LabelWSpace = styled.label`
+  margin-bottom: .5em;
+ `
 
 const AddReviewModal = ({isShowing, toggle, username, setUsername, reviewSummary, setReviewSummary, product, reviewBody, setReviewBody, email, setEmail, setPhotos, fileUploadHandler, thumbs, rating, setRating, recommend, setRecommend, reviewSubmit, setFitNum, setComNum , setLenNum, setQualNum, characteristics, setSizeNum, setWidthNum }) => isShowing ? ReactDOM.createPortal(
   <Suspense fallback={<Spinner/>}>
@@ -120,9 +127,7 @@ const AddReviewModal = ({isShowing, toggle, username, setUsername, reviewSummary
         <Modal>
 
           <ModalHeader>
-
             <Button2 type="button" onClick={toggle}>x</Button2>
-
           </ModalHeader>
 
         <TitleDiv>Write your review</TitleDiv>
@@ -137,36 +142,36 @@ const AddReviewModal = ({isShowing, toggle, username, setUsername, reviewSummary
 
             <StarRating rating={rating} setRating={setRating} />
 
-            <label>Username*:
+            <LabelWSpace>Username*:
               <input  type="text" value={username} placeholder="Example: jackson11!" maxLength="60" style={{ width:"200px"}} onChange={(e)=> setUsername(e.target.value)}></input>
-            </label>
+            </LabelWSpace>
             <FormSubtext>For privacy reasons, do not use your full name or email address</FormSubtext>
 
 
-            <label>Review Title*:
+            <LabelWSpace>Review Title*:
               <input type="text" value={reviewSummary} placeholder="Example: Best purchase ever!" maxLength="60" style={{ width:"200px"}} onChange={(e)=> setReviewSummary(e.target.value)}></input>
-            </label>
+            </LabelWSpace>
 
 
-            <label>Review*:
+            <LabelWSpace>Review*:
               <textarea type="text" value={reviewBody} placeholder="Why did you like the product or not?" minLength="50" maxLength="1000" rows="3" cols="37" onChange={(e)=> setReviewBody(e.target.value)}></textarea>
-            </label>
+            </LabelWSpace>
             {reviewBody.length < 50 ? <FormSubtext>{`Minimum required characters left:${50 - reviewBody.length}`}</FormSubtext> : <FormSubtext>Minimum reached - Max 1000 characters</FormSubtext>}
 
 
-            <label>Email*:
+            <LabelWSpace>Email*:
               <input type="text" value={email} placeholder="Example: jackson11@email.com" style={{ width:"200px"}} onChange={(e)=> setEmail(e.target.value)}></input>
-            </label>
+            </LabelWSpace>
             <FormSubtext>For authentication reasons, you will not be emailed</FormSubtext>
 
 
             <ReviewChars setFitNum={setFitNum} setComNum={setComNum} setLenNum={setLenNum} setQualNum={setQualNum} characteristics={characteristics} setSizeNum={setSizeNum} setWidthNum={setWidthNum} />
 
 
-            <label> Recommend this product?
+            <LabelWSpace> Recommend this product?
               <input type="radio" name="recommend" value={true} onChange={()=> setRecommend(true)}/>Yes
               <input type="radio" name="recommend" value={false} onChange={()=> setRecommend(false)} />No
-            </label>
+              </LabelWSpace>
 
 
             <label> {`Add Photos: `}

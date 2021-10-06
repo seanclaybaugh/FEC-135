@@ -141,6 +141,8 @@ function reviewsIndex(props) {
     }
 
     const postReview = async () => {
+
+      try {
       const result = await axios.post(`/api/reviews`, body);
 
       console.log(result);
@@ -158,6 +160,11 @@ function reviewsIndex(props) {
       setQualNum(null);
       setWidthNum(null);
       setEmail('');
+    } catch (err) {
+      console.log(err);
+    }
+
+
     }
 
     postReview();
@@ -204,6 +211,8 @@ figure out upload button to not close modal or reset review data
     setDropdown(target);
   }
 
+
+
   useEffect(() => {
     const getMeta = async () => {
       const result = await axios.get(`/api/reviews/meta?product_id=${props.productId}`);
@@ -214,6 +223,8 @@ figure out upload button to not close modal or reset review data
     setCharacteristics();
   }, []);
 
+
+
   useEffect(()=>{
     const getProduct = async () => {
       const result = await axios.get(`/api/products/${props.productId}`);
@@ -223,6 +234,7 @@ figure out upload button to not close modal or reset review data
 
   }, []);
 
+  
   useEffect(() => {
     const getReviews = async () => {
 

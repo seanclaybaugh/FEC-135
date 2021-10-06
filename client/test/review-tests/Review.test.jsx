@@ -7,9 +7,7 @@ describe('App', () => {
   test('search questions should have a placeholder string', () => {
     const placeholder = 'HAVE A QUESTION? SEARCH FOR ANSWERS';
 
-    render(<AddReviewModal
-      placeholderTxt={placeholderTxt}
-    />);
+    render(<AddReviewModal placeholderTxt={placeholderTxt} />);
 
     const elementOne = screen.getByPlaceholderText(placeholderTxt);
     expect(elementOne).toBeInTheDocument();
